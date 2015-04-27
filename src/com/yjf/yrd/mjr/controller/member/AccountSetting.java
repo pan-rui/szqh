@@ -154,5 +154,9 @@ public class AccountSetting extends BaseAutowiredController{
         }
         return jsonObject;
     }
+@RequestMapping("/userManage/mjr/investRecord/{pageSize}/{pageNo}")
+    public String getInvestRecord(HttpServletRequest request, HttpServletResponse response, Model model,@PathVariable String pageSize,@PathVariable String pageNo,String startDate, String endDate) {
 
+    return "/front/user/activation/invest_record.vm";
+}
 }
