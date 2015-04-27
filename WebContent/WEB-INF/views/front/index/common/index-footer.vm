@@ -1,0 +1,33 @@
+	<div class="footer">
+		<div class="container">
+			<div class="partner">
+				<h4>合作伙伴</h4>
+				<ul>
+					<li><a target="_blank" href="https://ppm.yiji.com/" class="par-icon"><img style="width:175px;height:32px;" src="$!{rc.contextPath}/resources/images/home/YJF.png" alt="易极付" /></a></li>
+					<li><a target="_blank" href="http://www.cqsxdb.com" class="par-icon"><img style="width:175px;height:32px;" src="$!{rc.contextPath}/resources/images/home/SXDB.png" alt="重庆市三峡担保集团有限公司" /></a></li>
+					<li><a target="_blank" href="http://www.yutaidb.com/" class="par-icon"><img style="width:175px;height:32px;" src="$!{rc.contextPath}/resources/images/home/YTDB.png" alt="重庆渝台担保公司" /></a></li>
+                    <li><a target="_blank" href="http://www.edu-guaranty.com/" class="par-icon"><img style="width:175px;height:32px;" src="$!{rc.contextPath}/resources/images/home/JYDB.png" alt="重庆教育担保公司" /></a></li>
+				</ul>
+				<div class="fn-clear"></div>
+			</div>
+		</div>
+		
+		<div class="copyright">
+			<div class="cc">
+                <div class="l_img">
+                	<a target="_blank" href="http://www.cqnet110.gov.cn">
+    					<img src="$!{rc.contextPath}/resources/images/police/sentrybox.gif" alt="网警图标"/>
+    				</a>
+    			</div>
+                <p>版权所有 © $!appConstantsUtil.getPlatformName() 未经许可不得复制、转载或摘编，违者必究!</p>
+    			<p>Copyright Chongqing Yijiu Financial Service Co.,LTD. ALL Rights Reserved</p>
+				<p>公司地址：$!appConstantsUtil.getPlatformAddress()　邮编：401121</p>
+				<p>渝ICP备13007122号</p>
+                <div class="r_img">
+					<a target="_blank" href="http://beian.cqnet110.gov.cn/open/showRecord?id=50011202000045">
+            			<img src="$!{rc.contextPath}/resources/images/police/50011202000045.gif" alt="备案号"/>
+                    </a>
+				</div>
+            </div>
+		</div>
+	</div>

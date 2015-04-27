@@ -1,0 +1,53 @@
+<div class="md-footer">
+		<div class="md-f-c">
+			<div class="md-default-c pc-width clearf">
+				<div class="list l-0 f-l">
+					<div class="icon-base call-big"></div>
+					<p>客服热线</p>
+					<p class="num">4009</p>
+					<p>邮箱: <span>huangql@mjr99.com</span></p>
+					<p>官方QQ群: <span>390458879</span></p>
+					<p>商务合作电话: <span>18707611911</span></p>
+				</div>
+				<div class="list l-2 f-l">
+					<div class="weixin">
+						<div class="erwei">
+							<img src="resources/mjr/img/erwei.png" class="erwei" alt="">
+							<span>关注微信号</span>
+						</div>
+						<div class="icon-base phone-big"></div>
+						<p class="app">手机APP下载</p>
+						<p>抢标快人一步</p>
+						<a href="#" class="android"><span class="icon-base android"></span>安卓 android</a><br>
+						<a href="#" class="ios"><span class="icon-base ios"></span>苹果 ios</a>
+					</div>
+				</div>
+				<div class="list l-0 f-l list-font-size-16 link clearf">
+					<ul class="f-l context-list-default">
+						<li><a href="/help/infoCenter?defaultMCode=ABOUT_US">关于我们</a></li>
+						<li><a href="/help/infoCenter?defaultMCode=CONTACT_US">联系我们</a></li>
+						<li><a href="#">安全保障</a></li>
+						<li><a href="#">招贤纳士</a></li>
+					</ul>
+					<ul class="f-l context-list-default">
+						<li><a href="#">媒体报道</a></li>
+						<li><a href="#">新闻动态</a></li>
+						<li><a href="/help/center">帮助中心</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="md-f-nav">
+			<div class="md-default-c pc-width clearf">
+				<ul class="clearf f-l">
+					<li><a href="#"><span class="icon-base norton"></span></a></li>
+					<li><a href="#"><span class="icon-base t360"></span></a></li>
+					<li><a href="#"><span class="icon-base cfca"></span></a></li>
+					<li><a href="#"><span class="icon-base safe"></span></a></li>
+					<li><a href="#"><span class="icon-base xin"></span></a></li>
+					<li><a href="#"><span class="icon-base icp"></span></a></li>
+				</ul>
+				<span class="sign f-r">版权所有: 深圳前海汇能互联网金融服务有限公司 粤ICP备15017117</span>
+			</div>
+		</div>
+	</div>

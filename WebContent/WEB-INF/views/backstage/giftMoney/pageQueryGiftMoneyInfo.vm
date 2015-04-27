@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>红包管理-红包</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="/backstage/giftMoney/pageQueryGiftMoney">红包管理</a> > 红包</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstage/giftMoney/pageQueryGiftMoney"  method="post" >
+							<dl style="width:250px;">
+								<dt>名称：</dt>
+								<dd><input type="text" class="u-input" name="giftName" value="$!{queryConditions.giftName}"/></dd>
+							</dl>
+                                           <button type="submit" class="s-btn">搜索</button>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="/backstage/giftMoney/addGiftMoney" class="p-btn">新建红包</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+                                <th>名称</th>
+                                <th>总金额(元)</th>
+                                <th>已发金额(元)</th>
+                                <th>类型</th>
+                                <th>活动开始时间</th>
+                                <th>活动结束时间</th>
+                                <th>红包用途</th>
+                                <th>状态</th>
+								<th>操作</th>
+							</tr>
+							#if($page.result.size()==0)
+                				<tr class="even">
+                					<td colspan=8 align=center>暂时没有红包</td>
+                				</tr>
+							#end
+							#foreach($info in $page.result)
+							<tr>
+                                <td><a href="/backstage/giftMoney/updateGiftMoney?giftId=$!{info.giftId}">$!{info.giftName}</a></td>
+                                <td>$!{info.totalAmount.toStandardString()}</td>
+                                <td>$!{info.usedAmount.toStandardString()}</td>
+                                <td>$!{info.type.message}</td>
+                                <td>$!dateUtil.simpleFormat($!{info.startDate})</td>
+								<td>$!dateUtil.simpleFormat($!{info.endDate})</td>
+								<td>#if($!{info.useType}=="ONLY_INVEST") 投资  #end  </td>
+                                <td>#if($!{info.status}=="NORMAL")启用 #elseif($!{info.status}=="FINISH") 发放完毕 #elseif($!{info.status}=="EXPIRE") 过期 #elseif($!{info.status}=="GAMEOVER") 手动结束 #else 停用  #end</td>
+								<td>
+                                    #if($!{info.status} =='STOP')
+                                        <a href="#"  status="NORMAL" giftId="$!{info.giftId}"  class="status">启用</a>  |
+                                    #end
+
+                                    #if($!{info.status} =='NORMAL')
+                                        <a href="#"  status="GAMEOVER" giftId="$!{info.giftId}"  class="status">结束活动</a>  |
+                                    #end
+
+
+                                <a href="/backstage/giftMoney/updateGiftMoney?giftId=$!{info.giftId}">详情</a>
+                                #if($!{info.status} =='NORMAL' || $!{info.status} =='FINISH' || $!{info.status} =="GAMEOVER" ||$!{info.status} =="EXPIRE")
+                                  |<a href="/backstage/giftMoney/pageQueryGiftMoneyTrade?giftId=$!{info.giftId}">领取详情</a> #end</td>
+							</tr>
+							#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							<a href="/backstage/giftMoney/addGiftMoney" class="p-btn">新建红包</a>
+            				#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+        seajs.use($_GLOBAL.mode + 'pageQueryGiftMoneyInfo');
+
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/giftMoney/pageQueryGiftMoney"
+			+"?giftName=$!{queryConditions.giftName}"
+			+"&payNo=$!{order.payNo}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

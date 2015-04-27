@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>imgPlayer Api</title>
+</head>
+<style>
+    table{
+		border: 1px solid #C8CCD1;
+		border-width: 1px 0 0 1px;
+		border-spacing: 0px;
+		line-height: 1.5em;
+		font-family: Arial, Helvetica, sans-serif,"宋体";
+		vertical-align: middle;
+		border-collapse: separate;
+	}
+	.table_1{
+	}
+	.table_1 td{
+		border: 1px solid #C8CCD1;
+		border-width: 0 1px 1px 0;
+	}
+	table td{
+		padding: 5px 10px;
+		line-height: 18px;
+		text-align: left;
+		vertical-align: top;
+	}
+	.head_tr{background: #E5EFFB;color:#555;}
+	.table_0{color:#2679ba;}
+	.table_0 a{
+		font-size: 12px;
+		line-height: 20px;
+		text-decoration: underline;
+		text-align: -webkit-match-parent;
+		border-collapse: separate;
+		border-spacing: 2px;
+		border-color: gray;
+	}
+	h2{color:#1366b9;}
+	.block{color:block;}
+	.color_0{color:#555;}
+	.color_1{color:#0A8021;}
+</style>
+<body>
+<h2>目录</h2>
+<table class="table_0">
+	<tr>
+		<td><a href="#constructor">1 构造函数</a></td>
+	</tr>
+	<tr>
+		<td><a href="#config_args">2 配置参数</a></td>
+	</tr>
+	<tr>
+		<td><a href="#object_function">3 对象方法</a></td>
+	</tr>
+</table>
+<h2 id="constructor">构造函数</h2>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>构造函数</td>
+		<td>描述</td>
+	</tr>
+	<tr>
+		<td class="color_1">ImgPlayer</td>
+		<td class="color_0">生成一个图片播放对象</td>
+	</tr>
+</table>
+<h2 id="config_args">配置参数</h2>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>配置参数</td>
+		<td>参数说明</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>eleArr</td>
+		<td>必须:所有需要展示的img对象 </td>
+		<td class="color_0">请传入JQ选择器字符串 为了配合live 让新加的满足条件的img也能有此功能</td>
+	</tr>
+	<tr class="color_1">
+		<td>renderTo</td>
+		<td>默认:'body'</td>
+		<td class="color_0">组件渲染的位置 一般不需要配置</td>
+	</tr>
+	<tr class="color_1">
+		<td>wheelSts</td>
+		<td>默认:true</td>
+		<td class="color_0">鼠标中键放大缩小功能</td>
+	</tr>
+	<tr class="color_1">
+		<td>moveCutSts</td>
+		<td>默认:true</td>
+		<td class="color_0">左右分屏点击 实现前后跳转功能</td>
+	</tr>
+	<tr class="color_1">
+		<td>showAfter</td>
+		<td>默认:null 此参数为函数 如果是字符串则为内部方法</td>
+		<td class="color_0">显示图片后调用方法 方法第一个参数为img 第二个参数为整个外层DIV</td>
+	</tr>
+	<tr class="color_1">
+		<td>pathInfo</td>
+		<td>string:显示标签的属性,function:执行函数后的返回值为显示的信息</td>
+		<td class="color_0">函数内 this是要显示的img对象 信息会显示到第一个p 无pathEle 则不需要配置</td>
+	</tr>
+	<tr class="color_1">
+		<td>titleInfo</td>
+		<td>string:显示标签的属性,function:执行函数后的返回值为显示的信息</td>
+		<td class="color_0">函数内 this是要显示的img对象 信息会显示到第二个p :无titleEle 则不需要配置</td>
+	</tr>
+	<tr class="color_1">
+		<td>minScale</td>
+		<td>默认:1</td>
+		<td class="color_0">最小缩小比例</td>
+	</tr>
+	<tr class="color_1">
+		<td>maxScale</td>
+		<td>默认:2</td>
+		<td class="color_0">最大放大比例</td>
+	</tr>
+	<tr class="color_1">
+		<td>mainDiv</td>
+		<td>默认:null null时会生成默认模板</td>
+		<td class="color_0">总的页面对象 如果不配置 下面的参数都可以不用配置</td>
+	</tr>
+	<tr class="color_1">
+		<td>imgDiv</td>
+		<td>默认:'.main-photo'</td>
+		<td class="color_0">放置图片的div</td>
+	</tr>
+	<tr class="color_1">
+		<td>cwBtn</td>
+		<td>默认:'.rota-r'</td>
+		<td class="color_0">右旋按钮</td>
+	</tr>
+	<tr class="color_1">
+		<td>acwBtn</td>
+		<td>默认:'.rota-l'</td>
+		<td class="color_0">左旋按钮</td>
+	</tr>
+	<tr class="color_1">
+		<td>biggerBtn</td>
+		<td>默认:'.magnify'</td>
+		<td class="color_0">放大按钮</td>
+	</tr>
+	<tr class="color_1">
+		<td>smallerBtn</td>
+		<td>默认:'.lessen'</td>
+		<td class="color_0">缩小按钮</td>
+	</tr>
+	<tr class="color_1">
+		<td>fullBtn</td>
+		<td>默认:'.full'</td>
+		<td class="color_0">全屏按钮</td>
+	</tr>
+	<tr class="color_1">
+		<td>prevBtn</td>
+		<td>默认:'.prev-photo'</td>
+		<td class="color_0">上一张按钮</td>
+	</tr>
+	<tr class="color_1">
+		<td>nextBtn</td>
+		<td>默认:'.next-photo'</td>
+		<td class="color_0">下一张按钮</td>
+	</tr>
+	<tr class="color_1">
+		<td>titleEle</td>
+		<td>默认:'.info-title'</td>
+		<td class="color_0">第一行信息</td>
+	</tr>
+	<tr class="color_1">
+		<td>pathEle</td>
+		<td>默认:'.path-title'</td>
+		<td class="color_0">第二行信息</td>
+	</tr>
+	<tr class="color_1">
+		<td>其他</td>
+		<td>无</td>
+		<td class="color_0">参见window配置</td>
+	</tr>
+</table>
+<h2 id="object_function">对象方法</h2>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>方法</td>
+		<td>参数说明</td>
+		<td>返回值</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>transformHandler(num)</td>
+		<td>旋转的角度 90的倍数 可以是0 负数</td>
+		<td>返回组件本身</td>
+		<td class="color_0">使图片旋转一定角度</td>
+	</tr>
+	<tr class="color_1">
+		<td>zoomHandler(num)</td>
+		<td>放大缩小 增加的倍率 0.1 -0.1</td>
+		<td>返回组件本身</td>
+		<td class="color_0">使图片放大缩小一定比例</td>
+	</tr>
+	<tr class="color_1">
+		<td>toFull()</td>
+		<td>无</td>
+		<td>返回组件本身</td>
+		<td class="color_0">全屏</td>
+	</tr>
+	<tr class="color_1">
+		<td>cancelFull()</td>
+		<td>无</td>
+		<td>返回组件本身</td>
+		<td class="color_0">取消全屏</td>
+	</tr>
+	<tr class="color_1">
+		<td>setEle(arg)</td>
+		<td>可以是字符串'+1','-1' 是向前向后X张;可以是数字1 跳转到X张;可以是img对象 显示这个img</td>
+		<td>返回组件本身</td>
+		<td class="color_0">设置要显示的图片</td>
+	</tr>
+	<tr class="color_1">
+		<td>toMoveCenter()</td>
+		<td>不需要参数</td>
+		<td>返回组件本身</td>
+		<td class="color_0">将图片居中 一般情况不需要调用此方法</td>
+	</tr>
+	<tr class="color_1">
+		<td>getZoom()</td>
+		<td>不需要参数</td>
+		<td>Number</td>
+		<td class="color_0">返回当前缩放比例</td>
+	</tr>
+	<tr class="color_1">
+		<td>getTransform()</td>
+		<td>不需要参数</td>
+		<td>Number</td>
+		<td class="color_0">返回当前旋转角度</td>
+	</tr>
+	<tr class="color_1">
+		<td>setZoomScale(a,b)</td>
+		<td>a:minScale; b:maxScale</td>
+		<td>返回组件本身</td>
+		<td class="color_0">设置允许的最小最大缩放比例</td>
+	</tr>
+</table>
+</body>
+</html>

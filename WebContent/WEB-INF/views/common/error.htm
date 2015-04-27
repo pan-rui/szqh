@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>$!{appConstantsUtil.getProductName()}-404报错</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body>
+<div class="h-top">
+#parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+	<div class="blank50"></div>
+    <div class="container">
+    	<div class="error404">
+            <h4><em></em>抱歉，系统打了个盹，导致操作失败了!</h4>
+            <p class="mt20">你可能需要：<a href="javascript:history.go(-1)">返回上一步</a><span>|</span><a href="/userManage/userHome">返回首页</a></p>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+#parse("/front/index/common/footer-yrd.vm")
+</body>
+</html>
+

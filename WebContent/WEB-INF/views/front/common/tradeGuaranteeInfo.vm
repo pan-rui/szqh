@@ -1,0 +1,63 @@
+
+<div class="b-border pro-info"">   <!--class="assure-info"-->
+	<ul>
+	
+	<p><span>担保机构：</span>$!{loanDemand.guaranteeName}</p>
+	<p><span>#if(1==$!{trade.status}||4==$!{trade.status}||6==$!{trade.status})担保承诺函#else 担保承诺函 #end：</span></p>
+		
+	<p class="b-img mt10">
+	
+	#if($!{loanDemand.guaranteeLicenseUrl}!="")
+		 <img id="guaranteeLicenseUrl_Img" src="$!{loanDemand.guaranteeLicenseUrl}" width="240" height="127" alt="担保承诺函"/>
+	#else
+		&nbsp;
+	#end
+	#if($!{loanDemand.contractPdfUrl})
+		<p><span>正式担保函:</span></p>
+		<p class="b-img mt10"> <img id="guaranteeLicenseUrl_Img" src="$!{loanDemand.contractPdfUrl}" width="240" height="127" alt="正式承诺函"/></p>
+	#else
+		&nbsp;	 
+	#end	
+	</p>	
+	#if(  $!{audit}&& ($!{countInvestTimes}>0 || $!{investsDownLoadable}))
+        <div class="down-list">
+		#if($!{loanDemand.contractPdfUrl} && $!{loanDemand.letterPdfUrl})
+			<p>	<span>担保函已生成：</span>
+				<a href="/upload/downLoadFile?demandId=$!{loanDemand.demandId}&type=downLoad&fileType=letter" class="download">下载</a>&nbsp;
+				
+				<a target="_blank" href="/upload/downLoadFile?demandId=$!{loanDemand.demandId}&type=privew&fileType=letter" >预览</a>
+				
+			</p>
+			<p>	<span>正式合同已生成：</span>
+				<a href="/upload/downLoadFile?demandId=$!{loanDemand.demandId}&type=downLoad&fileType=contract" class="download">下载</a>&nbsp;
+				
+				<a target="_blank" href="/upload/downLoadFile?demandId=$!{loanDemand.demandId}&type=privew&fileType=contract" >预览</a>
+				
+			</p>
+		#else
+			
+			<p><span>投融资及担保合同：已生成</span></br>
+				<a href="$!{pdfhost}/tradeDownload/downLoadWord?type=contract_DB&tradeId=$!{trade.tradeId}&detailID=0&downType=downLoad" class="download">下载</a>
+				
+				<a target="_blank" href="$!{pdfhost}/tradeDownload/downLoadWord?type=contract_DB&tradeId=$!{trade.tradeId}&detailID=0&downType=privew" >预览</a>
+				
+			</p>
+			<!--
+			<p>
+				<a href="$!{pdfhost}/tradeDownload/downLoadWord?type=letter_e8&tradeId=$!{trade.tradeId}&detailID=0&downType=downLoad" class="download">下载承诺函(原始)</a>
+				<a target="_blank" href="$!{pdfhost}/tradeDownload/downLoadWord?type=letter_e8&tradeId=$!{trade.tradeId}&detailID=0&downType=privew" >预览</a>
+			</p>
+			-->
+		#end
+		    #if($!{investsDownLoadable})
+		    <p> 
+				<a target="_blank" href="/tradeDownload/downLoaduserInvests?demandId=$!{trade.demandId}" class="download">下载投资信息</a>
+			</p>
+			 #end
+		</div>
+		<!--
+			<div><p style="color:#f60;">提示：“正式”为承诺函、合同已加盖公章PDF文件 ,“原始”为未加盖公章PDF文件 </p></div>
+		-->
+	#end
+	</ul>
+</div>

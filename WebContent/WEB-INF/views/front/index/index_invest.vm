@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<base href="$!{rc.contextPath}/" />
+	<title>投资首页</title>
+	<link rel="stylesheet" href="resources/mjr/css/global.css">
+	<link rel="stylesheet" href="resources/mjr/css/common.css">
+</head>
+
+<body class="invest">
+	#parse("/front/index/common/header-mjr.vm")
+<!--content begin----------------->	
+	
+<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+	<div class="md-module">
+		<div class="md-default-c pc-width clearf">
+			<div class="invest-nav md-grid-default">
+				<ul class="nav title">
+					<li id="li_1"  class="on"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=1"">招标中</a></li>
+					<li id="li_2"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=1">预热中</a></li>
+					<li id="li_3"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=2">还款中</a></li>
+					<li id="li_4"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1">全部产品</a></li>
+					<!--<li><a href="#">切换到"债券转让项目"列表</a></li>-->
+				</ul>
+			</div>
+			<div class="invest-c md-grid-default">
+				<ul class="handle nav">
+					<!--<li>
+						<label for="tender" class="input-text-default">类型：
+							<select>
+								<option>不限</option>
+								<option>基金</option>
+								<option>股票</option>
+								<option>保理</option>
+								<option>非保理</option>
+							</select>
+						</label>
+					</li>-->
+					<li>
+						<label for="tender" class="input-text-default">借款期限：
+							<select id="loanPeriod">
+								<option value="">不限</option>
+								<option value="1">1个月</option>
+								<option value="2">2个月</option>
+								<option value="3">3个月</option>
+								<option value="6">6个月</option>
+								<option value="12">12个月</option>
+							</select>
+						</label>
+					</li>
+					<li>
+						<label for="tender" class="input-text-default">年利率：
+							<select id="rate">
+								<option value="">不限</option>
+								<option value="1">10%以下</option>
+								<option value="2">10%-13%</option>
+								<option value="3">13%-15%</option>
+								<option value="4">15%以上</option>
+							</select>
+						</label>
+					</li>
+					
+					<li>
+					
+						<a href="javascript:toPage($!{page.totalPageCount},1);" class="flat-full btn">搜索</a>
+					</li>
+				</ul>
+				<div class="line"></div>
+				<!--<div class="order">
+					<span>排序: </span>
+					<ul class="nav">
+						<li class="on"><a href="#">开始时间</a></li>
+						<li><a href="#">金额</a></li>
+						<li><a href="#">年利率</a></li>
+						<li><a href="#">招标进度</a></li>
+						<li><a href="#">有效时间</a></li>
+					</ul>
+				</div>-->
+				<div class="i-c-body md-grid-default">
+					 #foreach($trade in $!{page.result}) 
+					<div class="info-invest">
+						<div class="icon-base ico"></div>
+						<div class="c-c">
+							<div class="c">
+								<h4><a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" >$!{trade.loanName}</a></h4>
+								<div class="info cd">
+									<div class="list">
+										<div class="list-fix">年化收益: <span class="num">$!rateUtil.getRateOnly($!trade.interestRate)<span class="persent">%</span></span></span></div>
+									</div>
+									<div class="list">项目金额: <span>$moneyUtil.getMoneyByw($!{trade.tradeAmount})万</span></div>
+									<div class="list">项目期限: <span>$!{trade.timeLimit} $!{trade.timeLimitUnit.viewName}</span></div>
+									<div class="list">还款方式: <span>按月付息，到期还本</span></div>
+									<div class="list">保障方式: <span>100%本息担保</span></div>
+									  #set($percent = "100%")
+                            			#if($!{trade.tradeStatus.value}==1)
+                                			#set($percent = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.loanAmount},$!{trade.leastInvestAmount}))
+                            			#else
+                               				#set($percent = '100%')
+                            			#end
+ 										#set($needAmount =  $moneyUtil.getMoneyByw($!{trade.loanAmount}, $!{trade.loanedAmount}))
+									<div class="list">募集进度: <span>${percent}%</span></div>
+								</div>
+								<a href="#" class="cupt"><div class="icon-base"></div></a>
+								<div class="i-h cd">
+									<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" class="flat-full deepblue-bg">立即投资</a>
+									<input value="$!{currentDate.getTime()}" class="currentDate" type="hidden"/>	##当前时间								
+									<input value="$!{trade.deadline.getTime()}" class="getDeadTime" type="hidden"/>	
+									<input value="$!{trade.investAvlDate.getTime()}" class="getinvestAvlDate" type="hidden"/>
+									<input value="#if($!{trade.tradeEffectiveDate})$!{yrdDateUtil.formatDay($!{trade.tradeEffectiveDate})}#else#end" class="geteffectiveDate" type="hidden"/>
+									<input value="$!{trade.tradeStatus.value}" class="tradeValue" type="hidden"/>
+									<span class="showLeftTime #if($!{trade.tradeStatus.value}==1 && ${needAmount}>0 )#else showLeftTime_b#end"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+			
+				 #end
+				 	</div>
+				<div class="pages">
+					<div id="kkpager"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript" src="resources/mjr/js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="resources/mjr/js/kkpager.min.js"></script>
+	<script type="text/javascript" src="resources/mjr/js/run.js"></script>
+<!--content end----------------->	
+	#parse("/front/index/common/footer-mjr.vm")
+	<script type="text/javascript" >
+	$(function(){
+		kkpager.generPageHtml({
+				pno 				: '$!{page.currentPageNo}', 					
+				total 				: '$!{page.totalPageCount}', 			//总页码
+				totalRecords 		: '$!{page.totalCount}',				//总数据条数
+				mode 				: 'click',			//默认值是link，可选link或者click
+				isShowFirstPageBtn	: false, 
+				isShowLastPageBtn	: false,
+				isShowTotalPage 	: false,
+				isShowCurrPage		: false,
+				isShowTotalRecords 	: false, 
+				isGoPage 			: false,
+				click : function(n){
+					toPage($!{page.totalPageCount},n);
+					return false;
+				}
+			});
+		
+		//初始化
+		$("#loanPeriod").val('$!{loanPeriod}');
+		if('$!{endRate}'==10){
+			$("#rate").val(1);
+		}else if('$!{endRate}'==13){
+			$("#rate").val(2);
+		}else if('$!{endRate}'==15){
+			$("#rate").val(3);
+		}else if('$!{startRate}'==15){
+			$("#rate").val(4);
+		}
+		
+		if('$!{tradeStatus}'==''){
+			$("#li_").addClass("on");
+		}
+		
+		function sysDate(){
+			var url = '/boot/currentTime.htm';
+				var result = null;
+			$.ajax({
+				url:url,
+				dataType:'json',
+				type:'post',
+				async:false,
+				data:{},
+				success:function(data){
+					result = data;
+				}
+			});
+		
+			var gloabTime= new Date().getTime();
+			if(result.code==1){
+				gloabTime = result.TimeLong;
+			
+			}
+			return gloabTime;
+		}
+		
+		function showLeftTimeFun(){
+			$('.getDeadTime').each(function(){
+				var me=$(this);
+				var deadTime=me.val();//投资结束时间
+				var currentDate=me.parents('.i-h').find('.currentDate').val();//当前时间
+				var startTime=me.parents('.i-h').find('.getinvestAvlDate').val();//起投时间
+				var effectiveTime=me.parents('.i-h').find('.geteffectiveDate').val();//成立时间
+				var tradeValue=me.parents('.i-h').find('.tradeValue').val();//交易状态
+		
+				var leftTime=(deadTime-currentDate)/1000;
+				var percent=me.parents('.i-h').find('.per').val(),
+					timefield=$('.showLeftTime',this.parentNode);
+				
+				$(this).parents('.leftTime').find('.currentDate').val(parseFloat(currentDate)+1000);//当前时间，每调用一次方法加1000毫秒
+		
+				if(startTime<currentDate){
+					
+					if(parseFloat(leftTime)>0 && percent!="100%"){
+						var days = Math.floor(leftTime/86400); 
+			 			var hours = Math.floor((leftTime%86400)/3600); 
+			 			var minutes = Math.floor(((leftTime%86400)%3600)/60);  
+			 			var seconds = Math.floor(((leftTime%86400)%3600)%60);  
+			 			var result= days+"<span>天</span>"+hours+"<span>时</span>"+ minutes+ "<span>分</span> "+seconds+"<span>秒</span>";  
+			 			//console.log($('.showLeftTime',this.parentNode).length)
+			 			timefield.html(result);
+			 			//console.log(timefield[0].nodeName)
+			 			me.parents('.leftTime').find('.button a').attr('class','');
+			 			//console.log(2)
+					}else if(effectiveTime!=""){
+						if(tradeValue==3 || tradeValue==7){
+							timefield.html("合同已终止");
+							
+						}else{
+							timefield.html(effectiveTime+"合同成立");
+						}
+					}else if(percent=="100%"){
+						timefield.html("合同待成立");
+					}
+					else{
+						timefield.html("已过投资时间");
+					}
+		
+					
+				}else{
+					var bgTime=(startTime-currentDate)/1000;
+					var days_a = Math.floor(bgTime/86400); 
+		 			var hours_a = Math.floor((bgTime%86400)/3600); 
+		 			var minutes_a = Math.floor(((bgTime%86400)%3600)/60);  
+		 			var seconds_a = Math.floor(((bgTime%86400)%3600)%60);  
+		 			var result_a=days_a+"<span>天</span>"+hours_a+"<span>时</span>"+ minutes_a+ "<span>分</span> "+seconds_a+"<span>秒</span>";  
+		 			//timefield.text(2222);
+		 			timefield.html(result_a);
+				}
+		
+		
+				
+			});
+			
+		}
+		
+		
+		setInterval(showLeftTimeFun,1000);
+	});
+		
+		function toPage(totalPage, pageNo){
+            if(totalPage<pageNo){
+                return false;
+            }
+            var rate = $("#rate").val();
+            var startRate = '';
+            var endRate = '';
+            if(rate == 1){
+            	startRate=0;
+            	endRate = 10;
+            }else if(rate ==2){
+            	startRate=10;
+            	endRate = 13;
+            }else if(rate ==3){
+            	startRate=13;
+            	endRate = 15;
+            }else if(rate ==4){
+            	startRate=15;
+            
+            }
+            var url = "$!{rc.contextPath}/boot/invest/$!{page.pageSize}/"+pageNo;
+            url= url+"?loanPeriod="+$("#loanPeriod").val() +"&startRate="
+                    +startRate+"&endRate="+endRate+"&tradeStatus=$!{tradeStatus}";
+            window.location.href = url;
+        }
+	</script>
+</body>
+
+</html>

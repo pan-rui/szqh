@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>奖品设置</title>
+    <link type="text/css" href="/resources/css/after.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="warp">
+    <!--头部-->
+    #parse("/backstage/layout/logo.vm")
+    <!--内容-->
+    <div class="container fn-clear">
+        #parse("/backstage/layout/left.vm")
+        <div class="main-content fn-right">
+            <div class="mc">
+                <div class="top">
+                    <p><a href="">活动管理</a> > 奖品设置</p>
+                </div>
+                <form action="/backstage/lottery/addPrizeRuleSubmit" class="ui-form pt20" id="add_giftMoney">
+
+                    <fieldset>
+                        <div class="item">
+                            <label for="" class="u-label"><span class="required">*</span>模板名称：</label>
+                            <input type="text" class="u-input w170" id="prizeRuleName" name="prizeRuleName" value=""/>
+                            <span class="m-f">100%中奖：</span>
+                            <input type="radio" class="w20" value="1" name="ac" checked/>是
+                            <input type="radio" class="w20" value="2" name="ac"/>否
+                            <span class="m-f">总次数：</span>
+                            <input type="text" class="u-input w60" id="zprizeNum" name="zprizeNum" value=""/>
+                            <input type="hidden" id="winningRate" name="winningRate"/>
+						<span class="m-f">
+							<a href="javascript:void(0);" class="u-btn u-btn-gray fn-new" id="">增加</a>
+						</span>
+                        </div>
+                    </fieldset>
+
+
+                                <table class="m-table">
+                                    <tr>
+
+                                        <th>排序</th>
+                                        <th>奖品名称</th>
+                                        <th>物品描述</th>
+                                        <th>奖项</th>
+                                        <th>数量</th>
+                                        <th>面额</th>
+                                        <th>中奖率</th>
+                                        <th>操作</th>
+                                    </tr>
+
+
+                                    <tr >
+
+                                        <td><input type="text" class="instyle" value="" name="seqNum"/></td>
+                                        <td>
+                                            <div class="instyle">
+                                                <select name="prizeType" id="prizeType" class="instyle">
+                                                    <option selected value="REDPACKET">红包</option>
+                                                    <option value="HIKE_VOUCHER">增益卷</option>
+                                                    <option value="USERPOINT">积分</option>
+                                                    <option value="PHYSICAL">实物</option>
+                                                    <option value="EXPERIENCE_AMOUNT">体验金</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td><input type="text" class="instyle" value="" id="description" name="description"/></td>
+                                        <td><input type="text" class="instyle" value="" id="awards" name="awards"/></td>
+                                        <td><input type="text" class="instyle" value="" id="prizeNum" name="prizeNum"/></td>
+                                        <td><input type="text" class="instyle" value="" id="prizeAmount" name="prizeAmount"/></td>
+                                        <td><input type="text" class="instyle" value="" id="probability" name="probability"/></td>
+                                        <td class="fn-del" style="cursor: pointer;color: #0000ff">删除</td>
+                                    </tr>
+
+
+
+
+                                </table>
+
+
+
+                    <div class="item mt10" style="text-align: center;">
+                        <a href="javascript:void(0);" class="u-btn u-btn-blue fn-submit1" id="template-submit">保存</a><a href="/backstage/lottery/prizeRuleList" class="u-btn u-btn-gray">取消</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var $_GLOBAL =
+    {
+    }
+    ;
+</script>
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript" src="/resources/js/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+
+    seajs.use($_GLOBAL.mode +'addPrizeRule');
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="user-photo grid">
+    <img src="resources/mjr/img/user-default.png">
+</div>
+<div class="user-info grid" id="user-info" cert="$!userBaseInfo.RealNameAuthentication" mobileBind="$!userBaseInfo.MobileBinding" emailBind="$!userBaseInfo.getMailBinding()" >
+    <p class="username">#if($!{userBaseInfo.realName}) $!{userBaseInfo.realName} #else $!{userBaseInfo.userName} #end </p>
+
+    <p class="note">下午好, 工作辛苦了, 喝杯水保持身体健康哦~</p>
+    <a href="#" class="alert f-r"><span class="icon-base01 alert"></span><span class="tip">0</span></a> ## 通知消息数...
+
+    <div class="clearf" id="auths">
+        <span class="icon-base01 os"></span>
+        <span class="icon-base01 phone"></span>
+        <span class="icon-base01 email"></span>
+                    <span class="safe p" id="safeLevel"><span>安全等级: </span><span class="s-c"><span
+                            class="safe-j"></span></span></span>
+        <span class="lasttime p">上次登录时间: $!{yrdDateUtil.simpleDateFormatChinese($!{prevLoginTime})}</span>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp f-bgGray">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+
+
+
+
+
+
+ <div class="container fn-clear mt20 m-news2">
+		
+		<!--sidebar-->
+        <div class="l-sb5">
+			<h2 class="title">
+				<img src="/styles/images/common/news_title2.jpg"/>
+			</h2>
+			<!--menu-->
+            <div class="m-menu">
+                <ul>
+					#foreach($module in $!{moduleList})
+						
+						<li #if($!{defaultMCode}==$!{module.moduleCode})class="active"#end>
+							<a data-id="$module.moduleId"   href="$!{rc.contextPath}/help/toModule?moduleCode=$!{module.moduleCode}" target="aboutusifr">
+                                <i class="spe">&gt;</i>
+                                <i class="u-arrows left gray"></i>
+                                <span class="txt">$!{module.moduleName}</span>
+    						</a>
+                        </li>
+    					#end
+					
+				</ul>
+			</div>
+			<!--menu End-->
+		</div>
+		<!--sidebar End-->
+		
+		<!--main-->
+        <div class="l-mn5">
+            <div class="l-mnIn5">
+				
+				<iframe name="aboutusifr" id="aboutusifr"   width="100%" frameborder="0"  border="0"  marginwidth="0"  marginheight="0"  scrolling="no"  allowtransparency="yes" src="$!{rc.contextPath}/help/toModule?moduleCode=$!{defaultMCode}" ></iframe>
+				
+				
+				
+			</div>
+		</div>
+		<!--main End-->
+		
+	</div>
+
+
+
+
+
+
+
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'institution1');
+    </script>
+	<script>
+	seajs.use($_GLOBAL.mode + 'popInfo');
+	
+		var menu=$(".m-menu"),
+			links=menu.find('li')
+			
+        $(".m-menu").on('click','li',function(){
+	      var index=links.index(this);
+		  
+		  if(index<0){
+		    return;
+		  }
+		  
+          links.removeClass("active")
+		  	.eq(index).addClass("active");
+        });
+		
+		var content=$('#aboutusifr');
+		
+		content.load(function(){
+			var iframe = document.getElementById("aboutusifr"),
+				bHeight,dHeight,height;
+			
+			content.css('height','auto')
+			
+			try{
+				height = iframe.contentWindow.document.body.scrollHeight;
+				content.height(height)
+			}catch (ex){}
+		});
+    </script>
+</body>
+</html>

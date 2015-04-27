@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>担保交易详情</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<div class="trad-detail">
+				<h3 class="con-title">需求详情</h3>
+				<div class="detail-1">
+					<h4>基本信息</h4>
+					 #parse("/front/common/investBaseInfo.vm")
+				</div>
+				<div class="detail-2">
+					<h4>项目信息</h4>
+					 #parse("/front/common/tradeDetailInfo.vm")
+				</div>
+				<div class="detail-3">
+					<h4>承诺信息</h4>
+					#parse("/front/common/tradeGuaranteeInfo.vm")
+				</div>
+				#if($!{loanDemand.sponsorId} > 0)
+				<div class="detail-4">
+					<h4>保荐信息</h4>
+					<ul>
+						<li><em>保荐机构：</em><span>$!{loanDemand.sponsorName}</span></li>
+						<li><em>保荐机构话语：</em><span>$!{loanDemand.sponsorStatement}</span></li>
+					</ul>
+				</div>
+				#end
+				
+				<div class="bottom-btn">
+					#set($t = $permission.check('/tradeQuery/manualReimbursement'))
+					#if($t>0)
+						#if($!{notAuth})
+							<a id="loanAuditFinish" href="javascript:;" class="fn-g-btn mr5 refund"><span>融资发布审核</span></a>
+						#end
+        				
+					#end	
+					<a href="/guaranteeCenter/loanDeployGuaranteeAuth" class="fn-h-btn"><span>返回</span></a>
+				</div>
+				<div id="checkPasswordCheckContainer" style="display:none;">
+					<ul class="fn-steps fn-clear">
+            			<li class="current">1.一次审核</li>
+            			<li>2.再次审核</li>
+            		</ul>
+					<div class="fn-item" id="passwordDiv">
+						<label class="fn-label"><span class="required">*</span>一级审核密码：</label>
+						<input type="password" class="fn-text w235" id="checkPasswordOne"　name="checkPassword"/>
+						<br /><b id="pay-password-messge" name="pay-password-messge" class="error-tip" for="checkPassword" generated="false"></b>
+					</div>	
+					<div class="fn-item">
+    					<a href="javascript:;" id="confirm_check_one" name="confirm_check_one" class="fn-g-btn mr5"><span>确认审核</span></a>
+    					<a href="javascript:window.location.href = window.location.href;" class="fn-h-btn"><span>返回上一步</span></a>
+    				</div>
+				</div>
+				<div id="recCheckPasswordContainer" style="display:none;">
+					<ul class="fn-steps fn-clear">
+            			<li>1.一次审核</li>
+            			<li class="current">2.再次审核</li>
+            		</ul>
+					<div class="fn-item" id="passwordDiv">
+						<label class="fn-label"><span class="required">*</span>二级审核密码：</label>
+						<input type="password" class="fn-text w235" id="checkPasswordTwo" name="checkPassword"/>
+						<br /><b id="pay-password-messge" name="pay-password-messge" class="error-tip" for="checkPassword" generated="false"></b>
+					</div>	
+					<div class="fn-item">
+						<input type="hidden" id="demandId"  name="demandId"  value="$!{loanDemand.demandId}"/>
+						<input type="hidden" id="checkType"  name="checkType"  value="DEPLOY"/>
+						<input type="hidden" id="token" name="token"  value="$!{token}"/>
+    					<a href="javascript:;" id="confirm_check" name="confirm_check" class="fn-g-btn mr5"><span>确认审核</span></a>
+    					<a href="javascript:;" id="recheckGoback" class="fn-h-btn"><span>返回上一步</span></a>
+    				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'guarantee_noTrade');
+    </script>
+</body>
+</html>

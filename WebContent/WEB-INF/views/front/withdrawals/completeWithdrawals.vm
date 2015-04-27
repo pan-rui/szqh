@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>确认提现</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<h3 class="con-title">申请提现 <a href="/tradeQuery/withdrawals" class="onli ml10">提现记录</a></h3>
+			<div class="tx-confirm border-b">
+				<h4>确认提现申请</h4>
+			   <ul>
+			      <li><span>真实姓名：</span>$!{realName}</li>
+				  <li><span>开户银行：</span><img src="$!{banklogo}" alt="$!{bankCode}" class="vm" /></li>
+				  <li><span>银行卡号：</span>$!{bankCardNo_4}</li>
+				  <li><span>到账时间：</span>立即到账。注：由于不同银行处理时间不同,到账会有所延时,请您耐心等候。</li>
+				  <li><span>提现金额：</span><b id="amount" class="ft-f60">$!{amount}</b> 元 (含服务费$!{fees}元,银行实收$!{real} 元)</li>
+			   </ul>
+			</div>
+			<form action="/withdrawals/completeWithdrawals" method="post" class="border-b price-active" id="completeWithdrawals_form">
+				<fieldset class="border-b fn-mb20">
+					<div class="fn-item" id="passwordDiv">
+						<label class="fn-label" ><span class="required">*</span>支付密码：</label>
+						 <div id="flexContent"></div><input type="hidden" name="payPassword" id="payPassword" />
+						 <b id="pay-password-messge" class="error-tip" for="payPassword" generated="false" style="display:none;">	</b>
+					</div>
+				</fieldset>
+				<div class="fn-item">
+					<input type="hidden" name="amount" value="$!{amount}"/><!--体现金额-->
+					<input type="hidden" name="token"  value="$!{token}"/>
+					<input type="hidden" name="coupons"  value="$!{coupons}"/>
+					<a href="javascript:;" class="fn-g-btn mr5"><button type="submit" id="submit-a">确认提现</button></a>
+					<a href="/withdrawals/launchWithdrawals" class="fn-h-btn"><span>返回上一步</span></a>
+				</div>
+			</form>
+		</div>			
+	</div>  
+   	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'completeWithdrawals');
+    </script>
+</body>
+</html>

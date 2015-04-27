@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户首页</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+   #parse("/front/user/common/left1.vm")
+   
+   
+ <div class="m-content fn-right">
+        	<div class="m-content-box role">
+        	
+        	<form action="/guaranteeOperator/addOperatorSubmit" method="post" id="guaranteeOpenOperator_form">
+        		<div class="oper">
+					<div class="m-tab fn-clear">
+						<h4 class="tt">操作员管理</h4>
+						<ul>
+							<li><a href="/guaranteeOperator/operatorManager">操作员管理</a></li>
+							<li class="cur"><a>新增操作员</a></li>
+						</ul>
+					</div>
+					
+					<table cellpadding="0" class="m-table-bd m-table-bd2 mb15">
+						<tbody><tr>
+							<th width="253">操作员账号：</th>
+							<td width="500">
+								<input type="text" class="ipt"  name="userName"><span class="required">*</span>
+								
+							</td>
+						</tr>
+						<tr>
+							<th width="">操作员名称：</th>
+							<td>
+								<input type="text" class="ipt"  name="realName"><span class="required">*</span>
+								
+							</td>
+						</tr>
+						<tr>
+							<th width="">初始登录密码：</th>
+							<td><input type="password" class="ipt"  id="logPassword" name="logPassword" ><span class="required">*</span></td>
+						</tr>
+						<tr>
+							<th width="">确认登录密码：</th>
+							<td><input type="password" class="ipt"  id="rePassword" name="rePassword" ><span class="required">*</span></td>
+						</tr>
+						<tr>
+							<th width="">操作员手机：</th>
+							<td><input type="text" class="ipt" id="mobile" name="mobile" ><span class="required">*</span></td>
+						</tr>
+						<tr>
+							<th width="">审核权限：</th>
+							<td>
+								 
+									<input type="radio" name="operatorType" class="radio" checked=checked  value="1"/><label for="">普通操作员</label>
+									<input type="radio" name="operatorType" class="radio"  value="2"/><label for="">一级审核员</label>
+									<input type="radio" name="operatorType" class="radio"  value="3"/><label for="">二级审核员</label>
+								
+								<span class="required">*</span>
+							</td>
+						</tr>
+						<tr style="display:none" id="payPasswordDIV">
+							<th width="">审核密码：</th>
+							<td><input type="password" class="ipt"  name="payPassword" ><span class="required">*</span></td>
+						</tr>
+						<tr style="display:none" id="payPasswordDIV">
+							<th width="">审核密码：</th>
+							<td><input type="password" class="ipt"  name="payPassword2" ><span class="required">*</span></td>
+						</tr>
+						<tr>
+							<th width="">备注：</th>
+							<td><input type="text" class="ipt" name="remark" /><span class="required">*</span></td>
+						</tr>
+						
+						<tr>
+							<th width="">验证码：</th>
+							<td><input type="text" class="ipt" maxlength="4" name="imgCode" />
+						<img src="/anon/getImgCode" class="code-img newImgCod" width="80" height="20" id="newImgCod"/>
+						<a href="javascript:;" class="newImgCod">换一张</a>
+						<b class="fn-tip">不用区分大小写。</b></td>
+						</tr>
+						
+						
+					</tbody></table>
+					<div class="oper-btn">
+					
+					    <input type="hidden"   name="roleIds"   value="1"/>
+						<input type="hidden"   name="roleIds"   value="14"/>
+						<input type="hidden" name="state" value="normal"/>
+						<input type="button"  id="formSubmit"  class="save-btn" value="确定">
+						<input type="reset" class="back-btn" value="重置">
+					</div>
+					 
+				</div>
+				
+				 
+				
+				
+				</form>
+	    </div>
+</div>
+        
+  <div class="blank50"></div>
+ 
+
+  </div>
+
+
+#parse("/front/index/common/footer-yrd.vm")	
+
+
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'guaranteeOpenOperator');
+    </script>
+
+</body>
+</html>

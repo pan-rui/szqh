@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>融资人-项目详情</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+
+
+
+<div class="home-section_bd pt20 role">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container fn-clear">
+    	<h2 class="title2 mt10"><span class="tit-name">项目详情</span><a href="javascript:history.go(-1)"  class="return">《 返回</a><span class="balance" href="#">可用余额<span class="ml5">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span><a href="/userManage/topUp/withholdingIndex"></a></span></h2>
+        <div class="blank15"></div>
+        #parse("/front/common/investBaseInfo.vm")
+        <div class="cast-money fn-right">
+        	<h2 class="f-title">项目状态</h2>
+        	
+					
+				<div class="cast-money-box">	
+					    <div class="blank50"></div>
+						
+				    	#if($!{operate}=="hk")
+							#if($!{poorAmount}>=0)
+								<span><a href="/userManage/topUp/withholdingIndex" >可用余额不足请先充值</a></span>
+								#elseif($!{trade.tradeStatus.value}=="8")
+		    					<span><a id="payLoan" href="javascript:;"  >还款 </a></span>
+								#elseif($!{trade.tradeStatus.value}=="2")
+		    					<span><a id="advancePayLoan" href="javascript:;" >提前还款</a></span>
+								
+							#end
+						#end
+						#if($!{operate}=="xq")
+								#if($!{fitRequiredStatus}=="0")
+		    					<a id="confirmFinishCollectBtn" href="javascript:void(0);"  ><span>融资完成确认</span></a>
+								#else
+		    					<span><p>$!{trade.tradeStatus.loanderStatus} </p></span>
+								#end
+								
+						#end
+				</div>	
+				
+        </div>
+        
+        <div  id="payPasswordCheckContainer" style="display:none;width:500px;"  >
+				<div class="invest-tit fn-clear">
+					<h2 class="u-tt">还款</h2>
+				</div>
+			    <div class="lyct">
+			        <form action="" method="post" class="border-b price-active" id="payPasswrdChecking_form">
+						<fieldset>
+							<div class="invest-up">
+								<div class="fn-item">
+									<label class="fn-label"><span class="required">*</span>还款金额：</label>
+									<span class="fn-words"><b id="f" class="ft-f60 mr5"> ￥$!{repayAmount.toStandardString()} </b>元</span>                          
+								</div>
+		                        <div class="fn-item fn-clear">
+		                        	<label class="fn-label"><span class="required">*</span>还款金额大写：</label>
+									<span class="fn-words"><b id="f" class="ft-f60 mr5"> $!{repayAmount.toCNString()} </b></span>
+		                           
+		                        </div>
+		                        
+
+		                         
+		                         <div class="fn-item  fn-clear">
+									<label class="fn-label"><span class="required">*</span>验证码：</label>
+									<input id="code1" type="text" class="fn-text w90" name="code" />
+									 <a id="getCode1" class="fn-h-btn Y-countdown" href="javascript:;" style="display: inline-block;">
+		                             <span class="timedown">获取验证码</span>
+		                             </a>
+									<!--
+									<p><b id="pay-code-messge" class="error-tip" for="code" generated="false"></b></p>
+									-->
+									<input id="mobile" type="hidden"   class="fn-text w130"  name="mobile" value="$!{userBaseInfo.mobile}"/>
+									
+									<input id="business1" type="hidden" name="business1" value="repayment"/>
+								</div>
+							</div>
+						</fieldset>
+						<div class="fn-item">
+		        					<input type="hidden" id="tradeId"  name="tradeId"  value="$!{trade.tradeId}"/>
+									<input type="hidden" id="demandId" name="demandId"  value="$!{trade.demandId}"/>
+									<input type="hidden" id="token" name="token"  value="$!{token}"/>
+		        					<a href="javascript:;" id="confirm_pay" class="fn-g-btn mr5"><span>确认还款</span></a>
+		        					<a href="/tradeQuery/borrowingDetails?tradeId=$!{trade.tradeId}&operate=hk" class="fn-h-btn"><span>取消</span></a>
+		        		</div>
+						
+					</form>
+			    </div>
+	</div>
+        
+        
+
+        <div class="blank15"></div>
+        <div class="blank50"></div>
+        
+        
+       
+        <div class="borrowing-info">
+        	<div class="b-tab fn-clear">
+            	<ul>
+                	<li class="curr"  id="tradeinfo"><a href="javascript:;" >借款信息</a></li>
+                    <li id="touziinfo"><a href="javascript:;" >投资明细</a></li>
+                </ul>
+            </div>
+            <div class="borrowing-list f-clear" id="tradediv">
+            	<div class="blank5"></div>
+            	<div class="borrow-box fn-left ml20">
+                	<h2>项目信息</h2>
+                	 #parse("/front/common/tradeDetailInfo.vm")
+            	</div>
+            	
+            	 <div class="borrow-box fn-left ml20">
+                	<h2>承诺信息</h2>
+                    #parse("/front/common/tradeGuaranteeInfo.vm")
+            	</div>
+            	 <div class="borrow-box fn-left ml20">
+                    	<h2>审核记录</h2>
+                    	#parse("/front/common/tradeGuaranteeCheckInfo.vm")
+                </div>
+                <div class="blank30"></div>
+            </div>
+              <div class="borrowing-list f-dn" id="touzhidiv">
+            	 #parse("/front/common/tradeInvestmentInfo.vm")
+            </div>
+                <div class="blank30"></div>
+            </div>
+        </div>
+        
+        
+        
+        
+        <form action="" method="post" class="border-b price-active" id="payPasswrdChecking_form">
+			<input type="hidden" id="tradeId"  name="tradeId"  value="$!{trade.tradeId}"/>
+			<input type="hidden" id="demandId" name="demandId"  value="$!{trade.demandId}"/>
+			<input type="hidden" id="checkType"  name="checkType" value="MAKELOAN"/>
+			<input type="hidden" id="token" name="token"  value="$!{token}"/>
+		</form>
+        
+        <div class="blank10"></div>
+    </div>
+    <div class="blank20"></div>
+</div> 
+
+
+
+
+
+
+#parse("/front/index/common/footer-yrd.vm")	
+
+
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'borrowingDetails');
+		
+		  <!--分页跳转-->
+		function toPage(totalPage, pageNo){
+		
+				if(totalPage<pageNo){
+					return false;
+				}
+				var url = "$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}?pageSize=$!{page.pageSize}&pageNo="+pageNo+"&tab=invest";
+				//alert (url);
+				window.location.href=url;
+		}
+	
+		
+		function toInvestListTab(){
+		    $("#tradediv").hide();
+            $("#touzhidiv").show();
+            $('#tradeinfo').removeClass('curr');
+            $('#touziinfo').addClass('curr');
+		
+		}
+		
+		//分页跳转后显示正确的tab页面
+		#if($!{tab}=='invest') 
+		toInvestListTab();
+		#end 		
+		
+    </script>
+    
+</body>
+</html>

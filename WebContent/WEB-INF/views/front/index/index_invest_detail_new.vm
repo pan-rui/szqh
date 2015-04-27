@@ -1,0 +1,1365 @@
+#parse("/front/index/common/header-title.vm")
+</head>
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+
+	
+<div class="container2">
+	<!--box-->
+   <div class="l-box2 mt40">	
+			<!--头部-->
+    <div class="l-box2Hd">
+		<!--title-->
+        <h3 class="l-box2HdTt"><span>我要投资</span></h3>
+		<!--title End-->
+	</div>
+	<!--头部结束-->
+    		<!--l-box2Bd-->
+    <div class="l-box2Bd m-proDetail">
+        <!--标题-->
+		<div class="u-tt3">
+			项目名称：$stringUtil.subString($!{trade.tradeName},20,"..")
+		</div>
+        <!--标题结束-->
+					#set($state="")	
+                    #if( $!{trade.tradeStatus.value}==1 && $!{trade.tradeAmount.greaterThan($!trade.loanedAmount)})<!--待成立状态下、投资未满 才可投资-->
+						#set($state="state1")
+                    #elseif($!{trade.tradeStatus.value}==3 || $!{trade.tradeStatus.value}==7)
+						#set($state="state3")
+                    #elseif($!{trade.tradeStatus.value}==2 || $!{trade.tradeStatus.value}==5 || $!{trade.tradeStatus.value}==8)	 
+						#set($state="state2")
+					#elseif($!{trade.tradeStatus.value}==6)	 
+						#set($state="state4")
+						
+                    #end
+		<!--容器-->
+        <div class="l-ct content $!{state}">
+			<!--content-->
+            <div class="l-cn">
+				<!--content Inner-->
+                <div class="l-cnIn">
+					
+					<!--data-->
+					<div class="l-ct data">
+						<!--col-->
+						<div class="col1 first">
+    						<dl>
+                                <dt>借款金额（元）</dt>
+                                <dd>￥<strong>$!{trade.tradeAmount.toStandardString()}</strong></dd>
+    						</dl>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col2">
+    						<dl>
+                                <dt>年化利率</dt>
+                                <dd><strong id="Y-rate">$!{totalAnnualInterest}</strong></dd>
+    						</dl>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col3">
+    						<dl>
+                                <dt>用款期限</dt>
+                                <dd id="Brtime"><strong>$!{trade.timeLimit}</strong>$!{trade.timeLimitUnit.viewName}</dd>
+    						</dl>
+                        </div>
+						<!--col End-->
+                    </div>
+					<!--data End-->
+					
+					<!--简介 -->
+                    <div class="l-ct summary">
+						<!--col-->
+						<div class="col1 first">
+                            <p>起投金额：$!{loanDemand.leastInvestAmount.toStandardString()} 元</p>
+                            <p>担保公司：$!{loanDemand.guaranteeName}</p>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col2">
+    						<p>已投金额：$!{trade.loanedAmount.toStandardString()} 元</p>
+                            <p>担保方式：
+								#if("0000000001"==$!{loanDemand.insureWay})
+									机构担保
+								#elseif("0000000100"==$!{loanDemand.insureWay})	
+									财产抵押
+								#elseif("0000000010"==$!{loanDemand.insureWay})		
+									实地认证
+								#else
+									其他方式
+								#end	
+							</p>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col3">
+    						<p>还需借款：$!{investableAmount.toStandardString()} 元</p>
+                            <p>还款方式：$!loanDemand.repayDivisionWay.message</p>
+                        </div>
+						<!--col End-->
+					</div>
+					<!--简介 结束-->
+					
+				</div>
+				<!--content Inner End-->
+			</div>
+			<!--content End-->
+			<!--sidebar-->
+            <div class="l-sdb">
+				
+                <div class="l-sdbIn proccess">
+					
+					<h5>投资进度</h5>
+					 #set($p = "100%")
+                    #if($!{trade.tradeStatus.value}==1)
+                        #set($p = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.tradeAmount},$!{trade.leastInvestAmount}))
+                    #else
+                        #set($p = '100%')
+                    #end
+					<div class="u-proccessWrap mt5">
+                        <div class="u-proccess3">
+                            <div class="inner" style="width:$!{p}">&nbsp;</div>
+    					</div>
+                        <span>$!{p}</span>
+                    </div>
+					<input value="$!{loanDemand.deadline.getTime()}" class="getDeadTime" type="hidden"/>	
+					<input value="$!{loanDemand.investAvlDate.getTime()}" class="getinvestAvlDate" type="hidden"/>
+					<input value="$!{trade.tradeStatus.value}" class="tradeValue" type="hidden"/>
+					<input value="#if($!{trade.tradeEffectiveDate})$!{yrdDateUtil.formatDay($!{trade.tradeEffectiveDate})}#else#end" class="geteffectiveDate" type="hidden"/>
+					<input type="hidden" name="demandId" value="$!{loanDemand.demandId}"/> 				
+                    <p class="mt5 showLeftTime"></p>
+					
+                    
+					
+                    <p class="mt5 fn-cOrg">满标条件：<br/>$!{tradeUtil.getSaturationCondition($!{loanDemand.saturationConditionMethod}, $!{loanDemand.saturationCondition})}</p>
+					
+                    <p class="mt10">
+						
+					#set($st=$permission.check('/invest/invest'))
+                    #if( $!{trade.tradeStatus.value}==1 && $!{trade.tradeAmount.greaterThan($!trade.loanedAmount)})<!--待成立状态下、投资未满 才可投资-->
+            			#if($!{deadlineReached})<!--是否已过投资时间-->
+							<a class="u-btn blue lg">已过时间</a>
+						#else	
+        						#if( $!{investAvlTimeReached} )  <!--是否到投资时间-->
+            							
+                						  #if(!$sessionScope)  <!--未登录时跳转-->
+											<a href="$!{rc.contextPath}/login/login" class="u-btn blue lg">立即投资</a>
+                                          #else
+                		                          #if($st > 0) <!--投资人才可以投资-->
+													<a href="javascript:void(0);" class="u-btn blue lg" id="invest-btn">立即投资</a>
+                		                          	
+                		                          #else 
+													<a href="/" class="u-btn blue lg">返回</a>
+                		                          #end	   
+                                          #end 
+            						#else
+										<a  class="u-btn blue lg">未开始</a>
+        						#end
+						#end
+						
+                    #elseif($!{trade.tradeStatus.value}==3 || $!{trade.tradeStatus.value}==7)
+						<a class="u-btn org lg">正常还款</a>
+                    #elseif($!{trade.tradeStatus.value}==2 || $!{trade.tradeStatus.value}==5 || $!{trade.tradeStatus.value}==8)	 
+						<a class="u-btn org lg">还款中</a>
+					#elseif($!{trade.tradeStatus.value}==6)	 
+						<a class="u-btn org lg">审核中</a>
+						
+                    #end 
+						
+						
+						
+						
+                        
+					</p>
+					
+				</div>
+				
+				
+				<!--sidebar:状态2
+				<div class="l-sdbIn proccess">
+					
+					<h5>投资进度</h5>
+					
+					<div class="u-proccessWrap mt5">
+                        <div class="u-proccess3">
+                            <div class="inner" style="width:50%">&nbsp;</div>
+    					</div>
+                        <span>50%</span>
+                    </div>
+					
+                    <p class="mt5">投资期限</p>
+					
+                    <p>2014-11-21合同成立 </p>
+					
+                    <p class="mt5 fn-cOrg">满标条件：90%</p>
+					
+                    <p class="mt10">
+                        <a href="javascript" class="u-btn org lg">还款中</a>
+					</p>
+					
+				</div>
+			</div>
+			sidebar End-->
+				
+			<!--sidebar:状态1
+			<div class="l-sdbIn proccess">
+				
+				<h5>投资进度</h5>
+				
+				<div class="u-proccessWrap mt5">
+                    <div class="u-proccess3">
+                        <div class="inner" style="width:50%">&nbsp;</div>
+					</div>
+                    <span>50%</span>
+                </div>
+				
+                <p class="mt5">投资期限</p>
+				
+                <p>合同终止 </p>
+				
+                <p class="mt5 fn-cOrg">满标条件：90%</p>
+				
+                <p class="mt10">
+                    <a href="javascript" class="u-btn org lg">正常还款</a>
+				</p>
+				
+			</div>
+			-->
+		</div>
+        </div>
+		<!--信息-->
+        <div class="m-projectInfo">
+			
+			<!--选项卡-->
+            <div class="m-tab2">
+				<!--标签-->
+                <ul class="m-tab2Strips">
+                    <!--<li class="active">
+					#if("GR"==$!{loanerUserType})	
+					借款人信息
+				
+					#elseif("JG"==$!{loanerUserType})
+					借款人信息
+					#end
+					</li>-->
+                    <li>项目信息</li>
+                    <li>担保信息</li>
+                    <li>相关证件</li>
+                    <li>收益测算</li>
+                    <li id="invest">投资明细</li>
+				</ul>
+				
+				<!--个人信息-->
+				#*
+                <div class="m-tab2Content active">
+					#if("GR"==$!{loanerUserType})	
+					   <table width="100%" border="0" cellpadding="0" cellspacing="0" class="m-infoTable">
+						<!--row1-->
+						<tr>
+                            <td style="width:33.33333%">性别：$!{loanerBaseInfo.gender}</td>
+            			
+                            <td style="width:33.33333%">年龄：$!{loanerBaseInfo.age}</td>
+            			
+                            <td style="width:33.33333%">婚姻状况：$!{loanerBaseInfo.married}</td>
+            			</tr>
+            			<tr>
+                            <td>工作城市：$!{loanerBaseInfo.householdRegister}</td>
+							
+							<td>公司性质：$!{loanerBaseInfo.info2}</td>
+							
+							<td>职务：$!{loanerBaseInfo.info1}</td>
+            			</tr>
+            			<tr>
+                           ## <td>房产情况：$!{loanerBaseInfo.haveHouse}</td>
+            			
+                           ## <td>车子情况：$!{loanerBaseInfo.haveCar}</td>
+            			
+                            <td>年收入：$!{loanerBaseInfo.salaryLevel}</td>
+							<td>学历：$!{loanerBaseInfo.education}</td>
+            			</tr>
+						<tr>
+							
+						</tr>  
+            			<tr>
+                            <td  colspan="3">其他贷款情况：$!{loanerBaseInfo.otherLoans}</td>
+            			</tr>
+            			
+            			<tr>
+                            <td  colspan="3">其他资产情况：$!{loanerBaseInfo.otherAssets}</td>
+            			</tr>
+					</table>
+				
+					#elseif("JG"==$!{loanerUserType})
+					<div>
+						<table width="900" border="0" cellpadding="0" cellspacing="0" class="m-infoTable">
+						   #if($!{loanerBaseInfo.info4})
+							<tr>
+								<td><b>企业介绍</b></td>
+							</tr>	
+							<tr>
+                                <td>$!{loanerBaseInfo.info4}</td>
+                    		</tr>
+						   #end
+						   #if($!{loanerBaseInfo.info5})
+							<tr>
+								<td><b>经营范围</b></td>
+							</tr>
+                    		<tr>
+                                <td>$!{loanerBaseInfo.info5}</td>
+                    		</tr>
+						   #end
+						   #if($!{loanerBaseInfo.info6})
+							<tr>
+								<td><b>经营状况</b></td>
+							</tr>
+                    		<tr>
+                                <td>$!{loanerBaseInfo.info6}</td>
+                    		</tr>
+							#end
+                        </table>	
+					</div>
+					#end
+
+					
+				</div>
+				*#
+				<!--个人信息结束End-->
+				
+				
+				<!--项目信息-->
+                <div class="m-tab2Content">
+					<h1 style="font-size: 14px;color: #333;font-family: "Microsoft Yahei";">
+						$!{loanDemand.loanNote}
+					</h1>
+                    
+				</div>
+				<!--项目信息End-->
+				
+				
+				<!--项目信息-->
+                <div class="m-tab2Content">
+					<table width="900" border="0" cellpadding="0" cellspacing="0" class="m-infoTable">
+						    
+								#if($!{loanDemand.loanStatement})
+								<tr>
+									<td><b>担保机构简介</b></td>
+								</tr>
+								<tr>
+									<td style="text-indent:2em;">$!{loanDemand.loanStatement}</td>
+								</tr>
+            					#end
+								#if($!{loanDemand.guaranteeStatement})
+								<tr>
+									<td><b>风控措施</b></td>
+								</tr>
+								<tr>
+									<td style="text-indent:2em;">$!{loanDemand.guaranteeStatement}</td>
+								</tr>	
+								#end
+								#if($!{loanerBaseInfo.info3})
+								<tr>
+									<td><b>涉诉信息</b></td>
+								</tr>
+								<tr>
+									<td style="text-indent:2em;">$!{loanerBaseInfo.info3}</td>
+								</tr>
+								#end
+								#if($!{loanDemand.sponsorStatement})
+								<tr>
+									<td><b>担保机构意见</b></td>
+								</tr>
+								<tr>
+									<td style="text-indent:2em;">$!{loanDemand.sponsorStatement}</td>
+								</tr>
+            					#end
+                    </table>	
+					
+					
+					
+					
+					<!--
+					<ul class="l-ct m-picList">
+					#foreach($attachmentModuleTypeInfo in $list)
+							
+							#if("LOAN_MANAGEMENT"==${attachmentModuleTypeInfo.moduleType.code})
+    							#foreach($attachmentInfo in $attachmentModuleTypeInfo.attachmentInfos)
+										<li class="l-col4"><img alt="担保信息" src="$!attachmentInfo.requestPath" width="230px" height="300px"/></li>
+                        
+								#end
+							#end		
+					
+					#end	
+					-->
+					</ul>
+					##<h1>$!{loanDemand.guaranteeStatement}</h1>
+                    
+				</div>
+				<!--项目信息End-->
+				
+				
+				<!--融资证明-->
+                <div class="m-tab2Content">
+
+					<!--
+                        <ul class="l-ct m-picList">
+    						<li class="l-col4">
+    							<div class="inner">
+    								<h4>融资人身份证正反面</h4>
+                                </div>
+                            </li>
+    						<li class="l-col4">
+    							<div class="inner">
+    								<h4>担保函</h4>
+                                </div>
+                            </li>
+    						<li class="l-col4">
+    							<div class="inner">
+    								<h4>征信报告</h4>
+                                </div>
+                            </li>
+    						<li class="l-col4">
+    							<div class="inner">
+    								<h4>收入证明（半年以上）</h4>
+                                </div>
+                            </li>
+                        </ul>
+    				-->	
+                        <ul class="l-ct m-picList">
+						#set ($index=0)
+    					#foreach($attachmentModuleTypeInfo in $list)
+    							#if("LOAN_MANAGEMENT"==${attachmentModuleTypeInfo.moduleType.code})
+        							#foreach($attachmentInfo in $attachmentModuleTypeInfo.attachmentInfos)
+										#set($index=$index+1)
+										
+    										<li class="l-col4 #if($index%4==1)first#end">
+    											<div class="inner">
+    												<img alt="相关证件" src="$!attachmentInfo.requestPath" />
+    											</div>
+    										</li>
+                            
+    								#end
+    							#end		
+    					
+    					#end	
+    					</ul>
+						
+
+						<!--
+						<ul class="l-ct m-picList">
+    						<li class="l-col4" style=" width:33%;">
+    							<div class="inner">
+    								<h4>融资人身份证正反面</h4>
+                                </div>
+                            </li>
+    						<li class="l-col4" style=" width:33%;">
+    							<div class="inner">
+    								<h4>担保函</h4>
+                                </div>
+                            </li>
+    						<li class="l-col4" style=" width:33%;">
+    							<div class="inner">
+    								<h4>企业基本证照</h4>
+                                </div>
+                            </li>
+                        </ul>
+    					-->
+
+					
+				</div>
+				<!--融资证明End-->
+				
+				#if($!{trade.timeLimitUnit.viewName}=="个月")
+					#set($computeMode=2)
+				#else
+					#set($computeMode=1)
+				#end
+				<!--收益测算-->
+				<div class="m-tab2Content m-calculator2" data-repayMode="$!{loanDemand.repayDivisionWay.code}" data-mode="${computeMode}" data-rate="$!{totalAnnualInterest}" data-limit="$!{trade.timeLimit}">
+					
+					<!--头部-->
+                    <div class="calculatorHd fn-clear">
+						<!---用户输入-->
+                        <form class="l-col45 m-form3">
+							<div class="group">
+                                <label class="label">请输入您的投资金额：</label>
+                                <div class="control" >
+    								<input name="investMoney" class="input w185" type="text" maxLength="10" value="0"/>
+                                    <span class="suffix">元</span>
+    							</div>
+                            </div>
+						</form>
+						<!---用户输入结束-->
+						
+                        <div class="l-col55 result">
+                            <h3>计算结果</h3>
+                            <p></p>
+						</div>
+					</div>
+					<!--头部结束-->
+					
+					
+					<!--躯干-->
+                    <div class="calculatorBd">
+						
+						<!--panel-->
+                        <div class="l-panel2 mt35">
+							
+                            <div class="l-panel2Hd">本期收款表</div>
+							
+                            <div class="l-panel2Bd m-table2">
+                                <table class="table">
+									<!--head-->
+                                    <tr>
+                                        <th width="25%">期&nbsp;次</th>
+                                        <th width="25%">应收本息（元）</th>
+                                        <th width="25%">应收本金（元）</th>
+                                        <th width="25%">应收利息（元）</th>
+									</tr>
+									<!--head End-->
+                                    <tr class="odd">
+										<td>1</td>
+                                        <td>1000.00</td>
+                                        <td>1000.00</td>
+                                        <td>1000.00</td>
+									</tr>
+									
+                                    <tr class="odd">
+										<td>1</td>
+                                        <td>10000.00</td>
+                                        <td>1000.00</td>
+                                        <td>1000.00</td>
+									</tr>
+								</table>
+							</div>
+							
+						</div>
+						<!--panel End-->
+						
+						
+					</div>
+					<!--躯干结束-->
+					
+					
+				
+                </div>
+				<!--收益测算 End-->
+				
+				<!--投资明细-->
+                <div class="m-tab2Content m-table">
+                    <table class="table">
+						<!--header-->
+						<tr>
+                            <th width="25%">投资人</th>
+                            <th width="25%">投资金额（元）</th>
+                            <th width="25%">投资时间</th>
+                            <th width="25%">状态</th>
+						</tr>
+
+                        
+						<!--header End-->
+						<!--row-->
+						#set($index=0)
+                        #if($!page.result)
+    					 #foreach($item in $!{page.result})
+							#set($index=$index+1)
+							#set($v=$index%2)
+                            <tr class="#if($v=="1")odd#end">
+                                <td class="first">$stringUtil.subString2($!{item.userName},3,3,"****")</td>
+                                <td>￥$!{item.amount.toStandardString()}</td>
+                                <td>$!dateUtil.simpleFormat($!{item.createDate})</td>
+                                <td>#if($!{trade.tradeStatus.message}=="募集中-待成立")投标中-待成立#else$!{trade.tradeStatus.message}#end</td>
+                            </tr>
+                             #end  
+    					#end
+        					  
+                        </table>
+        				#if($!page.result)
+                        <input type="hidden" name="demandId" value="$!{item.demandId}"/>
+                        <div class="pages account-page mt20">
+                        #parse("/backstage/page/page.vm")
+                        </div>
+                       #end
+						
+                    
+				</div>
+				<!--投资明细End-->
+				
+				
+			</div>
+			<!--选项卡结束-->
+			
+		</div>
+		<!--信息结束-->
+
+
+
+        #if($!yjfPaypassUrl)
+            <div class="m-layer" style="width:500px; display:none;"  id="invest-window"  >
+                <div class="invest-tit fn-clear">
+                    <h2 class="u-tt" style="margin-left:155px;color:#666;font-size:19px;">投资金额</h2>
+                    <a class="u-close" href="#" id="invest-cancel"></a>
+                </div>
+                <div class="lyct">	
+					<div  style="margin-left:80px;"> 可用余额:<span style="color:#ff8a00;" id="kyy">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span> <a href="/userManage/topUp/withholdingIndex" style="color:#019dda">充值</a></div>
+                    <form name="" method="post" action="#" class="m-form">
+                        <fieldset>
+                            <div class="invest-up">
+                                <div class="fn-item">
+                                    <label class="fn-label">请输入投资金额：</label>
+                                    <input type="text" class="fn-text" style="width:170px"  name="invest-pay" id="invest-pay-amount" maxLength="10" oncopy="return false;"onpaste="return false;"/> <span class="fn-span">元</span><b class="error-tip" id="invest-pay-amount-messge"></b>
+                                    <br /><p class="fn-span" id="invest-pay-amount-chinese-messge"></p>
+									<p id="invest-pay-amount-tishi" style="color:#ff8a00;display:none;">您的账户余额不足<a href="/userManage/topUp/withholdingIndex" style="color:#019dda">充值</a></p>
+									 <p class="fn-span" id="showzh"></p>
+                                </div>
+                                <!--<div class="fn-item">
+                                    <label class="fn-label">确认投资金额：</label>
+                                    <input type="text" class="fn-text" style="width:170px" name="invest-pay" id="invest-pay-amount-re" maxLength="10" oncopy="return false;"onpaste="return false;"/> <span class="fn-span">元</span><b class="error-tip" id="invest-pay-amount-re-messge"></b>
+                                    <br /><p  class="fn-span" id="invest-pay-amount-re-chinese-messge"></p>
+									<p id="invest-pay-amount-re-tishi" style="color:#ff8a00;display:none;">两次投资金额不一致，请重新输入</p>
+									<p class="fn-span" id="showsame"></p>
+									<p class="fn-span" id="showcount"></p>
+                                </div>-->
+                                <!--20141209-->
+                                <div class="fn-item" id="div_giftMoney" style="display: none">
+                                    <label class="fn-label">使用红包：</label>
+                                    <input type="text" class="fn-text" style="width:170px" name="giftMoney" id="giftMoney" maxLength="10" oncopy="return false;"onpaste="return false;"/><span class="fn-span">元</span>
+
+                                </div>
+
+                                <div class="fn-item" id="div_experienceAmount" style="display: none">
+                                    <label class="fn-label">使用体验金：</label>
+                                    <input type="text" class="fn-text" style="width:170px" name="experienceAmount" id="experienceAmount" maxLength="10" oncopy="return false;"onpaste="return false;"/><span class="fn-span">元</span>
+
+                                </div>
+
+
+                                <div class="fn-item" style="padding-left:70px; display:none;" id="Earn-count">
+									<h2>收益测算:<h2>
+									<p style="margin-top:10px;">
+										<span>本息合计:<em style="color:#ff8a00;" id="B-x"></em>元</span>
+										<span style="margin-left:30px;" >利息共收入:<em style="color:#ff8a00; "id="A-l-x"></em>元</span>
+									</p>
+									<p>
+										<span>每月收款:<em style="color:#ff8a00;" id="E-s"></em>元</span>
+									</p>
+								</div>
+
+                                <input type="hidden" id="token" name="token" value="$!{token}"/>
+                                <iframe frameborder="0" width="450" height="150" id="paypassIframe" name="mypaypassIframe" scrolling="no" src="$!yjfPaypassUrl"></iframe>
+
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        #else
+        
+        <div class="m-layer" style="width:500px; display:none;"  id="invest-window"  >
+		<div class="invest-tit fn-clear">
+            <a class="u-close" href="#" id="invest-cancel"></a>
+			<h2 class="u-tt" style="margin-left:155px;color:#666;font-size:19px;">投资金额</h2>
+            
+            
+            
+		</div>
+	    <div class="lyct">
+			<div  style="margin-left:80px;">可用余额: <span style="color:#ff8a00;" id="kyy">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span> <a href="/userManage/topUp/withholdingIndex" style="color:#019dda">充值</a></div>
+	        <form name="" method="post" action="#" class="m-form">
+				<fieldset>
+					<div class="invest-up">
+						<div class="fn-item">
+							<label class="fn-label">请输入投资金额：</label>
+							<div class="group">
+								<input type="text" class="fn-text"  name="invest-pay" id="invest-pay-amount" maxLength="10" oncopy="return false;"onpaste="return false;"/> 
+								<span class="fn-span">元</span>
+                            </div>
+							<b class="error-tip" id="invest-pay-amount-messge"></b>
+							<br /><p class="fn-span" id="invest-pay-amount-chinese-messge" style="clear:both"></p>
+							<p id="invest-pay-amount-tishi" style="color:#ff8a00;display:none;">您的账户余额不足<a href="/userManage/topUp/withholdingIndex" style="color:#019dda">充值</a></p>
+							<p class="fn-span" id="showzh"></p>
+						</div>
+						<div class="fn-item" style="display:none">
+							<label class="fn-label">确认投资金额：</label>
+							<div class="group">
+								<input type="text" class="fn-text" name="invest-pay" id="invest-pay-amount-re" maxLength="10" oncopy="return false;"onpaste="return false;"/> 
+								<span class="fn-span">元</span>
+                            </div>
+							<b class="error-tip" id="invest-pay-amount-re-messge"></b>
+							<br /><p class="fn-span" id="invest-pay-amount-re-chinese-messge" style="clear:both"></p>
+							<p id="invest-pay-amount-re-tishi" style="color:#ff8a00;display:none;">两次投资金额不一致，请重新输入</p>
+							<p class="fn-span" id="showsame"></p>
+							<p class="fn-span" id="showcount"></p>
+						</div>
+                        <!--20141209-->
+                        <div class="fn-item" id="div_giftMoney" style="display: none">
+                            <label class="fn-label">使用红包：</label>
+                            <input type="text" class="fn-text" style="width:170px" name="giftMoney" id="giftMoney" maxLength="10" oncopy="return false;"onpaste="return false;"/><span class="fn-span">元</span>
+
+                        </div>
+
+                        <div class="fn-item" id="div_experienceAmount" style="display: none">
+                            <label class="fn-label">使用体验金：</label>
+                            <input type="text" class="fn-text" style="width:170px" name="experienceAmount" id="experienceAmount" maxLength="10" oncopy="return false;"onpaste="return false;"/><span class="fn-span">元</span>
+
+                        </div>
+
+
+
+                        <div class="fn-item" style="display:none;" id="Earn-count">
+							<label class="fn-label">收益测算：</label>
+                            <div class="fn-text2">
+							
+								<p><span>本息合计:<em style="color:#ff8a00;" id="B-x"></em>元</span> <span class="pl10">利息共收入:<em style="color:#ff8a00; "id="A-l-x"></em>元</span></p>
+								<p><span>每月收款:<em style="color:#ff8a00;" id="E-s"></em>元</span></p>
+								
+							</div>
+						</div>
+						
+						<div class="fn-item mb20" style="display:none;">
+							<p>我们已向您的手机<i class="orange">（$!{mobile}）</i>发送了一条验证码短信</p>
+						</div>
+                        <div class="fn-item">
+
+                            <label style="color:#666;">
+								<input type="checkbox" name="license" checked="checked" class="checkbox">
+									已阅读并同意<a id="btn_license" href="javascript:;">《投融资及担保合同》</a>
+                            </label>
+                        </div>
+						<div class="fn-item">
+							<label class="fn-label"><span class="required">*</span>验证码：</label>
+							<input id="code1" type="text" class="fn-text w90" name="code" />
+							<input id="mobile1" type="hidden"   disabled="disabled" class="fn-text w130"  name="mobile" value="$!{userBaseInfo.mobile}"/>
+							<a id="getCode1" class="fn-h-btn Y-countdown" href="javascript:;" style="display: inline-block;">
+                                <span class="timedown">获取验证码</span>
+                                </a>
+							<input id="business1" type="hidden" name="business" value="invest"/>
+						</div>
+						
+						
+						
+		
+						
+                        <div class="fn-item fn-clear">
+                        	<label class="fn-label"></label>
+                        	
+                        	<input type="hidden" id="token" name="token" value="$!{token}"/>
+                        	
+                            <a href="javascript:;" class="affirm mr15" id="invest-ok">确认投资</a><a href="javascript:;" class="consider" id="invest-cancel">再考虑一下</a>
+                        </div>
+					</div>
+				</fieldset>
+			</form>
+	    </div>
+	</div>
+        #end
+        
+        
+        
+        
+        
+        
+		</div>
+
+
+</div>
+</div>
+<div class="fm-license" style="display:none">
+    <a href="javascript:;" class="fn-right cancel close" title="关闭">x</a>
+    <div class="license-con">
+        <h3 style="text-align:center;font-size:16px;">投融资及担保合同</h3>
+        <h3 style="text-align:center;font-size:16px;">合同流水号：</h3>
+        <textarea style="width:750px;height:500px;padding:10px;">#parse("/front/index/heTongLicence.vm")</textarea>
+    </div>
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+    #if(${giftMoney})
+    <div class="hongbao">
+        <a class="close" href="javascript:;">&nbsp;</a>
+        <span class="money"><strong>恭喜您</strong><br/><p>获得<em>${giftMoney}</em></p></span>
+        <a class="btn" href="/userGiftMoney/pageQuery"></a>
+    </div>
+    #end
+
+
+    #parse("/front/index/common/js.vm")
+	<script type="text/javascript">
+	$_GLOBAL = {};
+	</script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/content/chineseAmountExchange.js"></script>
+	
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	
+	<script type="text/javascript">
+		seajs.use($_GLOBAL.mode+"index_invest_detail");
+	</script>
+	
+	<script type="text/javascript">
+	
+	$('.timedown').click(function(){
+		$('.tishi').css('display','block');
+	});
+	
+	    $("#tradeinfo").click(function(){
+            $("#touzhidiv").hide();
+            $("#tradediv").show();
+            $('#touziinfo').removeClass('curr');
+            $(this).addClass('curr');
+		});
+		
+		$("#touziinfo").click(function(){
+		    $("#tradediv").hide();
+            $("#touzhidiv").show();
+            $('#tradeinfo').removeClass('curr');
+            $(this).addClass('curr');
+		});
+	
+		$('#invest-btn').click(function (){
+    		var e1 = $('#invest-pay-amount-chinese-messge');
+    		var e2 = $('#invest-pay-amount-re-chinese-messge');
+			var e3 = $('#invest-pay-amount-messge');
+			var e4 = $('#invest-pay-amount-re-messge');
+			var e5 = $('#invest-pay-password-messge');
+    		
+			e3.hide();
+			e4.hide();
+			e5.hide();
+		  var json = checkTrade();
+		  if(json.status == false){
+			   alert(json.message);
+			   return ;
+		  }
+		  json = checkInvest();
+		  if(json.status == false){
+			   alert(json.message);
+			   return ;
+		  }
+		  
+		  
+		  var result = isInvest();
+		  if(result.code==2){
+		  	alert(result.message);
+			return;
+		  }
+		  if(islogin()){
+		      $('input[name=invest-pay]').val('');
+		      $('.fn-item label[id]').empty();
+              window.investWnd =	  $('body').window({
+	    	      content:'#invest-window',
+                  key:'pass-window',
+	    	      simple:true,
+	    	      closeEle:'#invest-cancel',
+				   close:function(){
+				  	document.location.href = document.location.href;
+				  }
+	    	   });
+    	   }else{
+    	     document.location.href = '$!{rc.contextPath}/login/login?redirect=' + document.location.href;
+    	   }
+		});
+		
+		
+		function isInvest(){
+			var url = '/invest/isInvest';
+			var data = {'demandId' : $('[name=demandId]').val()};
+			return $_GLOBAL.ajax(url,data);
+			
+		}
+		
+		var pwd;
+		var modulus = "";
+		var exponent = "";
+		$('#invest-pay-password').change(function (){
+			checkPayPassword();
+		});
+		
+		function getKey(){
+			var url = '/login/keyPair';
+			var result = $_GLOBAL.ajax(url);
+			if(result.code==1){
+				modulus = result.modulus;
+				exponent = result.exponent;
+				setHiddenPwd();
+			}
+		}
+		
+    	function setHiddenPwd(){
+    		var thisPwd = $('#invest-pay-password').val();
+    		var key = RSAUtils.getKeyPair(exponent, '', modulus);
+    		pwd =  RSAUtils.encryptedString(key, thisPwd);
+    	}
+
+        #if($!yjfPaypassUrl)
+        $('#invest-ok').click(function (){
+            btnComfirm($('#paytk').val())
+        });
+        #else
+        $('#invest-ok').click(function (){
+            //如果设置了disabled 第二次点无效
+            if($(this).attr('disabled'))return false;
+
+            if( checkAmount()&& checkCode() ){   //&& checkPayPassword()
+                var url = '$!{rc.contextPath}/invest/invest';
+                //alert($("#code1").val());
+                var data = {password:pwd,smsCode:$("#code1").val(),
+                    giftMoney : $("#giftMoney").val(),
+                    experienceAmount:$("#experienceAmount").val(),
+                    mobile:$("#mobile1").val(),business:$("#business1").val(),
+                    amount:(parseInt($('#invest-pay-amount').val())),
+                    tradeId:$!{tradeId},token:$('#token').val()};
+
+                var str = "处理中..." ;
+                var _this = $(this);
+                _this.html(str).attr('disabled',true);
+                data = $.param(data,true)
+                setTimeout(function(){
+                    var result = $_GLOBAL.ajax(url, data);
+                    alert(result.message);
+                    _this.html("确认投资").attr('disabled',false);
+                    if(result.message!="短信验证码错误"){
+                        document.location.href = document.location.href;
+                    }
+                }, 100);
+                return false;
+            }else{
+                return false;
+            }
+        });
+
+
+        #end
+
+
+    function btnComfirm(paytk)
+    {
+        //如果设置了disabled 第二次点无效
+        if($(this).attr('disabled'))
+        {
+            paypassIframe.src='$!yjfPaypassUrl';
+            return false;
+        }
+
+        if( checkAmount()){
+            var url = '$!{rc.contextPath}/invest/invest';
+            var  gift =$("input[name='giftMoneys']:checked");
+
+
+            //alert($("#code1").val());
+            var data = {'paytk':paytk,
+                giftMoney : $("#giftMoney").val(),
+                experienceAmount:$("#experienceAmount").val(),
+                mobile:$("#mobile1").val(),business:$("#business1").val(),
+                amount:(parseInt($('#invest-pay-amount').val())),
+                tradeId:$!{tradeId},token:$('#token').val()};
+
+            var str = "处理中..." ;
+            var _this = $(this);
+            _this.html(str).attr('disabled',true);
+            setTimeout(function(){
+                var result = $_GLOBAL.ajax(url, data);
+                alert(result.message);
+                _this.html("确认投资").attr('disabled',false);
+                paypassIframe.src='$!yjfPaypassUrl';
+                document.location.href = document.location.href;
+            }, 100);
+            return false;
+        }else{
+            paypassIframe.src='$!yjfPaypassUrl';
+            document.frames['mypaypassIframe'].location.reload();
+            return false;
+        }
+    }
+
+    $('#invest-pay-amount').change(function (){
+        var url = '/boot/queryUserGiftMoney';
+        var data = {investAmount :$(this).val(),demandId : $('[name=demandId]').val()};
+        var json =  $_GLOBAL.ajax(url,data);
+        var giftMoney = json["giftMoney"];
+        $(".giftMoney").remove();
+        $("#div_giftMoney").hide();
+        $("#div_experienceAmount").hide();
+        if(giftMoney){
+            var giftMoneyLimitAmount =json["giftMoneyLimitAmount"];
+            if(giftMoneyLimitAmount){
+                $("#giftMoneyLimitAmount").remove();
+                var h = '<div class="tishi giftMoney" id="giftMoneyLimitAmount"><p><i class="orange">当前项目可使用'+giftMoneyLimitAmount.standardString+'元红包</i></p></div>';
+                $("#div_giftMoney").before(h)
+            }
+
+            var h = '<div class="tishi giftMoney" ><p><i class="orange">您当前可使用的红包总额：' +giftMoney.standardString+'元</i></p></div>';
+            $("#div_giftMoney").before(h)
+
+
+            $("#div_giftMoney").show();
+        }else{
+            $("#div_giftMoney").hide();
+        }
+
+        var experienceAmount = json["experienceAmount"];
+        if(experienceAmount){
+            var  h = '<div class="tishi giftMoney" ><p><i class="orange">您当前可使用的体验金总额：' +experienceAmount.standardString+'元</i></p></div>';
+            $("#div_experienceAmount").before(h)
+
+            $("#div_experienceAmount").show();
+        }else{
+            $("#div_experienceAmount").hide();
+        }
+
+
+    });
+    //end-1
+
+		
+		$('#invest-pay-amount').keyup(function (){
+			//checkAmount();
+			var inputAmount = $(this).val() ;
+			var chineseAmount = convertCurrency(inputAmount);
+			if(chineseAmount.indexOf("error") >= 0){
+				return;
+			}else{
+				$("#invest-pay-amount-chinese").val("");
+				var e = $('#invest-pay-amount-chinese-messge');
+				var amountPreWord = "金额大写： ";
+				e.html(amountPreWord + chineseAmount).show();
+			}
+		});
+		
+		$('#invest-pay-amount-re').keyup(function (){
+			//checkReAmount();
+			var inputAmount = $(this).val() ;
+			var chineseAmount = convertCurrency(inputAmount);
+			if(chineseAmount.indexOf("error") >= 0){
+				return;
+			}else{
+				$("#invest-pay-amount-re-chinese").val("");
+				var e = $('#invest-pay-amount-re-chinese-messge');
+				var amountPreWord = "金额大写： ";
+				e.html(amountPreWord + chineseAmount).show();
+			}
+		});
+		
+		function checkAmount(){
+		 	var amount = $('#invest-pay-amount').val();
+		 	var e = $('#invest-pay-amount-messge').hide();
+		 	if(amount.length < 1){
+		 		e.html('投资金额不能为空').show();
+		 		return false;
+		 	}else if(isNaN(amount)){
+		 	   	e.html('投资金额必须为数字').show();
+		 		return false;
+		 	}else if(parseFloat(amount*1) < 100){
+		 		e.html('投资金额必须为大于100的数字').show();
+		 		return false;
+		 	}else if(parseFloat(amount)%100!=0){
+				e.html('投资金额必须为100元的整数倍').show();
+		 		return false;
+			}
+			var url = '$!{rc.contextPath}/invest/checkamount/$!{tradeId}';
+			var data = {'amount' : parseInt(amount)};
+			var result = $_GLOBAL.ajax(url, data);
+			
+			if(!result.status){
+			
+			    alert(result.message);
+				e.html(result.message).show();
+			}
+			return result.status;
+		}
+		
+		function checkReAmount(){
+			var e = $('#invest-pay-amount-re-messge');
+			e.hide();
+		   if($('#invest-pay-amount').val() != $('#invest-pay-amount-re').val()){
+		   		e.html('两次输入的金额不一致').show();
+		   		return false;
+		   }
+		   return true;
+		}
+		
+		function checkPayPassword(){
+			var e = $('#invest-pay-password-messge');
+			e.hide();
+		    var password = $('#invest-pay-password').val();
+		    if(password.length < 1){
+		    	e.html('支付密码不能为空').show();
+		    	return false;
+		    }
+			getKey();
+			if(!pwd){
+				setTimeout(getKey,10);
+			}
+			var url = '$!{rc.contextPath}/invest/checkpaypassword';
+			var data = {'password' : pwd};
+			var status = $_GLOBAL.ajax(url, data);
+			if(!status){
+				e.html('支付密码错误').show();
+			}
+			return status;
+		}
+		
+		function checkCode(){
+		    var code = $('#code1').val();
+		    if(code.length < 1){
+		    	alert('手机验证码不能为空');
+		    	return false;
+		    }
+			return true;
+		}
+		
+		function islogin(){
+		    var url = '$!{rc.contextPath}/login/islogin';
+			return $_GLOBAL.ajax(url);
+		}
+		
+		function checkTrade(tradeId){
+			var url = '$!{rc.contextPath}/invest/checktrade/$!{tradeId}';
+			return $_GLOBAL.ajax(url);
+		}
+		
+		function checkInvest(){
+			var url = '$!{rc.contextPath}/invest/checkinvest/$!{tradeId}';
+			return $_GLOBAL.ajax(url);
+		}
+		$("#contractPreview").hover(function(){
+			$("#contract-demo").show();
+		}, function(){
+			$("#contract-demo").hide();
+		});
+		$(".checkbox").click(
+			function(){
+				if($('.checkbox').attr("checked")=="checked"){
+					$("#invest-ok").css("display","inline-block");
+        		}else{
+					alert("请勾选同意合同");
+					$("#invest-ok").css("display","none");
+        		}
+			}
+		);
+		
+		$('#lastInvestAvlb').click(function (){
+    		var e1 = $('#invest-pay-amount-chinese-messge');
+    		var e2 = $('#invest-pay-amount-re-chinese-messge');
+			var e3 = $('#invest-pay-amount-messge');
+			var e4 = $('#invest-pay-amount-re-messge');
+			var e5 = $('#invest-pay-password-messge');
+    		e1.html();
+    		e2.html();
+			e3.html();
+			e4.html();
+			e5.html();
+		  if(islogin()){
+		      $('input[name=invest-pay]').val('');
+		      $('.fn-item label[id]').empty();
+			    $('body').window({
+	    	      content:'#invest-window',
+	    	      simple:true,
+	    	      closeEle:'#invest-cancel',
+				  close:function(){
+				  	document.location.href = document.location.href;
+				  }
+	    	   });
+    	   }else{
+    	     document.location.href = '$!{rc.contextPath}/login/login?redirect=' + document.location.href;
+    	   }
+		});
+		
+		$("#contractPreview").click(
+    		function(){
+				window.open('/upload/downLoadFile?demandId=0&type=preivew&fileType=inverst');
+    		}
+		);
+		var e1 = $('#invest-pay-amount-chinese-messge');
+    		var e2 = $('#invest-pay-amount-re-chinese-messge');
+			var e3 = $('#invest-pay-amount-messge');
+			var e4 = $('#invest-pay-amount-re-messge');
+			var e5 = $('#invest-pay-password-messge');
+    		e1.html();
+    		e2.html();
+			e3.html();
+			e4.html();
+			e5.html();
+			
+			
+			
+   // -------------------------------------发送手机验证码-----------------------------------------------
+//	$('#getCode1').click(function() {
+//		var business = $("#business1").val();
+//		var mobile = $("#mobile1").val();
+//		var countdown = Y.getCmp('getCode1');
+//		sendMobile(business, mobile, countdown);
+//	});
+
+	
+  	function sendMobile(business, mobile, conutdown) {
+		jQuery.ajax({
+			url : '/anon/sendSmsCode',
+			dataType : 'json',
+			data : {
+				mobile : mobile,
+				business : business
+			},
+			cache : false,
+			success : function(res) {
+				if (res.code == 1) {
+				} else {
+					alert(res.message);
+					if (countdown) {
+						countdown.close();
+					}
+				}
+			},
+			error : function() {
+				alert('获取验证码失败');
+				if (countdown) {
+					countdown.close();
+				}
+			}
+		});
+	}	
+<!--分页跳转-->
+		function toPage(totalPage, pageNo){
+		
+				if(totalPage<pageNo){
+					return false;
+				}
+				var url = "$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}?pageSize=$!{page.pageSize}&pageNo="+pageNo+"&tab=invest#invest";
+				//alert (url);
+				window.location.href=url;
+		}
+		
+		function toInvestListTab(){
+		    $("#tradediv").hide();
+            $("#touzhidiv").show();
+            $('#tradeinfo').removeClass('curr');
+            $('#touziinfo').addClass('curr');
+		
+		}
+		 
+		//分页跳转后显示正确的tab页面
+		#if($!{tab}=='invest') 
+		toInvestListTab();
+		#end
+
+
+
+    function payPassOk(key)
+    {
+        btnComfirm(key);
+    }
+    function payPassCancel()
+    {
+        investWnd.close();
+
+        $('#invest-window_pay').attr('display','none');
+    }
+    </script>
+	<script type="text/javascript">
+	
+	//得到 显示  可用余额对象
+	  var kyMoney=  document.getElementById("kyy");
+	  var keMoneyStr=kyMoney.innerHTML;
+	//转换为浮点型
+	keMoneyStr=keMoneyStr.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\￥|\<|\>|\/|\?]/g,"");
+	 keMoneyStr=parseFloat(keMoneyStr);
+	//得到初始输入金额 
+	var stMoney=document.getElementById("invest-pay-amount");//得到第一个输入金额对象
+	var stMoneyStr;
+	var FLstMoneyStr;
+	var TWotMoneyStr;//第二个确认框的金额字符串
+	var verifmoneyStr;//得到第二个金额确认框的金额
+	//当地一个输入金额文本框失去焦点后
+	
+	stMoney.onblur=function(){
+	stMoneyStr=this.value;
+	if(!isNaN(stMoneyStr)){
+	FLstMoneyStr=parseFloat(stMoneyStr);
+	if(FLstMoneyStr>keMoneyStr){
+		//显示余额不足	
+		document.getElementById("invest-pay-amount-tishi").style.display="block";
+		document.getElementById("Earn-count").style.display="none";
+	}else{
+		document.getElementById("invest-pay-amount-tishi").style.display="none"
+		//收益计算器
+		//document.getElementById("invest-pay-amount-re-tishi").style.display="none";
+		var rate=document.getElementById("Y-rate").innerHTML;
+		var Btime=document.getElementById("Brtime").innerHTML;
+		//首先判断  是天还是月
+		var len=Btime.length-1;
+		var everyRate;//单位利率
+		var allEarn;//利息总收益
+		var allMoney;//本息合计
+		var everyEarn;//每个月的利息收入
+		rate=rate.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\￥|\<|\>|\/|\?]/g,"");
+		rate=parseFloat(rate);
+	if(Btime.substr(len,1)=="月"){
+		//投资期限单位是月
+		//每月的收益率
+
+		Btime=Btime.replace(/[^0-9]/ig,"");
+		Btime=parseInt(Btime);
+		everyRate=rate/1200;
+		everyEarn=everyRate*FLstMoneyStr;//每个月的收益
+		everyEarn=everyEarn+1;
+		everyEarn=everyEarn.toFixed(2);
+		everyEarn=everyEarn-1;
+		everyEarn=everyEarn.toFixed(2);
+		allEarn=everyRate*Btime*FLstMoneyStr;//为了增加截取小数的准确性先将数值ji
+		allEarn=allEarn+1;
+		allEarn=allEarn.toFixed(2);//利息共收入
+		allEarn=allEarn-1;
+		allEarn=allEarn.toFixed(2);
+		allMoney=FLstMoneyStr+everyRate*Btime*FLstMoneyStr;
+		allMoney=allMoney.toFixed(2);//本息合计
+		document.getElementById("B-x").innerHTML=""+allMoney;
+		document.getElementById("A-l-x").innerHTML=""+allEarn;
+		document.getElementById("E-s").innerHTML=""+everyEarn;
+
+	}else if(Btime.substr(len,1)=="天") {
+		//投资期限  时间单位 是日
+		Btime=Btime.replace(/[^0-9]/ig,"");
+		Btime=parseInt(Btime);
+		var everyM=rate/1200;
+		everyRate=rate/36000;
+		everyEarn=everyM*FLstMoneyStr;//每个月的收益
+		everyEarn=everyEarn+1;
+		everyEarn=everyEarn.toFixed(2);
+     	everyEarn=everyEarn-1;
+		everyEarn=everyEarn.toFixed(2);
+		allEarn=everyRate*Btime*FLstMoneyStr;
+		allEarn=allEarn;
+		allEarn=allEarn+1;
+		allEarn=allEarn.toFixed(2);//利息共收入
+		allEarn=allEarn-1;
+		allEarn=allEarn.toFixed(2);//利息共收入
+		allMoney=FLstMoneyStr+everyRate*Btime*FLstMoneyStr;
+		allMoney=allMoney.toFixed(2);//本息合计
+		document.getElementById("B-x").innerHTML=""+allMoney;
+		document.getElementById("A-l-x").innerHTML=""+allEarn;
+		document.getElementById("E-s").innerHTML=""+everyEarn;
+	}
+		document.getElementById("Earn-count").style.display="block";
+	}
+	
+		}else{
+		
+		}
+		}
+//得到确认金额对象
+//var verifyMoney=document.getElementById("invest-pay-amount-re");
+
+
+
+
+	</script>
+<script type="text/javascript">
+    function honbbao_move(){
+        $('.hongbao').animate({height:'230px'},2000);
+    }
+    honbbao_move();
+    $('.hongbao .close').click(function(){
+        $('.hongbao').hide();
+    });
+</script>
+</body>
+</html>

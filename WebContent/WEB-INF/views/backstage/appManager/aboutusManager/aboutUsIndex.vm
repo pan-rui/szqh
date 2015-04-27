@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Pragma" contect="no-cache"> 
+	<title>系统管理-App管理</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">系统管理</a> > App管理 > 关于我们>>></p>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="/app/addAboutUs"  class="p-btn addUser">新增</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						
+						
+						<table class="m-table">
+							<tr>
+								<th width="300">编号</th>
+								<th width="300">名称</th>
+								<th width="300">状态</th>
+                                <th width="300">操作</th>
+                                <th class="text-r"></th>
+							</tr>
+						#if($list.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有信息</td>
+                			</tr>
+						#end
+						#foreach($info in $list)
+							<tr>
+								<td>$!{info.popId}</td>
+								<td>$!{info.title}</td>
+								##<td>$!{info.content}</td>
+								<td>#if($!{info.status}=="1")<p style="color:blue;">上线 </p>#else 下线 #end</td>
+                                <td><a href="/app/upDateAboutUs?popId=$!{info.popId}">修改</a>
+                                    <span class="line">|</span>
+                                    <a href="javaScript:;" id="$!{info.popId}" class="del_img">删除</a></td>
+
+							</tr>
+						#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							<a href="/app/addAboutUs" class="p-btn addUser">新增</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>	
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+	seajs.use($_GLOBAL.mode + 'aboutUsManager');
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>活动管理中心</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">礼品管理中心</a> > 礼品管理</p>
+					</div>
+					<div class="t-box">						
+						<div class="p-box pages-t fn-clear">
+							<a href="/backstage/addGift" class="p-btn addUser">新增礼品</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="120">礼品名称</th>
+								<th width="80">礼品代号</th>
+								<th width="80">礼品类型</th>
+								<th width="120">礼品生效时间</th>
+								<th width="120">礼品失效时间</th>
+								<th width="120">礼品状态</th>
+								<th width="200">描述</th>
+								<th width="80">操作</th>
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=7 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td>$!{info.giftName}</td>								
+								<td>$!{info.giftCode}</td>
+								<td>$!{info.giftType}</td>
+								<td>$!{dateUtil.simpleFormat($!{info.startTime})}</td>
+								<td>$!{dateUtil.simpleFormat($!{info.endTime})}</td>
+								<td>
+									#if($!{info.giftStatus}==0)
+										未开始
+									#elseif($!{info.giftStatus}==1)
+										已开始
+									#elseif($!{info.giftStatus}==2)
+										已结束
+									#end	
+								</td>								
+								<td>$!{info.description}</td>
+								<td><a href="/backstage/updateGift?tblBaseId=$!{info.tblBaseId}">修改</a> </td>
+							</tr>
+						#end
+						</table>
+						<input type="hidden" value="JG" data="userType"/>
+					    <div class="p-box pages-t fn-clear">
+							<a href="/backstage/addGift" class="p-btn addUser">新增礼品</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'popCenter');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/popHelp?"
+			+"pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

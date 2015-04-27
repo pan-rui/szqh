@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>帮助中心</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+    <style type="text/css">
+	.table {
+       border-collapse:collapse;
+        border-spacing:0;
+    }
+	</style>>
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	<div class="container brief fn-clear">
+		<div class="h-content mc-border">
+			<h3 ><center>常见问题</center></h3>
+			<div class="brief-con">
+				<h4>1. 了解$!appConstantsUtil.getProductName()：</h4>
+				 <p>“$!appConstantsUtil.getProductName()”是担保业务与互联网结合的产物，是$!appConstantsUtil.getPlatformName()倾力打造的互联网金融新模式。$!appConstantsUtil.getProductName()平台注册的投资人向投资接收人定向投资，由国有担保公司为投资接收人向投资人就投资本金和收益进行担保。</p>
+                </br>
+                </br>        
+                <h4>2. 划入到平台的资金是否安全？</h4>
+				<p>1）委托第三方机构（易极付）对会员资金进行管理，不与公司运营资金混用；</p>
+                <p>2）对会员进行严格的实名认证，绑定到银行卡只能是会员信息匹配的银行卡，资金转出就只能到绑定的银行账号上，从而确保出金安全；</p>
+                <p>3）$!appConstantsUtil.getProductName()金融内部制定了严格的资金管理和监控系统，能快速解决可能出现资金异常情况和资金纠纷。</p>
+				</br>
+                </br>  
+				<h4>3. 平台的投资收益如何？</h4>
+                <p>预期8%~10%的年化收益（具体看投资的期限和当时的投资收益率）;</p>
+                </br>  
+                </br>  
+                <h4>4. 投资期限和收益率:</h4>
+                <p>投资期限一般有：1月、3月、6月、9月，具体以发布为准;</p>
+                </br>
+                
+                <h4>5.银行快捷划入、划出说明:</h4>
+				<div id="showBankChanels" style="z-index: 10; ">
+					<img src="/resources/images/bank/bankChanels.png">
+				</div>
+				</br>
+				<h4>6. 页面显示不正常, 密码输入框老是出不来?</h4>
+                <p>如果页面显示不正常, 您可以尝试使用其它浏览器, 如谷歌chrome和火狐firefox浏览器, 如果密码框出不来, 请安装最新版Adobe Flash Player, 我们也在一直努力提高用户体验, 期待给您带来最好的服务！</p>
+				</br>
+				<h4>7. 什么是投资接受人?</h4>
+				<p>
+					答：投资接受人是指有项目资金需求，且有担保公司的履约担保承诺，接受平台注册投资人对其项目定向投资的人.
+				</p>
+				</br>
+				<h4>8. 什么是投资权益?</h4>
+				<p>
+					答：投资人对项目投资以后，形成“本金+收益”的投资权益.
+				</p>
+				</br>
+				<h4>9. 什么是投资权益回购?</h4>
+				<p>
+					答：投资接受人以全部投资人“本金+收益”等额的资金，购买投资人的投资权益.
+				</p>
+				</br>
+				<h4>10. 什么是权益回购履约担保?</h4>
+				<p>
+					答：如果投资接受人到期不回购投资人的投资权益，则担保人替他履行回购义务，并向投资人全额兑付“本金+收益”.
+				</p>
+				</br>
+				<h4>11. 收益怎样计算?</h4>
+				<p>
+					答：收益=投资本金*平台公布的相关投资收益率*期限（月）/12.
+				</p>
+				</br>
+				<h4>12. $!appConstantsUtil.getProductName()的投资风险是什么?</h4>
+				<p>
+					答：风险是担保公司不能履约。因为对业务做履约担保的都是重庆本地的国营担保公司，这种情况难以发生.
+				</p>
+                </br>
+				<h3 ><center>$!appConstantsUtil.getProductName()金融服务平台公司网站费用及其他规则</center></h3>
+				</br>
+				<h4>一、$!appConstantsUtil.getProductName()金融服务平台收费规则：</h4>
+				<p>1.投资人、投资接受人及担保方需向$!appConstantsUtil.getProductName()平台网站支付及代扣的费用见下表：</p>
+				<table class="table" border="1" align="center">
+					<tr >
+						<td width=80>角色</td>
+						<td width=80>费用名称</td>
+						<td width=80>支付方式</td>
+						<td width=80>金额或计算方式</td>
+                    </tr>
+					<tr >
+						<td >投资人</td>
+						<td >无</td>
+						<td >无</td>
+						<td >无</td>
+                    </tr>
+					<tr >
+						<td >投资接受人</td>
+						<td >担保费等各项费用</td>
+						<td >通过第三方支付机构代为扣除</td>
+						<td >以$!{appConstantsUtil.getProductName()}平台规及投资接受人与各方约定为准</td>
+                    </tr>
+					<tr >
+						<td >担保方</td>
+						<td >无</td>
+						<td >无</td>
+						<td >无</td>
+                    </tr>
+                </table>
+				</br>
+				<p>2.投资人、投资接受人及担保方所有资金均托管于第三方支付机构——易极付，相关方资金于银行账户与第三方托管账户间的划转费率见下表：</p>
+				<table border="1" align="center">
+					<tr >
+						<td width=150>项目</td>
+						<td width=150>支付方式</td>
+						<td width=150>金额或计算方式</td>
+                    </tr>
+					<tr >
+						<td rowspan=3>托管账户入金</td>
+						<td >个人网银</td>
+						<td >推广期免费</td>
+                    </tr>
+					<tr >
+						<td >企业网银</td>
+						<td rowspan=2>推广期免费</td>
+                    </tr>
+					<tr >
+						<td >快捷划入</td>
+                    </tr>
+					<tr >
+						<td rowspan=2>托管账户出金</td>
+						<td>划拨到个人银行卡</td>
+						<td>10元／笔</td>
+                    </tr>
+					<tr >
+						<td >划拨到企业银行账户</td>
+						<td>10元／笔</td>
+                    </tr>
+                </table>
+				<p>该费用由第三方支付机构执行用户指令时自动扣取，$!appConstantsUtil.getProductName()金融不收取任何费用。</p>
+				<p>3.投资接受人需在筹集期满下一工作日前登录$!appConstantsUtil.getProductName()平台确认合同，否则视同委托平台代为确认。</p>
+				</br>
+				<h4>二、$!appConstantsUtil.getProductName()平台投资及履约规则：</h4>
+				<p>1.投资人资金在其易极付托管账户内、未经$!appConstantsUtil.getProductName()平台确认投资成立前不计算投资收益。</p>
+				<p>2.投资接受人的履约操作需在工作日进行。如某项履约回购到期日为非工作日，投资接受人在到期日后的第一个工作日应回购投资人的投资权益（包含本金及收益），将相关资金及约定费用（费用可提前代扣）划转至其易极付托管账户，视为正常履约。</p>
+				<p>3.投资接受人及担保方的履约操作（包括但不限于正常履约、逾期履约、提前履约、代偿履约等）须登录$!appConstantsUtil.getProductName()平台网站,通过其绑定银行账户或其他易极付账户向其易极付托管账户划转款项来完成，否则不视为履约，由此导致的法律后果及责任由投资接受人及担保方承担。</p>
+				<p>4.逾期履约的违约金率为该笔合约约定收益率的150%。</p>
+				<p>5.$!appConstantsUtil.getProductName()平台不支持不足额履约，即投资接受人、担保方必须将本金及收益一次性兑付，否则由此导致的逾期等责任由投资接受人及担保方连带承担。</p>
+				<p>6.投资接受人及担保方应兑付的本金及收益计算规则见下表：</p>
+				<table border="1" align="center">
+					<tr >
+						<td width=80>履约状态</td>
+						<td width=80>应兑付总额</td>
+						<td width=100>收益、违约金、补偿金计算公式</td>
+                    </tr>
+					<tr >
+						<td >正常履约</td>
+						<td>本金+收益</td>
+						<td>收益=本金*年化收益率*融资期限（月）/12</td>
+                    </tr>
+					<tr >
+						<td >逾期履约</td>
+						<td>本金+收益+违约金</td>
+						<td>收益=本金*年化收益率*融资期限（月）/12违约金违约金=（本金+收益）* [收益率 *150% * 逾期天数 / 360]</td>
+                    </tr>
+					<tr >
+						<td >提前履约</td>
+						<td>本金+收益+补偿金</td>
+						<td>收益=本金*收益率*（提前履约日-融资成立日）/360补偿金=本金*收益率／12</td>
+                    </tr>
+				</table>
+				<p>7.投资接受人及担保方未按约定日期及金额履约兑付的,$!appConstantsUtil.getProductName()平台有权将投资接受人及担保方逾期履约的事宜在网站上公布并降低投资接受人及担保方信用级别。</p>
+				<p>8.投资接受人及担保方若逾期履约超过30天，或在逾期后出现逃避、拒绝沟通或拒不承认等恶意行为的，$!appConstantsUtil.getProductName()平台有权将投资接受人及担保方违约失信的相关信息向媒体、用人单位、公安机关或司法机关以及其他国家机关等等披露，并有权将投资接受人及担保方的“逾期记录”录入中国人民银行征信系统及信用数据库。</p>
+				</br>
+				<h4 >三、$!appConstantsUtil.getProductName()平台资金划转规则:</h4>
+				<p>1.在筹集期中，如果投资申请在T日被撤销或筹集失败，$!appConstantsUtil.getProductName()平台将在T+2个工作日内将投资人资金退回其账户。</p>
+				<p>2.如果某投资申请在筹集期满日（T日）未达融资需求的最低筹集金额，$!appConstantsUtil.getProductName()平台将在T+2个工作日将投资人资金退回其账户。</p>
+				<p>3.如果某投资申请在筹集期满日（T日）达到了最低筹集金额，且投资接受人及担保方在筹集期满下一工作日（T+1日）在$!appConstantsUtil.getProductName()平台上进行确定或委托确认，$!appConstantsUtil.getProductName()平台将在T+2个工作日内将投资资金划至投资接受人账户。</p>
+				<p>4.投资接受人在约定履约日（T日）或T日前正常履约时，$!appConstantsUtil.getProductName()平台将在T+2个工作日内将履约资金划至投资人账户。</p>
+				<p>5.在投资接受人提前履约时（T日），$!appConstantsUtil.getProductName()平台将在T+2个工作日内将履约资金划至投资人账户。</p>
+				<p>6.在担保方代偿或提前履约时（T日），$!appConstantsUtil.getProductName()平台将在T+2个工作日内将履约资金划至投资人账户。</p>
+				<p>7.非因$!appConstantsUtil.getProductName()平台原因造成的资金到账延误或错误（包括但不限于第三方系统通讯系统故障、延迟），无论有对于投资接受人、投资人或担保方等任何一方，$!appConstantsUtil.getProductName()平台均不承担责任。如发生错误，$!appConstantsUtil.getProductName()平台均有权在通知各方后立即纠正该错误。</p>
+				<p>8.投资人、投资接受人及担保方应保证其银行账户状态正常，如因账户（借记卡）发生销户、换卡、挂失和依法冻结等情况而导致未能正常绑定其易极付、$!appConstantsUtil.getProductName()账户从而导致资金无法出入账的，须及时通知并申请$!appConstantsUtil.getProductName()平台协助完成后续处理，并承担可能产生的不利后果及相应责任。</p>
+				</br>
+				<h4>四、其他：</h4>
+				<p >1.本规则所指工作日专指国家法定工作日内$!appConstantsUtil.getProductName()平台网站实际的工作时间，暂定9:00至16:00，如有调整以本网站公告为准。</p>
+				<p >2.本规则自公布于$!appConstantsUtil.getProductName()平台网站之日起生效，请您仔细阅读并对其含义及法律后果有充分理解。$!appConstantsUtil.getProductName()平台保留修改本规则的权利，如有更改，将及时在本网站上公告。</p>
+				</br>
+				<h4>联系方式：</h4>
+                <p >客服热线：$!appConstantsUtil.getCustomerServicePhone()</p>
+					<p class="text-r">$!appConstantsUtil.getPlatformName()</p>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'helpCenter');
+    </script>
+</body>
+</html>

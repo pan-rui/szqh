@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户资料（实名资料）</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+<!--section_bd-->
+<div class="home-section_bd pt20">
+  <!--container-->
+  <div class="bd-box container fn-clear mt20">
+   #parse("/front/user/common/left1.vm")
+   <!--content-->
+    <div class="m-content fn-right">
+      <div class="m-content-box">
+		
+		<!--title-->
+        <h3 class="u-title4">申请债权转让</h3>
+		<!--title End-->
+		
+		<!--step-->
+        <ul class="m-step5 l-ct active1">
+            <li class="step1 l-col col3">1、确认转让信息</li>
+            <li class="step2 l-col col3">2、安全验证</li>
+            <li class="step3 last  l-col col3">3、发布成功</li>
+		</ul>
+		<!--step End-->
+		
+		<!--box-->
+        <div class="l-box2 mt20">
+			
+			<!--grid-->
+            <div class="m-table5">
+
+			</div>
+			<!--grid End-->
+			
+			
+            <div class="m-form5 inner">
+                <form class="form" action="/tradeQuery/entries/transferConfirm" method="post">
+					
+					<!--group-->
+                    <div class="group">
+                        <label class="label">转让价格下限：</label>
+                        <div class="control"><strong>$!{transfer.downMoney}</strong> 元</div>
+					</div>
+					<!--group End-->
+					
+					<!--group-->
+                    <div class="group">
+                        <label class="label">转让价格上限：</label>
+                        <div class="control"><strong>$!{transfer.upMoney}</strong> 元</div>
+					</div>
+					<!--group End-->
+					
+					<!--group-->
+					<div class="group">
+                        <label class="label">请输入转让价格：</label>
+						<!--control-->
+                        <div class="control textControl">
+							<input type="text" class="input w175 mask_money" id="transMoney" name="transMoney">
+							元
+    					</div>
+						<!--control End-->
+                        <div class="tips">(转让价格定得越低，给债权受让人的利益空间就越大，因此转让更容易成功；<br/>转让价格只能在$!{transfer.downMoney}~$!{transfer.upMoney}元之间)</div>
+    				</div>
+					<!--group End-->
+					
+					<!--group-->
+                    <div class="group">
+                        <label class="label">转让手续费：</label>
+                        #set($quota=$!{quota}*100)
+                        <div class="control"><strong id="transCharge"></strong> 元 <span class="tips2">（转让手续费=转让价格*$!{quota}% 元）</span></div>
+					</div>
+					<!--group End-->
+					
+					<!--group-->
+                    <div class="group">
+                        <label class="label">转让截止日期：</label>
+                        <div class="control">$!dateUtil.simpleFormat($!{transfer.deadline} )  </div>
+						<div class="tips"></div>
+					</div>
+					<!--group End-->
+					
+					<!--group-->
+                    <div class="group" style="display: none">
+                        <label class="label">个人借款债权转让协议：</label>
+                        <textarea class="textarea"></textarea>
+					</div>
+					<!--group End-->
+					
+					<!--group-->
+                    <div class="group" style="display: none">
+                        <input type="hidden" value="$!{tradeDetailId}" name="tradeDetailId" id="tradeDetailId">
+                        <input type="hidden"  name="chargeMoney" id="chargeMoney">
+                        <label class="checkControl"><input class="checkbox" type="checkbox"/>我已认真阅读</label><a class="u-link gray" href="javascript:;">《个人借款债权转让协议》</a>
+					</div>
+					<!--group End-->
+					
+					<!--group-->
+                    <div class="group mt30">
+                        <button type="submit" id="sb" class="u-btn org nm2 mr5">确定申请</button>
+                        <a href ="/tradeQuery/entries/12/1/2" class="u-btn gray nm2">暂不申请</a>
+					</div>
+					<!--group End-->
+					
+				</form>
+			</div>
+			
+		</div>
+		<!--box End-->
+		
+	  </div>
+    </div>
+   <!--content End-->
+	
+  </div>
+  <!--container End-->
+</div>
+<!--section_bd End-->
+#parse("/front/index/common/footer-yrd.vm")	
+<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+    <script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'debtList');
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,202 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>投资首页</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+<!--content begin----------------->	
+	
+	
+<div class="container">
+
+<div class="blank20"></div>
+
+
+
+    <div class="home-section_bd pt20">
+        <div class="blank20"></div>
+        <div class="bd-box container">
+            
+			<h2 class="title2"><span class="tit-n">我要融资</span></span></span></h2>  
+	<!--融资表单-->
+		    <div class="rongzi_form">
+					<div class="item_rz"></div>
+					<div class="item_rz"></div>
+					<div class="item_rz"></div>
+					<div class="item_rz"></div>
+					
+				</form>	
+			</div>
+		    </div>
+		    <div class="blank50"></div>
+		</div>
+
+
+</div>	
+
+	#parse("/front/index/common/js.vm")
+    
+    <script type="text/javascript">
+    	$(function(){
+			 $('#a001').removeClass("index-bg"); 
+        	 $('#a005').addClass("nemu-bg");  
+        	 $('#a003').removeClass("nemu-bg");  
+			 $('#a004').removeClass("nemu-bg");  
+			 $('#a002').removeClass("nemu-bg");  
+    	  var timeUnit = $('input[name=timeUnit]').val();
+    	  var startTime = $('input[name=startTime]').val();
+    	  var endTime = $('input[name=endTime]').val();
+		  var guarantee = $('input[name=guarantee]').val();
+    	  $('[guarantee=' + guarantee + ']').addClass('cur');
+    	  $('[name=time][unit=' + timeUnit + '][start=' + startTime + '][end=' + endTime + ']').addClass('cur');
+    	  var startAmount = $('input[name=startAmount]').val();
+    	  if(startAmount != ''){
+    	  	startAmount = parseInt(startAmount) / 1000000;
+    	  }
+    	  var endAmount = $('input[name=endAmount]').val();
+    	  if(endAmount != ''){
+    	  	endAmount = parseInt(endAmount) / 1000000;
+    	  }
+    	  $('[name=amount][start=' + startAmount + '][end=' + endAmount + ']').addClass('cur');
+    	  var startRate = $('input[name=startRate]').val();
+    	  if(startRate != ''){
+    	  	startRate = parseFloat(startRate) * 100;
+    	  }
+    	  var endRate = $('input[name=endRate]').val();
+    	  if(endRate != ''){
+    	  	endRate = parseFloat(endRate) * 100;
+    	  }
+    	  $('[name=rate][start=' + startRate + '][end=' + endRate + ']').addClass('cur');
+
+
+            var startAmount =  $("#startAmount").val();
+            var endAmount =  $("#endAmount").val();
+            var insureWay = $("#insureWay").val();
+            var loanPeriod =  $("#loanPeriod").val();
+            if(!loanPeriod){
+                loanPeriod =0;
+            }
+            $("dl.loanAmount").find("a").each(function() {
+                if(startAmount == $(this).attr("startAmount") && endAmount == $(this).attr("endAmount")){
+                    $(this).parent().addClass("active");
+                }else{
+                    $(this).parent().removeClass("active");
+                }
+            });
+            $("dl.loanPeriod").find("a").each(function(){
+                if(loanPeriod == $(this).attr("loanPeriod")){
+                    $(this).parent().addClass("active");
+                }else{
+                    $(this).parent().removeClass("active");
+                }
+            });
+
+            $("dl.insureWay").find("a").each(function(){
+                if(insureWay == $(this).attr("insureWay")){
+                    $(this).parent().addClass("active");
+                }else{
+                    $(this).parent().removeClass("active");
+                }
+            });
+
+
+        });
+    	
+	    $('a[name=time]').click(function (){
+	        var t = $(this);
+	        $('input[name=timeUnit]').val(t.attr('unit'));
+	        $('input[name=startTime]').val(t.attr('start'));
+	        $('input[name=endTime]').val(t.attr('end'));
+	        go(1);
+			return false;
+	    });
+	    
+	    $('a[name=amount]').click(function (){
+	    	var t = $(this);
+	    	var start = t.attr('start');
+	    	if(start != ''){
+	    		start = parseInt(start) * 1000000;
+	    	}
+	    	var end = t.attr('end');
+	    	if(end != ''){
+	    		end = parseInt(end) * 1000000;
+	    	}
+	    	$('input[name=startAmount]').val(start);
+	    	$('input[name=endAmount]').val(end);
+	    	go(1);
+			return false;
+	    });
+	    
+	    $('a[name=rate]').click(function (){
+	    	var t = $(this);
+	    	$('form[name=frm]').attr('action', '$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1');
+	    	var start = t. attr('start');
+	    	if(start != ''){
+	    		start = parseFloat(start) / 100;
+	    	}
+	    	var end = t.attr('end');
+	    	if(end != ''){
+	    		end = parseFloat(end) / 100;
+	    	}
+	    	$('input[name=startRate]').val(start);
+	    	$('input[name=endRate]').val(end);
+	    	go(1);
+			return false;
+	    });
+		$('a[name=guarantee]').click(function (){
+	    	var t = $(this);
+	    	$('form[name=frm]').attr('action', '$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1');
+	    	var guarantee = t. attr('guarantee');
+	    	$('input[name=guarantee]').val(guarantee);
+	    	go(1);
+			return false;
+	    });
+
+
+        <!--分页跳转-->
+        function toPage(totalPage, pageNo){
+            if(totalPage<pageNo){
+                return false;
+            }
+            var url = "$!{rc.contextPath}/boot/invest/$!{page.pageSize}/"+pageNo;
+            url= url+"?loanPeriod="+$("#loanPeriod").val() +"&startAmount="
+                    +$("#startAmount").val()+"&endAmount="+$("#endAmount").val()
+                    +"&insureWay="+$("#insureWay").val() ;
+            window.location.href = url;
+        }
+
+        $("dl.loanPeriod").find("a").bind("click",function(){
+            var url = "$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1";
+            url= url+"?loanPeriod="+$(this).attr("loanPeriod") +"&startAmount="
+                    +$("#startAmount").val()+"&endAmount="+$("#endAmount").val()
+                    +"&insureWay="+$("#insureWay").val() ;
+            window.location.href = url;
+        })
+
+        $("dl.loanAmount").find("a").bind("click",function(){
+            var url = "$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1";
+            url= url+"?startAmount="+$(this).attr("startAmount") +"&endAmount="
+                    +$(this).attr("endAmount")+"&loanPeriod="+$("#loanPeriod").val()
+                    +"&insureWay="+$("#insureWay").val() ;
+            window.location.href = url;
+        })
+
+
+        $("dl.insureWay").find("a").bind("click",function(){
+            var url = "$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1";
+            url= url+"?insureWay="+$(this).attr("insureWay") +"&startAmount="
+                    +$("#startAmount").val()+"&loanPeriod="+$("#loanPeriod").val()
+                    +"&endAmount="+$("#endAmount").val() ;
+            window.location.href = url;
+        })
+    
+   </script>
+
+<!--content end----------------->	
+	#parse("/front/index/common/footer-yrd.vm")
+</body>
+</html>

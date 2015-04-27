@@ -1,0 +1,90 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>我是乐客</span></h2>
+        <div class="about-us mt20">
+        	<div class="about-txt">
+			<div class="con-list">
+					<ul>					
+						<li class="on"><a href="/leke/toLeke">我是乐客</a></li>	
+					</ul>
+				</div>
+    			<div class="brief-con" style="float:right;width:750px;">
+					<h4 style="border-bottom: 2px solid #f60"><span style="width: 155px; display: inline-block; color: #fff; background: #f60; padding-left: 15px;">什么是乐客</span></h4>
+					<p style="text-indent: 2em; padding-top: 10px;">乐客是乐乐贷为答谢我们尊贵的会员而推出的一种身份认证,更是一种全新的生活方式。凡在乐乐贷网站投资，并介绍朋友投资而获得奖励收入的人，统称为乐客。</p>
+					<p style="text-indent: 2em;">乐客的典型生活方式为每个人都有自己正当的工作，懂得理财，利用业余时间介绍朋友，通过在乐乐贷投资，每月获得奖励收入。在投资中享受快乐，在分享中获得收益。享受互联网金融时代带给人们的福利。</p>
+					</br>
+					<h4 style="border-bottom: 2px solid #57ba45"><span style="width: 155px; display: inline-block; color: #fff; background: #57ba45; padding-left: 15px;">乐客特权</span></h4>
+					<p style="text-indent: 2em; padding-top: 10px;">1、普通会员只能享受本金保障（只保本金，不包含利息部分），乐客享受100%（本金+利息）全额保障。</p>
+					<p style="text-indent: 2em;">2、一旦成为乐客，可以介绍朋友到乐乐贷投资，享受被介绍人在平台一年内总投资额1%的年化奖励。（被介绍人一旦投资后，奖励金额马上兑现到乐客账户）</p>
+					<p style="text-indent: 2em;">3、待网站积分商城开放后，乐客在介绍投资人在网站投资后会获得相应的乐乐贷积分，该积分可在乐乐商城换取相应礼品。</p>
+					</br>
+					<h4 style="border-bottom: 2px solid #4aa9f9"><span style="width: 155px; display: inline-block; color: #fff; background: #4aa9f9; padding-left: 15px;">如何成为乐客</span></h4>
+					<p style="text-indent: 2em; padding-top: 10px;">成为乐客一共有两个途径：</p>
+					<p style="text-indent: 2em;">1.注册时填入推荐人的乐客号自动升级乐客</p>
+					<p style="text-indent: 2em;">2.注册成功后再向乐乐贷提交申请成为乐客</p>
+					</br>
+					<h4 style="border-bottom: 2px solid #ba448e"><span style="width: 155px; display: inline-block; color: #fff; background: #ba448e; padding-left: 15px;">乐客奖励计划案例</span></h4>
+					<p style="text-indent: 2em; padding-top: 10px;">案例一： 乐客聪聪今年介绍了一个朋友来乐乐贷投资，这个朋友投了20万到一个为期6个月的标。 聪聪得到的乐客奖励就有：200,000 x 6/12 x 1% = 1000</p>
+					</br>
+					<p style="text-indent: 2em;">案例二： 乐客珮珮今年一共介绍了两个朋友来乐乐贷投资，朋友A投了10万到一个为期3个月的标，朋友B投了50万到一个为期6个月的标。珮珮得到的乐客奖励就有：</br>100,000 x 3/12 x 1% + 500,000 x 6/12 x 1% = 2750</p>
+					</br>
+					<p style="text-indent: 2em;">案例三： 乐客浩浩今年一共介绍了三个朋友来乐乐贷投资，朋友A 投了100万到一个为期3个月的标，朋友B投了200万到一个为期 一年的标。 浩浩得到的乐客奖励就有： </br>
+						1，000，000 x 3/12 x 1% + 2,000,000 x 1% = 22500
+					</p>
+					#if($sessionScope)
+						#set($t = $permission.check('/investorManager/*'))
+						#if($t>0)
+							<p style="margin: 25px 5px;"><a class="jiaru" id="leked" href="javascript:;" >我要加入乐客</a>
+						#else  
+							<p style="margin: 25px 5px;"><a class="jiaru"  href="/leke/toChangeLeke" >我要加入乐客</a>
+						#end			 
+					#else
+					<p style="margin: 25px 5px;"><a class="jiaru"  href="/login/login">我要加入乐客</a>							
+					#end
+					</div>
+					##乐客弹出层
+					##<div id="divbg" style="background-color:#777777; width:100%;height:100%;position:absolute;left:0;top;0;display:none; opacity:0.3;">
+        			<div class="fm-license" style="display:none;">
+							<a href="javascript:;" class="fn-right cancel close" title="关闭" style="margin-right:15px;margin-top:15px;">X</a>
+                             <div class="license-con">
+        					<div class="regwin" style="width:550px;height:180px;">
+                                <p><img src="/resources/images/common/u23.png" style="width:50px;height:50px;"/>亲，您<em>已经是乐客</em>的成员，无需再次加入！</p>
+                                <div class="submitbtn"><a href="/" style="text-align:center;">返回首页</a></div>
+                            </div>	
+					</div>
+				</div>
+				
+
+			</div>
+        </div>
+  	  </div>
+	
+    <div class="blank50"></div>
+	</div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+	
+	<script type="text/javascript" src="/resources/js/plugins/jquery.window.js"></script>
+	<script type="text/javascript"> 
+    	$('.fm-license').find('*').css('position','static');
+    	$('#leked').click(function(){
+    		$('body').Y('Window',{
+    			simple: true,
+    			content: '.fm-license',
+    			closeEle: '.close,[type=reset]'
+    		});
+    	});
+
+	</script>
+	
+
+</body>
+</html>

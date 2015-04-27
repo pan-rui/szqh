@@ -1,0 +1,51 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>鑫福家园</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">
+				<div class="con-list">
+					<ul>
+						<li class="on"><a href="/help/institutionIntroduction/25">鑫福家园</a></li>
+					</ul>
+				</div>
+			
+    			<div class="brief-con" Style="float:right;width:750px;">
+                  
+<h4><span style="margin:20px 0;width: 150px; display: inline-block;color: #fff;background: #57ba45;padding-left: 10px;border: 3px solid #ccc;">什么是鑫友：</span><span style="width: 560px;text-align: center;display: inline-block;color: #57ba45;border-bottom: 3px solid #57ba45; line-height: 30px;">&nbsp;</span></h4>
+<p>鑫友是$!appConstantsUtil.getProductName()为答谢我们尊贵的会员而推出的一种身份认证，更是一种全新的生活方式。凡在$!appConstantsUtil.getProductName()网站投资，并介绍朋友投资而获得奖励收入的人，统称为鑫友。</p>
+<p>鑫友的典型生活方式为每个人都有自己正当的工作，懂得理财，利用业余时间介绍朋友，通过在$!appConstantsUtil.getProductName()投资，每月获得奖励收入。在投资中享受快乐，在分享中获得收益。享受互联网金融时代带给人们的福利。</p>
+
+<h4><span style="margin:20px 0;width: 150px; display: inline-block;color: #fff;background: #f60;padding-left: 10px;border: 3px solid #ccc;">鑫友特权</span><span style="width: 560px;text-align: center;display: inline-block;color: #f60;border-bottom: 3px solid #57ba45; line-height: 30px;">&nbsp;</span></h4>
+<p>一旦成为鑫友，可以介绍朋友到$!appConstantsUtil.getProductName()投资，享受被介绍人在平台一年内总投资额2-3%的年化奖励。（被介绍人一旦投资后，奖励金额马上兑现到鑫友账户）</p>
+<p>对投资人有融资需求的，会根据其在放鑫贷年交易额的一定比例核定融资额度，向其发放，随借随还。</p>
+
+<h4><span style="margin:20px 0;width: 150px; display: inline-block;color: #fff;background: #ba448e;padding-left: 10px;border: 3px solid #ccc;">如何成为鑫友</span><span style="width: 560px;text-align: center;display: inline-block;color: #ba448e;border-bottom: 3px solid #57ba45; line-height: 30px;">&nbsp;</span></h4>
+<p>注册成功后再向$!appConstantsUtil.getProductName()电话申请，经过重庆$!appConstantsUtil.getProductName()融资服务有限公司审核后，成为鑫友。</p>
+
+<h4><span style="margin:20px 0;width: 150px; display: inline-block;color: #fff;background: #f4a52e;padding-left: 10px;border: 3px solid #ccc;">鑫友奖励计划案例</span><span style="width: 560px;text-align: center;display: inline-block;color: #f60;border-bottom: 3px solid #f4a52e; line-height: 30px;">&nbsp;</span></h4>
+<p>案例一： 鑫友乐乐今年介绍了一个朋友来$!appConstantsUtil.getProductName()投资，这个朋友投了20万到一个为期6个月的标。乐乐得到的鑫友奖励就有：200,000 x 6/12 x 2% = 2000元</p>
+
+<p>案例二： 鑫友建国今年一共介绍了两个朋友来$!appConstantsUtil.getProductName()投资，朋友A投了10万到一个为期3个月的标，朋友B投了50万到一个为期6个月的标。建国得到的鑫友奖励就有：</p>
+<p>100,000 x 3/12 x 2% + 500,000 x 6/12 x 2% = 5500元</p>
+
+					
+
+				</div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+	
+</body>
+</html>

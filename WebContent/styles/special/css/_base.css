@@ -1,0 +1,167 @@
+html, body { background-color:#ececec }
+body { font-family:"\5FAE\8F6F\96C5\9ED1", "\5B8B\4F53", Arial, Tahoma, Verdana; word-break:break-all; color:#4E4E4E }
+.red { color:red }
+.weaken, .ignore { color:#909090 }
+.stress { color:#e42a2a }
+.stress:hover { color:#e42a2a }
+.pitch { margin-bottom:15px }
+.table ul { overflow:hidden; zoom:1 }
+.table li { float:left; overflow:hidden }
+.table .head { font-weight:700 }
+.cols-sya .col1-1 { margin-right:333px; zoom:1 }
+.cols-sya .col2 { width:334px; margin-left:-334px; overflow:hidden }
+.table-sya .item { text-align:center; height:20px; line-height:20px; overflow:hidden }
+.table-sya .item-1 { width:20% }
+.table-sya .item-2 { width:50% }
+.table-sya .item-3 { width:29% }
+.table-sya .body .item { font-size:13px }
+.table-sya .body .item-3 { text-align:left }
+.tab-list { zoom:1; overflow:hidden }
+.tab-list .tab-item { float:left }
+.tab-list-sya { overflow:visible; border-bottom:1px solid #d7d7d7 }
+.tab-list-sya:after { content:"."; display:block; height:0; clear:both; visibility:hidden }
+.tab-list-sya .tab-item { padding:0 20px; height:40px; line-height:40px; border:1px solid #e0dada; border-bottom:0; overflow:hidden; cursor:pointer; margin-left:-1px; font-size:21px; text-align:center }
+.tab-list-sya .select { background-color:#FFF; position:relative; margin-bottom:-1px; height:41px; font-weight:700; color:#4E4E4E }
+#hd, #ft { zoom:1 }
+#bd { width:960px; margin:0 auto }
+#ft { margin-top:50px }
+.bx-sya { zoom:1; border:1px solid #e0dada; background-color:#FFF }
+.bx-sya .hd-sya { background-color:#f9fafc }
+.bx-sya .bd-sya { zoom:1 }
+.bx-syb { zoom:1; border:1px solid #e0dada; background-color:#FFF }
+.bx-syb .hd-syb { font-weight:700 }
+.bx-syb .bd-syb { zoom:1 }
+.loading-sya, .loading-syb { text-align:center }
+.loading-sya .icon { margin-right:3px }
+.loading-syb a, .loading-syb a:hover { color:#999; text-decoration:none }
+.top-notice-tip { background-color:#ffe787; text-align:center; height:38px; line-height:38px; overflow:hidden; min-width:960px }
+.top-notice-tip p { color:red; font-size:14px; width:960px; margin:0 auto }
+.top-notice-tip a { margin-left:10px }
+.side-tool-sya { z-index:101; position:fixed; left:0; bottom:0; width:100%; _position:absolute; _top:expression(eval(document.documentElement.scrollTop + document.documentElement.clientHeight))
+}
+.side-tool-sya .toTop-sya { background-image:url(../images/icon_sya.png); background-repeat:no-repeat; width:64px; height:46px; overflow:hidden; cursor:pointer; position:absolute; text-indent:-999em; left:50%; margin-left:490px; bottom:110px }
+.btn { display:inline-block; line-height:20px; height:20px; overflow:hidden; vertical-align:top; text-align:center; font-family:"\5FAE\8F6F\96C5\9ED1"; font-weight:700 }
+.btn-sya { background-image:url(../images/z.png); background-repeat:repeat-x }
+.btn-sya { padding:0 35px; height:46px; line-height:46px; font-size:21px; font-weight:700; background-color:#e65b44; background-position:0 0; position:relative }
+.btn-sya, .btn-sya:hover { color:#FFF; text-decoration:none }
+.btn-sya:hover { background-position:0 -144px }
+.btn-sya-disable, .btn-sya-disable:hover { background-color:#CCC; cursor:not-allowed; background-position:0 -50px }
+.btn-sya-loading { cursor:default }
+.btn-sya-loading:hover { background-position:0 0 }
+.btn-sya .icon { display:none }
+.btn-sya-loading .icon { display:block; position:absolute; right:5px; top:5px }
+.btn-syb, .btn-syb:hover { color:#FFF; text-decoration:none }
+.btn-syb { padding:0 15px; height:54px; line-height:54px; font-size:25px; font-weight:700; background-color:#ff6d01 }
+.btn-syb:hover { background-color:#fc8024 }
+.icon { display:inline-block; overflow:hidden; line-height:0; font-size:0; color:transparent!important; width:16px; height:16px; vertical-align:middle }
+.icon-warn { width:8px; height:8px; background-color:#fe786d; border-radius:5px }
+.icon-warn-2 { background:url(../images/z.png) 0 -100px no-repeat; width:15px; height:15px }
+.icon-loading, .icon-loading-114 { width:16px; height:16px }
+.icon-loading { background:url(../images/loading.gif) no-repeat }
+.icon-loading-114 { background:url(../images/loading114.gif) no-repeat }
+.icon-play, .icon-red-packet, .icon-red-packet2, .icon-red-packets { background:url(../images/x.png) no-repeat }
+.icon-play { _background:0 0; _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src='/assets/zhongchou/static/images/product/x.png')
+}
+.icon-red-packet { width:45px; height:45px; background-position:-123px 0 }
+.icon-red-packet2 { width:92px; height:92px; background-position:-169px 0 }
+.icon-red-packets { width:130px; height:130px; background-position:0 -123px }
+.icon-red-packets:hover { background-position:-131px -123px }
+.icon-play { width:348px; height:122px; background-position:0 0; margin-left:-262px }
+.icon-hezuo { width:160px; height:34px; background:url(../images/icon_sya.png) 0 -47px no-repeat }
+.icon-share { background:url(../images/share_sya.png) no-repeat }
+.icon-share { display:inline-block; overflow:hidden; line-height:0; font-size:0; color:transparent!important; width:20px; height:21px; vertical-align:middle; cursor:pointer }
+.icon-renren { background-position:0 0 }
+.icon-qqwb { background-position:0 -21px }
+.icon-qzone { background-position:0 -42px }
+.icon-douban { background-position:0 -63px }
+.icon-weixin { background-position:0 -84px }
+.icon-sina { background-position:0 -105px }
+.share-sya { zoom:1 }
+.share-sya .share-t { float:left }
+.share-sya .share-list { overflow:hidden; float:left }
+.share-sya .share-item { float:left; width:20px; overflow:hidden }
+.share-sya .sia { text-decoration:none; display:block; height:21px; line-height:21px }
+.share-sya .sia:hover { text-decoration:none }
+.share-sya .icon-share { margin-right:5px; vertical-align:top; filter:alpha(opacity=60); opacity:.6 }
+.share-sya .icon-share:hover { margin-right:5px; vertical-align:top; filter:alpha(opacity=100); opacity:1 }
+.weixin-code { position:absolute; right:-18px; top:25px; width:230px; padding:5px 10px 10px; overflow:hidden; font-size:12px; border:1px solid #D8D8D8; background-color:#FFF }
+.weixin-code .weixin-hd { height:30px; line-height:30px; overflow:hidden; position:relative; font-weight:700 }
+.weixin-code .weixin-hd .close { position:absolute; right:0; top:0 }
+.weixin-code .weixin-hd .close:hover { text-decoration:none }
+.weixin-code .weixin-bd { margin-bottom:10px }
+.weixin-code .weixin-ft { line-height:18px }
+.pack-dialog { position:fixed; _position:absolute; z-index:1000; display:none; color:#656565; overflow:hidden }
+.pack-dialog .hd { border-bottom:0; background:transparent; height:0; line-height:0; font-size:0; overflow:hidden }
+.pack-dialog .hd .close { width:27px; height:27px; background:url(../images/z.png) no-repeat; background-position:0 -116px; overflow:hidden; z-index:1; margin:0; position:absolute; right:20px; top:20px }
+.pack-dialog .hd .close:hover { background-position:-28px -116px }
+.pack-dialog .bd { zoom:1; padding:0 50px 20px }
+.pack-dialog .content, .pack-dialog .pack-main { position:relative; zoom:1 }
+.pack-dialog .limit-bx, .pack-dialog .pack-in, .pack-dialog .element-bx { border-bottom:1px solid #E4E4E4; zoom:1; padding:15px 0 }
+.pack-dialog .pack-in { padding-top:25px }
+.pack-dialog .pack-name { font-size:22px; font-weight:700; line-height:24px; margin-bottom:10px }
+.pack-dialog .purchase-list .item { line-height:24px; margin-right:10px; float:left; font-weight:700 }
+.pack-dialog .purchase-list .price-item { font-size:22px; margin-right:20px }
+.pack-dialog .purchase-list .remain-item, .pack-dialog .purchase-list .buyer-item { font-size:16px }
+.pack-dialog .purchase-list .remain-item { font-weight:400 }
+.pack-dialog .element-bx .element-hd { font-weight:700; color:#4E4E4E; margin-bottom:5px; font-size:16px }
+.pack-dialog .element-bx .element-bd { line-height:20px; font-size:14px; max-height:140px; _height:80px; overflow-y:auto }
+.pack-dialog .limit-bx { margin-bottom:10px; padding-bottom:0 }
+.pack-dialog .limit-bx .limit-bd { padding:10px 0; zoom:1 }
+.pack-dialog .limit-bx .limit-t { font-size:22px; font-weight:700; font-size:16px; margin-right:10px }
+.pack-dialog .limit-bx .limit-tips { font-size:12px }
+.pack-dialog .item-amount { zoom:1; overflow:hidden; margin-bottom:10px }
+.pack-dialog .item-amount .amount-input, .pack-dialog .item-amount .amount-unit, .pack-dialog .item-amount .amount-tips { float:left; margin-right:7px; line-height:34px }
+.pack-dialog .item-amount .amount-unit { font-size:16px }
+.pack-dialog .item-amount .amount-tips { font-size:12px }
+.pack-dialog .item-amount .text-amount, .pack-dialog .item-amount .plus, .pack-dialog .item-amount .minus { float:left; position:relative }
+.pack-dialog .item-amount .text-amount { width:78px; padding:0 5px; text-align:center; height:32px; line-height:32px; border:1px solid #bfbfbf; z-index:2; margin:0 -1px; font-size:22px }
+.pack-dialog .item-amount .plus, .pack-dialog .item-amount .minus { z-index:1; border:1px solid #bfbfbf; background-color:#FFF; width:36px; height:32px; line-height:35px; text-align:center; cursor:pointer; font-size:32px; font-family:"\5b8b\4f53"; overflow:hidden }
+.pack-dialog .item-amount .plus:not(:root), .pack-dialog .item-amount .minus:not(:root) {
+line-height:32px
+}
+.pack-dialog .item-amount .plus:hover, .pack-dialog .item-amount .minus:hover { text-decoration:none; border:1px solid #F50; color:#F50; z-index:3 }
+.pack-dialog .item-amount .disable, .pack-dialog .item-amount .disable:hover { cursor:default; color:#e5e5e5; border:1px solid #DCDCDC; z-index:1 }
+.pack-dialog .item-sum { font-size:18px!important; line-height:38px; height:38px; overflow:hidden; margin-bottom:10px }
+.pack-dialog .item-sum .z, .pack-dialog .item-sum .w, .pack-dialog .item-sum .unit { float:left }
+.pack-dialog .item-sum .w { font-weight:700; padding:0 5px 0 10px }
+.pack-dialog .item-sum .unit { font-size:16px; margin-top:3px }
+.pack-dialog .order-tips { padding-left:19px; position:relative; zoom:1; line-height:20px; font-size:14px }
+.pack-dialog .order-tips .icon { position:absolute; left:0; top:3px }
+.pack-dialog .order-tips .red { font-weight:700 }
+.pack-dialog .pack-act { zoom:1; overflow:hidden; margin-bottom:10px }
+.pack-dialog .pack-act .btn-sya, .pack-dialog .pack-act .response-tips { float:left }
+.pack-dialog .pack-act .btn-sya { margin-right:10px }
+.pack-dialog .pack-act .response-tips { margin-top:12px }
+.pack-dialog .pack-act .response-tips, .pack-dialog .pack-act .response-tips a { color:#ff584a }
+.pack-dialog .rich-agree-item { position:relative; zoom:1; padding-left:17px }
+.pack-dialog .rich-agree-item .checkbox-agree { position:absolute; left:0; top:4px; cursor:pointer; vertical-align:top; width:14px; height:14px }
+.pack-dialog .rich-agree-item a { text-decoration:underline }
+.pack-dialog .limit-traffic { zoom:1 }
+.pack-dialog .limit-traffic .p { width:440px; height:400px; background:url(../images/waiting.png) no-repeat; overflow:hidden; display:block; margin:0 auto 10px }
+.pack-dialog .limit-traffic .txt { zoom:1; line-height:70px; font-size:22px; color:#4E4E4E; text-align:center; font-weight:700 }
+.pack-dialog .limit-traffic .t { margin:0 10px 0 20px }
+.pack-dialog .limit-traffic .time { text-align:center; font-size:62px }
+.pack-dialog .limit-traffic .m { font-size:24px }
+.element-intro-dialog { position:fixed; _position:absolute; z-index:1000; display:none; color:#656565; overflow:hidden }
+.element-intro-dialog .hd { border-bottom:0; background:transparent; height:0; line-height:0; font-size:0; overflow:hidden }
+.element-intro-dialog .hd .close { width:27px; height:27px; background:url(../images/z.png) no-repeat; background-position:0 -116px; overflow:hidden; z-index:1; margin:0; position:absolute; right:20px; top:20px }
+.element-intro-dialog .hd .close:hover { background-position:-28px -116px }
+.element-intro-dialog .bd { zoom:1; padding:0 50px 40px }
+.element-intro-dialog .content { position:relative; zoom:1 }
+.element-intro-dialog .element-intro-bx { font-size:14px; zoom:1 }
+.element-intro-dialog .element-intro-bx .element-hd { font-weight:700; color:#4E4E4E; margin-bottom:25px; font-size:22px; line-height:1.2; border-bottom:1px solid #E4E4E4; zoom:1; padding:30px 0 15px }
+.element-intro-dialog .collr { margin-bottom:20px }
+.element-intro-dialog .colr { padding-left:15px }
+.element-intro-dialog .colr p { padding-left:20px; border-left:1px solid #E4E4E4 }
+.element-intro-dialog .element-intro-list { font-size:16px; line-height:1.5 }
+.element-intro-dialog .element-intro-list .element-item { padding-left:15px; position:relative; zoom:1; margin-bottom:15px }
+.element-intro-dialog .element-intro-list .element-item a { text-decoration:underline }
+.element-intro-dialog .element-intro-list .element-item a:hover { color:#3ac0ff }
+.element-intro-dialog .element-intro-list .element-item .icon-warn { position:absolute; left:0; top:8px }
+.project-intro-dialog { width:735px; height:984px; overflow:hidden; background:url(../images/guide.png) no-repeat; _background:url(../images/guide_ie6.png) no-repeat; position:absolute!important; top:100px!important }
+.project-intro-dialog .close { position:absolute; right:10px; top:10px; width:30px; height:30px; cursor:pointer }
+.project-intro-dialog .project-guide-bx { padding:313px 82px 0; zoom:1; line-height:1.7; font-size:16px }
+.project-intro-dialog .project-guide-bx .part-1 { margin-bottom:74px }
+.project-intro-dialog .project-guide-bx .part-2 { margin-bottom:67px }
+.project-intro-dialog .project-guide-bx .part-3 { padding-left:20px; line-height:1.8 }
+.element-intro-modal, .project-intro-modal, .pack-modal { padding:0 }

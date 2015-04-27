@@ -1,0 +1,235 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>首页</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+	<script type="text/javascript" language="javascript" src="/resources/js/lib1/js/Nver.js"></script>
+	<script type="text/javascript" language="javascript" src="/resources/js/lib1/jquery.js"></script>
+	<link type="text/css" href="/resources/styles1/web.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/styles1/style.css" rel="stylesheet" />
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+	
+</head>
+<body>
+	
+	#parse("/front/index/common/index1-header.vm")
+	
+	<div style="width:1167px; margin:0 auto; position:relative;z-index:1;">
+        <div class="Hnews3">
+            <img src="/resources/styles1/images/caishen.png" />
+        </div>
+        <div class="Hnews">
+            <a href="/anon/investorsOpen"><img src="/resources/styles1/images/mfzc.png" /></a><br />
+            已有帐号？<a href="$!{rc.contextPath}/login/login" style="color:#edb714;">立即登录>></a>
+        </div>
+        <div class="Hnews2">
+            <ul>
+                <li><a href="">$!appConstantsUtil.getProductName()介绍</a></li>
+                <li class="cre"><a href="">投标介绍</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="Banner">
+        <div class="fullSlide">
+          <div class="bd">
+            <ul>
+              <li _src="url(/resources/styles1/images/banner.png)" style="background:#c41428 center 0 no-repeat;"><a target="_blank" href=""></a></li>
+              <li _src="url(/resources/styles1/images/banner.png)" style="background:#c41428 center 0 no-repeat;"><a target="_blank" href=""></a></li>
+              <li _src="url(/resources/styles1/images/banner.png)" style="background:#c41428 center 0 no-repeat;"><a target="_blank" href=""></a></li>
+              <li _src="url(/resources/styles1/images/banner.png)" style="background:#c41428 center 0 no-repeat;"><a target="_blank" href=""></a></li>
+              <li _src="url(/resources/styles1/images/banner.png)" style="background:#c41428 center 0 no-repeat;"><a target="_blank" href=""></a></li>
+            </ul>
+          </div>
+          <div class="hd"><ul></ul></div>
+      </div>
+    </div>
+    <div class="Hotban">
+        <div class="Hottxt">
+            <div class="Htxt1">
+                <dl class="dl1">
+                    <dt><a href="$!{rc.contextPath}/boot/invest/10/1"><img src="/resources/styles1/images/pic_1.jpg"></a></dt>
+                    <dd>
+                        <h2>我要投资</h2>
+                        <p> 一分钟认识财神在线：超低门槛，人人都可以理财；信用良好，轻松获得贷款。</p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="Htxt2">
+                <dl class="dl1">
+                    <dt><a href="#"><img src="/resources/styles1/images/pic_2.jpg" border="0"></a></dt>
+                    <dd>
+                        <h2>我要贷款</h2>
+                        <p>信用产生价值，在财神在线融资申请门槛低，放款速度快，适合个人和中小企业短期周转。 </p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="Htxt3">
+                <dl class="dl1">
+                    <dt><a href=""><img src="/resources/styles1/images/pic_3.jpg" border="0"></a></dt>
+                    <dd>
+                        <h2>安全保障</h2>
+                        <p>财神在线VIP会员免收投资收益服务费，专享客服，活动期间，提供本息保障计划。</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+	
+     <div class="Main">
+        <div class="Mtxt">
+			<script>
+				$(function(){
+					$('.nul1 li').mouseover(function(){
+						$(this).addClass('cur').siblings().removeClass('cur');
+						var _index = $(this).index();
+						$('.content2').eq(_index).show().siblings().hide();
+					})
+				})
+            </script>
+            <div class="MtxtL">
+                <ul class="nul1 clearfloat">
+                   <li class="fl cur">最新发布</li>
+                  ##  <li class="fl ml15">最新还款</li>
+                </ul>
+                <div class="clearfloat">
+					<script>
+                        $(function(){
+                            $(".content2 li:last").siblings().css({"border-bottom":"1px dashed #ddd"});	
+                            $(".content2 li").siblings().css({"margin-top":"10px"});	
+                            $(".con3 li:last").siblings().css({"border-bottom":"1px dashed #ddd"});	
+                            $(".con3 li").siblings().css({"margin-top":"10px"});	
+                        })
+                    </script>
+					<!--最新发布-->
+					<ul class="content2">
+						<iframe id="iframe1" style="visibility:hidden;" class="mt15" width="710px"  frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+					</ul>
+                </div>
+            </div>
+			
+			<!--otherFunctions-->
+			<div class="MtxtR">
+                <div class="Nri">
+                    <ul class="nul4">
+                        <li><a href="">更多&gt;&gt;</a>新闻公告</li>
+                    </ul>
+                    <ul class="nul5">                 
+                    #foreach($info in $noticesIndexs)
+						<li>·<a href="/help/announcement/$!{info.popId}" target="_blank">$stringUtil.subString( $!{info.title},15,"..")</a></li>
+					#end
+                    </ul>
+                </div>
+				
+                <div class="Npic">
+                    <a href="">
+                        <img src="/resources/styles1/images/sider2.jpg" border="0">
+                    </a>
+                </div>
+                <div class="Nri" style="margin-bottom:0px;">
+                    <div class="Nnav">
+                        <ul class="nul8">
+                            <li id="np1" class="on">
+                                <a href="javascript:void(0)" onclick="Scolor(1)">
+                                    投资攻略
+                                </a>
+                            </li>
+                            <li id="np2">
+                                <a href="javascript:void(0)" onclick="Scolor(2)">
+                                    更多&gt;&gt;
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <span class="SN1" style="display:;">
+                        <ul class="nul6" style="margin-top: 0px;">    
+						#foreach($help in $helpIndexs)
+							<li>·&nbsp;<a href="/help/popHelp/$!{help.popId}" target="_blank">$stringUtil.subString( $!{help.title},15,"..")</a></li>
+						#end
+                       </ul>
+                </div>
+ 
+               
+            </div>
+        </div>
+    </div>
+	
+    <div class="Media">
+        <div class="M_nva">
+            <ul>
+                <li>
+                    <a href="">
+                        更多&gt;&gt;
+                    </a>
+                    合作机构：
+                </li>
+            </ul>
+        </div>
+        <div class="M_txt">
+            <ul>
+                <li>
+                    <a href="" target="_blank"><img src="styles/images/home/agency_img1.gif" width="110" height="40"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="styles/images/home/agency_img2.gif" width="110" height="40"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="styles/images/home/agency_img3.gif" width="110" height="40"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="styles/images/home/agency_img4.gif" width="110" height="40"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="styles/images/home/agency_img5.gif" width="110" height="40"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+			
+	#parse("/front/index/common/index1-footer.vm")
+	
+    <!--/footer-->
+	#parse("/front/index/common/js.vm")	
+	<script type="text/javascript" language="javascript" src="/resources/js/lib1/superslide.2.1.js"></script>
+	<script src="/resources/js/lib/jquery.slidy.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'static-index');
+		$('area').click(function(){
+			window.open($(this).attr('path'));
+			return false;
+		})
+		
+    </script>
+</body>
+</html>
+
+<script type="text/javascript">
+	function lookup(demandId, tradeId){
+		top.location.href = '$!{rc.contextPath}/boot/lookup/' + demandId + ',' + tradeId;
+	}
+</script>
+<!--图片-->
+<script type="text/javascript">
+jQuery(".fullSlide").hover(function() {
+    jQuery(this).find(".prev,.next").stop(true, true).fadeTo("show", 0.5)
+},
+function() {
+    jQuery(this).find(".prev,.next").fadeOut()
+});
+jQuery(".fullSlide").slide({
+    titCell: ".hd ul",
+    mainCell: ".bd ul",
+    effect: "fold",
+    autoPlay: true,
+    autoPage: true,
+    trigger: "click",
+    startFun: function(i) {
+        var curLi = jQuery(".fullSlide .bd li").eq(i);
+        if ( !! curLi.attr("_src")) {
+            curLi.css("background-image", curLi.attr("_src")).removeAttr("_src")
+        }
+    }
+});
+</script>

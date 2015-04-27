@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>会员中心-账户设置</title>
+    <link type="text/css" href="/styles/style.css" rel="stylesheet"/>
+</head>
+
+<style type="text/css">
+    /*横条提示/浮动提示*/
+    .fn-y-tip {
+        background: #fff185;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px #d4d4d4;
+        padding: 5px 25px;
+        color: #333;
+        position: relative;
+        zoom: 1;
+    }
+
+    .fn-y-tip em {
+        width: 8px;
+        height: 9px;
+        background: url(../../images/common/layer-ico.gif) no-repeat 0 -63px;
+        position: absolute;
+        left: 12px;
+        top: 10px;
+    }
+
+    .fn-y-tip h4 {
+        color: #333;
+        font-weight: bold;
+    }
+
+    .fn-y-tip .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 8px;
+        height: 8px;
+        background: url(../../images/common/layer-ico.gif) no-repeat 0 -50px;
+        text-indent: -9999px;
+    }
+
+    .fn-y-tip-h {
+        width: 350px;
+        position: absolute;
+    }
+
+    .fn-y-tip .arrow {
+        width: 11px;
+        height: 10px;
+        background: url(../../images/common/corner-ico.png) no-repeat;
+        position: absolute;
+    }
+
+    .fn-y-tip .arrow-lt {
+        background-position: 0 -10px;
+        left: 25px;
+        top: -10px;
+    }
+
+    /*左上*/
+    .fn-y-tip .arrow-rt {
+        background-position: -11px -10px;
+        right: 25px;
+        top: -10px;
+    }
+
+    /*右上*/
+    .fn-y-tip .arrow-lb {
+        background-position: 0 0;
+        left: 25px;
+        bottom: -10px;
+    }
+
+    /*单行左下*/
+    .fn-y-tip .arrow-rb {
+        background-position: -11px 0;
+        right: 25px;
+        bottom: -10px;
+    }
+
+    /*单行右下*/
+    .n-fn-layer .f-success .success-con {
+        color: #666666;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .n-fn-layer .failure-ico {
+        background: url(../../images/common/icon.gif) no-repeat scroll -60px -256px transparent;
+        height: 32px;
+        left: 60px;
+        position: absolute;
+        top: 17px;
+        width: 32px;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+<body>
+<!--头部-->
+    #parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+    <div class="blank20"></div>
+    <div class="bd-box container fn-clear">
+        #parse("/front/user/common/left1.vm")
+        <div class="m-content fn-right">
+            <div class="m-content-box">
+                <div class="title1 mt10"><span>账户设置</span>
+
+                    <div class="r-kyye"><strong>可用余额：</strong>
+                        <span>￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span> <a
+                                href="/userManage/topUp/withholdingIndex">充值</a></div>
+                </div>
+                <div class="blank20"></div>
+                <div class="user-info">
+                    <strong>$!{userBaseInfo.realName}</strong>
+                    <ul>
+                        <li><label class="user-title">用户名</label>$!{userBaseInfo.userName}</li>
+                        <li><label class="user-title">登录密码</label><span class="u-set">已设置</span><a href="javascript:;"
+                                                                                                   class="modify"
+                                                                                                   t="logPassword"><span>修改</span></a>
+                        </li>
+
+
+                        <li><label
+                                class="user-title">注册时间</label><span>$!yrdDateUtil.simpleFormatYmdhms($!{userBaseInfo.rowAddTime})  </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="blank20"></div>
+                <div class="account-info fn-clear">
+                    <div class="a-info-box mr15 fn-left">
+                        <strong>第三方支付账户已开通</strong>
+
+                        <p><label>支付账号</label><span>$!userBaseInfo.accountName</span></p>
+
+                        <p><label>开通状态</label>#if($!{yjfAccountInfo.userStatus.code}=='W')<span
+                                class="a-icon">未激活</span><a href="/anon/activeYjfAccount" class="g-recharge ml5 mr5"
+                                                            style="width:60px">立即激活</a>#else<span
+                                class="a-icon">已开通</span>#end  </p>
+
+                        <p class="mt10"><a class="a-info-btn" href="/anon/goto3Acount">登录第三方支付账户</a></p>
+                    </div>
+                    #if($!userBaseInfo.type=='GR')
+                        <div class="a-info-box mr15 fn-left">
+                            <strong>实名认证信息</strong>
+
+
+                            #if($!{userBaseInfo.realNameAuthentication})
+                                #if("IS" == $!{userBaseInfo.realNameAuthentication})
+                                    <p class="mt5"><label>真实姓名</label><b>$!{userBaseInfo.realName}</b></p>
+
+                                    <p class="mt5"><label>身份证号码</label><span>$!{certNo}</span></p>
+
+                                    <p class="mt5"><label>认证状态</label><span class="a-icon">已认证</span></p>
+                                #elseif("NO" == $!{userBaseInfo.realNameAuthentication})
+                                    <p class="mt5"><label>真实姓名</label><b>$!{userBaseInfo.realName}</b></p>
+
+                                    <p class="mt5"><label>身份证号码</label><span>$!{certNo}</span></p>
+
+                                    <p class="mt5"><label>认证状态</label><span>认证未通过</span><a
+                                            href="/userManage/userRealNameInfo">重新认证</a></p>
+
+                                #elseif("IN" == $!{userBaseInfo.realNameAuthentication})
+                                    <p class="mt5"><label>真实姓名</label><b>$!{userBaseInfo.realName}</b></p>
+
+                                    <p class="mt5"><label>身份证号码</label><span>$!{certNo}</span></p>
+                                <p class="mt5"><label>认证状态</label><span>认证中</span>
+                                #end
+                            #else
+                                <p class="mt5"><label>真实姓名</label><b>$!{userBaseInfo.realName}</b></p>
+
+                                <p class="mt5"><label>身份证号码</label><span>&nbsp;</span></p>
+                            <p class="mt5"><label>认证状态</label><span>未认证<a
+                                    href="/userManage/userRealNameInfo">马上认证</a></span>
+                            #end
+                        </div>
+                    #end
+
+
+                    #if($!userBaseInfo.type=='JG')
+                        <div class="a-info-box mr15 fn-left">
+
+                            <strong>实名认证信息</strong>
+
+                            <p class="mt5"><label>公司名称</label><b>$!{userBaseInfo.realName}</b></p>
+
+                            <p class="mt5"><label>公司地址</label><b>$!info.commonlyUsedAddress</b></p>
+
+                            <p class="mt5"><label>法人名称</label><b>$!info.legalRepresentativeName</b></p>
+
+                        </div>
+                    #end
+
+
+                    <div class="a-info-box fn-left">
+                        <strong>联系方式</strong>
+
+                        <p class="mt5"><label>手机号码</label><b>$!{mobile}</b>#if($!{mobile}=="暂无")<a href="javascript:;"
+                                                                                                   class="ml15 bound_mobile"><span>绑定手机</span></a>#else
+                            <a href="javascript:;" class="ml15 bound_updateMobile"><span>修改</span></a>#end</p>
+
+
+                        <p class="mt5"><label>电子邮箱</label><span><b>$!{mail}</b></span></p>
+
+                        <p class="f-tar mt5 mr20"><a href="javascript:;" class="bound_updateMail"><span> #if($!{mail} ==
+                            "暂无")绑定邮箱  #else 修改邮箱 #end</span></a></p>
+
+
+                    </div>
+                    <div class="a-info-box fn-left" style="height:20px;">
+                        <h1><a href="$!{modifyPayPwdUrl}" target="_blank">修改支付密码</a></h1>
+                    </div>
+
+                </div>
+                <div class="blank10"></div>
+
+                <!--
+            <div class="sms-set">
+                <h1 class="mb5">短信设置</h1>
+                <table cellpadding="0" cellspacing="0" border="0" class="pro-table sms-table">
+                    <tr>
+                        <th width="20%"><span class="ml20">功能名称</span></th>
+                        <th class="f-tac" width="40%">具体描述</th>
+                        <th class="f-tac" width="20%">操作</th>
+                    </tr>
+                    <tr>
+                        <td><span class="ml20">新项目发布</span></td>
+                        <td class="f-tac">新项目发布后，短信通知有关项目的简短介绍</td>
+                        <td class="f-tac"><a href="#">关闭</a><a href="#">开启</a></td>
+                    </tr>
+                </table>
+            </div>
+            -->
+                <div class="blank30"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+
+    <!--浮层1-->
+<div class="m-layer" id="n-fn-layer" style="width:470px;display:none;">
+<div class="f-title fn-mb15 fn-clear">
+<h4 class="fn-left">更改登录#if($!{operator}=='no')#else审核#end密码</h4>
+    <a href="javascript:;" class="fn-right cancel">x</a>
+</div>
+<div class="f-con f-change">
+<div class="fn-y-tip fn-mb20">
+    <em></em>
+<div class="fn-y-con">
+    <p>&middot;定期更换密码可以让您的账户更加安全。</p>
+<p>&middot;请确保登录密码和#if($!{operator}=='no')支付#else审核#end密码不同！</p>
+    <p>&middot;建议密码采用字母和数字混合，并且不短于6位。</p>
+</div>
+</div>
+    <form action="/security/updatePassword" method="post" id="password_form">
+        <div class="fn-item">
+            <label class="fn-label"><span class="required">*</span>旧密码：</label>
+            <input type="password" class="fn-text w130" name="password"/>
+        </div>
+        <div class="fn-item">
+            <label class="fn-label"><span class="required">*</span>新密码：</label>
+            <input type="password" class="fn-text w130" name="newPassword" id="newPassword"/>
+        </div>
+        <div class="fn-item">
+            <label class="fn-label"><span class="required">*</span>确认新密码：</label>
+            <input type="password" class="fn-text w130" name="newPasswordTo"/>
+        </div>
+        <div class="fn-item">
+            <input type="hidden" name="type"/>
+            <input type="hidden" name="operator" data="$!{operator}"/>
+            <input type="hidden" value="$!{md5UserBaseId}" name="md5UserBaseId"/>
+            <input type="hidden" value="$!{userBaseId}" name="userBaseId"/>
+            <a href="javascript:;" class="fn-g-btn fn-mr5">
+                <button type="submit">确定</button>
+            </a>
+        </div>
+    </form>
+</div>
+</div>
+    <!--浮层1_1-->
+<div class="m-layer" id="result_ok" style="width:350px;display:none;">
+<div class="f-title fn-clear">
+<h4 class="fn-left">更改登录/#if($!{operator}=='no')支付#else审核#end密码</h4>
+    <a href="javascript:;" class="fn-right cancel">x</a>
+</div>
+<div class="f-con f-success">
+    <em class="success-ico"></em>
+<p class="success-con">您的登录/#if($!{operator}=='no')支付#else审核#end密码修改成功！</p>
+</div>
+    <div class="f-btn">
+        <a class="fn-g-btn cancel" href="javascript:;"><span>确定</span></a>
+    </div>
+</div>
+    <!--浮层1-2-->
+<div class="m-layer" id="result_no" style="width:350px;display:none;">
+<div class="f-title fn-clear">
+<h4 class="fn-left">更改登录/#if($!{operator}=='no')支付#else审核#end密码</h4>
+    <a href="javascript:;" class="fn-right cancel">x</a>
+</div>
+<div class="f-con f-success">
+    <em class="failure-ico"></em>
+<p class="success-con">您的登录/#if($!{operator}=='no')支付#else审核#end密码修改失败！</p>
+    <p class="success-con">旧密码错误</p>
+</div>
+    <div class="f-btn">
+        <a class="fn-g-btn cancel" href="javascript:;"><span>确定</span></a>
+    </div>
+</div>
+
+    <!--浮层2.1-->
+    <!--浮层2.1-->
+    <div class="m-layer" id="bound_updateMobile" style="width:470px;display:none;">
+        <div class="f-title fn-mb15 fn-clear">
+            <h4 class="fn-left">修改绑定手机</h4>
+            <a href="javascript:;" class="fn-right cancel">x</a>
+        </div>
+        <div class="f-con f-change">
+            <div class="fn-y-tip fn-mb20">
+                <em></em>
+
+                <div class="fn-y-con">
+                    <p>&middot;绑定手机可以让您的账户更加安全。</p>
+
+                    <p>&middot;手机绑定可以用于找回登录/支付密码！</p>
+                </div>
+            </div>
+            <form action="/security/updateBoundMobile" method="post" id="updateBoundMobile_form">
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>手机号码：</label>
+                    <input type="text" disabled="disabled" class="fn-text w130" name="mobile4" value="$!{mobile}"/>
+                    <input id="mobile1" type="hidden" disabled="disabled" class="fn-text w130" name="mobile"
+                           value="$!{userBaseInfo.mobile}"/>
+                    <a href="javascript:;" id="getCode1" class="fn-h-btn  Y-countdown"><span
+                            class="timedown">获取验证码</span></a>
+                    <input id="business1" type="hidden" name="business" value="cellphone"/>
+                </div>
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>验证码：</label>
+                    <input id="code1" type="text" class="fn-text w90" name="code"/>
+                </div>
+                <div class="fn-item">
+                    <input type="hidden" id="confirmUserBaseId" name="confirmUserBaseId" value="$!{confirmUserBaseId}">
+                    <input type="hidden" id="userBaseId" name="userBaseId" value="$!{userBaseId}">
+                    <input type="hidden" value="$!{md5UserBaseId}" name="md5UserBaseId"/>
+                    <a href="javascript:;" class="fn-g-btn fn-mr5">
+                        <button type="submit">下一步</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="m-layer" id="bound_updateMobile_second" style="width:470px;display:none;">
+        <div class="f-title fn-mb15 fn-clear">
+            <h4 class="fn-left">修改绑定手机</h4>
+            <a href="javascript:;" class="fn-right cancel">x</a>
+        </div>
+        <div class="f-con f-change">
+            <div class="fn-y-tip fn-mb20">
+                <em></em>
+
+                <div class="fn-y-con">
+                    <p>&middot;绑定手机可以让您的账户更加安全。</p>
+
+                    <p>&middot;手机绑定可以用于找回登录/支付密码！</p>
+                </div>
+            </div>
+            <form action="/security/updateBoundMobileSecond" method="post" id="updateBoundMobile_form_second">
+
+
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>新手机号码：</label>
+                    <input type="text" class="fn-text w130" name="newMobile" id="newMobile" maxlength="11"/>
+                    <a href="javascript:;" id="getCode30" class="fn-h-btn  Y-countdown"><span
+                            class="timedown">获取验证码</span></a>
+                    <input id="business30" type="hidden" name="business30" value="newCellphone"/>
+                    <input type="hidden" id="confirmUserBaseId" name="confirmUserBaseId" value="$!{confirmUserBaseId}">
+
+                </div>
+
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>验证码：</label>
+                    <input id="codeSecond" type="text" class="fn-text w90" name="codeSecond"/>
+                </div>
+                <div class="fn-item">
+                    <a href="javascript:;" class="fn-g-btn fn-mr5">
+                        <button type="submit">修改</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!--浮层2.2-->
+    <div class="m-layer" id="bound_mobile" style="width:470px;display:none;">
+        <div class="f-title fn-mb15 fn-clear">
+            <h4 class="fn-left">绑定手机</h4>
+            <a href="javascript:;" class="fn-right cancel">x</a>
+        </div>
+        <div class="f-con f-change">
+            <div class="fn-y-tip fn-mb20">
+                <em></em>
+
+                <div class="fn-y-con">
+                    <p>&middot;绑定手机可以让您的账户更加安全。</p>
+
+                    <p>&middot;手机绑定可以用于找回登录/支付密码！</p>
+                </div>
+            </div>
+            <form action="/security/boundMobile" method="post" id="boundMobile_form">
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>手机号码：</label>
+                    <input id="mobile2" type="text" class="fn-text w130" maxlength="11" name="mobile"/>
+                    <a href="javascript:;" id="getCode2" class="fn-h-btn Y-countdown"><span
+                            class="timedown">获取验证码</span></a>
+                    <input id="business2" type="hidden" name="business" value="addcellphone"/>
+                </div>
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>验证码：</label>
+                    <input id="code2" type="text" class="fn-text w90" name="code"/>
+                </div>
+                <div class="fn-item">
+                    <a href="javascript:;" class="fn-g-btn fn-mr5">
+                        <button type="submit">确定</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--浮层2_1-->
+    <div class="m-layer" id="boundMobile_ok" style="width:350px;display:none;">
+        <div class="f-title fn-mb15 fn-clear">
+            <h4 class="fn-left">绑定手机提示</h4>
+            <a href="javascript:;" class="fn-right cancel">x</a>
+        </div>
+        <div class="f-con">
+            <p class="text-c ft-666"><img src="$!{rc.contextPath}/resources/images/common/success-ico.jpg"
+                                          class="vm m5"/>你的手机号绑定成功！</p>
+
+            <div class="f-btn mt20">
+                <a href="javascript:;" class="fn-h-btn  cancel"><span>确认</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!--浮层2_2-->
+    <div class="m-layer" id="boundMobile_no" style="width:350px;display:none;">
+        <div class="f-title fn-mb15 fn-clear">
+            <h4 class="fn-left">绑定手机提示</h4>
+            <a href="javascript:;" class="fn-right  cancel">x</a>
+        </div>
+        <div class="f-con">
+            <p class="text-c ft-666"><img src="$!{rc.contextPath}/resources/images/common/success-ico.jpg" alt=""
+                                          class="vm m5"/>你的手机号绑定失败！</p>
+
+            <div class="f-btn mt20">
+                <a href="javascript:;" class="fn-h-btn  cancel"><span>确认</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!--修改邮箱-->
+    <div class="m-layer" id="bound_updateMail" style="width:470px;display:none;">
+        <div class="f-title fn-mb15 fn-clear">
+            <h4 class="fn-left">邮箱修改</h4>
+            <a href="javascript:;" class="fn-right cancel">x</a>
+        </div>
+        <div class="f-con f-change">
+            <div class="fn-y-tip fn-mb20">
+                <em></em>
+
+                <div class="fn-y-con">
+                    <p>&middot;请填写您要使用的邮箱。</p>
+                </div>
+            </div>
+            <form action="/security/boundUpdateMail" method="post" id="bound_updateMail_form">
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>手机号码：</label>
+                    <input type="text" disabled="disabled" class="fn-text w130" name="mobile4" value="$!{mobile}"/>
+                    <input id="mobile5" type="hidden" disabled="disabled" class="fn-text w130" name="mobile5"
+                           value="$!{userBaseInfo.mobile}"/>
+                    <a href="javascript:;" id="getCode3" class="fn-h-btn Y-countdown"><span
+                            class="timedown">获取验证码</span></a>
+                    <input id="business3" type="hidden" name="business" value="personal"/>
+                    <input id="userName" type="hidden" name="userName" value="$!{userBaseInfo.userName}"/>
+                </div>
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>验证码：</label>
+                    <input id="mailCode" type="text" class="fn-text w90" name="mailCode"/>
+                </div>
+                <div class="fn-item">
+                    <label class="fn-label"><span class="required">*</span>新邮箱：</label>
+                    <input type="text" class="fn-text w130" name="newMail"/>
+                </div>
+                <div class="fn-item">
+                    <a href="javascript:;" class="fn-g-btn fn-mr5">
+                        <button type="submit">确定</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    #parse("/front/index/common/footer-yrd.vm")
+<script type="text/javascript">
+    var $_GLOBAL =
+    {
+    }
+    ;
+</script>
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+    seajs.use($_GLOBAL.mode +'userHome');
+    seajs.use($_GLOBAL.mode +'securityCenter');
+
+    //var int=self.setInterval("refreshTime()",1000);
+    function refreshTime() {
+        var myDate = new Date();
+        if (!document.getElementById("curTime")) {
+            clearInterval(int);
+        }
+        document.getElementById("curTime").innerHTML = "当前时间：" + myDate.toLocaleString();   //获取日期与时间
+    }
+
+</script>
+</body>
+</html>

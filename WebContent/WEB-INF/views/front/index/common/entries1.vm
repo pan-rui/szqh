@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>首页-$!appConstantsUtil.getProductName()金融官网</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/styles1/web.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/styles1/style.css" rel="stylesheet"/>
+</head>
+<style type="text/css">
+</style>
+<body>
+	
+			<!--最新发布--> 
+				#foreach($trade in $!{page.result})
+					<div style="padding-bottom:6px;padding-top:6px; border-bottom: 1px dashed grey; height:100px; _height:96px; line-height:180%;overflow:hidden;">
+                    	<li class="clearfloat">
+                        	<dl>
+                            	<dd style="font-weight:bold; font-size:14px;">
+									
+										<span style="color:#0a88c1;">[$stringUtil.subString( $!{trade.name},10,"..")]</span>
+									 &nbsp;&nbsp;			
+								公司经营需求￥#if($!{trade.status}==1)#else  #end
+								#if($!{trade.status}==1)$!{moneyUtil.getFormatAmount($!{trade.amount})}#else$!{moneyUtil.getFormatAmount($!{trade.loanedAmount})}#end 
+								</dd>
+								
+                            	<dt class="fl mt5">
+                                	借款金额：<span style="color:#ff0000;">￥
+								#if($!{trade.status}==1)#else  #end
+								#if($!{trade.status}==1)$!{moneyUtil.getFormatAmount($!{trade.amount})}#else$!{moneyUtil.getFormatAmount($!{trade.loanedAmount})}#end
+									</span><br/>
+                                                                                            剩余金额：<br />
+                                                                                            还款方式：按月付息到期还本
+                                </dt>
+								
+                            	<dt class="fl mt5 ml15">
+									  年 利 率：<span style="color:#ff0000;">$!{trade.strRaate}</span><br />
+                                                                                            剩余时间：x天x时xx分<br />
+									 #set($percent = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.amount},$!{trade.leastInvestAmount}))														
+                                                                                            借款进度：<div class="jdbg"><div class="jd" style="width:${percent};"></div></div>&nbsp;&nbsp;${percent}
+                                </dt>
+								
+                            	<dt class="fl mt5 ml15">
+									  借款期限：$!{loanUtil.getLoanTime($!{trade.time}, $!{trade.timeUnit})} <br/>                  										
+                                                                                            保荐机构：<br />
+                                                                                            担保机构：<span style="color:#b51412;">$stringUtil.subString($!{trade.guaranteeName},13,"..")</span>
+                                </dt>
+								
+                            	<dt class="fr mt5 ml15">
+									#if($!{trade.status}==1)
+                                	<a #if(!$sessionScope) 
+												href="javascript:top.location.href = '$!{rc.contextPath}/login/login';" 
+    									#else   href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});"  
+		             					#end><img src="/resources/styles1/images/tj.png" />
+									</a>
+										#else<a class="f-full" href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});">
+												## 投资已满
+												<img src="/resources/styles1/images/hk.png" />
+											 </a>
+									#end
+
+                                </dt>
+                            </dl>
+                        </li>
+					</div>
+				#end
+				
+</body>
+</html>	
+<script type="text/javascript">
+	function lookup(demandId, tradeId){
+		top.location.href = '$!{rc.contextPath}/boot/lookup/' + demandId + ',' + tradeId;
+	}
+</script>

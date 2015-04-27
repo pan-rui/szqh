@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>正式担保函</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")	
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">融资管理</a> >上传正式担保函</p>
+					</div>
+					<form action="/backstage/addLoanDemand/updateImg" class="ui-form" id="img_form" method="POST">
+						<fieldset>
+							<legend><h3>$!appConstantsUtil.getProductName()正式担保函</h3></legend>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>融资人：</label>$!{info.userName}
+								
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span> 	融资金额(元)：</label>$!{info.loanAmount.toStandardString()}
+								
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>承诺机构：</label>$!{info.guaranteeName}
+								
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>项目名称：</label>$!{info.loanName}
+                                <input type="hidden" class="u-input w170"  name="param_name" id="param_name"  value="$!{info.loanName}"  maxlength="">
+								<input type="hidden" class="u-input w170"  name="param_id" id="param_id"  value="$!{info.demandId}"  maxlength=""/>
+							</div>
+							#if($!{info.contractPdfUrl})
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>正式担保函：</label>
+                                <img id="guaranteeLicenseUrl_Img" src="$!{info.contractPdfUrl}" width="240" height="127" alt=""/>
+							</div>
+							#else
+								&nbsp;
+							#end
+							<br/>
+							<div class="item">
+								<label for="" class="u-label">上传正式担保函（修改）：</label>
+								<span class="sl-file" style="width:300px">
+									<input type="file" exts="png|jpg|bmp" class="sl-file-input" id="guaranteeLicenseUrl_Upload1" />
+								</span>
+								<div id="guaranteeLicenseUrl_imgcontainer1" style = "display:none;height:265px;">
+									<input type='hidden' id="guaranteeLicenseUrl1" name="guaranteeLicenseUrl1"/>
+									<input type='hidden' id="uploadHost" value="$!{uploadHost}"/>
+									<a href="javascript:;" id="guaranteeLicenseUrl_ImgLink1" name="guaranteeLicenseUrl_ImgLink1" title="正式担保函照片">  
+										<img id="guaranteeLicenseUrl_Img1" name="guaranteeLicenseUrl_Img1" title="承诺函照片" style = "width:450px;height:260px;"  src=""/>
+                                    </a> 
+								</div>
+							</div>
+							
+						</fieldset>
+
+						<div class="item">
+                            <a href="javascript:;"  class="u-btn u-btn-blue submit_form">更新</a><a href="/backstage/pageQueryLoanDemand?module=OVER" class="u-btn u-btn-gray">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+
+    	seajs.use($_GLOBAL.mode + 'addImg');
+		
+		
+    </script>
+</body>
+</html>

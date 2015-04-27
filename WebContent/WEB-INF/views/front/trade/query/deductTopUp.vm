@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>快捷划入记录</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<div class="con-tab">
+				  #set($t = $permission.check('/tradeQuery/borrowingRecord'))
+				  #if($t>0)
+				  <a href="/tradeQuery/borrowingRecord">投资接受记录</a><span>/</span> 
+				  #end
+				  #set($t = $permission.check('/tradeQuery/entries/12/1'))
+				  #if($t>0)
+				  <a href="/tradeQuery/entries/12/1">投资记录</a><span>/</span>
+				  #end
+				  <a href="/tradeQuery/deductTopUp" class="cur">快捷划入记录</a><span>/</span>
+				  <a href="/tradeQuery/netSilverTopUp">网银划入记录</a><span>/</span>
+				  <a href="/tradeQuery/withdrawals">划出记录</a>
+			</div>
+			<!--查询条件-->
+			<form action="/tradeQuery/deductTopUp" method="post">
+				<div class="fn-inquiry">
+					<div class="fn-condition time-cond">
+						<dl class="fn-clear">
+							<dt>起止日期：</dt>
+							<dd>
+								<span class="fn-time"> 
+									<input type="date" class="fn-text w90" name="startDate" value="$!{queryTradeOrder.startDate}" />
+									<img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img" />
+								</span>
+								-
+								<span class="fn-time">
+									<input type="date" class="fn-text w90" name="endDate"  value="$!{queryTradeOrder.endDate}" />
+									<img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img" />
+								</span	>
+								<a href="javascript:;" class="fn-h-btn fn-ml5"><button type="submit">搜索</button></a>
+							</dd>
+						</dl>
+						<!--<div class="fn-options">
+							已成功提现：<b class="ft-red">$!{sumMoney}</b> 元
+						</div>-->
+					</div>
+				</div>
+			</form>
+			<!--列表-->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+				<tr class="thead">
+					<td width="120">划入时间</td>
+					<td width="150">划入流水号</td>
+					<td width="100" >划入金额（元）</td>
+					<td width="100">划入使用银行</td>
+					<td width="150">银行卡号</td>
+					<td >状态</td>
+				</tr>
+				#if($!page.result.size()==0 || !$!page.result)
+    				<tr class="even">
+        				<td colspan=6 align=center>暂时没有快捷记录</td>
+        			</tr>
+				#end
+				#foreach($info in $page.result)
+					<tr>
+    					#if($!{info.payTime})
+    						 <td>$!dateUtil.simpleFormat($!{info.payTime})</td>
+    					#else
+    						 <td>暂无数据</td>
+						#end
+						<td>$!{info.outBizNo}</td>
+						<td><span class="ft-f60">$!{info.amount}</span></td>
+						<td>$!{info.bankName}</td>
+						<td>$!{info.bankAccountNo}</td>
+						<td>#if($!{info.status}=="1")
+								快捷成功
+							#elseif($!{info.status}=="0")
+								快捷失败
+							#end
+                        </td>
+					</tr>
+				#end
+			</table>
+			<!--分页-->
+			<div class="fn-tb-bottom fn-clear">
+				<!--<p class="fn-left"><a href="" class="download">下载查询数据</a></p>-->
+				#parse("/backstage/page/page.vm")
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/tradeQuery/deductTopUp"
+			+"?startTime=$!{queryTradeOrder.startTime}"
+			+"&endTime=$!{queryTradeOrder.endTime}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+		#if($!{faild})
+			alert('$!{faild}');
+		#end
+    </script>
+</body>
+</html>

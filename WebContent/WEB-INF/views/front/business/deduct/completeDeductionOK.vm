@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>提交快捷划入申请</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+	<!--左侧导航-->
+	#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+    	<div class="main-content fn-right">
+			<ul class="fn-steps fn-clear">
+    			<li>1.快捷划入申请</li>
+    			<li>2.确认申请快捷划入信息</li>
+    			<li class="current">3.银联快捷划入完成</li>
+    		</ul>
+			<div class="fn-operate fn-success">
+				<em></em>
+				<h4>您的快捷划入申请 <span class="ft-f60">成功</span></h4>
+				<p class="mt5">预计到账时间为：立即到账。注：由于不同银行处理时间不同,到账会有所延时,请您耐心等候。</p>
+				<p class="mt5">当前账户可用余额：$!{availableBalance} 元</p>
+                <p class="mt5">您可能需要：<a href="/userManage/userHome">返回我的账户</a><span>|</span><a href="/deduct/launchDeduction">继续快捷划入</a></p>
+			</div>
+       </div>
+	</div> 
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

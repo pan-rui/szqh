@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>权限管理-用户高级管理</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">权限管理</a> > 用户高级管理</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstage/userManage/userBaseInfoManage"  method="post">
+							<dl>
+								<dt>用户名：</dt>
+								<dd><input type="text" class="u-input" name="userName" value="$!{queryConditions.userName}"/></dd>
+							</dl>
+							<dl>
+								<dt>资金账户名：</dt>
+								<dd><input type="text" class="u-input" name="accountName" value="$!{queryConditions.accountName}"/></dd>
+							</dl>
+							<dl>
+								<dt>真实姓名：</dt>
+								<dd><input type="text" class="u-input" name="realName" value="$!{queryConditions.realName}"/></dd>
+							</dl>
+							<dl>
+								<dt>状态：</dt>
+								<dd>
+									<div class="jqtransform jqtransform-select3">
+										<select name="state" id="">
+											<option value="">全部</option>
+											<option value="normal"   #if($!{queryConditions.state.code}=="normal")   selected="selected"  #end >正常</option>
+											<option value="inactive" #if($!{queryConditions.state.code}=="inactive") selected="selected"  #end >未激活</option>
+											<option value="freeze"   #if($!{queryConditions.state.code}=="freeze")   selected="selected"  #end >冻结</option>
+											<option value="disable"  #if($!{queryConditions.state.code}=="disable")  selected="selected"  #end >禁用</option>	
+										</select>
+									</div>
+								</dd>
+							</dl>
+							<button type="submit" class="s-btn" style="cursor:pointer;">搜索</button>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="/backstage/userManage/userBaseInfoManage/addAdmin?parentId=1"  class="p-btn addUser">创建管理员</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						
+						<table class="m-table">
+							<tr>
+								<th width="130">用户ID</th>
+								<th width="130">用户名</th>
+								<th width="130">资金账户</th>
+								<th width="130">真实姓名</th>
+								<th width="130">创建时间</th>
+								<th width="130">状态</th>
+								<th width="130">操作</th>
+
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有用户记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td>$!{info.userBaseId}</td>
+								<td>$!{info.userName}</td>
+								<td>$!{info.accountName}</td>
+								<td>$!{info.realName}</td>
+								<td>$!dateUtil.simpleFormat($!{info.rowAddTime})</td>
+								<td class="red">$!{info.state.message}</td>
+								<td><a href="javascript:;" data="$!{info.userBaseId}" class="queryBalance">余额查询</a> <span class="line">|</span>
+                            #if(!$info.accountId)<a href="/backstage/userManage/userBaseInfoManage/updateUserRole?userBaseId=$!{info.userBaseId}&userId=$!{info.userId}" class="updateUser">角色状态变更</a>
+                            #end
+									<input type="hidden" value="$!{info.userBaseId}" />
+                            #if($!{info.state.code}=="normal")
+                                <span class="line">|</span><a href="javascript:;" class="udateState" state="freeze">冻结</a>
+                            #elseif($!{info.state.code}=="freeze")
+                                <span class="line">|</span><a href="javascript:;" class="udateState" state="normal">解冻</a>
+                            #end
+                            <input type="hidden" value="$!{info.userBaseId}" />
+								</td>
+
+							</tr>
+						#end
+						</table>
+						<input type="hidden" value="GR" data="userType"/>
+						<div class="p-box pages-b fn-clear">
+							<a href="/backstage/userManage/userBaseInfoManage/addAdmin?parentId=1"  class="p-btn addUser">创建管理员</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'personalManage');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/userManage/userBaseInfoManage"
+			+"?userName=$!{queryConditions.userName}"
+			+"&state=$!{queryConditions.state}"
+			+"&accountName=$!{queryConditions.accountName}"
+			+"&realName=$!{queryConditions.realName}"
+			+"&payNo=$!{order.payNo}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

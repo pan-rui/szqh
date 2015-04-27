@@ -1,0 +1,93 @@
+#parse("/front/index/common/header-title.vm")
+    <style type="text/css">
+	.table {
+       border-collapse:collapse;
+        border-spacing:0;
+    }
+	.brief-con{
+		padding: 0 20px 20px;
+	}
+	.brief-con h4{
+		font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: bold;
+	}
+	
+	</style>
+</head>
+<body class="warp f-bgGray">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<!--内容-->
+		<!--右侧内容-->
+<div class="container fn-clear mt20 m-news2">
+		
+		<!--sidebar-->
+        <div class="l-sb5">
+			<h2 class="title">
+				<img src="/styles/images/common/news_title3.jpg"/>
+			</h2>
+			<!--menu-->
+            <div class="m-menu">
+                <ul>
+					
+					#foreach($info in $helpModules)
+						<!--item-->
+                    <li #if($info.popId==$child.parentId) class="active" #end>
+						<a href="/help/popHelp/$!{info.popId}">
+                            <i class="spe">&gt;</i>
+                            <i class="u-arrows left gray"></i>
+                            <span class="txt">$!{info.title}</span>
+						</a>
+					</li>
+					<!--item End-->
+                     #end
+					
+				</ul>
+			</div>
+			<!--menu End-->
+		</div>
+		<!--sidebar End-->
+		
+		#if(!$popHelp && $helpModules.size()>0)
+			#set ($popHelp=$helpModules[0])
+		#end
+		
+		<!--main-->
+        <div class="l-mn5">
+            <div class="l-mnIn5">
+				
+				<div class="m-article">
+					
+					<!--title-->
+    				<h3 class="u-title2">
+                        <span class="txt">$!{popHelp.title}</span>
+            		</h3>
+					<!--title End-->
+					
+					<!--content-->
+                    <div class="content">$!{popHelp.content}</div>
+					<!--content End-->
+				
+                </div>
+				
+				
+			</div>
+		</div>
+		<!--main End-->
+
+</div>
+		
+		
+		
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'helpCenter');
+    </script>
+</body>
+</html>

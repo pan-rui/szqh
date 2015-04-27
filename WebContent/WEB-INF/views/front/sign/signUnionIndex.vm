@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>快捷签约（银行直签）</title>
+    <link type="text/css" href="/resources/css/loan.css" rel="stylesheet"/>
+</head>
+<body class="warp">
+<div class="header">
+    <div class="container fn-clear">
+        <h1 class="logo fn-left"><a href="">易贷网</a><b>在线签约</b></h1>
+        <ul class="nav fn-right">
+            <li><a href="">首页</a></li>
+            <li class="slant">/</li>
+            <li><a href="">账户管理</a></li>
+            <li class="slant">/</li>
+            <li><a href="">我要投资</a></li>
+            <li class="slant">/</li>
+            <li><a href="">帮助中心</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="pay-tab">
+        <a href="">银联签约</a>
+    </div>
+    <div class="sign mc-border">
+        <form action="" method="post" class="fm-pay">
+            <div class="fn-item" style="z-index:10;">
+                <label class="fn-label">网上银行：</label>
+
+                <div class="bank">
+                    <div class="choose-bank">
+                        <div class="select-box">
+                            <img src="/images/bank/zhongxin.jpg" alt="中信银行"/>
+                            <a href="" class="select-right"></a>
+                        </div>
+                        <ul class="bank-list fn-clear" style="">
+                            <li class="cur"><img src="/images/bank/nongye.jpg" alt="中国农业银行"/></li>
+                            <li><img src="/images/bank/jiaotong.jpg" alt="交通银行"/></li>
+                            <li><img src="/images/bank/zhongguo.jpg" alt="中国银行"/></li>
+                            <li><img src="/images/bank/jianshe.jpg" alt="中国建设银行"/></li>
+                            <li><img src="/images/bank/guangda.jpg" alt="中国光大银行"/></li>
+                            <li><img src="/images/bank/zhaoshang.jpg" alt="招商银行"/></li>
+                            <li><img src="/images/bank/minsheng.jpg" alt="中国民生银行"/></li>
+                            <li><img src="/images/bank/zhongxin.jpg" alt="中信银行"/></li>
+                            <li><img src="/images/bank/nongcun.jpg" alt="重庆农村商业银行"/></li>
+                            <li><img src="/images/bank/gongshang.jpg" alt="中国工商银行"/></li>
+                            <li><img src="/images/bank/youzheng.jpg" alt="中国邮政储蓄银行"/></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="fn-item">
+                <label class="fn-label">开户姓名：</label>
+                <input type="text" class="fn-text w235"/>
+            </div>
+            <div class="fn-item">
+                <label class="fn-label">银行卡号：</label>
+                <input type="text" class="fn-text w235"/>
+            </div>
+            <div class="fn-item">
+                <label class="fn-label">银行预留手机：</label>
+                <input type="text" class="fn-text w235"/>
+            </div>
+            <div class="fn-item">
+                <a href="#" class="fn-g-btn"><span>下一步</span></a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="footer">
+    <div class="foot-link">
+        <p><a href="">关于我们</a><span class="line">|</span><a href="">联系方式</a><span class="line">|</span><a
+                href="">招聘信息</a><span class="line">|</span>Copyright 2005-2012 易极付 版权所有 渝ICP备11005152号-1</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var $_GLOBAL =
+    {
+    }
+    ;
+</script>
+<script type="text/javascript" src="/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/lib/sea.js"></script>
+<script type="text/javascript">
+    seajs.use($_GLOBAL.mode +'demo');
+</script>
+</body>
+</html>
+
+
+
+
+

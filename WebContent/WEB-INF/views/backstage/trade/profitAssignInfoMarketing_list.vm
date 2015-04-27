@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>营销机构收益配置</title>
+	<link type="text/css" href="$!{rc.contextPath}/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p>营销机构收益配置</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstage/marketingProfit/queryProfitAssignInfoMarketing" method="get" name="frm">
+							<dl>
+								<dt>用户名：</dt>
+								<dd><input type="text" class="u-input w120" name="userName" value="$!{queryConditions.userName}"/></dd>
+							</dl>
+
+                            <button type="submit" class="s-btn" style="cursor:pointer;">搜索</button>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+					     		#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="10">序号</th>
+								<th width="120">用户名</th>
+								<th width="240">营销机构</th>
+                                <th width="80">配置时间</th>
+                                <th width="80">修改时间</th>
+                                <th width="80">收益</th>
+                                <th width="80">操作</th>
+
+							</tr>
+                            #set($i=1)
+							#foreach($info in $page.result)
+							<tr>
+								<td>$!{i}</td>
+                                <td>$!{info.userName}</td>
+								<td>$!{info.realName}</td>
+                                <td>#if($!{info.orgDistributionQuotaAddDate})     $!dateUtil.simpleFormat($!{info.orgDistributionQuotaAddDate}) #else — — #end  </td>
+                                <td>#if($!{info.orgDistributionQuotaUpdateDate})  $!dateUtil.simpleFormat($!{info.orgDistributionQuotaUpdateDate}) #else — — #end </td>
+
+                                <td> #if($!{info.orgDistributionQuota} == -1) — — #else $!{info.orgDistributionQuota} %  #end</td>
+                                <td>
+                                #if($!{info.orgDistributionQuotaAddDate})
+                                    <a href="javascript:void(0);" name="template-modify" id="$!{info.orgDistributionQuotaId}"  quota=" $!{quota}" userId="$!{info.userId}">修改</a>
+                                    | <a href="javascript:void(0);" name="template-cancel" id="$!{info.orgDistributionQuotaId}"  quota=" $!{quota}"  userId="$!{info.userId}" >取消配置 </a></td>
+                                #else
+                                    <a href="javascript:void(0);" name="template-add" id="$!{info.orgDistributionQuotaId}"  quota=" $!{quota}"  userId="$!{info.userId}" >配置 </a>
+                                    </td>
+                                #end
+
+
+
+                            </tr>
+                                #set($i=1+$i)
+							#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	
+	
+	
+	<!--修改收费模板信息-->
+	<div class="m-layer" style="display:none;width: 500px;" id="template-modify">
+		<div class="title">
+			<h2><span id="status-template">修改</span></h2>
+		</div>
+		<div class="cont">
+			<form action="" class="ui-form pt20">
+
+					<div class="item">
+						<label for="" class="u-label">营销机构收益：</label>
+                        <input type="hidden" id="receiveId" name="receiveId">
+                        <input type="hidden" id="tblBaseId" name="tblBaseId">
+						<input type="text"  id="distributionQuota" name="distributionQuota" class="u-input w120" /> % （年利率）
+					</div>				
+
+				<div class="item mt10">
+					<a href="javascript:void(0);" class="u-btn u-btn-blue" id="template-submit">提交</a><a href="javascript:void(0);" class="u-btn u-btn-gray" id="template-modify-close">返回</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/plugins/jquery.window.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/sea.js"></script>
+	
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+    <script type="text/javascript">
+
+
+        $('a[name=template-cancel]').click(function (){
+            document.getElementById('status-template').innerHTML = '取消配置';
+            var userId = $(this).attr("userId");
+            var data ={
+                 receiveId:userId
+            }
+            var url = "/backstage/marketingProfit/cancelProfitAssignInfoMarketing"
+            var json = $_GLOBAL.ajax(url, data);
+
+            if (json.code == 1) {
+                alert(json.message);
+                document.location.href = document.location.href;
+            } else {
+                alert(json.message);
+            }
+        });
+
+
+
+    	$('a[name=template-add]').click(function (){
+    	  document.getElementById('status-template').innerHTML = '收益配置';
+            var orgDistributionQuotaId = $(this).attr('id');
+            var quota = $(this).attr("quota");
+            var userId = $(this).attr("userId");
+    	  clear(userId);
+    	  show();
+    	});
+    	
+    	$('a[name=template-modify]').click(function (){
+            var orgDistributionQuotaId = $(this).attr('id');
+            var quota = $(this).attr("quota");
+            var userId = $(this).attr("userId");
+            Y.confirm('请选择','确定执行该操作？',function(opn) {
+                if (opn == "yes") {
+                    document.getElementById('status-template').innerHTML = '修改收益配置';
+                    clear();
+                    inittemplate(orgDistributionQuotaId,quota,userId);
+                    show();
+                }
+            });
+
+    	});
+
+
+        function inittemplate(orgDistributionQuotaId,quota,userId){
+              $("#receiveId").val(userId);
+              $("#distributionQuota").val(quota);
+              $("#tblBaseId").val(orgDistributionQuotaId);
+        }
+
+
+        $('#template-submit').click(function () {
+            var tblBaseId = $("#tblBaseId").val();
+            var receiveId = $("#receiveId").val();
+            var distributionQuota = $("#distributionQuota").val();
+
+            var url = "/backstage/marketingProfit/addProfitAssignInfoMarketing";
+            if(tblBaseId){
+                url = "/backstage/marketingProfit/modifyProfitAssignInfoMarketing";
+            }
+
+            if(distributionQuota > 100){
+                alert("年华收益率，不能大于100")
+                return;
+            }
+
+            var data ={
+                tblBaseId :tblBaseId,
+                receiveId:receiveId,
+                distributionQuota:distributionQuota/100
+
+            }
+
+            var json = $_GLOBAL.ajax(url, data);
+
+            if (json.code == 1) {
+                alert(json.message);
+                document.location.href = document.location.href;
+            } else {
+                alert(json.message);
+            }
+        });
+    	
+    	function clear(userId){
+            $("#receiveId").val(userId);
+            $("#distributionQuota").val("");
+            $("#tblBaseId").val("");
+    	}
+    	
+
+    	
+    	function show(){
+    	   $('body').window({
+    	      content:'#template-modify',
+    	      simple:true,
+    	      closeEle:'#template-modify-close'
+    	   });
+    	}
+    
+    	function toPage(totalPage, page){
+    	  if(page > totalPage){
+    	   return ;
+    	  }
+    	  var action = '/backstage/marketingProfit/queryProfitAssignInfoMarketing?userName=$!{queryConditions.userName}&pageSize=$!{page.pageSize}&pageNo='+page;
+    	  window.location.href = action;
+    	}
+    	
+    </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>经纪人开户</title>
+    <link type="text/css" href="/styles/style.css" rel="stylesheet"/>
+    <link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet"/>
+</head>
+<body>
+    #parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+    <div class="blank20"></div>
+    <div class="bd-box container fn-clear">
+        #parse("/front/user/common/left1.vm")
+        <div class="m-content fn-right">
+            <div class="m-content-box role">
+                <div class="title3 mt10"><span><a class="return" href="javascript:history.go(-1);">《 返回</a></span><span class="two ml15">投资人开户</span></div>
+                <div class="blank30"></div>
+                <div class="r-box">
+                    <form action="/marketingCenter/addBrokerSubmit" method="post" id="brokerOpenAccount_form">
+
+                        <div class="fn-item">
+                            <label class="fn-label"><span class="required">*</span>用户名：</label>
+                            <input type="text" class="fn-text w235" maxlength="30" name="userName" />
+                        </div>
+                        <div class="fn-item">
+                            <label class="fn-label"><span class="required">*</span>真实姓名：</label>
+                            <input type="text" class="fn-text w235" maxlength="30" name="realName" />
+                            <b class="fn-tip">若您的姓名里有生僻字，请<a href="javascript:;">点此打开生僻字库</a>进行选择。</b>
+                        </div>
+                        <div class="fn-item">
+                            <label class="fn-label"><span class="required">*</span>常用电子邮箱：</label>
+                            <input type="text" class="fn-text w235" maxlength="30" name="mail" />
+                            <b class="fn-tip">注册完成后需要通过邮箱激活用户<br />由6—20英文字母、数字或符号组成，建议使用大小写字母与数字混合设置密码。<br />支付密码会在付款、退款、修改账户信息等多处使用，不能与登录密码相同。</b>
+                        </div>
+                        <div class="fn-item">
+
+                            <input type='hidden' id="token" name="token" value="$!{token}"/>
+                            <a href="javascript:;" id="operateButton" class="fn-g-btn"><button id="nextBtn" type="submit">确定开户</button></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="blank30"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+    #parse("/front/index/common/footer-yrd.vm")
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+    seajs.use($_GLOBAL.mode + 'brokerOpenAccount');
+</script>
+</body>
+</html>

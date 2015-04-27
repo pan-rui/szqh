@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>经济人开户成功</title>
+    <link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body>
+    #parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+    <div class="blank20"></div>
+    <div class="bd-box container fn-clear">
+        #parse("/front/user/common/left1.vm")
+        <div class="m-content fn-right">
+            <div class="m-content-box">
+                <div class="fn-operate fn-success">
+                    <em></em>
+                    <h4>开户成功！请通知您的经纪人主动去邮箱激活并完成相应的认证。</h4>
+                     <p class="mt5">现在去：<a href="/marketingCenter/brokerManage">经纪人管理</a>,或者<a href="/marketingCenter/addBroker">继续开户</a></p>
+                </div>
+                <div class="blank30"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+    #parse("/front/index/common/footer-yrd.vm")
+</div>
+</body>
+</html>

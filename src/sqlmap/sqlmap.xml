@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="false" lazyLoadingEnabled="false" maxRequests="3000" maxSessions="3000" maxTransactions="3000" useStatementNamespaces="false"/>
+	<typeHandler javaType="com.yjf.common.lang.util.money.Money" callback="com.yjf.yrd.dal.common.MoneyTypeHandlerCallback"/>
+	<sqlMap resource="sqlmap/role-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/permission-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/userrole-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/rolepermission-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/amountflow-sqlmap-mapping.xml"/>
+
+	<sqlMap resource="sqlmap/indextrade-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/investment-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/bankInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/funds-record-sqlmap-mapping.xml"/>
+	<!-- ZJL-->
+
+
+	<sqlMap resource="sqlmap/agent-investor-trade-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/agent-loaner-trade-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/email-template-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/userpasswordextend-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/popInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/appPopInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/operatorInfo-sqlmap-mapping.xml"/>
+
+	<sqlMap resource="sqlmap/activityDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/activityGiftCount-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/activityInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/giftUseRecord-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/giftInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/investdetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/user-address-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/projectStatistics-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/amount-statistics-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/rechargeStatistics-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/userBaseInfoSearch-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserPointInfo-sqlmap-mapping.xml"/>
+
+	<sqlMap resource="sqlmap/AmountFlowItem-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/AmountFlowTrade-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/BankBaseInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/CommonAttachment-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/CommonCardBin-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/CommonDistrict-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/CoopsInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/DebtTransferRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/DemandPdfTemplate-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/DivisionDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/DivisionRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/DivisionTemplate-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/DivisionTemplateTrade-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/FileElecCertificate-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/GiftMoney-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/GiftMoneyRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/GiftMoneyTrade-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/GuarantorInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/InstitutionsInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/InvestmentDemand-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/InvestmentDemandDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanApply-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanAuthRecord-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanDemand-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanDemandExtend-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanDemandInfoItem-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanDemandItemDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanerBaseInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LoanerExtendDescription-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LotteryActivity-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LotteryActivityInstance-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LotteryCondition-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LotteryRecord-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LotteryToBeWinner-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/LotteryWinner-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/MessageInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/MessageReceived-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/OperationJournal-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PdfTemplate-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PersonalInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PointsGoodsDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PointsRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PointsRuleDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PopModule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PrizeRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/PrizeRuleDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/ProfitAsignInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/ProfitAsignInfoBroker-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/ProfitAsignInfoMarketing-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/ProjectDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/RechargeFlow-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/RecommendFriend-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/RecommendRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/RepayPlan-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/ReportRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/SysParam-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/Trade-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/TradeDetailItem-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/TradeDetailTransfer-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/TradeDivision-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/TradeFlowCode-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/User-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserBankInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserBaseInfo-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserExtend-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserInterest-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserLevelRule-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserLoginLog-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserOrigin-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserPoint-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserPointsDetail-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/UserRelation-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/Extra-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/RechargeFlowExtra-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/common-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/CommonBranchInfoExtend-sqlmap-mapping.xml"/>
+	<sqlMap resource="sqlmap/mjr-test.xml"/>
+</sqlMapConfig>

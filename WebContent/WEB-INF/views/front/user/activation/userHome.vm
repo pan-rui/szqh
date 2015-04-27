@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户首页</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content fn-right">
+			
+			<div class="account-title fn-mb10 fn-clear">
+				<!--<div class="fn-y-tip fn-y-tip-h">
+					<span class="arrow arrow-lb"></span>
+					<em></em>
+					<div class="fn-y-con">尊敬的用户，您的登录密码已使用超过180天，为了安全起见，建议您定期修改您的密码。<a href="">我知道了</a></p>
+					</div>
+				</div>-->
+				<p class="fn-left">下午好，$!{sessionScope.realName} (#if($!{userMemoNo}) 编号：$!{userMemoNo} #else$!{sessionScope.userName}#end)<a href="/userManage/userBasicInfo">账户资料</a></p>	
+                <span class="fn-right"><p id="signinfo">#if($!{noLoginLog})#else#if($!{firstLogin})本次#else上次#end登录时间：$!{dateUtil.simpleFormat($!{loginTime})}#end</p></span>
+			</div>
+			<div class="account mc-border fn-mb10 fn-clear">
+				<div class="act-left fn-left">
+					<p class="act-balance">账户可用余额<br /><b id="avBalance" class="balance">$!{yjfAccountInfo.availableBalance.toStandardString()}</b>元</p>
+					<div class="act-btn fn-clear">
+						#if($!{operator}=='no')
+                            
+    						<a href="/userManage/rechargePage" class="fn-h-btn" style="font-size: 12px;"><span>网银划入</span></a>
+    						<a href="/deduct/launchDeduction" class="fn-h-btn" style="font-size: 12px;"><span>快捷划入</span></a>
+    						<a href="/withdrawals/launchWithdrawals" class="fn-h-btn" style="font-size: 12px;"><span>划出</span></a>
+						#end
+						#set($t = $permission.check('/tradeQuery/entries/12/1'))
+						#if($t > 0)
+						<a href="/boot/invest/12/1" class="fn-h-btn" style="font-size: 12px;"><span>投资</span></a>
+						
+						#end
+						#if($!{transfer}=='yes')
+							<a href="/transferBankAccount/launchTransferBankAccount" class="fn-h-btn" style="font-size: 12px;"><span>转账到卡</span></a>
+						#end
+					</div>
+					<div class="act-state fn-clear">
+						<div class="safe-level fn-left">
+							<span>安全等级</span>
+							#if($!{userBaseInfo.mobileBinding}=="IS" && $!{mailBinding}=="IS"&&"IS" == $!{userBaseInfo.realNameAuthentication})
+							<img src="$!{rc.contextPath}/resources/images/common/level-h.gif" alt="高级" class="vt" />
+							#elseif($!{userBaseInfo.mobileBinding}=="IS" || $!{mailBinding}=="IS"||"IS" == $!{userBaseInfo.realNameAuthentication})
+							<img src="$!{rc.contextPath}/resources/images/common/level-m.gif" alt="中级" class="vt" />
+							#elseif($!{userBaseInfo.mobileBinding}=="NO" && $!{mailBinding}=="NO")
+							<img src="$!{rc.contextPath}/resources/images/common/level-l.gif" alt="低级" class="vt" />
+							#end
+						</div>
+						<div class="auth-state fn-left">
+							<input type="hidden" id="realNameAuthHid" value="$!{userBaseInfo.realNameAuthentication}"/>
+							#if($!{yjfAccountInfo.userStatus.code}=='W')
+								<a href="/anon/activeYjfAccount" class="paper-on">激活易极付账户</a>
+							#else
+    							#if($!{userBaseInfo.realNameAuthentication})
+    								#if("IS" == $!{userBaseInfo.realNameAuthentication})
+    								<a href="javascript:;" class="paper-on">已认证</a>
+    								#elseif("NO" == $!{userBaseInfo.realNameAuthentication})
+    								<a href="/userManage/userRealNameInfo" class="paper-on">认证未通过</a>	
+    								#elseif("IN" == $!{userBaseInfo.realNameAuthentication})
+    								<a href="/userManage/userRealNameInfo" class="paper-on">认证中</a>
+    								#end	
+    							#else
+    							<a href="/userManage/userRealNameInfo" class="paper-on">未认证</a>	
+								#end
+							#end
+								
+							#if($!{mailBinding}=="IS")
+							<a href="javascript:;" class="email-on">已绑定</a>
+							#else
+							<a href="javascript:;" class="email">未绑定</a>	
+							#end
+							
+							#if($!{userBaseInfo.mobileBinding}=="IS")
+							<a href="javascript:;" class="tel tel-on">已绑定</a>
+							#else
+							<a href="javascript:;" class="tel">未绑定</a>
+							#end
+						</div>
+					</div>
+				</div>
+				<div class="act-right fn-right">
+					#if('GR'==$!{userBaseInfo.type})
+    					#if($!{bankCardNo})
+    					<a class="addbank" href="/userManage/userBankInfo">
+    						<b><img alt="银行卡信息" src="$!{banklog}" ></b>
+    						<span>银行卡信息(重新绑定)</span>
+    					</a>
+    					#else
+    					<a id="addbankLink" class="addbank" href="javaScript:void(0);">
+        					<b><img alt="添加银行卡" src="$!{rc.contextPath}/resources/images/common/+.gif" ></b>
+        					<span>添加银行卡</span>
+    					</a>
+    					#end
+					#else
+						<a class="addbank" href="/userManage/userBankInfo">
+    						<b><img #if($!{banklog})alt="银行账户信息"#end src="$!{banklog}" ></b>
+    						<span>银行账户信息(重新绑定)</span>
+    					</a>
+					#end
+					<span href="" class="mr10">&middot;畅想快捷</span><span href="">&middot;双密码保障</span>
+				</div>
+			</div>
+			<div class="mc-border">
+				<h3 class="con-title">我的任务</h3>
+				<!--列表-->
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+					<tr>
+						<td width="50">001</td>
+						<td width="320">用户安全 >  设置登录密码</td>
+						<td></td>
+						<td><a href="/security/center" class="fn-h-btn"><span>立即完成</span></a></td>
+					</tr>
+					<tr>
+						<td>002</td>
+						#if($!{operator}=='no')
+						<td>资金安全  >  设置支付密码</td>
+						#else
+							#if($!{tasks})
+							<td>身份绑定  >  绑定手机号</td>
+							#else
+							<td>审核安全  >  设置审核密码</td>
+							#end
+						#end
+						<td></td>
+						<td><a href="/security/center" class="fn-h-btn"><span>立即完成</span></a></td>
+					</tr>
+					#if($!{tasks})
+						
+					#else
+						<tr>
+						<td>003</td>
+						###set($t = $permission.check('/guaranteeCenter/*'))
+						###if($t>0)
+						##<td>审核安全  >  设置审核密码</td>
+						###else
+						<td>身份绑定  >  绑定手机号</td>
+						###end
+						<td></td>
+						<td><a href="/security/center" class="fn-h-btn"><span>立即完成</span></a></td>
+					</tr>	
+					#end
+					
+				</table>
+			</div>
+			<div class="my-list mb10 fn-clear" style="display:none;">
+				<div class="list-1 mc-border fn-left">
+					<h3 class="con-title">我的任务</h3>
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+						<tr>
+							<td width="30">001</td>
+							<td width="320">用户安全 >  设置登录密码</td>
+							<td><a href="/security/center" class="fn-h-btn"><span>立即完成</span></a></td>
+						</tr>
+						<tr>
+							<td>002</td>
+							<td>资金安全  >  设置支付密码</td>
+							<td><a href="/security/center" class="fn-h-btn"><span>立即完成</span></a></td>
+						</tr>
+						<tr>
+							<td>003</td>
+							#set($t = $permission.check('/guaranteeCenter/*'))
+							#if($t>0)
+							<td>审核安全  >  设置审核密码</td>
+							#else
+							<td>身份绑定  >  绑定手机号</td>
+							#end
+							<td><a href="/security/center" class="fn-h-btn"><span>立即完成</span></a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="list-2 mc-border fn-right">
+					<h3 class="con-title">资金统计(元)</h3>
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+						<tr>
+							<td>账户余额：</td>
+							<td id="balanceTd" class="text-r ft-f60">￥$!{yjfAccountInfo.balance.toStandardString()}</td>
+						</tr>
+						<tr>
+							<td>可用余额：</td>
+							<td id="avBalanceTd" class="text-r ft-f60">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</td>
+						</tr>
+						<tr>
+							<td>不可用余额：</td>
+							<td id="frzAmountTd" class="text-r ft-f60">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			##融资和投资统计
+			<iframe id="iframe1" style="visibility:hidden;" class="main-content fn-right" runat="server" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'userHome');
+    	//var int=self.setInterval("refreshTime()",1000);
+    	function refreshTime(){
+        	var myDate = new Date();
+			if(!document.getElementById("curTime")) {
+			    clearInterval(int);
+			}
+    		document.getElementById("curTime").innerHTML= "当前时间："+myDate.toLocaleString();   //获取日期与时间
+    	}
+
+    </script>
+</body>
+</html>

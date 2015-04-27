@@ -1,0 +1,40 @@
+#parse("/front/index/common/header-title.vm")
+    <style type="text/css">
+	.table {
+       border-collapse:collapse;
+        border-spacing:0;
+    }
+	.brief-con{
+		padding: 0 20px 20px;
+	}
+	.brief-con h4{
+		font-size: 16px;
+        margin-bottom: 5px;
+        font-weight: bold;
+	}
+	
+	</style>
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<!--内容-->
+		<!--右侧内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+			#if($!{popHelp})
+                <h3 >$!{popHelp.title}</h3>
+				<div class="brief-con" font-family: "Microsoft Yahei", "微软雅黑", Tahoma, Arial, Helvetica, STHeiti;">
+					$!{popHelp.content}
+                </div>	
+			#end	
+    </div>
+    <div class="blank50"></div>
+</div>
+	
+	
+#parse("/front/index/common/footer-yrd.vm")
+
+</body>
+</html>

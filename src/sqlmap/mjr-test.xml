@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<!-- 
+@author cz
+-->
+
+<sqlMap namespace="eloan">
+	<resultMap id="RM-AMOUNT-STATISTICS-TEST" class="com.yjf.yrd.dataobject.viewObject.AmountStatisticsInfoVO" >
+		<result property="countFildOne" column="dimentions" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="countFildTwo" column="totalAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
+		<result property="countFildThree" column="paidAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
+		<result property="countFildFour" column="toPayAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
+	</resultMap>
+	<resultMap id="RM-PERMISSION" class="com.yjf.yrd.dataobject.Permission" >
+		<result property="id" column="permission_id" javaType="int" jdbcType="INT"/>
+		<result property="code" column="permission_code" javaType="java.lang.String" jdbcType="VARVHAR"/>
+		<result property="name" column="permission_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="operate" column="permission_operate" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="backOperate" column="permission_callback" javaType="java.lang.String" jdbcType="VARCHAR"/>
+		<result property="note" column="permission_note" javaType="java.lang.String" jdbcType="VARCHAR"/>
+	</resultMap>
+
+<!--	<select id="PERMISSION-GETALLPERMISSIONS" resultClass="java.util.List" resultMap="RM-PERMISSION" parameterClass="java.util.Map">
+		SELECT
+		t.permission_id,
+		t.permission_code,
+		t.permission_name,
+		t.permission_operate,
+		t.permission_callback,
+		t.permission_note
+		FROM permission t
+		<isNotEmpty property="start">
+			LiMIT #start#
+			<isNotEmpty property="size">
+				, #size#
+			</isNotEmpty>
+		</isNotEmpty>
+	</select>-->
+
+	<select id="RM-AMOUNT-STATISTICS-COUNTBYYEAR-TEST" resultClass="java.lang.Long">
+		select count(1) from user_base_info tb1
+	<!--	<![CDATA[
+		SELECT count(tb1.years) FROM
+		(SELECT YEAR(t.`trade_create_date`) years FROM trade t GROUP BY years) tb1
+		LEFT JOIN
+		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE 1=1 GROUP BY years)tb2
+		ON tb1.years = tb2.years
+		LEFT JOIN
+		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE t.`trade_status` = '3' OR t.`trade_status` = '7'  GROUP BY years) tb3
+		ON tb1.years = tb3.years
+		]]>-->
+		<dynamic>
+			<isNotEmpty property="startDate" prepend=" and ">
+				<![CDATA[tb1.years >= #startDate#]]>
+			</isNotEmpty>
+			<isNotEmpty property="endDate" prepend=" and ">
+				<![CDATA[tb1.years <= #endDate#]]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+<!--  <resultMap id="RM-AMOUNT-STATISTICS" class="com.yjf.yrd.dataobject.viewObject.AmountStatisticsInfoVO" >
+	  <result property="countFildOne" column="dimentions" javaType="java.lang.String" jdbcType="VARCHAR" />
+	  <result property="countFildTwo" column="totalAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
+	  <result property="countFildThree" column="paidAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
+	  <result property="countFildFour" column="toPayAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <select id="RM-AMOUNT-STATISTICS-COUNTBYYEAR" resultClass="java.lang.Long">
+		<![CDATA[
+		SELECT count(tb1.years) FROM
+		(SELECT YEAR(t.`trade_create_date`) years FROM trade t GROUP BY years) tb1
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE 1=1 GROUP BY years)tb2
+		ON tb1.years = tb2.years
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE t.`trade_status` = '3' OR t.`trade_status` = '7'  GROUP BY years) tb3
+		ON tb1.years = tb3.years
+		]]>
+		<dynamic>
+			<isNotEmpty property="startDate" prepend=" and ">
+				<![CDATA[tb1.years >= #startDate#]]>
+			</isNotEmpty>
+			<isNotEmpty property="endDate" prepend=" and ">
+				<![CDATA[tb1.years <= #endDate#]]>
+			</isNotEmpty>
+		</dynamic>
+  </select>
+    <select id="RM-AMOUNT-STATISTICS-LISTBYYEAR" resultMap="RM-AMOUNT-STATISTICS">
+		<![CDATA[
+		SELECT tb1.years dimentions,tb2.amount totalAmount,IFNULL(tb3.amount,0) paidAmount,(tb2.amount-tb3.amount) toPayAmount FROM
+		(SELECT YEAR(t.`trade_create_date`) years FROM trade t GROUP BY years) tb1
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE 1=1 GROUP BY years)tb2
+		ON tb1.years = tb2.years
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE t.`trade_status` = '3' OR t.`trade_status` = '7'  GROUP BY years) tb3
+		ON tb1.years = tb3.years 
+		WHERE 1=1
+		]]>
+		<dynamic>
+			<isNotEmpty property="startDate" prepend=" and ">
+				<![CDATA[tb1.years >= #startDate#]]>
+			</isNotEmpty>
+			<isNotEmpty property="endDate" prepend=" and ">
+				<![CDATA[tb1.years <= #endDate#]]>
+			</isNotEmpty>
+		</dynamic>
+		<![CDATA[ORDER BY tb1.years  DESC
+		LIMIT #start#,#size# ;]]>
+  </select>
+ 
+  <select id="RM-AMOUNT-STATISTICS-COUNTBYMONTH" resultClass="java.lang.Long">
+		<![CDATA[
+		SELECT count(tb1.months) FROM
+		(SELECT YEAR(t.`trade_create_date`) years, MONTH(t.`trade_create_date`) months FROM trade t WHERE 1=1 GROUP BY months) tb1
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years, MONTH(t.`trade_create_date`) months, IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE 1=1 GROUP BY months)tb2
+		ON tb1.years = tb2.years AND tb1.months = tb2.months
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years, MONTH(t.`trade_create_date`) months, IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE t.`trade_status` = '3'  OR t.`trade_status` = '7'  GROUP BY months) tb3
+		ON tb1.years = tb3.years AND tb1.months = tb3.months
+		WHERE 1=1
+		]]>
+		<dynamic>
+			<isNotEmpty property="startMonthYear" prepend=" and ">
+				<![CDATA[ CONCAT(tb1.years,'-',tb1.months)  >= #startMonthYear#]]>
+			</isNotEmpty>
+			<isNotEmpty property="endMonthYear" prepend=" and ">
+				<![CDATA[CONCAT(tb1.years,'-',tb1.months)  <= #endMonthYear#]]>
+			</isNotEmpty>
+		</dynamic>
+  </select>
+    <select id="RM-AMOUNT-STATISTICS-LISTBYMONTH" resultMap="RM-AMOUNT-STATISTICS">
+		<![CDATA[
+		SELECT CONCAT(tb1.years,'-',tb1.months) dimentions,tb2.amount totalAmount,IFNULL(tb3.amount,0) paidAmount, IFNULL((tb2.amount-tb3.amount), 0) toPayAmount FROM
+		(SELECT YEAR(t.`trade_create_date`) years, MONTH(t.`trade_create_date`) months FROM trade t WHERE 1=1 GROUP BY months) tb1
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years, MONTH(t.`trade_create_date`) months, IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE 1=1 GROUP BY months)tb2
+		ON tb1.years = tb2.years AND tb1.months = tb2.months
+		LEFT JOIN 
+		(SELECT YEAR(t.`trade_create_date`) years, MONTH(t.`trade_create_date`) months, IFNULL(SUM(t.`loaned_amount`),0) amount
+		FROM trade t
+		WHERE t.`trade_status` = '3'  OR t.`trade_status` = '7'   GROUP BY months) tb3
+		ON tb1.years = tb3.years AND tb1.months = tb3.months
+		WHERE 1=1
+		]]>
+		<dynamic>
+			<isNotEmpty property="startMonthYear" prepend=" and ">
+				<![CDATA[ CONCAT(tb1.years,'-',tb1.months)  >= #startMonthYear#]]>
+			</isNotEmpty>
+			<isNotEmpty property="endMonthYear" prepend=" and ">
+				<![CDATA[CONCAT(tb1.years,'-',tb1.months)  <= #endMonthYear#]]>
+			</isNotEmpty>
+		</dynamic>
+		<![CDATA[ORDER BY dimentions  DESC
+		LIMIT #start#,#size# ;]]>
+  </select>
+  <select id="RM-AMOUNT-STATISTICS-COUNTBYMARKETTING" resultClass="java.lang.Long">
+		<![CDATA[
+		SELECT COUNT(1)  FROM 
+		(SELECT u.`real_name`,u.`user_id` FROM user_base_info u
+		INNER JOIN user_role ur  ON ur.`user_id` = u.`user_id`
+		WHERE ur.role_id = '10') tb0
+		LEFT JOIN 
+		(SELECT tb1.parent_id, IFNULL(tb1.amount,0) totalAmount,IFNULL(tb2.amount,0) paidAmount  
+		FROM
+		(SELECT ul.parent_id,SUM(td.amount) amount FROM user_relation ul
+		INNER JOIN user_relation ul2
+		ON ul2.parent_id = ul.child_id
+		INNER JOIN
+		trade_detail_item td
+		ON td.user_id = ul2.child_id
+		INNER JOIN trade t
+		ON t.trade_id = td.trade_id
+		WHERE td.role_id='12' AND td.transfer_phase='original' AND td.`date` >= #startDate# AND td.`date` <= #endDate#
+		GROUP BY ul.parent_id) tb1
+		LEFT JOIN
+		(SELECT ul.parent_id,SUM(td.amount) amount FROM user_relation ul
+		INNER JOIN user_relation ul2
+		ON ul2.parent_id = ul.child_id
+		INNER JOIN
+		trade_detail_item td
+		ON td.user_id = ul2.child_id
+		INNER JOIN trade t
+		ON t.trade_id = td.trade_id
+		WHERE td.role_id='12' AND td.transfer_phase='original' AND t.trade_status = '3' OR t.trade_status = '7' AND td.`date` >= #startDate# AND td.`date` <= #endDate#
+		GROUP BY ul.parent_id) tb2
+		ON tb1.parent_id = tb2.parent_id) tb3
+		ON tb0.user_id = tb3.parent_id
+		WHERE 1=1
+		]]>
+		
+  </select>
+   <select id="RM-AMOUNT-STATISTICS-LISTBYMARKETTING" resultMap="RM-AMOUNT-STATISTICS">
+		<![CDATA[
+		SELECT tb0.real_name dimentions, IFNULL(tb3.totalAmount,0) totalAmount, IFNULL(tb3.paidAmount,0) paidAmount, (IFNULL(tb3.totalAmount,0)-IFNULL(tb3.paidAmount,0)) toPayAmount  FROM 
+		(SELECT u.`real_name`,u.`user_id` FROM user_base_info u
+		INNER JOIN user_role ur  ON ur.`user_id` = u.`user_id`
+		WHERE ur.role_id = '10') tb0
+		LEFT JOIN 
+		(SELECT tb1.parent_id, IFNULL(tb1.amount,0) totalAmount,IFNULL(tb2.amount,0) paidAmount  
+		FROM
+		(SELECT ul.parent_id,SUM(td.amount) amount FROM user_relation ul
+		INNER JOIN user_relation ul2
+		ON ul2.parent_id = ul.child_id
+		INNER JOIN
+		trade_detail_item td
+		ON td.user_id = ul2.child_id
+		INNER JOIN trade t
+		ON t.trade_id = td.trade_id
+		WHERE td.role_id='12' AND td.transfer_phase='original' AND td.`date` >= #startDate# AND td.`date` <= #endDate#
+		GROUP BY ul.parent_id) tb1
+		LEFT JOIN
+		(SELECT ul.parent_id,SUM(td.amount) amount FROM user_relation ul
+		INNER JOIN user_relation ul2
+		ON ul2.parent_id = ul.child_id
+		INNER JOIN
+		trade_detail_item td
+		ON td.user_id = ul2.child_id
+		INNER JOIN trade t
+		ON t.trade_id = td.trade_id
+		WHERE td.role_id='12' AND td.transfer_phase='original' AND t.trade_status = '3' OR t.trade_status = '7' AND td.`date` >= #startDate# AND td.`date` <= #endDate#
+		GROUP BY ul.parent_id) tb2
+		ON tb1.parent_id = tb2.parent_id) tb3
+		ON tb0.user_id = tb3.parent_id
+		WHERE 1=1
+		ORDER BY dimentions 
+		LIMIT #start#,#size# ;
+		]]>
+  </select>-->
+</sqlMap>

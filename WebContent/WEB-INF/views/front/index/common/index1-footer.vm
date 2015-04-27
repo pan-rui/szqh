@@ -1,0 +1,34 @@
+
+    <!--footer-->
+    <div class="Nfoot">
+        <div class="Nfbox">
+            <div class="NfboxL">
+                <p>
+                    <a href="/help/institutionIntroduction/1">关于我们</a>|
+                    <a href="">理财计算器</a>|
+                    <a href="">相关法律</a>|
+                    <a href="">相关法律</a>|
+                    <a href="">标种介绍</a>|
+                    <a href="">标种介绍</a>
+                </p>
+                <p>
+                    <a href="">客服电话</a>
+                    <a href="">在线客服</a>
+                    <a href="">咨询时间：9:00-17:00(周一至周五)</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="Nlink">
+        <div class="Nlink_l">
+            <b>友情链接：</b>
+            <a href="" target="_blank">微金贷</a>|
+            <a href="" target="_blank">财神在线</a>|
+            <a href="" target="_blank">微金贷</a>|
+            <a href="" target="_blank">财神在线</a>|
+            <a href="" target="_blank">微金贷</a>|
+        </div>
+        <div class="Nlink_r">
+             财神在线融版权所有&nbsp;&nbsp;&nbsp;皖ICP备11111111号-1
+        </div>
+    </div>

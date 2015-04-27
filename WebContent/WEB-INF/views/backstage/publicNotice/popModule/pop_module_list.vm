@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>信息模块维护</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">信息模块维护</a> > 模块管理</p>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							#set($m = $permission.check('/backstage/popModule/add')) ##信息中心新增模块权限
+							#if($m>0)
+							<a href="/backstage/popModule/toModify?moduleId=0" class="p-btn addUser">新增模块</a>
+							#end
+							#parse("/backstage/page/page.vm")
+						</div>
+						
+						<table class="m-table">
+							<tr>
+								<th width="60">模块ID</th>
+								<th width="100">模块名称</th>
+								<th width="100">模块编码</th>
+								<th width="60">排列顺序</th>
+								<th width="120">是否只显示第一条</th>
+								<th width="60">点击次数</th>
+								<th width="200">模块对应的前台展示页面</th>
+								<th width="80">状态</th>
+								<th width="80">类型</th>
+								<th width="150">操作</th>
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td>$!{info.moduleId}</td>
+								<td>$!{info.moduleName}</td>
+								<td>$!{info.moduleCode}</td>
+								<td>$!{info.sortOrder}</td>
+								<td>$!{info.showTop}</td>
+								<td>$!{info.hits}</td>
+								<td>$!{info.vmPage}</td>
+								<td>$!{info.status}</td>
+								<td>$!{info.type}</td>
+								<td>
+									
+									#set($a = $permission.check('/backstage/popModule/online')) ##信息中心模块上线权限
+									#set($c = $permission.check('/backstage/popModule/offline')) ##信息中心模块下线权限
+									#set($b = $permission.check('/backstage/popModule/delete')) ##信息中心模块删除权限
+									#set($n = $permission.check('/backstage/popModule/modify')) ##信息中心修改模块权限
+									#if($n>0)
+									<a href="/backstage/popModule/toModify?moduleId=$!{info.moduleId}">修改</a>
+									#end
+									#if($a>0)
+									| <a name="online_module" data="$!{info.moduleId}" href="javascript:;">上线</a> 
+									#end
+									#if($c>0)
+									| <a name="offline_module" data="$!{info.moduleId}" href="javascript:;">下线</a>
+									#end
+									#if($b>0)
+    								| <a name="delete_module" data="$!{info.moduleId}" href="javascript:;">删除</a>
+    								#end
+								</td>
+								
+							</tr>
+						#end
+						</table>
+						<input type="hidden" value="JG" data="userType"/>
+						<div class="p-box pages-b fn-clear">
+							#if($m>0)
+							<a href="/backstage/popModule/toModify?moduleId=0" class="p-btn addUser">新增模块</a>
+							#end
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'popCenterNew');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/popModuleList?"
+			+"payNo=$!{order.payNo}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

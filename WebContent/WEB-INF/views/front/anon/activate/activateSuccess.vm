@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>用户激活/完善信息成功</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body>
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<style >
+	
+		
+    </style>
+	<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="container">
+        <div class="bd-box">
+            <div class="m-box-hd">
+                <h3 class="box-title">会员注册</h3>
+            </div>
+            <div class="m-box">
+                <ul class="m-step fn-clear mid-three">
+                    <li class="first">1、注册账户</li>
+                    <li class="mid">2、发送激活邮件成功</li>
+					#if($!{allFlowSuccess})
+                        <li class="mid">3、用户激活成功</li>
+                        <li class="mid">4、开通第三方支付</li>
+    					<li class="last current">5、注册完成</li>
+					#else
+    					<li class="mid mid-cur">3、用户激活成功</li>
+                        <li class="mid">4、开通第三方支付</li>
+    					<li class="last">5、完成</li>
+					#end
+                </ul>
+		  <div class="blank5"></div>
+          <div class="log-form mt20">
+    			#if($!{allFlowSuccess})
+        		<div class="fn-operate fn-success">
+        			<em></em>
+        			<p class="mt5">用户名：$!{userName}</p>
+        			<p>您可能需要：<a href="/userManage/userHome">进入账户首页</a></p>
+        		</div>
+    			#else
+    			<div class="log-success mt20">
+        			<em></em>
+    				#if($!{activated})
+    					<h1><em class="icon"></em>恭喜您：$!{userName}，您的账号已激活！</p></h1>
+    					<p>您可能需要 <a href="/anon/activeYjfAccount" class="fn-o-btn ml5"><span>下一步</span></a>开通第三方支付 ，<a href="/login/login" class="fn-o-btn ml5"><span>点此登录</span></a>查看更多信息。</p>
+    				#else
+    					<h1><em class="icon"></em>恭喜您：$!{userName}，您的账号激活成功！</p></h1>
+    					<p>请点击<a href="/anon/activeYjfAccount" class="fn-o-btn ml5"><span>下一步</span></a>开通第三方支付，或者直接
+							<a href="/" class="fn-o-btn ml5"><span>进入首页</span></a></p>
+    				#end
+        		</div>
+    			#end
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+#parse("/front/index/common/footer-yrd.vm")	
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>投资的项目</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body  onload="getMoney()">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+   #parse("/front/user/common/left1.vm")
+   
+          <div class="m-content fn-right">
+        	<div class="m-content-box">
+        		<div class="title1 mt10"><span>投资的项目</span>
+					<div class="r-kyye"> <strong>可用余额：</strong> <span>￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span> <a href="/userManage/topUp/withholdingIndex">充值</a></div>
+				</div>
+                <div class="blank20"></div>
+                
+                <form action="/tradeQuery/entries/12/1" method="post" name="frm">
+                <div class="mb-link fn-clear container-money">
+                
+                <input type="hidden" value="$!{request.getParameter('dateunit')}" name="dateunit"/>
+                <input type="hidden" name="status" value="$!{request.getParameter('status')}"/>
+                     <div class="fn-left" t="invest-status">
+                        <a  href="javascript:void(0);" status="-1">所有投资</a>
+						<a href="javascript:void(0);" status="1">投标中项目</a>
+						<a href="javascript:void(0);" status="2,5,8">还款中项目</a>
+						<a href="javascript:void(0);" status="3,7">已回款项目</a>
+						<a href="javascript:void(0);" status="6">审核中项目</a>
+                    </div>	   
+                </div>
+                </form>
+                <table border="0" cellspacing="0" cellpadding="0" class="mtable-list" style="margin-left:30px;">
+                    <tbody><tr>
+                        <th width="20%">项目名称</th>
+                       <!-- <th width="10%">投资接受人</th>-->
+                        <th width="12%">投资金额</th>
+						<th width="18%">预期收益（仅供参考）</th>
+                        <th width="12%">投资时间</th>
+                        <th width="10%">到期时间</th>
+                        <th width="10%">进度情况</th>
+						##<th width="8%">投资<br/>凭证</th>
+						<th width="12%">合同资料</th>
+                    </tr>
+                    
+                    
+                    #if($!page.result.size()==0)
+	    				<tr class="even">
+	        				<td colspan=6 align=center>暂时没有投资记录</td>
+	        			</tr>
+					#end
+                    
+                    #foreach($item in $!{page.result})  
+                    <tr>
+                        <td><a title="查看投资详情" href="/tradeQuery/queryInvestDetails/$!{item.tradeId}?detailId=$!{item.tradeDetailId}">$stringUtil.subString( $!{item.tradeName},15,"..")</a></td>
+                        <!--  <td>$!{item.loanerUserName}</td>-->
+                        <td><em>$!{item.benefitAmount.toStandardString()}</em></td>						
+						<td >$!{item.thisBenefit}</td>
+                        <td>$!{dateUtil.dtSimpleFormat($!{item.createDate})}</td>
+                        <td>#if($!{item.tradeExpireDate})$!{dateUtil.dtSimpleFormat($!{item.tradeExpireDate})}#else暂无数据#end</td>
+                        <td>$!{item.tradeStatus.investorStatus}</td>
+						
+						#*
+						<td>
+							#if($!{item.tradeEffectiveDate})
+								<a href="/tradeQuery/investReceipt/$!{item.tradeId}?tradeId=$!{item.tradeId}&detailId=$!{item.tradeDetailId}" name="test" target="_blank">下载 </a> 
+							#else
+								暂无
+							#end	
+						</td>
+						*#
+						<td>
+							#if($!{item.tradeEffectiveDate})	
+								<a href="/tradeDownload/guaranteeContract/?tradeId=$!{item.tradeId}" name="test" target="_blank">下载 </a> 
+							#else
+								暂无
+							#end	
+						</td>
+                    </tr>
+                    #end
+                </tbody></table>
+                
+                                            
+                                               
+                                               
+            <div style="font-weight:bold;font-size:18pt;margin-left:30px;">
+                <span id="countAmounTitle">累计总投资金额:</span><span class="ft-f60">￥$!{allAmount.toStandardString()}</span>元
+			</div>
+                
+             
+                <!--分页-->
+			<div class="pages account-page mt20">
+				<div class="fn-right">
+    				#parse("/backstage/page/page.vm")
+    			</div>	
+			</div>
+                
+                <div class="blank30"></div>
+            </div>
+        </div>
+  
+  
+  <div class="blank50"></div>
+  
+ 
+  
+</div>
+
+
+#parse("/front/index/common/footer-yrd.vm")	
+
+
+<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+    <script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'index_invest_detail');
+		seajs.use($_GLOBAL.mode + 'userHome');
+    </script>
+    <script type="text/javascript">
+	
+	
+	
+    	$(function (){
+    	 var status = $('input[name=status]').val();
+         if(status == ''){
+           status = -1
+         }
+         $('a[status="' + status + '"]').attr('class', 'cur');
+         
+         var dateunit = $('input[name=dateunit]').val();
+         if(dateunit == ''){
+         	return ;
+         }
+         $('a[name=' + dateunit + ']').addClass('cur');
+    	});
+    	
+    	$('#invest-search').click(function (){
+    	  //	toPage($!{page.totalPageCount}, $!{page.currentPageNo});
+		   document.frm.submit();
+    	});
+    	
+    	$('#condition-reset').click(function (){
+    	   $('form[name=frm] input').val('');
+    	   $('[t=invest-date] a').removeClass('cur');
+    	   $('[t=invest-status] a').removeClass('cur');
+    	   $('a[status=-1]').addClass('cur');
+    	});
+    	
+    	$('a[status]').click(function (){
+    	    var status = $(this);
+    		$('input[name=status]').val(status.attr('status'));
+    		$('a[status]').removeAttr('class');
+    		status.attr('class', 'cur');
+    		//toPage($!{page.totalPageCount}, $!{page.currentPageNo});
+			 document.frm.submit();
+			return false;
+    	});
+    	
+        function toPage(totalPage, page){
+    	  if(page > totalPage){
+    	  	return ;
+    	  }
+    	  $('form[name=frm]').attr('action', '/tradeQuery/entries/$!{page.pageSize}/' + page);
+    	  document.frm.submit();
+        }
+		
+    </script>
+    <script type="text/javascript">
+    	$(function (){
+    		var dateInfos = $('.dateInfo');
+    		
+	    	 dateInfos.click(function(){
+	    		var startDate = $('input[name=startDate]');
+    			var endDate = $('input[name=endDate]');
+	    		dateInfos.removeClass('cur');
+	    		var t = $(this);
+	    		t.addClass('cur');
+	    		$('[name=dateunit]').val(t.attr('name'));
+	    		var times = 1000 * 24 * 3600;
+	    		if(dateInfos.index(this) == 0){
+	    			var date = new Date();
+	    			var str = getDateStr(date);
+	    			startDate.val(str);
+	    			endDate.val(str);
+	    		}else if(dateInfos.index(this) == 1){
+	    			var date = new Date();
+	    			var newDate = new Date(date.getTime() - times * 7);
+	    			startDate.val(getDateStr(newDate));
+	    			endDate.val(getDateStr(date));
+	    		}else if(dateInfos.index(this) == 2){
+	    			var date = new Date();
+	    			var newDate = new Date(date.getTime() - times * 30);
+	    			startDate.val(getDateStr(newDate));
+	    			endDate.val(getDateStr(date));
+	    		}else if(dateInfos.index(this) == 3){
+	    			var date = new Date();
+	    			var newDate = new Date(date.getTime() - times * 90);
+	    			startDate.val(getDateStr(newDate));
+	    			endDate.val(getDateStr(date));
+	    		}else if(dateInfos.index(this) == 4){
+	    			var date = new Date();
+	    			var newDate = new Date(date.getTime() - times * 365);
+	    			startDate.val(getDateStr(newDate));
+	    			endDate.val(getDateStr(date));
+	    		}
+	    	});
+	    	function getDateStr(date){
+	    		var str = '';
+	    		str += date.getFullYear() + '-';
+	    		var month = date.getMonth() + 1;
+	    		str += (month > 9 ? '' : '0') + month + '-';
+	    		var day = date.getDate();
+	    		str += (day > 9 ? '' : '0') + day;
+	    		return str;
+	    	}
+    	});
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<head>
+	<meta charset="UTF-8">
+	<title>首页-$!appConstantsUtil.getProductName()金融官网</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+	<style type="text/css">
+        .pages a{color:#b74f03;}
+    </style>
+</head>
+<body class="warp">
+	<!--内容-->
+	<div class="about-txt">
+    	<h3>$!{moduleInfo.moduleName}</h3>
+        <ul class="newsnotes mt20">
+         #foreach($info in $page.result)
+             <li><a style="font-size: 10pt;color: #4f4f4f;" href="/help/popInfoDetail?popId=$!{info.popId}&moduleCode=$!{moduleInfo.moduleCode}">#if($!{info.ishot}=='N')<span class="ml25 fn14 fngrey3 fn-left">#else<span class="ml25 fn14 fngrey3 fn-left" style="color:#cd5d2f;">#end$!{info.title}</span></a><em>$!{dateUtil.dtSimpleFormat($!{info.addTime})}</em></li>
+         #end
+        </ul>
+		#parse("/backstage/page/page.vm")
+        
+    </div>
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'popInfo');
+    </script>
+	<script type="text/javascript">
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "$!{rc.contextPath}/help/toModule?moduleCode=$!{moduleInfo.moduleCode}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

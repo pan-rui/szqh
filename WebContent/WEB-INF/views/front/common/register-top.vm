@@ -1,0 +1,35 @@
+<div class="md-nav">
+    <div class="md-default-c clearf pc-width">
+        <ul class="f-l">
+            <li class="md-nav-menu">
+                <div>
+                    <span class="text">客服热线：</span>
+                    <span class="icon-base call"></span>
+                    <span class="number">4009-608-199</span>
+                    <a href="#" title="" class="text"></a>
+                </div>
+            </li>
+            <li class=" md-nav-menu">
+                <div>
+                    <span class="text">关注我们：</span>
+                    <a href="#" title="" class="icon-base weixin"></a>
+                    <a href="#" title="" class="icon-base weibo"></a>
+                    <a href="#" title="" class="icon-base qq"></a>      ##待确定........
+                </div>
+            </li>
+        </ul>
+        <ul class=" f-r">
+            <li class="md-nav-menu">
+                <div>
+                    <span class="icon-base phone"></span>
+                    <span class="text">APP客户端下载</span>
+                </div>
+            </li>
+            <li class="md-nav-menu">
+                <div>
+                    <span class="text">帮助中心</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

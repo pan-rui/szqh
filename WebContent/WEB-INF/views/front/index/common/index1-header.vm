@@ -1,0 +1,87 @@
+
+    <div class="Head">
+        <div class="HeadM">
+            <div class="HeadL">
+                欢迎来到财神在线！
+            </div>
+            <div class="HeadR">
+				#if($sessionScope)
+				欢迎您，$!{sessionScope.userName}<a href="$!{rc.contextPath}/login/logout?redirect=/login/login">&nbsp;[安全退出]</a>&nbsp;&nbsp;          
+				<a href="$!{rc.contextPath}/userManage/userHome">我的账户</a>
+				#else
+				<a href="$!{rc.contextPath}/login/login">登录</a>&nbsp;&nbsp;
+				#end
+				<a href="/help/announcementCenter">消息中心</a>&nbsp;&nbsp;
+				<a href="/help/center">新手指引</a>
+            </div>
+        </div>
+    </div>
+    <div class="Nav">
+        <div class="NavM clearfix">
+            <div class="Logo"><a href="/"><img src="/resources/styles1/images/logo.png" class="mt5"></a></div>
+            <div class="Menu">
+				<script>
+                    $(function(){
+                        $(".ul_menu li").mouseover(function(){
+                            $(this).find("div").show().siblings().children("div").hide();
+                        })
+                        $(".ul_menu li").mouseout(function(){
+                            $(this).find("div").hide();
+                        })
+                    })
+                </script>
+                <ul class="ul_menu">
+                    <li><a href="/" class="on">首页</a></li>
+                    <li>
+                    	<a href="$!{rc.contextPath}/boot/invest/10/1">我要投资</a>
+                        <div class="nav_can">
+                            <p><a href="/help/institutionIntroduction/1">关于我们</a></p>
+                            <p><a href="">公司证件</a></p>
+                            <p><a href="">联系我们</a></p>
+                            <p><a href="">网站公告</a></p>
+                            <p><a href="">网站资费</a></p>
+                            <p><a href="">媒体报道</a></p>
+                            <p><a href="">政策法规</a></p>
+                        </div>
+                    </li>
+                    <li>
+                    	<a href="#">我要借款</a>
+                        <div class="nav_can">
+                             <p><a href="/help/institutionIntroduction/1">关于我们</a></p>
+                            <p><a href="">公司证件</a></p>
+                            <p><a href="">联系我们</a></p>
+                            <p><a href="">网站公告</a></p>
+                            <p><a href="">网站资费</a></p>
+                            <p><a href="">媒体报道</a></p>
+                            <p><a href="">政策法规</a></p>
+                        </div>
+                    </li>
+                    <li>
+                    	<a href="$!{rc.contextPath}/userManage/userHome">我的帐号</a>
+                        <div class="nav_can">
+                            <p><a href="/help/institutionIntroduction/1">关于我们</a></p>
+                            <p><a href="">公司证件</a></p>
+                            <p><a href="">联系我们</a></p>
+                            <p><a href="">网站公告</a></p>
+                            <p><a href="">网站资费</a></p>
+                            <p><a href="">媒体报道</a></p>
+                            <p><a href="">政策法规</a></p>
+                        </div>
+                    </li>
+                    <li>
+                    	<a href="">咨询服务</a>
+                        <div class="nav_can">
+                             <p><a href="/help/institutionIntroduction/1">关于我们</a></p>
+                            <p><a href="">公司证件</a></p>
+                            <p><a href="">联系我们</a></p>
+                            <p><a href="">网站公告</a></p>
+                            <p><a href="">网站资费</a></p>
+                            <p><a href="">媒体报道</a></p>
+                            <p><a href="">政策法规</a></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    

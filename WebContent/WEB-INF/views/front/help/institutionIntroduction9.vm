@@ -1,0 +1,39 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    <h2 class="title1 mt10"><span>关于我们</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">
+			
+				<div class="con-list">
+				<ul>
+					<li><a href="/help/institutionIntroduction/8">公司介绍</a></li>
+					##<li><a href="/help/institutionIntroduction/10">相关协议</a></li>
+					<!--<li><a href="/">在线留言</a></li>
+					<li><a href="/">在线咨询</a></li>-->
+					<li><a href="/help/institutionIntroduction/11">联系我们</a></li>
+				</ul>
+				</div>
+			
+    			<div class="brief-con" Style="float:right;width:750px;">
+    				<h4 style="font-weight:bold;">合作伙伴:</h4>
+					</br>
+    				<p style="text-indent:2em;">重庆市园区工业信用担保有限公司：其根据重庆市委三届三次全会作出的以建设区县特色工业园区为重点的决定精神以及市国资委支持建设区县工业园区的总体部署，市政府和市国资委分别以“渝府［2008］71号”和“渝国资［2008］361号文件批准成立的国有独资政策性担保机构，系市国资委下辖的国有骨干子企业。办公地址位于重庆市北部新区天王星大厦。公司主要从事中小企业融资担保服务，属重庆市十强担保机构。</p>
+			   </div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+	
+</body>
+</html>

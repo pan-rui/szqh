@@ -1,0 +1,57 @@
+#parse("/front/index/common/header-title.vm")
+<style type="text/css">
+.brief-con span{
+    line-height:20px;  
+	text-align:left;
+    height:20px;  
+	height:auto;
+	display:inline-block;
+}
+.pages a{
+	color:#b74f03;
+}
+</style>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+	<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box container">
+		<h2 class="title1"><span>$!moduleInfo.moduleName</span></h2><a href="$!{rc.contextPath}/help/toModule?moduleCode=$!{moduleInfo.moduleCode}" style="padding-left:700px;cursor: pointer;color: #EC8A1B;"><<返回列表</a>
+    	
+        <ul class="help-list mt20" >
+        <h3 style="text-align: center; font-size: 16px; font-weight: bold; padding: 30px 0px;">$!{popInfo.title}</h3>
+		   <div class="news-con">
+			  $!{popInfo.content}
+			  #if($!{moduleInfo.moduleCode}=="NEWS")
+			  <h4 class="text-logo"style="text-align:right;">$!appConstantsUtil.getPlatformName()</h4>
+			  <h4 class="text-r" style="margin-right:50px;text-align:right;">#if($!{popInfo.modifyTime})$!{dateUtil.dtSimpleFormat($!{popInfo.modifyTime})}#else $!{dateUtil.dtSimpleFormat($!{popInfo.addTime})}#end</h4>
+			  #end
+		   </div>
+		</ul>
+    </div>
+    <div class="blank50"></div>
+    </div>
+	
+	
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "$!{rc.contextPath}/help/toModule?moduleCode=$!{moduleInfo.moduleCode}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

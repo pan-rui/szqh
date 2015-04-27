@@ -1,0 +1,53 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>法律法规</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">
+			<div class="con-list">
+					<ul>					
+
+						<li><a href="/help/institutionIntroduction/4">安全保障</a></li>
+						
+						<li><a href="/help/institutionIntroduction/17">技术安全</a></li>
+						<li><a href="/help/institutionIntroduction/18">隐私安全</a></li>
+						<li class="on"><a href="/help/institutionIntroduction/16">法律法规</a></li>
+						
+					</ul>
+				</div>
+    			<div class="brief-con" style="float:right;width:750px;">
+    				<h4 style="font-weight:bold;"></h4>
+					</br>
+					
+					<p><span style="font-weight: bold;color: #fff;background: #00c8ea;text-align: center;width: 150px;padding: 5px 15px;">1、关于民间借贷</span></p>
+                    <p style="text-indent:2em;">《合同法》和《最高人民法院关于人民法院审理借贷案件的若干意见》从法律上肯定了民间借贷行为的合法性，同时，可以采用第三方对借款提供担保的方式，保障出借人收回借款本金、利息的权利。民间借贷受法律保护。</p>
+                    <p style="text-indent:2em;">依据《最高人民法院关于人民法院审理借贷案件的若干意见》的规定，公民之间、公民与法人之间、公民与其他组织之间的借贷属于民间借贷，作为一种民事法律行为，在行为人具有完全民事行为能力（年满18周岁，且不存在足以影响自身行为的精神疾病的情形）、意思表示真实且不违反法律、行政法规禁止性规定的情况下，民间借贷受法律保护。</p>
+                    <p><span style="font-weight: bold;color: #fff;background: #00c8ea;text-align: center;width: 150px;padding: 5px 15px;">2、关于利率的规定</span></p>
+                    <p style="text-indent:2em;">《合同法》第二百一十一条：自然人之间的借款合同对支付利息没有约定或者约定不明确的，视为不支付利息。自然人之间的借款合同约定支付利息的，借款的利率不得违反国家有关限制借款利率的规定。</p>
+                    <p style="text-indent:2em;">《最高人民法院关于人民法院审理借贷案件的若干意见》第六条：民间借贷的利率可以适当高于银行的利率，各地人民法院可根据本地区的实际情况具体掌握，但最高不得超过银行同类贷款利率的四倍（包含利率本数）。超出此限度的，超出部分的利息不予保护。</p>
+                    <p><span style="font-weight: bold;color: #fff;background: #00c8ea;text-align: center;width: 150px;padding: 5px 15px;">3、关于借款协议的规定</span></p>
+                    <p style="text-indent:2em;">《最高人民法院关于人民法院审理借贷案件的若干意见》第十条：一方以欺诈、胁迫等手段或者乘人之危，使对方在违背真实意思的情况下所形成的借贷关系，应认定为无效；《最高人民法院关于人民法院审理借贷案件的若干意见》第十一条：出借人明知借款人是为了进行非法活动而借款的，其借贷关系不予保护。</p>
+                    <p><span style="font-weight: bold;color: #fff;background: #00c8ea;text-align: center;width: 150px;padding: 5px 15px;">4、关于对借款提供担保的规定</span></p>
+                    <p style="text-indent:2em;">《合同法》第一百九十八条订立借款合同，贷款人可以要求借款人提供担保。担保依照《中华人民共和国担保法》的规定；《最高人民法院关于人民法院审理借贷案件的若干意见》第十三条：在借贷关系中，仅起联系、介绍作用的人，不承担保证责任。对债务的履行确有保证意思表示的，应认定为保证人，承担保证责任。</p>
+                    <p><span style="font-weight: bold;color: #fff;background: #00c8ea;text-align: center;width: 150px;padding: 5px 15px;">5、有关居间平台收取费用的规定</span></p>
+                    <p style="text-indent:2em;">《合同法》第二十三章“居间合同”中第四百二十六条规定：居间人促成合同成立的，委托人应当按照约定支付报酬。对居间人的报酬没有约定或者约定不明确，依照本法第六十一条的规定仍不能确定的，根据居间人的劳务合理确定。</p>
+
+					
+					
+			   </div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+</body>
+</html>

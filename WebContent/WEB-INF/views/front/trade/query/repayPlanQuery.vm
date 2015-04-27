@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>会员中心-还款明细</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+   #parse("/front/user/common/left1.vm")
+    <div class="m-content fn-right">
+      <div class="m-content-box">
+        <div class="info-list">
+			    <form action="$!{rc.conextPath}/tradeQuery/repay/12/1" method="post" name="frm">
+					<div class="mb-link fn-clear">
+					 <input type="hidden" name="status" value="$!{request.getParameter('status')}"/>
+                	  <div class="fn-left" t="repay-status">
+					    <a  href="javascript:void(0);" status="0" id="a1" >待还款明细</a>
+						<a href="javascript:void(1);" status="1" id="a2">已还款明细</a>
+                    </div>
+					</div>		
+					<div class="mb-link fn-clear">
+                     <div class="blank20"></div>
+						#if($!{viewStatus}=="NOTPAY")
+							 起止时间：<span class="fn-time">
+                            <input type="date" value="$!{dateUtil.dtSimpleFormat($!{repayQuery.startRepayDate})}" name="startDate" class="fn-text w90">
+                            <img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img">
+                        </span>
+                        <em>-</em>
+                        <span class="fn-time">
+                            <input type="date"  value="$!{dateUtil.dtSimpleFormat($!{repayQuery.endRepayDate})}" name="endDate"  class="fn-text w90">
+                            <img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img">
+                        </span>
+                        <a href="javascript:;" class="fn-h-btn ml5"><button type="submit" >查询 </button></a>
+                        <a href="$!{rc.conextPath}/tradeQuery/repay/12/1?scope=1"><span style="color:#009dda">未来1个月</span></a> 
+						<a href="$!{rc.conextPath}/tradeQuery/repay/12/1?scope=2"><span style="color:#009dda">未来3个月</span></a> 
+                        <a href="$!{rc.conextPath}/tradeQuery/repay/12/1?scope=3"><span style="color:#009dda">未来1年</span></a>
+						#else
+							 起止时间：<span class="fn-time">
+                            <input type="date" value="$!{dateUtil.dtSimpleFormat($!{repayQuery.actualStartRepayDate})}" name="startDate" id="startDate"class="fn-text w90">
+                            <img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img">
+                        </span>
+                        <em>-</em>
+                        <span class="fn-time">
+                            <input type="date"  value="$!{dateUtil.dtSimpleFormat($!{repayQuery.actualEndRepayDate})}" name="endDate"  id="endDate" class="fn-text w90">
+                            <img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img">
+                        </span>
+                        <a href="javascript:;" class="fn-h-btn ml5"><button type="submit" >查询 </button></a>
+							<a href="$!{rc.conextPath}/tradeQuery/repay/12/1?scope=1&status=1" onclick="tab()"><span style="color:blue">过去1个月</span></a> 
+							<a href="$!{rc.conextPath}/tradeQuery/repay/12/1?scope=2&status=1" onclick="tab()"><span style="color:blue">过去3个月</span></a> 
+							<a href="$!{rc.conextPath}/tradeQuery/repay/12/1?scope=3&status=1" onclick="tab()"><span style="color:blue">过去1年</span></a>
+						#end
+                        <div class="blank20"></div>
+                    <div class="fn-options">
+			
+							共：<b style="color:red">$!{page.totalCount}</b> 笔，还款金额：<b style="color:red">$!{repayMoney.toStandardString()}  </b> 元 ,    本金：<b style="color:red">$!{originalMoney.toStandardString()} </b>元  ,  利息：<b style="color:red">$!{benifitMoney.toStandardString()}</b>元  
+						</div> 
+                </div>
+
+                 </form>
+	
+					<table cellpadding="0" cellspacing="0" border="0" width="100%" class="mtable-list">
+					 <tbody>
+						<tr class="thead">
+						<td width="15%" >项目名称</td>				
+					#if($!{viewStatus}=="NOTPAY")
+                        <td width="15%" >预期还款时间</td>
+                        <td width="20%">还款方式</td>
+					#else<td width="15%">还款时间</td>#end
+					<td width="15%">还款总金额(元)</td>
+					<td width="15%">应还本金(元)</td>
+					#if($!{viewStatus}=="NOTPAY")
+						<td width="12%">应还利息(元)</td>
+					#else<td width="10%">收益(元)</td>#end
+					<td width="7%">状态</td>
+					
+				</tr>
+				      #if($!page.result.size()==0)
+		    				<tr>
+		        				<td colspan=5 align=center>暂时没有融资记录</td>
+		        			</tr>
+						#end
+                        
+                        #foreach($info in $page.result)
+					
+                            <tr  class="thead">
+                           <td> <a href="/tradeQuery/repayDetails?tradeId=$!{info.tradeId}&operate=xq&status=$!{info.status}">$!{info.tradeName}</a></td>
+                               #if($!{viewStatus}=="NOTPAY")
+									<td>$!{dateUtil.dtSimpleFormat($!{info.repayDate})}</td><!--预期还款时间 -->
+                                    <td>$!{info.repayDivisionWay.message}</td><!--还款方式-->
+                                #else<td>$!{dateUtil.dtSimpleFormat($!{info.actualRepayDate})}</td>#end  <!--还款时间-->
+                                <td><em>$!{info.amount.toStandardString()}</em></td><!--还款总金额-->
+                                <td><em>#if($!info.periodNo.equals($!info.periodCount))$!{info.originalAmount.toStandardString()}#else 0.00#end</em></td><!--本金-->
+								  #if($!{viewStatus}=="NOTPAY")
+                                <td><em>$!{info.interest.toStandardString()}</em></td><!--利息-->
+                                #else<td><em>$!{info.interest.toStandardString()}</em></td>#end <!---收益-->									
+                                    <td class="text-r">
+										#if($!{viewStatus}=="NOTPAY")											
+											#if($!{info.isPay}=="true")
+											<a href="javascript:;"><span   id="payLoan" class="payLoan" repayPlanId="$!{info.repayPlanId}"><button style="background: #1390E4;color: white;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px;width:34px;cursor: auto;" type="button">还款</button></span></a>
+											#else
+												<span   id="payLoan" class="payLoan" repayPlanId="$!{info.repayPlanId}"><button style="background: grap;color: grap;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px;width:34px;" type="button" disabled="disabled">还款</button></span>
+											#end
+											#else #if($!{info.repayRoleId.toString()}=="8")
+												<span style="color:red">代偿还款</span>
+											#else
+													正常还款
+											#end
+										#end</td>                                
+                            </tr>
+						#end
+			
+			 </tbody></table>
+            #if($!yjfPaypassUrl)
+                <div class="m-layer" id="payPasswordCheckContainer" style="display:none;width:450px;"  >
+                    <div class="invest-tit fn-clear">
+                        <h2 class="u-tt">还款</h2>
+                    </div>
+                    <div class="lyct">
+                        <form action="" method="post" class="border-b price-active" id="payPasswrdChecking_form">
+                            <fieldset>
+                                <div class="invest-up">
+                                    <div class="fn-item">
+                                        <label class="fn-label"><span class="required">*</span>还款金额：</label>
+                                        <span class="fn-words"><b id="f" class="ft-f60 mr5"> ￥$!{repayAmount.toStandardString()} </b>元</span>
+                                    </div>
+                                    <div class="fn-item fn-clear">
+                                        <label class="fn-label"><span class="required">*</span>还款金额大写：</label>
+                                        <span class="fn-words"><b id="fd" class="ft-f60 mr5"> $!{repayAmount.toCNString()} </b></span>
+                                    </div>
+                                    <input id="business1" type="hidden" name="business1" value="repayment"/>
+                                    <iframe frameborder="0" width="450" height="150" id="paypassIframe" scrolling="no" src="$!yjfPaypassUrl"></iframe>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="ih">
+                    </div>
+                </div>
+
+             #else
+                 <div  class="m-layer"  id="payPasswordCheckContainer" style="display:none;width:500px;"  >
+                     <div class="invest-tit fn-clear">
+                         <h2 class="u-tt">还款</h2>
+                         <a class="u-close" href="#"></a>
+                     </div>
+                     <div class="lyct">
+                         <form action="" method="post" class="border-b price-active" id="payPasswrdChecking_form">
+                             <fieldset>
+                                 <div class="invest-up">
+                                     <div class="fn-item">
+                                         <label class="fn-label"><span class="required">*</span>还款金额：</label>
+                                         <span class="fn-words"><b id="f" class="ft-f60 mr5"> ￥</b>元</span>
+                                     </div>
+                                     <div class="fn-item fn-clear">
+                                         <label class="fn-label"><span class="required">*</span>还款金额大写：</label>
+                                         <span class="fn-words"><b id="fd" class="ft-f60 mr5">  </b></span>
+
+                                     </div>
+
+
+                                     <input type="reset" style="display:none;" />
+                                     <div class="fn-item  fn-clear">
+                                         <label class="fn-label"><span class="required">*</span>验证码：</label>
+                                         <input id="code1" type="text" class="fn-text w90" name="code" />
+                                         <a id="getCode1" class="fn-h-btn Y-countdown" href="javascript:;" style="display: inline-block;">
+                                             <span class="timedown">获取验证码</span>
+                                         </a>
+                                         <!--
+                                         <p><b id="pay-code-messge" class="error-tip" for="code" generated="false"></b></p>
+                                         -->
+                                         <input id="mobile" type="hidden"   class="fn-text w130"  name="mobile" value="$!{userBaseInfo.mobile}"/>
+
+                                         <input id="business1" type="hidden" name="business1" value="repayment"/>
+                                     </div>
+                                 </div>
+                             </fieldset>
+                             <div class="fn-item">
+                                 <div id="ih">
+                                 </div>
+                                 <a href="javascript:void(0);" id="confirm_pay" class="fn-g-btn mr5"><span>确认还款</span></a>
+                                 <a href="javascript:;" class="fn-h-btn consider" id="cancelBtn"  ><span>取消</span></a>
+
+                             </div>
+
+                         </form>
+                     </div>
+                 </div>
+             #end
+
+		  <!--分页-->
+			<div class="pages account-page mt20">
+				<div class="fn-right">
+    				#parse("/backstage/page/page.vm")
+    			</div>	
+			</div>
+          
+                <div class="blank30"></div>
+      
+</div>
+        
+        
+        
+  <div class="blank50"></div>
+  </div>
+  </div>
+        </div>	
+		      </div>	
+
+#parse("/front/index/common/footer-yrd.vm")	
+
+      
+
+<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	<script type="text/javascript" src="/resources/js/content/repay.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'repay');
+			  <!--分页跳转-->
+		   function toPage(totalPage, page){
+    	  if(page > totalPage){
+    	  	return ;
+    	  }
+    	  $('form[name=frm]').attr('action', '/tradeQuery/repay/$!{page.pageSize}/' + page);
+    	  document.frm.submit();
+        }
+ $("#a1").click(function(){
+	$('input[name=startDate]').val("");
+	$('input[name=endDate]').val("");
+ });
+ $("#a2").click(function(){
+	$('input[name=startDate]').val("");
+	$('input[name=endDate]').val("");
+ });
+ 
+ $("#cancelBtn").click(function(){
+	$('input[id=code1]').val("");
+ });
+	function tab(){
+	 var status = $('input[name=status]').val();
+       status = 1;
+		$('a[status=' + status + ']').attr('class', 'cur');
+	}
+	$(function (){
+    	 var status = $('input[name=status]').val();
+         if(status == ''||status==null){
+           status = 0;
+         }
+         $('a[status=' + status + ']').attr('class', 'cur');
+         
+    	});
+    	$('a[status]').click(function (){
+    	    var status = $(this);
+    		$('input[name=status]').val(status.attr('status'));
+    		$('a[status]').removeAttr('class');
+    		status.attr('class', 'cur');
+			 document.frm.submit();
+			return false;
+    	});
+
+
+        function payPassOk(key)
+        {
+            confirmClick(key);
+        }
+        function payPassCancel()
+        {
+            Y.getCmp('payPasswordCheckContainer').close();
+            $('#payPasswordCheckContainer').css('display','none');
+        }
+
+
+
+    </script>
+</body>
+</html>

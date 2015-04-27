@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<display-name>YRD</display-name>
+
+	<!-- 定义webAppRootKey 防止多个工程冲突,主要由log4j引发 -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>YRD</param-value>
+	</context-param>
+	<context-param>
+		<param-name>WEB_PLATFORM_NAME</param-name>
+		<param-value>易商贷</param-value>
+	</context-param>
+	<context-param>
+		<param-name>PRODUCT_NAME</param-name>
+		<param-value>金粮宝</param-value>
+	</context-param>
+	<context-param>
+		<param-name>logbackConfigLocation</param-name>
+		<param-value>WEB-INF/logback.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.yjf.common.log.LogbackConfigListener</listener-class>
+	</listener>
+
+	<!-- Spring配置 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:spring/*.xml
+		</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>sessionCookieName</param-name>
+		<param-value>
+			ERDSESSIONID
+		</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.yjf.yrd.listener.SessionCookieServletContextListener</listener-class>
+	</listener>
+	
+		<filter>
+	<filter-name>charChangeFilter</filter-name>
+	   <filter-class>com.yjf.common.web.CrossScriptingFilter</filter-class>
+	   <init-param>
+	   <param-name>excludeUrl</param-name>
+	   <param-value>((\/services.*$)|(\/index\.htm.*))</param-value>
+	   </init-param>
+	    <init-param>
+	   <param-name>excludeUrlPath</param-name>
+	   <param-value>/backstage/noticeCenter/updateNoticeSubmit,/backstage/noticeCenter/addNoticeSubmit,/backstage/popHelp/addHelpSubmit,/backstage/popHelp/updateHelpSubmit,/backstage/emailCenter/setEmailTemplateSubmit,/backstage/popHelp/updateHelp,/backstage/report/update,/backstage/addLoanDemandSubmit,/backstage/updateLoanDemandSubmit,/backstage/pdftemplate/addPdfTemplateSubmit,/backstage/pdftemplate/setPdfTemplateSubmit,/backstage/popModuleCenter/addNoticeSubmit,/backstage/popModuleCenter/updateNoticeSubmit,/app/addNewsSubmit,/app/updateNewsSubmit</param-value>
+	   </init-param>
+	    <init-param>
+	      <param-name>autoCheck</param-name>
+ 		  <param-value>true</param-value>
+	   </init-param>
+	   <init-param>
+	    	 <param-name>escapeJavaScript</param-name>
+ 			<param-value>false</param-value>
+	   </init-param>
+	</filter>
+	<filter-mapping>
+	   <filter-name>charChangeFilter</filter-name>
+	   <url-pattern>/*</url-pattern>
+	</filter-mapping> 
+
+	
+	
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+	   <filter-name>remoteSessionFilter</filter-name>
+	   <filter-class>com.yjf.yrd.security.filter.RemoteSessionFilter</filter-class>
+<!-- 	   <init-param> -->
+<!-- 	   		<param-name>server</param-name> -->
+<!-- 	   		<param-value>true</param-value> -->
+<!-- 	   </init-param> -->
+<!-- 	   <init-param> -->
+<!-- 		   <param-name>remoteConfigLocation</param-name> -->
+<!-- 		   <param-value>remote.properties</param-value> -->
+<!-- 	   </init-param> -->
+	   <init-param>
+		   <param-name>timeout</param-name>
+		   <param-value>1800000</param-value>
+	   </init-param>
+ 	   <init-param>
+		   <param-name>port</param-name>
+		   <param-value>8638</param-value>
+	   </init-param>
+	   <init-param>
+		   <param-name>host</param-name>
+		   <param-value>192.168.45.199</param-value>
+	   </init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>remoteSessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> 
+	
+	<filter>
+	   <filter-name>authorityFilter</filter-name>
+	   <filter-class>com.yjf.yrd.authority.AuthorityFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>authorityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> 
+	
+	<servlet>
+		<servlet-name>yrd</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>yrd</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+
+
+
+	<!-- java 专用 WEB SERVICE -->
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.htm</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error.htm</location>
+	</error-page>
+	<error-page>
+		<exception-type></exception-type>
+		<location>/error.htm</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/error.htm</location>
+	</error-page>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>yrdwebapp</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>PUT</http-method>
+			<http-method>DELETE</http-method>
+<!-- 			<http-method>HEAD</http-method> -->
+			<http-method>OPTIONS</http-method>
+			<http-method>TRACE</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>All Role</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+</web-app>

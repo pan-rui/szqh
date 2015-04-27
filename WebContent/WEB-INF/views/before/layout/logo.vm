@@ -1,0 +1,9 @@
+<div class="h-logo">
+    <div class="container fn-clear">
+        <h1 class="fn-left"><a href="#" class="logo">易极付</a></h1>
+        <div class="h-menu fn-right">
+            <div class="hl-menu fn-left"> <a href="#">首页</a> <a href="#">我要借款</a> </div>
+            <div class="hr-menu fn-left"> <a class="curr" href="#">我要投资</a> <a href="#">我的账户</a> </div>
+        </div>
+    </div>
+</div>

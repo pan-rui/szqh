@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>前台图片管理-上传图片</title>
+	<link type="text/css" href="$!{rc.contextPath}/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">前台图片管理</a> > 上传图片</p>
+					</div>
+					<input type='hidden' id="uploadHost" value="$!{uploadHost}"/>
+					<div class="item" >
+						<label for="" class="u-label">上传银行支付能力图片：</label>
+						<span class="sl-file" style="width:300px">
+							<input type="file" exts="png" class="sl-file-input" id="bankUrl_Upload" />
+						</span>
+						<p>仅支持.png的图片格式。<em class="ft-f60">图片大小不超过3M。</em></p>
+						<a href="javascript:;" id="bankUrl_ImgLink" name="bankUrl_ImgLink" title="银行支付能力图片">  
+							<img id="bankUrl_Img" name="bankUrl_Img" title="银行支付能力图片" style = "width:320px;height:120px;"  src="/resources/images/bank/bankChanels.png"/>
+                        </a> 
+					</div>
+					<div class="item" >
+						<label for="" class="u-label">上传首页轮换图片1：</label>
+						<span class="sl-file" style="width:300px">
+							<input type="file" exts="png" class="sl-file-input" id="index1Url_Upload" />
+						</span>
+						<p>仅支持.jpg的图片格式。<em class="ft-f60">图片大小不超过3M。</em></p>
+						<div id="index1Url_Upload_imgcontainer">
+							<a href="javascript:;" id="index1Url_Upload_ImgLink" name="index1Url_Upload_ImgLink" title="首页轮换图片1">  
+								<img id="index1Url_Upload_Img" name="index1Url_Upload_Img" title="首页轮换图片1" style = "width:320px;height:120px;"  src="$!{appConstantsUtil.getImageServerUrl()}/uploadfile/images/main_ad01.jpg" alt="main_ad01.jpg"/>
+                            </a> 
+						</div>
+					</div>
+					<div class="item" >
+						<label for="" class="u-label">上传首页轮换图片2：</label>
+						<span class="sl-file" style="width:300px">
+							<input type="file" exts="png" class="sl-file-input" id="index2Url_Upload" />
+						</span>
+						<p>仅支持.jpg的图片格式。<em class="ft-f60">图片大小不超过3M。</em></p>
+						<a href="javascript:;" id="index2Url_Upload_ImgLink" name="index2Url_Upload_ImgLink" title="首页轮换图片2">  
+							<img id="index2Url_Upload_Img" name="index2Url_Upload_Img" title="首页轮换图片2" style = "width:320px;height:120px;"      src="$!{appConstantsUtil.getImageServerUrl()}/uploadfile/images/main_ad02.jpg" alt="main_ad02.jpg"/>
+                        </a> 
+					</div>
+					<div class="item">
+						<label for="" class="u-label">上传首页轮换图片3：</label>
+						<span class="sl-file" style="width:300px">
+							<input type="file" exts="png" class="sl-file-input" id="index3Url_Upload" />
+						</span>
+						<p>仅支持.jpg的图片格式。<em class="ft-f60">图片大小不超过3M。</em></p>
+						<div id="index3Url_imgcontainer" >
+							<a href="javascript:;" id="index3Url_Upload_ImgLink" name="index3Url_Upload_ImgLink" title="首页轮换图片3">  
+								<img id="index3Url_Upload_Img" name="index3Url_Upload_Img" title="首页轮换图片3" style = "width:320px;height:120px;"  src="$!{appConstantsUtil.getImageServerUrl()}/uploadfile/images/main_ad03.jpg" alt="main_ad03.jpg"/>
+                            </a> 
+						</div>
+					</div>
+					<div class="item" >
+						<label for="" class="u-label">上传首页轮换图片4：</label>
+						<span class="sl-file" style="width:300px">
+							<input type="file" exts="png" class="sl-file-input" id="index4Url_Upload" />
+						</span>
+						<p>仅支持.jpg的图片格式。<em class="ft-f60">图片大小不超过3M。</em></p>
+						<div id="index4Url_imgcontainer" >
+							<a href="javascript:;" id="index4Url_Upload_ImgLink" name="index4Url_Upload_ImgLink" title="首页轮换图片4">  
+								<img id="index4Url_Upload_Img" name="index4Url_Upload_Img" title="首页轮换图片4" style = "width:320px;height:120px;"  src="$!{appConstantsUtil.getImageServerUrl()}/uploadfile/images/main_ad04.jpg" alt="main_ad04.jpg"/>
+                            </a> 
+						</div>
+					</div>
+					<div class="item" >
+						<label for="" class="u-label">上传首页轮换图片5：</label>
+						<span class="sl-file" style="width:300px">
+							<input type="file" exts="png" class="sl-file-input" id="index5Url_Upload" />
+						</span>
+						<p>仅支持.jpg的图片格式。<em class="ft-f60">图片大小不超过3M。</em></p>
+						<div id="index4Url_imgcontainer" >
+							<a href="javascript:;" id="index5Url_Upload_ImgLink" name="index4Url_Upload_ImgLink" title="首页轮换图片5">  
+								<img id="index5Url_Upload_Img" name="index5Url_Upload_Img" title="首页轮换图片5" style = "width:320px;height:120px;"  src="$!{appConstantsUtil.getImageServerUrl()}/uploadfile/images/main_ad05.jpg" alt="main_ad05.jpg"/>
+                            </a> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/plugins/jquery.window.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'frontImagesUpload');
+    </script>
+	
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>帮助中心</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	<div class="container help-center fn-clear">
+		<!--左侧导航-->
+		#parse("/front/help/left.vm")
+		<!--右侧内容-->
+		<div class="main-content fn-right">
+			<div class="h-content mc-border">
+				<h3>如何查询充值记录？ </h3>
+				<p class="mb20">登录易极付账户——【交易记录】——【充值记录】，选择时间段进行查询；</p>
+				<ul>
+					<li>1. 白盒测试部分，能完成接口白盒测试代码(Java)编写，进行接口测试，集成测试，回归测试</li>
+					<li>前端测试部分，能完成前端页面自动化脚本(Ruby)编写，接入前端自动化回归测试用例库；</li>
+					<li>3. 通过对软件产品的需求分析，设计讨论，能提前评估项目存在的潜在风险；熟悉业务，带着改进方案，提出对产品的一些改进建议；</li>
+					<li>4. 能制定测试计划，编写文档测试用例，测试环境构建；</li>
+					<li>5. 能独立、全面、细致、如期完成测试工作，提交测试发现的bug，对bug进行详细分析和准确定位，跟踪bug并协助开发工程师及时修正bug，记录测试结果，提交测试报告及相关技术文档；</li>
+					<li>6. 沟通能力强，能与测试主管、开发工程师、需求方进行积极有效的沟通，高效解决问题；</li>
+					<li>7. 团队意识强，善于在工作中积累经验，将好的技术和经验在团队中分享并推广；</li>
+					<li>8. 保持积极的工作态度，高涨的工作热情，不推诿，有责任心，勇于担当。能虚心接受来自团队其他人的批评和建议；</li>
+					<li>9. 乐意指导新人的测试工作，并帮助其快速成长，为运营等其他团队提供相关技术支持；</li>
+					<li>10. 开发平台使用Linux或Mac；</li>
+					<li>11. 有自己的小站(博客或其他)、熟练翻墙、Twitter/新浪微博、博客/Facebook/人人网、参考作品或代码(github者，请</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'helpCenter');
+    </script>
+</body>
+</html>

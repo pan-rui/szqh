@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>公告服务</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	
+	<!--内容-->
+	<div class="container brief fn-clear">
+		<div class="h-content mc-border">
+			<h3>热烈祝贺$!appConstantsUtil.getProductName()金融—$!appConstantsUtil.getProductName()金融正式上线!</h3>
+            </br> 
+			<div class="brief-con">
+				</br> 
+                <p><img src="/resources/images/home/notice_Online.jpg" />
+                </br> 
+                </br> 
+     			<p>$!appConstantsUtil.getProductName()金融服务有限公司由重庆博恩科技集团投资创立，旗下包括易极付、猪八戒等著名互联网公司。易极付是重庆唯一一家获央行第三方互联网支付牌照的企业。$!{appConstantsUtil.getProductName()}金融，是投资者安全投资的平台，由国有担保公司作保。在拓展投资渠道的同时，也给广大中小企业提供了发展的资金，符合国家支持中小企业的政策。</p>
+                </br> 
+				<div class="poem fn-clear">
+					<div class="poem-con fn-left">
+						<h5>易：</h5>
+						<p>小微企业借贷容易</p>
+						<p>资金出借决策容易</p>
+						<p>金融企业服务容易</p>
+					</div>
+				</div>
+				<p class="text-r">$!appConstantsUtil.getPlatformName()</p>
+				<p class="text-r">2013年10月15日</p>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

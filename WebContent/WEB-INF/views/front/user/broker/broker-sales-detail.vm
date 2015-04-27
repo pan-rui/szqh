@@ -1,0 +1,134 @@
+#parse("/front/index/common/header-title.vm")
+</head>
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container fn-clear">
+    	<h2 class="title2 mt10"><span class="tit-name">项目详情</span><a  class="return" href="javascript:history.go(-1);">《 返回</a><span class="balance" href="#">可用余额<span class="ml5">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span><a href="/userManage/topUp/withholdingIndex"></a></span></h2>
+        <div class="blank15"></div>
+       #parse("/front/common/investBaseInfo.vm")
+        #set($ia = $!{investableAmount})
+        <div class="cast-money fn-right">
+        	<h2 class="f-title">可投金额</h2>
+            <div class="cast-money-box">
+            
+            
+                #set($p = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.tradeAmount},$!{trade.leastInvestAmount}))
+            
+               <table border="0" class='pro-table'>
+               	<tr>
+               		<td style="border:0px;">
+               			<span class="plan_bg" style="width:80%;"><span style="width:$!{p};" class="plan"></span></span>$!{p}
+               		</td>
+               	</tr>
+               </table>
+                
+                <div class="blank50"></div>
+                <p>剩余可投资金额：$!{investableAmount.toStandardString()} 元</p>
+                <div class="blank30"></div>
+                <span>
+                 <a href="javascript: window.location.href='/';" class="btn gray-btn" id="invest-back">返回</a>
+				</span>
+                
+            </div>
+        </div>
+        <div class="blank15"></div>
+        <div class="blank50"></div>
+        <div class="borrowing-info">
+        	<div class="b-tab fn-clear">
+            	<ul>
+                	<li class="curr"  id="tradeinfo"><a href="javascript:;" >借款信息</a></li>
+                    <li id="touziinfo"><a href="javascript:;" >投资明细</a></li>
+                </ul>
+            </div>
+            <div class="borrowing-list f-clear" id="tradediv">
+            	<div class="blank5"></div>
+            	<div class="borrow-box fn-left ml20">
+                	<h2>项目信息</h2>
+					 #parse("/front/common/tradeDetailInfo.vm")
+				</div>
+                   <div class="borrow-box fn-left ml20">
+                    	<h2>承诺信息</h2>
+                    	#parse("/front/common/tradeGuaranteeInfo.vm")
+                	</div>
+                    <div class="borrow-box fn-left ml20">
+                    	<h2>审核记录</h2>
+                    	#parse("/front/common/tradeGuaranteeCheckInfo.vm")
+                	</div>
+                <div class="blank30"></div>
+            </div>
+			
+            <div class="borrowing-list f-dn" id="touzhidiv">
+            	 #parse("/front/common/tradeInvestmentInfo.vm")
+            </div>
+        </div>
+		</div>
+        <div class="blank10"></div>
+    </div>
+    <div class="blank50"></div>
+</div>
+
+	#parse("/front/index/common/footer-yrd.vm")
+	#parse("/front/index/common/js.vm")
+	<script type="text/javascript">
+	$_GLOBAL = {};
+	</script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/content/chineseAmountExchange.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/comp/security.js"></script>
+	<script type="text/javascript">
+		seajs.use($_GLOBAL.mode+"demo");
+	</script>
+   	<script type="text/javascript">
+	    $("#tradeinfo").click(function(){
+            $("#touzhidiv").hide();
+            $("#tradediv").show();
+            $('#touziinfo').removeClass('curr');
+            $(this).addClass('curr');
+		});
+		
+		$("#touziinfo").click(function(){
+		    $("#tradediv").hide();
+            $("#touzhidiv").show();
+            $('#tradeinfo').removeClass('curr');
+            $(this).addClass('curr');
+		});
+		$('#invest-back').click(function(){
+			history.go(-1);
+			return false;
+		});
+		
+		
+		
+		<!--分页跳转-->
+		function toPage(totalPage, pageNo){
+		
+				if(totalPage<pageNo){
+					return false;
+				}
+				var url = "$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}?pageSize=$!{page.pageSize}&pageNo="+pageNo+"&tab=invest";
+				//alert (url);
+				window.location.href=url;
+		}
+		
+		function toInvestListTab(){
+		    $("#tradediv").hide();
+            $("#touzhidiv").show();
+            $('#tradeinfo').removeClass('curr');
+            $('#touziinfo').addClass('curr');
+		
+		}
+		
+		//分页跳转后显示正确的tab页面
+		#if($!{tab}=='invest') 
+		toInvestListTab();
+		#end 		
+		
+		
+		
+		  </script>
+		
+  
+</body>
+</html>

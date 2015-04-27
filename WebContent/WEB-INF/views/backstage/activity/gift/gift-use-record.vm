@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>活动管理中心</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">活动管理中心</a> > 礼品使用记录</p>
+					</div>
+					<div class="search fn-clear">
+					<form action="/backstage/giftUseRecord	"  method="post" >
+						<dl>
+							<dt>用户名：</dt>
+							<dd><input type="text" class="u-input" name="userName" value="$!{userName}"/></dd>
+						</dl>
+						<button type="submit" class="s-btn">搜索</button>
+                    </form>
+					
+				</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+						
+						<table class="m-table">
+							<tr>
+								<th width="100">业务订单号</th>
+								<th width="80">使用人</th>
+								<th width="100">礼品名称</th>
+								<th width="40">使用数量</th>
+								<th width="100">使用时间</th>
+								<th width="80">状态</th>
+								<th width="120">备注</th>
+								
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=7 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td>$!{info.bizNumber}</td>
+								<td>$!{info.userName}</td>
+								<td>$!{info.giftName}</td>
+								<td>$!{info.useAmount}</td>
+								<td>$!{dateUtil.simpleFormat($!{info.useTime})}</td>
+								<td>
+									#if($!{info.status}==0)
+										失败
+									#elseif($!{info.status}==1)
+										成功
+									#elseif($!{info.status}==2)
+										处理中
+									#end	
+								</td>
+								<td>$!{info.note}</td>
+							</tr>
+						#end
+						</table>
+						<input type="hidden" value="JG" data="userType"/>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'popCenter');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/popHelp?"
+			+"pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

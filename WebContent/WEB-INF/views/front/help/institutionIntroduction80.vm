@@ -1,0 +1,408 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="/styles/special/css/common.css">
+  <link rel="stylesheet" href="/styles/special/css/ui.css">
+  <link rel="stylesheet" href="/styles/special/css/_base.css">
+  <link rel="stylesheet" href="/styles/special/css/product.css">
+  <title>惠城财富之《恋爱教父》</title>
+</head>
+<body>
+  <div id="hd">
+    <div class="focus-bx">
+      <div class="focus-bd">
+        <a class="J_focus-act focus-act" href="javascript:void(0)" title="播放"> <b class="icon icon-play">播放</b>
+        </a>
+        <div class="focus-video">
+          <div id="focus-video"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="bd">
+    <div class="project-brief bx-sya">
+      <div class="brief">
+        <h1 class="t">惠城财富之《恋爱教父》</h1>
+        <p class="sub">
+          分享票房收益，与明星面对面。
+          <a href="#" class="view J_crowdfunding-view">了解更多</a>
+        </p>
+      </div>
+      <div class="share-bx share-sya">
+        <div class="share-t">分享到</div>
+        <ul class="share-list">
+          <li class="share-item">
+            <a class="sia" href="javascript:void(0);" data-sns="sina" title="分享到新浪微博"> <b class="icon-sina icon-share"></b>
+            </a>
+          </li>
+          <li class="share-item">
+            <a class="sia" href="javascript:void(0);" data-sns="tqq" title="分享到腾讯微博">
+              <b class="icon-qqwb icon-share"></b>
+            </a>
+          </li>
+          <li class="share-item">
+            <a class="sia" href="javascript:void(0);" data-wei="weixin" title="分享到微信">
+              <b class="icon-weixin icon-share"></b>
+            </a>
+          </li>
+          <li class="share-item">
+            <a class="sia" href="javascript:void(0);" data-sns="renren" title="分享到人人网">
+              <b class="icon-renren icon-share"></b>
+            </a>
+          </li>
+          <li class="share-item">
+            <a class="sia" href="javascript:void(0);" data-sns="qzone" title="分享到QQ空间">
+              <b class="icon-qzone icon-share"></b>
+            </a>
+          </li>
+          <li class="share-item">
+            <a class="sia" href="javascript:void(0);" data-sns="douban" title="分享到豆瓣">
+              <b class="icon-douban icon-share"></b>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- 基础套餐 -->
+    <div class="pack-bx pack-base bx-sya pitch" data-packageType="1" data-packagecode="100011" data-tenderPrice="1000">
+      <div class="bd-sya pack-bd">
+        <div class="bd-l">
+          <div class="pack-in">
+            <h5 class="pack-name" data-packname="我是制片人">
+              投资每份
+              <b class="price"><span class="w">100</span>
+                元起</b> 
+              分享《恋爱教父》票房收益
+            </h5>
+            <ul class="purchase-list">
+              <li class="item buyer-item">3060人已支持</li>
+              <li class="item total-item">
+                <span class="t">限额</span>
+                1500000份
+              </li>
+              <li class="item remain-item">
+                <span class="t">剩余</span>
+                63599份
+              </li>
+            </ul>
+          </div>
+          <div class="intro">
+            <div>
+              <table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="185">
+                    <p align="center">《恋爱教父》电影票房</p>
+                  </td>
+                  <td width="127">
+                    <p align="center">投资收益</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="185">
+                    <p align="center">1亿元</p>
+                  </td>
+                  <td width="127">
+                    <p align="center">10%</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="185">
+                    <p align="center">1.5亿元</p>
+                  </td>
+                  <td width="127">
+                    <p align="center">15%</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="185">
+                    <p align="center">2亿元</p>
+                  </td>
+                  <td width="127">
+                    <p align="center">20%</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="185">
+                    <p align="center">3亿元</p>
+                  </td>
+                  <td width="127">
+                    <p align="center">35%</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="185">
+                    <p align="center">4亿元</p>
+                  </td>
+                  <td width="127">
+                    <p align="center">50%</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="185">
+                    <p align="center">&nbsp;</p>
+                  </td>
+                  <td width="127">
+                    <p align="center">&nbsp;</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <p align="left">注：本产品采取浮动收模式，如电影票房低于1亿元，则按照实际清算情况返还投资人剩余本金。市场有风险，投资需谨慎！</p>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div></div>
+          </div>
+          <!-- pack-info -->
+          <div class="pack-info">
+            <div class="pack-singlelimit">1000</div>
+            <div class="pack-packagedesc">
+              <div>作为超级制片人，你将得到爱奇艺白银会员，看视频不再有广告！该套餐包含：</div>
+              <div>1.【爱奇艺白银会员】*1天</div>
+              <div>2.【制片人权益章】*8个</div>
+              <div>3.【许鞍华导演分镜头图】*1套 &nbsp;&nbsp;</div>
+              <div>备注：</div>
+              <div>1）购买成功后，爱奇艺白银会员即可兑换；</div>
+              <div>2）许鞍华导演分镜头图，预计2014年11月下旬在8.baidu.com开放领取。</div>
+            </div>
+            <div class="pack-element">
+              <ol class="element-list">
+                <li class="element-item"></li>
+                <li class="element-item"></li>
+                <li class="element-item"></li>
+              </ol>
+            </div>
+          </div>
+          <!-- /pack-info --> </div>
+        <div class="bd-r">
+          <!-- pack-mark -->
+          <div class="pack-mark p-collr">
+            <div class="colr">
+              <div class="act">
+                <a href="#" class="J_btn-support btn btn-sya">开始众筹</a>
+              </div>
+            </div>
+          </div>
+          <!-- /pack-mark --> </div>
+      </div>
+    </div>
+    <!-- /基础套餐 -->
+    <div class="cols-sya cols">
+      <div class="col1">
+        <div class="col1-1">
+          <!-- 简介 -->
+          <div class="intro-bx J_tab-sya bx-sya">
+            <div class="hd-sya">
+              <ul class="tab-list tab-list-sya tab-trigger">
+                <li class="tab-item select">项目详情</li>
+                <li class="tab-item" data-item="update-tip">
+                  动态更新
+                  <b class="icon icon-warn" style="display:none"></b>
+                </li>
+              </ul>
+            </div>
+            <div class="bd-sya">
+              <div class="tab-panel">
+                <div class="intro-bd">
+                  <p style="font-size:24px;font-weight:bold;margin-bottom:20px">关于《恋爱教父》</p>
+                  <p style="margin-bottom:10px">
+                    <img src="/styles/special/images/star_1.jpg" class="thumb"></p>
+                  <p style="text-indent:2em;color:#3e3e3e;margin-bottom:50px">这是一部 的故事。</p>
+                  <p style="font-size:24px;font-weight:bold;margin-bottom:20px">主创简介</p>
+                  <p style="margin-bottom:10px">
+                    <img src="/styles/special/images/star_2.jpg" class="thumb"></p>
+                  <p style="font-size:18px;margin-bottom:10px;font-weight:bold">导演：</p>
+                  <p style="color:#3e3e3e;margin-bottom:30px">华语电影圈最著名的导演</p>
+                  <p style="font-size:18px;margin-bottom:10px;font-weight:bold">编剧：</p>
+                  <p style="color:#3e3e3e;margin-bottom:50px">中生代编剧杰出代表</p>
+                  <p style="font-size:24px;font-weight:bold;margin-bottom:20px">领衔主演</p>
+                  <p style="margin-bottom:10px">
+                    <img src="/styles/special/images/star_3.jpg" class="thumb"></p>
+                  <p style="font-size:18px;margin-bottom:10px;font-weight:bold">明道</p>
+                  <p style="color:#3e3e3e;margin-bottom:30px">以其独特的气质...</p>
+                  <p style="margin-bottom:10px">
+                    <img src="/styles/special/images/star_4.jpg" class="thumb"></p>
+                  <p style="font-size:18px;margin-bottom:10px;font-weight:bold">峰</p>
+                  <p style="color:#3e3e3e;margin-bottom:50px">新生代小生。</p>
+                  <p style="font-size:24px;font-weight:bold;margin-bottom:20px">其他主演</p>
+                  <p style="font-size:18px;margin-bottom:10px;font-weight:bold">文</p>
+                  <p style="color:#3e3e3e;margin-bottom:20px">&nbsp;</p>
+                  <p style="font-size:24px;font-weight:bold;margin-bottom:20px">剧情简介</p>
+                  <p style="text-indent:2em;color:#3e3e3e;margin-bottom:50px">&nbsp;</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                </div>
+              </div>
+              <div class="tab-panel hide">
+                <ul class="update-list">
+                  <li class="update-item">
+                    <div class="update-time">
+                      <span class="ta">2015/01/</span>
+                      <span class="tb">28</span>
+                    </div>
+                    <div class="update-m">
+                      <p class="txt">制片人权益章投票开始</p>
+                    </div>
+                  </li>
+                </ul>
+                <!--
+
+<li class="update-item">
+
+                <div class="update-time">
+                  <span class="ta">2014/8/</span>
+                  <span class="tb">3</span>
+                </div>
+
+                <div class="update-m">
+
+                  <p>
+                    <img src="" class="thumb"></p>
+
+                  <p class="txt"></p>
+
+                </div>
+
+              </li>
+              -->
+              <div class="common-content" style="padding:35px 40px 35px 55px;font-size:14px">
+                <ol></ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/简介 --> </div>
+    </div>
+    <div class="col2">
+      <!-- project-bx -->
+      <div class="project-bx bx-sya">
+        <div class="bd-sya">
+          <div class="amount-item">
+            <div class="amount-t">已筹金额</div>
+            <div class="amount-b">
+              <b class="price"><span class="w">18,002,360</span>
+                元</b> 
+            </div>
+          </div>
+          <div class="target-item">
+            <p class="p">
+              目标筹集金额15,000,000元
+              <br />
+              项目时间
+              
+              2015-03-22
+              
+              至
+              
+              2015-04-22
+            </p>
+          </div>
+          <div class="progress-item">
+            <div class="line">
+              <span class="s" style="width:120%"></span>
+            </div>
+            <span class="sum">筹集20%</span>
+          </div>
+          <div class="status-bx">
+            <ul class="status-list">
+              <li class="item time-item">
+                <span class="t">剩余时间</span>
+                <span class="time">20</span>
+                天
+              </li>
+              <li class="item purchase-item">
+                <span class="t">支持者</span>
+                <span class="purchase">3301</span>
+                位
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /project-bx -->
+      <!-- type-bx -->
+      <div class="type-bx J_tab-sya bx-sya">
+        <div class="bd-sya"></div>
+      </div>
+      <!-- /type-bx -->
+      <!-- question-bx  -->
+
+      <div class="question-bx bx-syb">
+        <div class="hd-syb">参与奖：</div>
+        <div class="bd-syb">
+          <ul class="question-list">
+            明星签名海报电子版   
+            剧情早知道   邀请加入剧组官方微信、发送短信、电子邮件
+            某赞助商抵用券   50元面额，消费100元以上可抵用。
+            剧组感谢信   每个账户收到一封，内有导演签名的剧组感谢信，制片人证书
+          </ul>
+        </div>
+      </div>
+      <div class="question-bx bx-syb">
+        <div class="hd-syb">明星面对面奖：</div>
+        <div class="bd-syb">
+          <ul class="question-list">
+            剧组探班 200人（共4场，每次50人）
+            群众演员20  群众演员
+            非常来电5-10  收到主演明星给你打来的感谢电话
+            心意大礼5-10  通过心意盒子向心仪的明星赠送礼物，并制作赠送现场VCR回馈粉丝
+            首映礼 200人  优先看 点映场 350 在重庆安排点映7天，每天1场，每场约50人
+            珍藏礼 男女主角戏服  10  男女各5件
+            明星签名道具  10  饰品、日用品
+            明星签名相册  10  内含相片20张，记录电影拍摄点滴
+            周智勇创造手稿 10  每份2页
+            音乐大碟  10  张信哲电影原版音乐大碟
+            竞猜  提出2个话题供影迷竞猜   获奖者神秘大礼：手机或电脑等
+          </ul>
+        </div>
+      </div>
+      <div class="cooperation-bx bx-syb">
+        <div class="hd-syb">商务合作</div>
+        <div class="bd-syb">
+          <p>
+            请联系
+            <span>123123@qq.com</span>
+          </p>
+          <span class="icon icon-hezuo"></span>
+        </div>
+      </div>
+      <!-- /question-bx --> </div>
+  </div>
+</div>
+<div id="ft">
+  <div class="footer">
+    <div class="footer-links">
+      <p class="f1">
+        <a href="#" target="_blank">关于惠城财富</a>
+        <b>|</b>
+        <a href="#" target="_blank">联系我们</a>
+      </p>
+      <p class="f2">
+        <span class="copyright">惠城财富版权所有&copy;</span>
+        <span class="beian">ICP证1006号</span>
+      </p>
+    </div>
+    <div class="footer-tel">
+      <h5 class="t">服务热线（9:00-21:00）</h5>
+      <p class="b">400-8988-888</p>
+    </div>
+  </div>
+</div>
+<script>
+var loginProjectName = "rich";
+(function(){
+    var navItem = "rich";
+    navItem && $('.fin-header .nav-item.'+navItem).addClass('select');
+})();
+</script>
+<script src="http://financestatic.baidu.com/assets/common/build/common.js?v=1422009187805"></script>
+<script src="http://financestatic.baidu.com/assets/common/build/util.js?v=1422009187805"></script>
+<script src="http://financestatic.baidu.com/assets/common/build/ui.js?v=1422009187805"></script>
+
+<script src="http://financestatic.baidu.com/assets/zhongchou/static/js/product.js?v=1422009187805"></script>
+</body>
+</html>

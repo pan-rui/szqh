@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>银行卡签约</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body>
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content fn-right">
+			<div class="mc-border">
+				<ul class="fn-steps mt10 fn-clear">
+					<li>1.开户与认证</li>
+					<li>2.提交公安部审核</li>
+					<li class="current">3.银行卡绑定</li>
+					<li>4.设置安全密码</li>
+				</ul>
+				<form action="/investorManager/addlogPasswordAndPayPassword" method="post" id="addBank_form">
+					<fieldset class="border-b fn-mb20">
+						<div class="fn-item">
+							<label class="fn-label">银行开户名：</label>
+							<input type="text" class="fn-text w235" name="bankOpenName" />
+						</div>
+						<div class="fn-item">
+							<label class="fn-label">银行卡号：</label>
+							<input type="text" class="fn-text w235" name="bankCardNo" />
+						</div>
+						<div class="fn-item">
+							<label class="fn-label">开户银行：</label>
+							<div class="choose-bank">
+								<div class="select-box">
+									<img src="/images/bank/zhongxin.jpg" alt="中信银行" />
+									<a href="javascript:;" id="selectBankList" class="select-right"></a>
+								</div>
+								<ul class="bank-list fn-clear" style="display:none" id='select_bank_list'>
+									#foreach($bankinfo in $bankBasicInfos)
+    									<li>
+											<img src="$!{bankinfo.logoUrl}" alt="$!{bankinfo.bankCode}" />
+											<span style="display:none">$!{bankinfo.bankCode}</span>
+											<span name="bankName" style="display:none">$!{bankinfo.bankName}</span>
+										</li>
+    								#end
+								</ul>
+							</div>
+						</div>
+						<div class="fn-item fn-clear">
+							<label class="fn-label">支行信息：</label>
+							<!--银联号-->
+    						<input type="hidden" name="bankKey" />
+							<!--银行名称-->
+							<input type="hidden" name="bankName"/>
+							<!--银行卡类型-->
+    						<input id="selectBranchApan" type="hidden" name="bankType"/>
+							<!--省市支行集合-->
+    						<div id="selectBranchApanList">
+								
+							</div>
+						</div>
+					</fieldset>
+					<div class="fn-item">
+						<a href="javascript:;" class="fn-g-btn"><button type="submit">下一步</button></a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'bindingBankCard');
+    </script>
+</body>
+</html>

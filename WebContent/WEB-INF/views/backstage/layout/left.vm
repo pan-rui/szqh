@@ -1,0 +1,286 @@
+<div class="c-top"></div>
+<div class="main-menu fn-left">
+	<ul>
+		<li><a href="/backstage/backstageIdex"><span>后台首页</span></a></li>
+		<li><a href="javascript:;"><span>用户管理</span></a>
+			<ul>
+				#set($p = $permission.check('/backstage/userManage/personalManage'))
+				#if($p > 0)
+					<li><a href="/backstage/userManage/personalManage">个人用户管理</a></li>
+				#end
+				#set($p = $permission.check('/backstage/userManage/institutionManage'))
+				#if($p > 0)
+				<li><a href="/backstage/userManage/institutionManage">机构用户管理</a></li>
+				#end
+				#set($p = $permission.check('/backstage/userManage/institutions/1/2'))
+				#if($p > 0)
+				<li><a href="/backstage/userManage/institutions?roleId=0">机构人员管理</a></li>
+				#end
+				#set($p = $permission.check('/backstage/userManage/unRealNamePass/1/2'))
+				#if($p > 0)
+				<li><a href="/backstage/userManage/unRealNamePass">实名认证查询</a></li>
+				#end
+			</ul>
+		</li>
+		#set($t = $permission.check('/backstage/addLoanDemand/1/1'))
+		#set($m = $permission.check('/backstage/pageQueryLoanDemand/1/1'))
+		#set($p = $permission.check('/backstage/approvalPass'))
+		#set($q = $permission.check('/backstage/pageQueryOfflineLoanDemand'))
+		#set($s = $permission.check('/backstage/pageQueryLoanDemand?module=OVERALL'))
+		#set($r = $permission.check('/backstage/trade/repayQuery/12/1'))
+		#if($t > 0||$m > 0||$p > 0||$q > 0||$r > 0)
+		<li><a href="javascript:;"><span>融资管理</span></a>
+			<ul>
+				#if($t > 0)
+				<li><a href="/backstage/addLoanDemand">发布融资需求</a></li>
+				#end
+				#if($m > 0)
+				<li><a href="/backstage/pageQueryLoanDemand?module=DRAFT">草稿箱</a></li>
+				##if($p > 0)
+				<li><a href="/backstage/pageQueryLoanDemand?module=WITE">融资需求审核</a></li>
+				##end
+                <li><a href="/backstage/pageQueryLoanDemand?module=PASSADNDISMISS">融资审核结果</a></li>
+				<li><a href="/backstage/pageQueryLoanDemand?module=ALL">借贷管理</a></li>
+				#end
+				#if($q > 0)
+				<li><a href="/backstage/pageQueryOfflineLoanDemand">已下线需求</a></li>
+				<li><a href="/backstage/pageQueryLoanDemand?module=OVER">上传正式担保函</a></li>
+				#end
+				#if($s > 0)
+				<li><a href="/backstage/pageQueryLoanDemand?module=OVERALL">附件管理</a></li>
+				#end
+				#if($r > 0)
+                <li><a href="/backstage/trade/repayQuery/12/1">还款管理</a></li>
+				#end
+			</ul>
+        </li>
+		#end
+
+            #set($t = $permission.check('/backstage/giftMoney/*'))
+            #if($t > 0)
+            <li><a href="javascript:;"><span>红包管理</span></a>
+                <ul>
+
+                    #if($t > 0)
+                        <li><a href="/backstage/giftMoney/pageQueryGiftMoney">红包管理</a></li>
+                    #end
+                </ul>
+            </li>
+			#end
+    		#set($t = $permission.check('/backstage/loanReview'))
+    		#if($t > 0)
+    		##<li><a href="javascript:;"><span>借款管理</span></a>
+                <ul>
+    				#if($t > 0)
+    				##<li><a href="javascript:void(0);" onclick="document.location.href = '$!{rc.contextPath}/backstage/loanReview';">借款审核</a></li>
+    				#end
+    			</ul>
+            </li>
+    		#end
+			
+			
+			
+            #set($a = $permission.check('/backstage/withdrawQuery'))
+            #set($b = $permission.check('/backstage/depositQuery'))
+            #if($a>0||$b>0)
+
+            <li><a href="javascript:;"><span>财务管理</span></a>
+                <ul>
+                    #if($a>0)
+                        <li><a href="/backstage/withdrawQuery">提现查询</a></li>
+                    #end
+
+                    #if($b>0)
+                        <li><a href="/backstage/depositQuery">充值查询</a></li>
+                    #end
+                </ul>
+            </li>
+            #end
+		#set($t = $permission.check('/backstage/trade/mainTrade/1/1'))
+		#set($p = $permission.check('/backstage/deductTopUp'))
+        #set($x = $permission.check('/backstage/investmentDemand/pageQueryInvestmentDemand'))
+		#if($t > 0||$p > 0 || $x >0)
+		<li><a href="javascript:;"><span>交易管理</span></a>
+            <ul>
+				#if($t > 0)
+				<li><a href="javascript:void(0);" onclick="document.location.href = '$!{rc.contextPath}/backstage/trade/mainTrade/12/1';">交易查询</a></li>
+				#end
+				<!--<li><a href="/backstage/queryWithdrawalsRecord">提现查询</a></li>-->
+
+            #if($x > 0)
+                <li><a href="javascript:void(0);" onclick="document.location.href = '$!{rc.contextPath}/backstage/investmentDemand/pageQueryInvestmentDemand';">投资需求</a></li>
+            #end
+			</ul>
+        </li>
+		#end
+		#set($t = $permission.check('/backstage/userStatistics'))
+		#set($p = $permission.check('/backstage/queryProjectStatistics'))
+		#set($q = $permission.check('/backstage/amountStatistics'))
+		#set($s = $permission.check('/backstage/report/list'))
+		#if($t > 0||$p>0||$q>0||$s>0)
+		<li><a href="javascript:;"><span>统计管理</span></a>
+            <ul>
+				#if($t > 0)
+				<li><a href="/backstage/userStatistics">用户注册统计</a></li>
+				#end
+				#if($p > 0)
+				<li><a href="/backstage/queryProjectStatistics" >项目统计</a></li>
+				#end
+				#if($q > 0)
+				<li><a href="/backstage/amountStatistics">资金统计</a></li>
+				#end
+				#if($s > 0)
+				<li><a href="/backstage/report/list">简易Excel报表</a></li>
+				#end
+				
+				<!--<li><a href="/backstage/rechargeStatistics?queryType=RECHARGE">充值统计</a></li>-->
+			</ul>
+        </li>
+		#end
+
+            #set($t = $permission.check('/backstage/debtTransfer'))
+
+            #if($t>0)
+            <li><a href="javascript:void(0);"><span>债权转让管理</span></a>
+                <ul>
+                    #if($t > 0)
+                        <li><a href="javascript:void(0);" onclick="document.location.href='$!{rc.contextPath}/backstage/debtTransfer/addDebtTransferRule';">债权转让规则设置</a></li>
+                    #end
+
+                </ul>
+            </li>
+            #end
+
+            #set($t = $permission.check('/backstage/recommendFriendManager'))
+
+            #if($t>0)
+            <li><a href="javascript:void(0);"><span>活动管理</span></a>
+                <ul>
+                    #if($t > 0)
+                        <li><a href="javascript:void(0);" onclick="document.location.href='$!{rc.contextPath}/backstage/recommendFriend/recommendFriendManager';">推广管理</a></li>
+                    #end
+   
+
+                </ul>
+            </li>
+            #end
+
+		#set($t = $permission.check('/backstage/divisiontemplate/1/2'))
+		#set($q = $permission.check('/backstage/pdftemplate/1/2'))
+            #set($a= $permission.check('/backstage/marketingProfit/*'))
+		
+		#if($t > 0||$q>0)
+		<li><a href="javascript:void(0);"><span>模板管理</span></a>
+		    <ul>
+				#if($t > 0)
+				<li><a href="javascript:void(0);" onclick="document.location.href='$!{rc.contextPath}/backstage/divisiontemplate/conditions/1/10';">分润模版管理</a></li>
+
+                 #end
+                 #if($a>0)
+                     <li><a href="javascript:void(0);" onclick="document.location.href='$!{rc.contextPath}/backstage/marketingProfit/queryProfitAssignInfoMarketing';">营销机构收益配置</a></li>
+				#end
+				#if($q > 0)
+				<li><a href="/backstage/pdftemplate">pdf合同模板</a></li>
+				#end
+			</ul>
+		</li>
+		#end
+		
+		
+		#set($t = $permission.check('/backstage/userManage/userBaseInfoManage/1/2'))
+		#set($p = $permission.check('/backstage/authority/1/2'))
+		#set($q = $permission.check('/backstage/userManage/change/12'))
+		#if($t > 0||$p>0||$q>0)
+		<li><a href="javascript:;"><span>权限管理</span></a>
+            <ul>
+				#if($t > 0)
+				<li><a href="/backstage/userManage/userBaseInfoManage">用户高级管理</a></li>
+				#end
+				#if($p > 0)
+				<li><a href="/backstage/authority/roles/1/12">角色管理</a></li>
+				<li><a href="/backstage/authority/permissions/1/12">权限管理</a></li>
+				#end
+				#if($q > 0)
+				<li><a href="/backstage/userManage/changeBroker">变更经纪人/营销机构</a></li>
+				#end
+				<!--<li><a href="/backstage/fixData">数据修复</a></li>-->
+			</ul>
+        </li>
+		#end
+		#set($t = $permission.check('/backstage/noticeCenter/1/2'))
+		#set($p = $permission.check('/backstage/popHelp/1/2'))
+		#set($q = $permission.check('/backstage/emailCenter/1/2'))
+		#set($m = $permission.check('/backstage/popModuleList'))
+		#set($n = $permission.check('/backstage/popModuleCenter'))
+		#if($t > 0||$p>0||$q>0||$m>0||$n>0)
+		<li><a href="javascript:;"><span>消息服务中心</span></a>
+            <ul>
+				
+				#if($t > 0)
+				<li><a href="/backstage/noticeCenter">新闻公告</a></li>
+				#end
+				#if($m > 0)
+				<li><a href="/backstage/popModuleList">信息模块维护</a></li>
+				#end
+				#if($n > 0)
+				<li><a href="/backstage/popModuleCenter">信息中心</a></li>
+				#end
+				#if($p > 0)
+				<li><a href="/backstage/popHelp">帮助中心</a></li>
+				#end
+				#if($q > 0)
+				<li><a href="/backstage/emailCenter">邮件模板</a></li>
+				#end
+			</ul>
+        </li>
+		#end
+		<!--
+		<li><a href="javascript:;"><span>活动管理中心</span></a>
+            <ul>
+				<li><a href="/backstage/activityCenter">活动管理</a></li>
+				<li><a href="/backstage/activityDetailPage">参与活动记录</a></li>
+				<li><a href="/backstage/giftCenter">礼品管理</a></li>
+				<li><a href="/backstage/giftUseRecord">礼品使用记录</a></li>
+			</ul>
+        </li>
+		-->
+		#set($t = $permission.check('/backstage/sysParamManage/1/2'))
+		#set($p = $permission.check('/backstage/sysBankInfoManage/1/2'))
+		#set($m = $permission.check('/backstage/OperationJournal/1/2'))
+		#if($t > 0||$p>0||$m>0)
+        <li><a href="javascript:;"><span>系统设置</span></a>
+            <ul>
+				#if($t > 0)
+                <li><a href="/backstage/sysParamManage">系统参数</a></li>
+				#end
+				#if($p > 0)
+				<li><a href="/backstage/sysBankInfoManage">银行维护</a></li>
+				#end
+				#if($m > 0)
+				<li><a href="/backstage/OperationJournal">日志查询</a></li>
+				#end
+            </ul>
+        </li>
+		#end
+		#set($t = $permission.check('/backstage/bankInfoManage/1/2'))
+		#set($p = $permission.check('/backstage/uploadImages2Front/1/2'))
+		#set($s = $permission.check('/backstage/cooperateManage'))
+		#if($t > 0||$p>0||$s>0)
+		<li><a href="javascript:;"><span>辅助工具</span></a>
+            <ul>
+				<!--<li><a href="/backstage/loadBankCard">银行卡验证</a></li>-->
+##				#if($t > 0)
+##				<li><a href="/backstage/bankInfoManage">银行信息</a></li>
+##				#end
+				#if($p > 0)
+				##<li><a href="/backstage/uploadImages2Front">上传前台图片</a></li>
+				<li><a href="/backstage/bannerNews?type=100">首页图片新闻</a></li>
+				#end
+				#if($s > 0)
+				<li><a href="/backstage/cooperateManage">合作机构管理</a></li>
+				#end
+			</ul>
+        </li>
+		#end
+	</ul>
+</div>

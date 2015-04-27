@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>帮助中心</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">对外服务管理</a> > 帮助管理(APP)</p>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="/app/addAppHelp" class="p-btn addUser">新增帮助</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="80">帮助ID</th>
+								<th width="200">帮助标题</th>
+								<th width="100">类型</th>
+								<th width="100">备注</th>
+								<th width="120">创建时间</th>
+								<th width="80">状态</th>
+								<th width="150">操作</th>
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td>$!{info.popId}</td>
+								<td>$!{info.title}</td>
+								<td>#if($!{info.type}==4)普通帮助页#else帮助模块#end</td>
+								<td>$!{info.remark}</td>
+								<td>$!{dateUtil.simpleFormat($!{info.addTime})}</td>
+								<td>
+									#if($!{info.status}==1)
+										创建完毕
+									#elseif($!{info.status}==2)
+										已上线
+									#elseif($!{info.status}==3)
+										已下线
+									#end	
+								</td>
+								<td><a href="/app/appHelpInfo/$!{info.popId}">预览</a> | <a href="/app/updateAppHelp?popId=$!{info.popId}">修改</a> | <a class="online_link" data="$!{info.popId}" href="javascript:;">上线</a> | <a class="offline_link" data="$!{info.popId}" href="javascript:;">下线</a>| <a href="javascript:;" data="$!{info.popId}" class="delete_link">删除</a></td>
+								
+							</tr>
+						#end
+						</table>
+						<input type="hidden" value="JG" data="userType"/>
+						<div class="p-box pages-b fn-clear">
+							<a href="/app/addAppHelp" class="p-btn addUser">新增帮助</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'appHelp');
+		
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/appPopHelp?"
+			+"pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+		
+	$('.online_link').click(function(){
+		var url = '/app/changeStatus';
+		var data = {'popId':$(this).attr('data'),'status':2};
+		var result = $_GLOBAL.ajax(url, data);
+		alert(result.message);
+		document.location.href = "/app/appPopHelp";
+	});
+	
+	$('.offline_link').click(function(){
+		var url = '/app/changeStatus';
+		var data = {'popId':$(this).attr('data'),'status':3};
+		var result = $_GLOBAL.ajax(url, data);
+		alert(result.message);
+		document.location.href = '/app/appPopHelp';
+	});
+	
+	$('.delete_link').click(function() {
+		var _this = this;
+		Y.confirm('请选择','确定执行该操作？',function(opn){
+			if(opn=="yes"){
+				$.ajax({
+					url : '/app/deleteAppHelp',
+					type : 'post',
+					dataType : 'json',
+					data : {
+						
+						popId : $(_this).attr("data")
+					},
+					success : function(json) {
+						alert(json.message);
+						location.reload();
+					}
+				})
+			}
+			
+		})
+	});
+	
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>统计管理-Excel报表</title>
+	<link type="text/css" href="$!{rc.contextPath}/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">统计管理</a> > Excel报表</p>
+					</div> 
+					<div class="search fn-clear">
+						<form action="$!{rc.contextPath}/backstage/report/list" method="post" name="frm">
+							<dl>
+								<dt>报表ID：</dt>
+								<dd><input type="text" class="u-input w60" name="reportId" id="reportId" value="$!{queryConditions.reportId}"  onkeyup="value=value.replace(/[^0-9,]/g,'')" onblur="value=value.replace(/[^0-9,]/g,'')" /></dd>
+							</dl>
+							<dl>
+								<dt>报表名称：</dt>
+								<dd><input type="text" class="u-input w120 " name="reportName" id="reportName" value="$!{queryConditions.reportName}"/></dd>
+							</dl>
+							<dl>
+								<dt>报表备注：</dt>
+								<dd><input type="text" class="u-input w120 " name="note" id="note" value="$!{queryConditions.note}"/></dd>
+							</dl>
+							
+							
+                            <button type="submit" class="s-btn" style="cursor:pointer;">搜索</button>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							
+							#set($p1 = $permission.check('/backstage/report/toAdd'))
+            				#if($p1 > 0)
+            					<a href="/backstage/report/toAdd?reportId=0" class="p-btn">新增报表</a>
+							#end
+							
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="100">报表ID</th>
+								<th width="200">报表名称</th>
+                                <th width="380">报表备注</th>
+								<th width="110">操作</th>
+                              
+							</tr>
+
+							#foreach($item in $!{page.result})
+							<tr>
+								<td>$!{item.reportId}</td>
+								<td>$!{item.reportName}</td>
+                                <td>$!{item.note}</td>
+								<td class="text-l">
+									
+									<a href="/backstage/report/queryResult?reportId=$!{item.reportId}">查询数据</a>
+									
+                    				#if($p1 > 0)
+                    					<a href="/backstage/report/toAdd?reportId=$!{item.reportId}">修改</a>
+										<a href="javascript:if (confirm('确认删除？') ){ window.location.href ='/backstage/report/delete?reportId=$!{item.reportId}' };"  id="deleteBtn" >删除</a>
+                    				#end
+								</td>	
+									
+							</tr>
+							#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+		<!--提示-->
+	<div class="m-layer m-layer-tip" id="changeStatusDiv" style="width:360px;display:none;">
+		<div class="title">
+			<h2>修订状态</h2>
+		</div>
+		<form id="changeStatusForm" action="/backstage/investmentDemand/changeStatus" method="post">
+		
+		<div class="cont">
+			<ul>
+				<li><label for=""><span style="color:red">*</span>状态修改为：</label>
+                    <select style="width: 100px;" name="changeStatus" id="changeStatus">
+                        <option value="INIT">初始化</option>
+                        <option value="ACCEPTED">已接受</option>
+                    </select>
+
+                </li>
+			</ul>
+			<div class="l-btn">
+				<input type="hidden" id="demandId" name="demandId" />
+				<a href="javascript:;" class="u-btn u-btn-blue fn-ok">确认修订</a><a href="javascript:;" class="u-btn u-btn-gray">关闭</a>
+			</div>
+		</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/plugins/jquery.window.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/datepicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'reportAdd');
+    </script>
+	<script type="text/javascript">
+
+        function toPage(totalPage, pageNo) {
+            if (totalPage < pageNo) {
+                return false;
+            }
+			var reportId = 0
+			
+			if(!$("#reportId").val()){
+				reportId = $("#reportId").val();
+			}
+			//alert(reportId);
+            var url = "/backstage/report/list"
+                    + "?reportName="+ $("#reportName").val()+"&reportId="+reportId+"&note="+ $("#note").val()
+                    + "&pageSize=$!{page.pageSize}&pageNo=" + pageNo;
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

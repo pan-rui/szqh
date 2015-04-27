@@ -1,0 +1,136 @@
+            <div class="MtxtR">
+                <div class="Nri">
+                    <ul class="nul4">
+                        <li><a href="">更多&gt;&gt;</a>媒体报道</li>
+                    </ul>
+                    <ul class="nul5">
+                        <li>·<a href="">FBI技术助力互联网金融安</a></li>
+                        <li>·<a href="">FBI技术助力互联网金融安</a></li>
+                        <li>·<a href="">FBI技术助力互联网金融安</a></li>
+                        <li>·<a href="">FBI技术助力互联网金融安</a></li>
+                        <li>·<a href="">FBI技术助力互联网金融安</a></li>
+                    </ul>
+                </div>
+                <div class="Npic">
+                    <a href="">
+                        <img src="/resources/styles1/images/sider2.jpg" border="0">
+                    </a>
+                </div>
+                <div class="Nri" style="margin-bottom:0px;">
+                    <div class="Nnav">
+                        <ul class="nul8">
+                            <li id="np1" class="on">
+                                <a href="javascript:void(0)" onclick="Scolor(1)">
+                                    最新投标
+                                </a>
+                            </li>
+                            <li id="np2">
+                                <a href="javascript:void(0)" onclick="Scolor(2)">
+                                    今日排行
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <span class="SN1" style="display:;">
+                        <ul class="nul6" style="margin-top: 0px;">
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>Gl****r</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                        </ul>
+                    </span>
+                    <span class="SN2" style="display:none;">
+                        <ul class="nul7">
+                            <li><em>1</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>2</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>3</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>4</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>5</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                            <li><em>6</em><span>刚刚投资了<b>￥5000.00</b></span></li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Media">
+        <div class="M_nva">
+            <ul>
+                <li>
+                    <a href="">
+                        更多&gt;&gt;
+                    </a>
+                    权威媒体报道XXX在线：
+                </li>
+            </ul>
+        </div>
+        <div class="M_txt">
+            <ul>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+                <li>
+                    <a href="" target="_blank"><img src="/resources/styles1/images/mt1.gif" width="116" height="43"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--footer-->
+    <div class="Nfoot">
+        <div class="Nfbox">
+            <div class="NfboxL">
+                <p>
+                    <a href="/help/institutionIntroduction/1">关于我们</a>|
+                    <a href="">理财计算器</a>|
+                    <a href="">相关法律</a>|
+                    <a href="">相关法律</a>|
+                    <a href="">标种介绍</a>|
+                    <a href="">标种介绍</a>
+                </p>
+                <p>
+                    <a href="">客服电话</a>
+                    <a href="">在线客服</a>
+                    <a href="">咨询时间：9:00-17:00(周一至周五)</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="Nlink">
+        <div class="Nlink_l">
+            <b>友情链接：</b>
+            <a href="" target="_blank">微金贷</a>|
+            <a href="" target="_blank">财神在线</a>|
+            <a href="" target="_blank">微金贷</a>|
+            <a href="" target="_blank">财神在线</a>|
+            <a href="" target="_blank">微金贷</a>|
+        </div>
+        <div class="Nlink_r">
+             财神在线融版权所有&nbsp;&nbsp;&nbsp;皖ICP备11111111号-1
+        </div>
+    </div>

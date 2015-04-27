@@ -1,0 +1,118 @@
+#parse("/front/index/common/header-title.vm")
+	<link type="text/css" href="/styles/sub.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<!--内容-->
+    <div class="sq_was">
+      <div class="jk_sqleft">
+        <div class="sqleft_title"><ul class="title_ul"><li><img src="$!{rc.conextPath}/styles/images/sub_img/sub_wyjk_icon01.jpg" width="16" height="14" /></li>
+        <li class="sq_txt18">请填写您的信息</li>
+        </ul></div>
+        <div class="sq_was01">
+        <div class="sqleft_tiao">为方便担保公司与您取得联系进行审核，以下信息需您真实有效填写！</div>
+        
+		<form action="/loan/applyLoanSubmit" method="post" class="ui-form" id="add_loanapply_form">
+        <div class="sqleft_main">
+          <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>联系人:</li>
+            <li style="width: 532px;">
+              <input name="loanerName" type="text"  class="main_input" value=" "/>
+            </li>
+          </ul>
+          <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>手机号码:</li>
+            <li style="width: 532px;">
+              <input name="loanerPhone" type="text"  class="main_input"/>
+            </li>
+          </ul>
+          <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>现居住地区:</li>
+            <li style="width: 532px;">
+              <input name="loanerAddress" type="text"  class="main_input"/>
+            </li>
+          </ul>
+          <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>身份证号码:</li>
+            <li style="width: 532px;">
+              <input name="loanerIdentity" type="text"  class="main_input" />
+            </li>
+          </ul>
+          <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>意向借款金额:</li>
+            <li style="width:532px; ">
+              <input name="loanAmount" type="text" maxlength="3" class="main_input main_input01"/>
+			  <b class="u-tip" style="background: #F7A133;padding: 4px 8px;color: #fff;">万元  </b>
+            </li>
+            
+          </ul>
+		  <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>借款用途:</li>
+            <li style="width: 532px;">
+              <input name="loanPurpose" type="text"  class="main_input"/>
+            </li>
+          </ul>
+          <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>预期还款期限:</li>
+            <li >
+              <label for="select"></label>
+              <select name="timeLimit" id="select" class="main_input">
+				<option value=" ">---请选择还款期限 ---</option>
+				#foreach($foo in [3,6,9,12,15,18,24,36])
+                <option value="$!{foo}">${foo}月期</option>
+                #end
+              </select>
+            </li>
+            
+          </ul>
+		  <ul class="main_ul">
+            <li class="main_txt"><span class="required">*</span>验证码:</li>
+            <li>
+              <input name="captcha" type="text"  id="verifyCode" style=" width: 120px; height: 24px;" />
+            </li>
+            <a title="全英文字符不分大小写,点击刷新" href="javascript:;" class="new_captcha">
+                <img id="newcaptcha" class="code-img " src="/anon/getImgCode" alt=""   />
+            </a>
+			<a href="javascript:;" class="new_captcha" style="color: #1B37F8;font-weight: bold;">刷新</a> 
+          </ul>
+        </div>
+		<!--<div class="main_btn01"><button type="submit"  style="padding: 10px 60px;background: transparent;color: white;border-style: none;cursor: pointer;">提交申请</button></div>-->
+        <div class="main_btn01"><a href="javascript:;" class="fn-submit1">提交申请</a></div>
+        </form>
+         </div>
+       
+      </div>
+      <div class="jk_sqright">
+        <div class="r_people">现消费贷已成功申请<span style=" color:#ff6600;">$!totalCount</span>笔</div>
+         #if($!totalCount==0)
+	    				<div class="r_txt">
+                          <ul>
+                            <li>暂时没有成功申请消费贷记录</li>
+                          </ul>
+                        </div>
+					#end
+                    #foreach($item in $!{page.result})  
+                    <div class="r_txt">
+                      <ul>
+                        <li class="r_txt1">$!{item.loanerName} $!{item.loanAmount}万元</li>
+                        <li>$!{item.guaranteeName}将与你联系</li>
+                      </ul>
+                    </div>
+                    #end
+      </div>
+    </div>
+	
+	
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'loan_apply_details');
+    </script>
+</body>
+</html>

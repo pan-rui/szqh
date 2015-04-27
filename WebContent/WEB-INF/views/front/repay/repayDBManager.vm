@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>会员中心-交易明细</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+   #parse("/front/user/common/left1.vm")
+    <div class="m-content fn-right">
+      <div class="m-content-box">
+       <div class="title1 mb50"><span>还款管理</span></div>
+          <div class="borrowing-info">
+              <div class="b-tab fn-clear" >
+                  <ul>
+                      <li class="curr"  id="tradeinfo"><a href="javascript:;" >待还款管理</a></li>
+                      <li id="touziinfo"><a href="javascript:;" >已还款管理</a></li>
+                  </ul>
+              </div>
+              <div class="borrowing-list f-clear" id="tradediv">
+                  <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;margin-bottom: 20px; margin-left: 20px;">
+                      <tr>
+                          <td >项目名称: </td>
+                          <td>
+                              <input type="text" name="waitRepayTradeName" id="waitRepayTradeName" class="fn-text w90">
+                          </td>
+
+                          <td>起止日期:</td>
+                          <td>
+                              <input type="date" name="waitRepayStartDate" id="waitRepayStartDate" class="fn-text w90">
+                              <em>-</em>
+                              <input type="date" name="waitRepayEndDate" id="waitRepayEndDate" class="fn-text w90">
+
+                              <a class="fn-h-btn ml5" href="javaScript:toPage(1,'waitRepay','waitTable','waitPage')">
+                                  <span>筛选</span></a>
+
+                          </td>
+                      </tr>
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" class="pro-table" id="waitTable">
+                      <thead>
+                         <tr>
+                          <th class="f-tac" width="10%">项目名称</th>
+                          <th class="f-tac" width="15%">预期还款时间</th>
+                          <th class="f-tac" width="10%">还款方式</th>
+                          <th class="f-tac" width="25%">还款总金额(元))</th>
+                          <th class="f-tac" width="10%">本金(元))</th>
+                          <th class="f-tac" width="10%">利息(元))</th>
+                          <th class="f-tac" width="25%">操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+
+
+
+
+                  </table>
+                  <div class="pages account-page mt20">
+                      <div class="pages" id="waitPage">
+                          </div>
+                  </div>
+                  <div class="blank30"></div>
+
+              </div>
+
+              <div class="borrowing-list f-dn" id="touzhidiv">
+                  <table  cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;margin-bottom: 20px; margin-left: 20px;">
+                      <tr>
+
+                          <td >项目名称:</td>
+                          <td>
+                              <input type="text" name="doneRepayTradeName" id="doneRepayTradeName" class="fn-text w90">
+                          </td>
+                          <td> 起止日期:</td>
+                          <td>
+                              <input type="date" id="doneRepayStartDate" name="startDate" class="fn-text w90">
+                              <em>-</em>
+                              <input type="date"  name="doneRepayEndDate"   class="fn-text w90">
+                              <a  class="fn-h-btn ml5" href="javaScript:toPage(1,'doneRepay','waitTable','waitPage')"> <span>筛选</span></a>
+                          </td>
+                      </tr>
+
+
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" class="pro-table" id="doneTable">
+                      <thead>
+                      <tr>
+                          <th class="f-tac" width="10%">项目名称</th>
+                          <th class="f-tac" width="15%">预期还款时间</th>
+                          <th class="f-tac" width="10%">还款方式</th>
+                          <th class="f-tac" width="25%">还款总金额(元)</th>
+                          <th class="f-tac" width="10%">本金(元)</th>
+                          <th class="f-tac" width="10%">利息(元)</th>
+                          <th class="f-tac" width="25%">状态</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+
+
+                      </tbody>
+
+
+
+                  </table>
+
+                  <div class="pages account-page mt20">
+                      <div class="pages" id="donePage">
+                      </div>
+                  </div>
+
+
+                  <div class="blank30"></div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="blank50"></div>
+</div>
+    <div  id="payPasswordCheckContainer" style="display:none;width:500px;"  >
+
+        <div class="lyct">
+            <form action="" method="post" class="border-b price-active" id="payPasswrdChecking_form">
+                <fieldset>
+                    <div class="invest-up">
+                        <div class="fn-item">
+                            <label class="fn-label"><span class="required">*</span>还款金额：</label>
+                            <span class="fn-words"><b id="repayAmount" class="ft-f60 mr5"> </b>元</span>
+                        </div>
+                        <div class="fn-item fn-clear">
+                            <label class="fn-label"><span class="required">*</span>还款金额大写：</label>
+                            <span class="fn-words"><b id="repayAmountChinese" class="ft-f60 mr5">  </b></span>
+
+                        </div>
+
+
+
+                        <div class="fn-item  fn-clear">
+                            <label class="fn-label"><span class="required">*</span>验证码：</label>
+                            <input id="code1" type="text" class="fn-text w90" name="code" />
+                            <a id="getCode1" class="fn-h-btn Y-countdown" href="javascript:;" style="display: inline-block;">
+                                <span class="timedown">获取验证码</span>
+                            </a>
+
+                            <p><b id="pay-code-messge" class="error-tip" for="code" generated="false"></b></p>
+                            <input id="mobile" type="hidden"   class="fn-text w130"  name="mobile" value="$!{userBaseInfo.mobile}"/>
+
+                            <input id="business1" type="hidden" name="business1" value="repayment"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="fn-item">
+                    <input type="hidden" id="tradeId"  name="tradeId"/>
+                    <input type="hidden" id="repayPlanId" name="repayPlanId"/>
+                    <input id="mobile" type="hidden"   class="fn-text w130"  name="mobile" value="$!{userBaseInfo.mobile}"/>
+                    <a href="javascript:;" id="confirm_pay" class="fn-g-btn mr5"><span>确认还款</span></a>
+                    <a id="cancel_pay"  href="javascript:;" class="fn-h-btn"><span>取消</span></a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+#parse("/front/index/common/footer-yrd.vm")	
+<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+
+    	seajs.use($_GLOBAL.mode + 'repayDBManager');
+        function toPage(pageNo,action,table,page){
+            var startDate =  $("#"+action+"StartDate").val();
+            var endDate = $("#"+action+"EndDate").val();
+            var tradeName = $("#"+action+"TradeName").val();
+            $.ajax({
+                url: '/'+action,
+                type: 'post',
+                dataType: 'json',
+                async:false,
+                data: {
+                    tradeName: tradeName,
+                    startDate:startDate,
+                    endDate:endDate,
+                    pageNo:pageNo
+
+                },
+                success: function (res) {
+                    if(!res.page.result) return;
+                    initPageData(res,table);
+                    initPageTool(res.page,action,table,page);
+                    $('.payLoan').unbind("click");
+                    $('.payLoan').bind("click",function(){
+                        $("#code1").val("");
+                        var amount  = $(this).attr("amount");
+                        var tradeId = $(this).attr("tradeid");
+                        var repayPlanId = $(this).attr("repayplanid");
+                        $("#repayPlanId").val(repayPlanId);
+                        $("#tradeId").val(tradeId);
+                       convertCurrency(amount);
+                        $("#repayAmount").html(amount);
+                        $("#repayAmountChinese").html(convertCurrency(amount));
+                        $("body").Y('Window', {
+                            title:"还款",
+                            content : '#payPasswordCheckContainer',
+                            key:"repayDialog"
+
+                        });
+                    });
+
+                }
+            })
+
+        }
+
+
+        function initPageData(res,table){
+            var html ="";
+            var page = res.page;
+            var result = page.result;
+            for(var i =0; i <result.length;i++ ){
+                html = html + "<tr>"
+
+                html = html + "<td class='f-tac'><a href=/guaranteeCenter/guaranteeDetails?demandId="+res.map[result[i].tradeId]+"&operate=xq>"+  result[i].tradeName+"</a></td>";
+                html = html + "<td class='f-tac'>"+  dateToStr(result[i].repayDate)+"</td>";
+                var repayDivisionWay ;
+                if(result[i].repayDivisionWay == "month"){
+                    repayDivisionWay ="按月还息，到期还本";
+                }else if(result[i].repayDivisionWay = "sit"){
+                    repayDivisionWay ="到期归还本金及利息";
+                }else{
+                    repayDivisionWay ="未知";
+                }
+
+
+                html = html + "<td class='f-tac'>"+  repayDivisionWay+"</td>";
+                html = html + "<td class='f-tac'>"+  result[i].amount.standardString+"</td>";
+
+                var originalAmount = 0.00;
+                if(result[i].periodCount == result[i].periodNo){
+                    originalAmount = result[i].originalAmount.standardString;
+                }
+
+                html = html + "<td class='f-tac'>"+ originalAmount +"</td>";
+
+                var rateAmount = 0.00;
+                if(result[i].periodCount != result[i].periodNo){
+                    rateAmount = result[i].amount.standardString;
+                }else{
+                    rateAmount = (result[i].amount.cent - result[i].originalAmount.cent)/100;
+                }
+
+                html = html + "<td class='f-tac'>"+rateAmount+"</td>";
+                if(table == 'waitTable'){
+                    if(result[i].canPay == "Y"){
+                        html = html + "<td class='f-tac'><a repayplanid="+result[i].repayPlanId+"  tradeid="+result[i].tradeId+" amount ="+result[i].amount.standardString+" href='javascript:;' class='payLoan'>违约代偿</a></td></tr>";
+                    }else {
+                        html = html + "<td class='f-tac'>未还款</td></tr>";
+                    }
+                }else{
+                    html = html + "<td class='f-tac'>已还款</td></tr>";
+                }
+
+
+
+            }
+            $("#"+table).find("tbody").empty();
+            $("#"+table).find("tbody").append(html);
+        }
+
+        function initPageTool(page,action,table,pageTable){
+            var html = "";
+            var start = (page.currentPageNo-1) * page.pageSize +1;
+            var end = start - 1+ page.result.length;
+            html = html+   '<div class="fn-right fn-clear">'
+                    + "<span>";
+            if(0< page.totalCount){
+                html = html + "显示第 " +start + "-" + end +"条记录,";
+            }
+            html = html + "共"+ page.totalCount +"条记录<em>|</em></span>";
+            if(1<page.currentPageNo){
+                html = html+'<a href=javaScript:toPage(1,"'+action+'","'+table+'","'+pageTable+'")>首页</a>';
+            }else{
+                html = html+ " <span>首页</span>";
+            }
+            if(page.currentPageNo > 1){
+                var prePageNo =  page.currentPageNo - 1 < 1 ? 1 : page.currentPageNo - 1
+                html = html + ' <a href=javaScript:toPage('+prePageNo+',"'+action+'","'+table+'","'+pageTable+'")>上一页</a>';
+            }else {
+                html = html + " <span>上一页</span> "
+            }
+            if(page.currentPageNo < page.totalPageCount){
+                var nextPageNo = page.currentPageNo + 1 > page.totalPageCount ? page.totalPageCount:page.currentPageNo + 1;
+                html = html + '<a href=javaScript:toPage('+nextPageNo+',"'+action+'","'+table+'","'+pageTable+'")>下一页</a>';
+            }else {
+                html  = html + ' <span>下一页</span>';
+            }
+
+            if(page.totalPageCount > page.currentPageNo){
+                html = html + ' <a href=javaScript:toPage('+page.totalPageCount+',"'+action+'","'+table+'","'+pageTable+'")>尾页</a>'
+            }else {
+                html = html + " <span>尾页</span>";
+            }
+
+            html = html +'<span><input type="text" class="i-text page_input_num w40" id="waitPageNum" value="" maxlength="5" ></span>'+
+                    "<span><input type=button onclick=javaScript:toPage(getPageNumber(),'"+action+"','"+table+"','"+pageTable+"') value='跳转' class='i-button'></span></div>";
+            $("#"+pageTable).html(html);
+        }
+
+
+        function dateToStr(c){
+            if(!c) return "";
+            var d = new Date();
+            d.setTime(c);
+            var a = d.getMonth() + 1, f = d.getDate();
+            var b = a < 10 ? ("0" + a) : ("" + a);
+            var e = f < 10 ? ("0" + f) : ("" + f);
+            return d.getFullYear() + "-" + b + "-" + e
+        }
+
+
+
+        toPage(1,"repayDB/waitDBRepayManage","waitTable","waitPage");
+        toPage(1,"repayDB/doneDBRepay","doneTable","donePage");
+
+        $("#cancel_pay").bind("click",function(){
+           var repayDialog =  Y.all["repayDialog"];
+           if(repayDialog){
+               repayDialog.close();
+           }
+        })
+
+
+        function getPageNumber(){
+            var pageNum = $('#waitPageNum').val();
+            if(!(/^[1-9]\d*$/).test(pageNum)) return 1;
+            return pageNum;
+
+        }
+
+
+    </script>
+</body>
+</html>

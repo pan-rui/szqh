@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>在线预览</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<div class="container fn-clear">
+			<div>
+				<label style="color:#666;font-size:20pt;">
+					<strong >在线预览</strong>
+                </label>
+				<iframe id="iframe1" style="visibility:hidden;border:1px #666 solid;" class="frame" onload="this.height=600;this.width=1000;"  runat="server" frameborder="yes" marginwidth="0" marginheight="0" scrolling="yes" allowtransparency="yes"></iframe>
+			</div>
+		</div>
+		<div class="container fn-clear">
+			<div class="fn-item">
+                <a href="javascript:window.close();" style="margin-left:100px;margin-top:25px;" class="fn-h-btn"><span>返回</span></a>
+			</div>
+		</div>
+		
+	</div>	
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		function reinitIframe(){
+			var iframe = document.getElementById("iframe1");
+			try{
+				var bHeight = iframe.contentWindow.document.body.scrollHeight;
+				var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+				var height = Math.max(bHeight, dHeight);
+				iframe.height =  height;
+			}catch (ex){}
+		}
+		//异步加载iFrame
+		function setIframeSrc(obj) {
+		    var s = obj;
+		    var $iframe1 = $("#iframe1");
+		    $iframe1.attr('src', s);
+		    iframe = document.getElementById("iframe1");
+		    if (iframe.attachEvent){  
+		        iframe.attachEvent("onload", function(){
+		        	//reinitIframe();
+		        	$iframe1.css("visibility","visible");
+		        });  
+		    } else {  
+		        iframe.onload = function(){  
+		        	//reinitIframe();
+		        	$iframe1.css("visibility","visible");
+		        };  
+		    }
+		    reinitIframe();
+		}
+		
+		setIframeSrc("/tradeDownload/contractPreview?type=$!{letterType}&tradeId=$!{trade.id}&detailID=0&read=true");
+		
+    </script>
+</body>
+</html>

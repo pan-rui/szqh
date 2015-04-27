@@ -1,0 +1,61 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box container">
+    	<h2 class="title1"><span>六维安全</span></h2>
+        <div class="about-us mt20">
+        	<div class="about-txt">
+			<div class="brief-con" style="line-height:30px;">
+				</br>
+				<p><img src="/styles/images/zhuce/liuwei.jpg"/></p>
+			
+				<h4 style="font-weight:bold;">六维安全</h4>
+				<p>百合贷致力于成为<span style="font-weight:bold;color: #B80F12;">安全领先的P2P信息服务平台</span>。为此，我们量身打造了一套完善、审慎、科学的<span style="font-weight:bold;color: #B80F12;">六维安全体系，100%保障</span>并服务于百合贷的用户。</p>
+				
+				<h4 style="font-weight:bold;">一维筛选</h4>
+				<p>平台筛选<span style="font-weight:bold;color: #B80F12;">预备借贷人</span></p>
+				<p>● 通过有效渠道详实核实、 尽职调查借贷人的资料和资质</p>
+				<p>● 要求优良的信用记录， 优质的抵押实物</p>
+				</br>
+				<h4 style="font-weight:bold;">二维审核</h4>
+				<p>由<span style="font-weight:bold;color: #B80F12;">经验丰富</span>的借款审核人通过双重<span style="font-weight:bold;color: #B80F12;">国外先进评审系统</span>确定最终<span style="font-weight:bold;color: #B80F12;">优质借贷人</span></p>
+				<p>● <span style="font-weight:bold;color: #B80F12;">10+年限</span>的风险管理工作经验的审核人员</p>
+				<p>● 德国IPC信贷技术</p>
+				<p>● FICO评分体系</p>
+				</br>
+				<h4 style="font-weight:bold;color: #B80F12;">二维担保</h4>
+				<p>平台携手优质担保机构共同保障您的资金安全</p>
+				<p>● 担保机构<span style="font-weight:bold;color: #B80F12;">连带担保</span></p>
+				<p>● 借贷人向担保机构提供抵押</p>
+				</br>
+				<h4 style="font-weight:bold;">一维监管</h4>
+				<p>百合贷，为确保投资人资金直达优质借款人账户，委托第三方支付机构“易极付”监管资金</p>
+				<p>● 投资人资金到借款人、还款资金到投资人<span style="font-weight:bold;color: #B80F12;">一站直达</span></p>
+				<p>● 资金<span style="font-weight:bold;color: #B80F12;">不进入平台账户</span>，拒绝资金池</p>
+				<p>● <span style="font-weight:bold;color: #B80F12;">100%确保</span>投资人理财资金安全</p>
+				
+				
+				</br>
+				
+		     </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+	</div>
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

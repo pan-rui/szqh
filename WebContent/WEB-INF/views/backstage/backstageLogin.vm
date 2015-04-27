@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Pragma" contect="no-cache"> 
+	<title>后台登录</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+	html{background:#eee;}
+</style>
+<body>
+	<div class="warp">
+		<!--头部-->
+		<div class="head fn-clear">
+			<h1 class="fn-left">$!appConstantsUtil.getProductName()管理平台</h1>
+			<p class="fn-right"><span></span><a href="" class="exit"></a></p>
+		</div>
+		<!--内容-->
+		<div class="login-warp">
+			<h2>登录$!appConstantsUtil.getProductName()管理平台</h2>
+			<div class="login">
+				
+				<form action="/backstagelogin/login" class="ui-form" method="post" id="backstageLogin_form">
+					<div class="item">
+						<p style="color:red;" class="err" #if(!$!{message}) style="display:none;" #end >$!{message}</p>
+					</div>
+					<div class="item">
+						<label for="" class="u-label">登录账户：</label>
+						<input type="text" class="u-input w170" name="userName"/>
+					</div>
+					<div class="item">
+						<label for="" class="u-label">账户密码：</label>
+						<div id="flexContent"></div><input type="hidden" name="logPassword" id="password" />
+					</div>
+					<div class="item">
+						<a href="javascript:;" class="u-btn u-btn-blue backstageLogin">登录</a>
+                        </button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+    <script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'backstageLogin');
+    </script>
+</body>
+</html>

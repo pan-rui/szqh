@@ -1,0 +1,29 @@
+	              <table cellpadding="0" cellspacing="0" border="0" class="pro-table">
+                    <tr>
+                        <th class="f-tac" width="25%">投资人</th>
+                        <th class="f-tac" width="25%">投资金额（元）</th>
+                        <th class="f-tac" width="25%">投资时间</th>
+                        <th class="f-tac" width="25%">状态</th>
+                    </tr>
+					#if($!page.result)
+    					 #foreach($item in $!{page.result})
+                            <tr>
+                                <td class="f-tac">$stringUtil.subString2($!{item.userName},3,3,"****")</td>
+                                <td class="f-tac">￥$!{item.amount.toStandardString()}</td>
+                                <td class="f-tac">$!dateUtil.simpleFormat($!{item.createDate})</td>
+                                <td class="f-tac">#if($!{trade.tradeStatus.message}=="募集中-待成立")投标中-待成立#else$!{trade.tradeStatus.message}#end</td>
+                            </tr>
+                         #end  
+					#end
+					  </table>
+                </table>
+				#if($!page.result)
+                <input type="hidden" name="demandId" value="$!{item.demandId}"/>
+                <div class="pages account-page mt20">
+                #parse("/backstage/page/page.vm")
+                </div>
+               #end
+                <div class="blank30"></div>
+            </div>
+
+</script>

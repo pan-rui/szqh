@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户首页</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+   #parse("/front/user/common/left1.vm")
+   
+   
+   
+<div class="m-content fn-right">
+        	<div class="m-content-box">
+        		<div class="title1 mt10"><span>业务管理</span>
+					<div class="r-kyye"> <strong>可用余额：</strong> <span>￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span> <a href="/userManage/topUp/withholdingIndex">充值</a></div>
+				</div>
+                <div class="blank20"></div>
+                <div class="border-b">
+            <!--查询条件-->
+			<form action="/guaranteeCenter/guaranteeManager" method="post" name ="gform">
+			
+			        <input type="hidden"  name="pageSize"  value="$!{pageParam.pageSize}">
+			        <input type="hidden"  name="pageNo"  value="$!{pageParam.pageNo}">
+			   
+                    <div class="fn-condition mt15 fn-clear">
+                    	<dl class="fn-clear mb20">
+							<dt>承诺函编号：</dt>
+							<dd><input type="text" class="fn-text" name="guaranteeLicenseNo"  value="$!{queryConditions.guaranteeLicenseNo}" ></dd>
+							<dt>承诺函名称：</dt>
+							<dd>
+								<input type="text" class="fn-text" name="guaranteeLicenseName" value="$!{queryConditions.guaranteeLicenseName}">
+							</dd>					
+						</dl>
+                        <dl class="fn-clear mb20">
+							<dt>承诺函状态：</dt>
+							<dd>
+                            	<div class="jqtransform jqtransform-select3 fn-left">
+								<div style="z-index:10; width:140px;" class="jqTransformSelectWrapper">
+                                   <select name="singleState">
+										<option value="">全部</option>
+										#foreach($state in $!{guaranteeStatus})
+										<option value="$!{state.tradeStateKey}" #if($!{state.tradeStateKey}==$!{queryConditions.singleState}) selected="selected" #end >$!{state.tradeStateValue}</option>
+										#end
+									</select>
+                                </div>
+							</div>
+                            </dd>
+							<dt>起止日期：</dt>
+							<dd>
+								<span class="fn-time">
+								
+								    <input type="date" class="fn-text w90" name="startDate" value="$!{queryConditions.startDate}" />
+									<img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img" />
+								
+								
+                                </span>
+                                <em>-</em>
+                                <span class="fn-time">
+                                   <input type="date" class="fn-text w90" name="endDate"  value="$!{queryConditions.endDate}" />
+									<img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img" />
+                                </span>
+                                <a href="javascript:doSubmit();" class="fn-h-btn ml5"><span>筛选</span></a>
+                                
+                                
+							</dd>					
+						</dl>
+                   </div>
+      	</form>      
+      	           <!--列表-->       
+                    <table border="0" cellspacing="0" cellpadding="0" class="mtable-list">
+                        <tbody><tr>
+                            <th width="20%">创建时间</th>
+                            <th width="15%">承诺函编号</th>
+                            <th width="15%">承诺函名</th>
+                            <th width="15%">担保费</th>
+                            <th width="15%">状态</th>
+                            <th width="20%">操作</th>
+                        </tr>
+                        
+                        
+                        #if($!page.result.size()==0)
+		    				<tr>
+		        				<td colspan=5 align=center>暂时没有担保交易记录</td>
+		        			</tr>
+						#end
+                        
+                        #foreach($info in $page.result)
+                      
+                        <tr>
+                            <td>$!dateUtil.simpleFormat($!{info.demandDate})</td>
+                            <td>$!{info.guaranteeLicenceNo}</td>
+                            <td>$!{info.guaranteeLicenceName}</td>
+                            <td><em>$!{info.benefitAmount.toStandardString()}</em></td>
+                
+								
+							#if($!{info.guaranteeStatus}=="合约违约")
+								<td class="red">$!{info.guaranteeStatus}</td>
+							#elseif($!{info.state}=="合约失效")
+								<td class="gray">$!{info.guaranteeStatus}</td>
+							#else
+								<td>$!{info.guaranteeStatus}</td>
+							#end
+                            
+                            <td>
+	                            #if($!{info.guaranteeStatus}=="承诺机构审核中")
+									#if($!{auditOperator}=="yes")
+										#if($!{info.guaranteeStatus}=="承诺机构审核中") <a href="/guaranteeCenter/guaranteeDetails?demandId=$!{info.demandId}&operate=hk">融资完成审核</a>#end
+									#else
+										<a href="/guaranteeCenter/guaranteeDetails?demandId=$!{info.demandId}&operate=xq">详情</a>
+									#end	
+									
+								#elseif($!{info.guaranteeStatus}=="合约违约")
+									##不显示详情 
+								#else
+									<a href="/guaranteeCenter/guaranteeDetails?demandId=$!{info.demandId}&operate=xq">详情</a>
+								#end	
+								
+								#set($t = $permission.check('/tradeQuery/manualReimbursement'))
+								#if($t>0)
+									#if($!{info.guaranteeStatus}=="合约违约") <a href="/guaranteeCenter/guaranteeDetails?demandId=$!{info.demandId}&operate=hk">还款</a>#end
+								#end
+							</td>
+                        </tr>
+                       #end
+
+                    </tbody></table>
+                    <div class="pages account-page fn-clear mt20 mr20">
+                        <!--分页-->
+						#parse("/backstage/page/page.vm")
+                    <div class="blank30"></div>
+                </div>
+                <div class="blank30"></div>
+            </div>
+</div>
+        
+        
+        
+  <div class="blank50"></div>
+  </div>
+
+</div>
+#parse("/front/index/common/footer-yrd.vm")	
+
+
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'guarantee');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+    		
+			$('[name=pageSize]').val($!{page.pageSize}) ;
+			$('[name=pageNo]').val(pageNo);
+			
+			$('form[name=gform]').attr('action', '$!{rc.contextPath}/guaranteeCenter/guaranteeManager');
+			 document.gform.submit();
+			
+	//		window.location.href=url;
+		}
+		
+		
+		function doSubmit() {
+		    $('[name=pageSize]').val($!{page.pageSize}) ;
+			$('[name=pageNo]').val(1);
+			document.gform.submit();
+		}
+		
+	
+    </script>
+
+</body>
+</html>

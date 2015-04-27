@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <title>账户首页</title>
+            <link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+    <!--头部-->
+    #parse("/front/index/common/header-yrd.vm")
+	
+    <div class="home-section_bd pt20">
+        <div class="bd-box container fn-clear">
+			
+			
+			
+            #parse("/front/user/common/left1.vm")
+			
+			<!--内容容器-->
+            <div class="m-content fn-right">
+				
+				<!--我的红包-->
+                <div class="l-panel3 mt10 m-packet">
+					<!--panel head-->
+                    <h3 class="l-panelHd">我的红包</h3>
+					<!--panel head End-->
+					<!--panel body-->
+                    <div class="l-panelBd fn-clear">
+						<!--col-->
+                        <div class="l-col4">
+                            <dl class="itm">
+                                <dt>可用红包</dt>
+                                <dd><strong>3张</strong></dd>
+							</dl>
+						</div>
+						<!--col End-->
+						<!--col-->
+                        <div class="l-col4">
+							<dl class="itm">
+                                <dt>可用红包总额</dt>
+                                <dd><strong>￥72.00</strong></dd>
+							</dl>
+						</div>
+						<!--col End-->
+						<!--col-->
+                        <div class="l-col4">
+							<dl class="itm">
+                                <dt>已用红包总额</dt>
+                                <dd>￥20.00</dd>
+							</dl>
+						</div>
+						<!--col End-->
+						<!--col-->
+                        <div class="l-col4">
+							<dl class="itm">
+                                <dt>过期红包</dt>
+                                <dd>￥0.00</dd>
+							</dl>
+						</div>
+						<!--col End-->
+						
+					</div>
+					<!--panel body End-->
+				</div>
+				<!--我的红包结束-->
+				
+				<!--我的红包列表-->
+                <div class="l-panel3 mt30"><!--panel head-->
+                    <h3 class="l-panelHd">红包列表</h3>
+					<!--panel head End-->
+					<!--panel body-->
+                    <div class="l-panelBd fn-clear">
+						<!--filter-->
+						<ul class="m-filter">
+                            <li class="tt">红包状态</li>
+                            <li><a class="active" href="javascript:;">可用</a></li>
+                            <li><a href="javascript:;">可用</a></li>
+                            <li><a href="javascript:;">已过期</a></li>
+    					</ul>
+						<!--filter End-->
+						<div class="m-table3">
+							<table class="table">
+							<tbody>
+								<!--header-->
+                                <tr>
+                                    <th width="100">类型</th>
+                                    <th width="100">面值</th>
+                                    <th width="100">生效时间</th>
+                                    <th width="100">过期时间</th>
+                                    <th width="200">使用规则</th>
+                                    <th width="130">备注</th>
+								</tr>
+								<!--header End-->
+								<!--row-->
+                                <tr>
+                                    <td>投资红包</td>
+                                    <td>50.00元</td>
+                                    <td>2014-06-24</td>
+                                    <td>2014-11-11</td>
+                                    <td>投资金额满10000元可用使用</td>
+                                    <td>注册奖励【50】元</td>
+								</tr>
+								<!--row End-->
+								<!--row-->
+                                <tr>
+                                    <td>投资红包</td>
+                                    <td>50.00元</td>
+                                    <td>2014-06-24</td>
+                                    <td>2014-11-11</td>
+                                    <td>投资金额满10000元可用使用</td>
+                                    <td>单笔投资满5万元奖励【50】元</td>
+								</tr>
+								<!--row End-->
+                            </tbody>
+							</table>
+                        </div>
+                    </div>
+					
+                </div>
+				<!--我的红包列表结束-->
+				
+				<!--我的红包列表-->
+                <div class="l-panel3 mt30">
+					<!--panel body-->
+                    <div class="l-panelBd fn-clear">
+                        <ul class="m-list3">
+                            <li class="tt">红包使用规则：</li>
+							<li>• 使用红包金额不能高于或等于投资金额；</li>
+							<li>• 红包使用有效期为3个月，请在红包生效期内及时用于投资；</li>
+							<li>• 红包为平台奖励，不可以用于提现；使用过程中遇到问题，请联系客服，xxxx-xxxx-xxxx</li>
+						</ul>
+                    </div>
+					<!--panel body End-->
+                </div>
+				<!--我的红包列表 End-->
+				
+				
+            </div>
+			<!--内容容器结束-->
+        
+			
+        </div>
+        <div class="blank50"></div>
+    </div>
+    #parse("/front/index/common/footer-yrd.vm")	
+    <script type="text/javascript">
+        var $_GLOBAL = {};
+    </script>
+    <script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+    <script type="text/javascript">
+        seajs.use($_GLOBAL.mode + 'userHome');
+        //var int=self.setInterval("refreshTime()",1000);
+        function refreshTime(){
+        var myDate = new Date();
+        if(!document.getElementById("curTime")) {
+        clearInterval(int);
+        }
+        document.getElementById("curTime").innerHTML= "当前时间："+myDate.toLocaleString();   //获取日期与时间
+        }
+    </script>
+</body>
+</html>

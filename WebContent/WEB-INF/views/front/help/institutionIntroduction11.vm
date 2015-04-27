@@ -1,0 +1,79 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box container">
+    	<h2 class="title1 mt10"><span>诚聘英才</span></h2>
+        <div class="about-us mt20">
+        	<div class="about-txt">
+			<div class="brief-con" style="line-height:30px;">
+				</br>
+				<div class="main000">
+					
+    				<div class="left00" style="float:left;">
+    					<a href="/help/institutionIntroduction/11">招贤纳士</a></br>
+    					
+    				</div>	
+					
+    				<div class="right00" style="float:right;width:750px;">
+						<p style="font-size:20px;">客服人员</p>
+						<p>
+							工作职责：</br>
+                                                                                                负责处理电话、邮件、论坛、微博中用户需求与投诉，用优秀的服务水平和良好的服务态度来维护用户； </br>
+                                                                                                负责建立与客户的友好关系，建立客户档案； </br>
+                                                                                                负责协调各个部门反馈处理结果并及时与客户沟通； </br>
+                                                                                                负责网站产品的BUG收集整理、意见反馈等工作；</br>
+                                                                                                领导安排的其他工作。</br>
+                                                                                                </br>
+                                                                                                职位要求：</br>
+                                                                                                20岁以上，大专以上学历；</br>
+                                                                                                普通话标准流利，口齿清晰；</br>
+                                                                                                沟通能力强，善于协调；有较强的客户服务意识； 有客服工作经验的优先考虑；</br>
+                                                                                                有较强的学习能力，能快速掌握业务知识；</br>
+                                                                                                工作严谨，有责任心，勤奋踏实，有团队合作精神 ；</br>
+                                                                                                有信贷相关工作经验的优先考虑</br>
+
+						</p>
+						
+						</br>
+						<p style="font-size:20px;">培训师</p>
+						<p>
+						工作职责：</br>
+                                                                                    负责员工培训需求调查分析，并结合企业实际情况拟定培训计划并组织实施；</br> 
+                                                                                    在培训过程中，根据培训课程做好培训的前期准备工作； </br>
+                                                                                    负责内部培训课程的开发与讲授，并考察培训效果； </br>
+                                                                                    负责对培训相关的内外部资源进行有效管理、引进和利用； </br>
+                                                                                    员工培训档案的维护与管理； </br>
+                                                                                    领导安排的其他工作。</br>
+                                                                                    </br>
+                                                                                    
+                                                                                    职位要求：</br> 
+                                                                                    本科以上学历，年龄25-35周岁，2年以上金融行业讲师工作经验； </br>
+                                                                                    有较强的组织能力、沟通能力和执行力，可独立进行课程、课件的设计研发；</br> 
+                                                                                    有较强的亲和力和感染力、良好的文字和语言表达能力，形象仪表良好； </br>
+                                                                                    熟练运用WORD、EXCEL等办公软件。</br>
+						</p>
+    				</div>
+				</div>
+				
+		     </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+	</div>
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+
+<!---content begin--------------------------------------->
+
+
+<!---content begin--------------------------------------->
+<div class="banner">
+	<div class="home-container">
+	
+
+<!-------------------我要融资------------------------->
+<div class="financing fn-clear">
+    <h3 class="financtitle ml15"><span>您的融资需求信息已经提交..</span></h3>
+    <ul class="financnav">
+        <li class="on">个人经营融资</li>
+    </ul>
+    <div class="financon mt20 ml15">
+        <!-------------------个人经营融资------------------------->
+        <div class="personfnc">
+            <div class="fnccon">
+                <div class="fncsuc">您的融资申请已提交，请根据“融资提示”相关要求补充电子资料并发送至审核邮箱：<em/>$!appConstantsUtil.getLoanRequestMail()</em>，资料提交得越完善，审核通过机率越大。</div>##leledai365@163.com
+                <div class="fnctips">
+                    <h4>融资提示</h4>
+                    <h5>申请人需准备以下电子资料：</h5>
+                    <p>1、借款人身份证正反面</p>
+                    <p>2、婚姻证明（可为结婚证、离婚证、单身证明）</p>
+                    <p>3、企业营业执照、代码证、税务登记证、章程</p>
+                    <p>4、企业和法人、财务负责人简介</p>
+                    <p>5、近三年和近期财务报表、科目余额表</p>
+                    <p>6、企业生产经营状况实景照片</p>
+                    <p>7、还款来源证明材料（如已签订将要实现收入的合同、应收账款等）</p>
+                    <p>8、担保物资料（如房产证信息、房屋图片、保证人信息）</p>
+                    <p>9、人行企业征信报告（查询时间应在提交该申请之前的1个月内）</p>
+                </div>
+            </div>
+            <p class="fncnote">注：上述资料可提交高清数码照或扫描件，邮件格式：姓名+融资标题，如：张三-个人经营融资-电子资料.zip。本着对客户负责的原则，平台会对客户资料信息严格保密！</p>
+            <div class="fncbtn mt20"><a href="javascript:history.go(-1);">返回</a></div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!---content end--------------------------------------->
+	
+</div>
+
+	#parse("/front/index/common/footer-yrd.vm")
+	
+	#parse("/front/index/common/js.vm")
+	<script src="/resources/js/lib/jquery.slidy.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'loanRequestPage.js');
+	</script>
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+    	$('.hl-menu ul li').mouseenter(function(){
+        	$(this).find('ul').show();
+    	}).mouseleave(function(){
+    		$(this).find('ul').hide();
+		});
+
+	});	
+	
+	$('area').click(function(){
+			window.open($(this).attr('path'));
+			return false;
+		})	
+		
+	(function(){
+	    var old = window.onload;
+		window.onload = function(){
+		    $('.fn-hr-menu a').mouseover(function(){
+			    if(!$(this).hasClass('curr')) {
+				    $(this).addClass('curr');
+					$(this).unbind('mouseout').mouseout(function(){
+					    $(this).removeClass('curr');
+					});
+				}
+			});
+	
+		}
+		})	
+		
+	(function(){
+	    var old = window.onload;
+		window.onload = function(){
+		    $('.fn-hr-menu a').mouseover(function(){
+			    if(!$(this).hasClass('curr')) {
+				    $(this).addClass('curr');
+					$(this).unbind('mouseout').mouseout(function(){
+					    $(this).removeClass('curr');
+					});
+				}
+			});
+	
+		}
+		})
+	$(document).ready(function(){
+		$('.hl-menu ul li').mouseenter(function(){
+    	$(this).find('ul').show();
+		}).mouseleave(function(){
+		$(this).find('ul').hide();
+		});
+	});			
+		
+</script>			
+
+
+
+<!------选项卡-------->
+<script type="text/javascript">
+$('.financnav li').click(function(){
+	var now=$(this).index();
+	$(this).siblings('.financnav li').removeClass('on');
+	$(this).addClass('on');
+	$('.financon').children('div').hide();
+	$('.financon').children('div').eq(now).show();
+});
+</script>
+</body>
+</html>

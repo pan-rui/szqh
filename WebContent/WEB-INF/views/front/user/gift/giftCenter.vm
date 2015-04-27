@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>会员礼包</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+	
+	.i_type{
+	padding: 0 30px 25px;
+	}
+	
+	.i_type li.focus {
+    background: #a60000;
+    color: #fff;
+    }
+    .i_type li {
+    float: left;
+    display: inline;
+    height: 34px;
+    line-height: 34px;
+    background: #d6d6d6;
+    padding: 0 15px;
+    color: #787878;
+    margin: 0 1px 0 0;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    cursor: pointer;
+    }
+	.i_type a {
+    color: #333;
+    }
+	.i_type a.ocur {
+    color: #fff;
+    }
+	
+	.ft-999 {
+    color: #333;
+    }
+
+	 .safe-serve{
+	 	padding: 0 30px 25px;
+	 }
+	 
+	.safe .safe-serve li {
+    padding: 10px;
+    position: relative;
+    }
+	.safe .safe-serve li a {
+    font-size: 14px;
+    font-weight: bold;
+	position: inherit;
+    top: 25px;
+    right: 30px;
+    }
+	.safe .safe-serve li em {
+	 font-size: 14px;
+    color: #333;
+    }
+	.safe .safe-serve li em.w200{
+	width:200px;
+	}
+	.safe .safe-serve li em.w150{
+	width:150px;
+	}
+</style>
+<body>
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<h3 class="con-title">会员礼包</h3>
+			<div class="safe">
+				<div class="safe-level">
+					<p class="ft-999 fn-mt5">我的提现优惠券(<b class="ft-f60">$!{withDrawAmout}</b>) </p>
+					##<p class="ft-999 fn-mt5">一周内将要过期提现优惠券 (0) 有效提现优惠券(1) </p>
+				</div>
+				<div style="display: block;padding-bottom: 40px;">
+					<ul class="i_type">
+						<li  #if($!{checkType} ==1) class="focus"#end>
+							<a id="new" #if($!{checkType} ==1) class="ocur"#end href="/userGift/giftCenter?checkType=1">最新获得的礼品：</a>
+                        </li>
+						<li #if($!{checkType} ==2) class="focus"#end>
+							<a id="usage" #if($!{checkType} ==2) class="ocur"#end href="/userGift/giftCenter?checkType=2">礼品使用记录：</a>
+                        </li>
+                    </ul>
+                </div>
+				<div class="safe-serve">
+					#if($!{checkType}==1)
+						<ul>
+							#if($!page.result.size()==0 || !$!page.result)
+                				<li class="border-b fn-clear">
+        							<p>您还没有获得任何礼品，点此
+        								<a style="right:400px;top:30px;" href="/userGift/activityCenter">
+        									参与活动获得礼品
+                                        </a>
+                                    </p>
+        						</li>
+            				#end
+							#foreach($item in $!{page.result})
+    							<li class="border-b fn-clear">
+        							<em class="w200">您获得$!{item.giftNumber}张$!{item.giftName}</em>
+        							<em class="w150">赠送人：$!{item.relatedRealName}</em>
+        							<em class="w200">获得时间：$!{dateUtil.simpleFormat($!{item.finishTime})}</em>
+        							<em class="w150" style="text-align:center;"><a style="top:30px;" href="javascript:document.location.href='/userGift/giftDetail?giftId=$!{item.tblBaseId}';">详情 >></a></em>
+        						</li>
+    						#end	
+					</ul>
+					#else
+						<ul>
+							#if($!page.result.size()==0 || !$!page.result)
+                				<li class="border-b fn-clear">
+        							<p>暂无礼品使用记录，点此
+        								<a style="right:400px;top:30px;" href="/userGift/activityCenter">
+        									参与活动获得礼品
+                                        </a>
+                                    </p>
+        						</li>
+            				#end
+							#foreach($item in $!{page.result})
+    							<li class="border-b fn-clear">
+        							<em class="w200">您使用了$!{item.useAmount}张$!{item.giftName}</em>
+        							<em class="w200">使用时间：$!{dateUtil.simpleFormat($!{item.useTime})}</em>
+        							<em class="w200" style="text-align:center;">状态：#if($!{item.status}==1)成功#elseif($!{item.status}==2)处理中#else失败#end</em>
+        						</li>
+    						#end	
+					</ul>
+					#end
+					
+					<div class="fn-tb-bottom fn-clear">
+    				#parse("/backstage/page/page.vm")
+    			</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'giftCenter');
+		
+    </script>
+</body>
+</html>

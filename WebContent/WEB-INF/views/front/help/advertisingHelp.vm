@@ -1,0 +1,77 @@
+#parse("/front/index/common/header-title.vm")
+<style type="text/css">
+.brief-con span{
+	##float:left;  
+    line-height:20px;  
+	text-align:left;
+    height:20px;  
+	height:auto;
+	display:inline-block;
+}
+</style>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+	<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	#if($!{advertisingHelpCenter})
+    	<h2 class="title1 mt10"><span>鑫福家园</span></h2>
+		<div class="con-list mt20">
+        <ul>
+         #foreach($info in $advertisingHelp)
+        	 <li><a href="/help/advertisingHelp/$!{info.popId}">$!{info.title}</a></li>
+		 #end
+        </ul>
+        </div>
+		 <div class="brief-con" style="float: right; width: 750px;">
+			<h3>$!{advertisingHelpFist.title}</h3>
+			<div>
+				$!{advertisingHelpFist.content}
+			</div>
+		 </div>
+        #else
+		<h2 class="title1 mt10"><span>鑫福家园</span></h2>	
+		<div class="con-list mt20">
+        <ul>
+    		#foreach($info in $advertisingHelp)
+            	 <li><a href="/help/advertisingHelp/$!{info.popId}">$!{info.title}</a></li>
+			#end
+        </ul>
+		</div>
+		<div class="brief-con" style="float: right; width: 750px;">
+		   <h3>$!{popAdvertising.title}</h3>
+		   <div>
+			  $!{popAdvertising.content}
+		 </div>
+		  </div>
+        #end
+    </div>
+    <div class="blank50"></div>
+    </div>
+	  </div>
+	  </div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		$(function(){
+		
+			var href=location.pathname;
+			
+			$('.con-list li:first').addClass('on');
+			
+			if($('.con-list a[href="'+href+'"]').length){
+				$('.con-list li:first').removeClass('on');
+				$('.con-list a[href="'+href+'"]').parent('li').addClass('on')
+			}
+		})
+    </script>
+</body>
+</html>

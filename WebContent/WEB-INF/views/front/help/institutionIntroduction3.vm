@@ -1,0 +1,94 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box container">
+    	<h2 class="title1"><span>问答</span></h2>
+        <div class="about-us mt20">
+        	<div class="about-txt">
+			<h3>常见问题</h3>
+			<div class="brief-con" style="line-height:30px;">
+				
+#*			<h4>1.$!{appConstantsUtil.getProductName()}是什么？</h4>
+				<p style="text-indent:2em">$!{appConstantsUtil.getProductName()}——安全的互联网理财平台，致力于为投资人提供安全、有保障、高收益互联网理财服务。投资人通过$!{appConstantsUtil.getProductName()}平台，可将手中富余资金出借给由全国100强小额贷款公司推荐的优质中小微企业、个体工商户等借款人，在帮助其成长发展的同时获得可观利息回报。 </p>
+				<p style="text-indent:2em">$!{appConstantsUtil.getProductName()}平台对全国100强小额贷款公司推荐客户进行二级评审，确保推荐客户的信贷质量；全国100强小额贷款公司对推荐到平台优质借款人提供后备贷款服务，确保借款人按时归还投资人的投资本息；平台联手第三方支付“易极付”，实行第三方资金托管机制，真正保障投资人、借款人资金通道及用途安全、真实。真正实现“快乐投资、无忧赚钱”。 </p>
+*#
+
+#*				<h4>1.百合贷产品有哪些特色？</h4>
+				<p style="margin-top:5px;">1）合规合法且公信力强</p>
+				<p style="margin-top:5px;">2）购买起点低，期限灵活</p>
+				<p style="margin-top:5px;">3）收益稳定</p>
+
+				<p style="margin-top:5px;">4）安全性高</p>
+#*				<h4>2．$!{appConstantsUtil.getProductName()}产品安全吗？</h4>
+				<p style="text-indent:2em;font-weight:bold;">100%本息保障   八重风控保障  资金安全坚若磐石</p>
+				<p style="text-indent:2em">（1）全国百强小额贷款公司入围金粮宝平台。</p>
+				<p style="text-indent:2em">（2）小额贷款公司的投前尽调、投后管理。</p>
+				<p style="text-indent:2em">（3）小额贷款公司对投资标的提供后备贷款承诺，保障全额本息。</p>
+				<p style="text-indent:2em">（4）小贷公司特定股东提供无限连带责任担保。</p>
+				<p style="text-indent:2em">（5）小贷公司提交项目放款风险保证金。</p>
+				<p style="text-indent:2em">（6）$!{appConstantsUtil.getProductName()}对小额贷款公司二次审查。</p>
+				<p style="text-indent:2em">（7）专业第三方支付平台易极付提供资金托管，保证安全、合规。</p>
+				<p style="text-indent:2em">（8）博恩软件开发为$!{appConstantsUtil.getProductName()}金融平台提供维护，保障系统信息安全。</p>
+
+#*				<h4>2.收益怎样计算?</h4>
+				<p>收益=投资本金*平台公布的相关投资收益率*期限（月）/12。</p>
+				<h4>3.有哪些方式可以给账户充值？</h4>
+				<p>通过网银充值或快捷支付，资金转入用户的第三方支付账户。</p>
+				<h4>4.如何提取现金？</h4>
+				<p>您可以随时将我的账户中的可用余额申请提现到您绑定的银行的账号上。</p>
+				<h4>5.投资资金是否安全？</h4>
+				<p>1）委托依法取得第三方支付经营资格的“易极付”对双方资金进行管理，客户资金并不进入平台公司。</p>
+				<p>2）对会员进行严格的实名认证，绑定到银行卡只能是会员信息匹配的银行卡，资金转出就只能到绑定的银行账号上，从而确保出金安全。</p>
+				<p>3）易极付制定了严格的资金管理和监控系统，能快速解决可能出现资金异常情况和资金纠纷。</p>
+				<h4>6.投资收益如何？</h4>
+				<p>12%以上的预期年化收益率（具体看投资的期限和当时的投资收益率）。</p>
+				<h4>7.投资期限</h4>
+				<p>投资期限一般有：1月、3月、6月、12月，具体以发布为准。</p>
+				<h4>8.银行资金划入、划出说明（单位：元）</h4>
+				<h5>8-1．网银划入</h5>
+				<p><img src="/styles/images/home/tu_3.jpg"/></p>
+				##<h5>8-2．银行划转</h5>
+				##<p>通过银行柜台划转，可根据个人设置额度划转，一般银行无额度限制。</p>
+				<h5>8-2．快捷支付</h5>
+				<p><img src="/styles/images/home/tu1.jpg"/></p>
+				<p>您在进行快捷支付的过程中可能不会即时到账，关于具体延迟时限您可以参见下图。</p>
+				<p><img src="/styles/images/home/tu2-1.jpg"/></p>
+				<h4>9.页面显示不正常, 密码输入框老是出不来?</h4>
+				<p>如果页面显示不正常, 您可以尝试使用其它浏览器, 如谷歌chrome和火狐firefox浏览器, 如果密码框无法显示, 请安装最新版Adobe Flash Player, 我们也在一直努力提高用户体验, 期待给您带来最好的服务！</p>
+				<h4>10.什么是投资接受人?</h4>
+				<p>投资接受人是指有项目资金需求，且有担保公司的履约承诺书，接受平台注册投资人对其项目定向投资的人。</p>
+				<h4>11.什么是投资权益?</h4>
+				<p>投资人对项目投资以后，形成“本金+收益”的投资权益。</p>
+				<h4>12.什么是担保公司承诺?</h4>
+				<p>如果借款人到期不能归还投资人的投资本息，作出连带保证承诺的担保公司将无条件为投资接受人（借款人）进行代偿，兑付投资人的“本金+收益”。</p>
+				<h4>13.收益从什么时候开始计算?</h4>
+				<p>合同成立生效即开始计算。</p>
+				<h4>14.确定投资期间利息怎么算?</h4>
+				<p>无利息，投标期限一般不会超过三天。</p>
+				<h4>15.周末想进行实名认证，没有很快收到认证邮件怎么回事？</h4>
+				<p>我们会在周末的下一个工作日及时给您进行认证处理。</p>
+				<h4>16. 投资项目期满的到期日如何确定？</h4>
+				<p>我们一般以月为周期。到期日为月数届满的那个月中与收到借款日对应的“日”，该月无此对应日的，为该月最后一日。如截止日为非工作日，则顺延至此后第一个工作日。</p>
+*#
+			</div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+	</div>
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'institution');
+    </script>
+</body>
+</html>

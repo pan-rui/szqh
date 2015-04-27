@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>营销统计</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<div class="trad-detail">
+    			<div class="my-list mb10 fn-clear">
+					<div class="mc-border">
+        				<h3 class="con-title">佣金统计</h3>
+        				<!--列表-->
+        				<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+        					<tr>
+								<td>已收款的佣金金额(元)：<span class="ft-f60">￥$!{statisticsInfo.paidInvestAmount.toStandardString()}</span> </td>
+								<td>待收款的佣金金额(元)：<span class="ft-f60">￥$!{statisticsInfo.waitToPayInvestAmount.toStandardString()}</span> </td>
+        					</tr>
+                            <tr>
+                                <td><span style="font-weight:bold">累计佣金金额(元)：</span> <span class="ft-f60">￥$!{statisticsInfo.totalAmount.toStandardString()}</span> </td>
+                            </tr>
+        				</table>
+        			</div>
+    				<div class="list-1 mc-border fn-left">
+    					<h3 class="con-title">快捷访问</h3>
+    					<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+    						<tr>
+    							<td width="30">001</td>
+    							<td width="320">营销统计 >  查看待成立的交易</td>
+    							<td><a href="/marketingCenter/salesList?status=1" class="fn-h-btn"><span>立即查看</span></a></td>
+    						</tr>
+							<tr>
+    							<td width="30">002</td>
+    							<td width="320">营销统计 >  查看已成立的交易</td>
+    							<td><a href="/marketingCenter/salesList?status=2" class="fn-h-btn"><span>立即查看</span></a></td>
+    						</tr>
+							<tr>
+    							<td width="30">003</td>
+    							<td width="320">营销统计 >  查看未成立的交易</td>
+    							<td><a href="/marketingCenter/salesList?status=4" class="fn-h-btn"><span>立即查看</span></a></td>
+    						</tr>
+    						<tr>
+    							<td>004</td>
+    							<td>营销统计  >  查看到期未还款的交易</td>
+    							<td><a href="/marketingCenter/salesList?status=5" class="fn-h-btn"><span>立即查看</span></a></td>
+    						</tr>
+    						<tr>
+    							<td>005</td>
+    							<td>营销统计  >  查看已收款的交易</td>
+    							<td><a href="/marketingCenter/salesList?status=3" class="fn-h-btn"><span>立即查看</span></a></td>
+    						</tr>
+    					</table>
+    				</div>
+    				<div class="list-2 mc-border fn-right">
+    					<h3 class="con-title">常规统计</h3>
+    					<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+    						<tr>
+    							<td>待成立的交易总数：</td>
+    							<td class="text-r ft-f60"><span style="color:red;">$!{statisticsInfo.collectingInvestCount}个</span></td>
+    						</tr>
+							<tr>
+    							<td>已成立的交易总数：</td>
+    							<td class="text-r ft-f60"><span style="color:red;">$!{statisticsInfo.repaingInvestCount}个</span></td>
+    						</tr>
+							<tr>
+    							<td>未成立的交易总数：</td>
+    							<td class="text-r ft-f60"><span style="color:red;">$!{statisticsInfo.faildInvestCount}个</span></td>
+    						</tr>
+    						<tr>
+    							<td>到期未还款交易总数：</td>
+    							<td class="text-r ft-f60"><span style="color:red;">$!{statisticsInfo.repayFaildInvestCount}个</span></td>
+    						</tr>
+    						<tr>
+    							<td>已收款的交易总数：</td>
+    							<td class="text-r ft-f60"><span style="color:red;">$!{statisticsInfo.repayFinishInvestCount}个</span></td>
+    						</tr>
+    					</table>
+    				</div>
+    			</div>
+		</div>
+	</div>
+   </div>
+	#parse("/front/index/common/footer.vm")
+    <script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

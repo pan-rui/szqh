@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<base href="$!{rc.contextPath}/" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="resources/mjr/css/global.css">
+	<link rel="stylesheet" href="resources/mjr/css/common.css">
+	
+</head>
+<body class="usercenter">
+	<!-- include siteNav module, adjusted according to your needs -->
+	#parse("/front/index/common/header-mjr.vm")
+	<!-- end include -->
+
+	<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+
+	<div class="md-module">
+		<div class="md-default-c pc-width padding-fix clearf">
+			<div class="u-c clearf">
+				<div class="user-photo grid">
+					<img src="img/user-default.png">
+				</div>
+				<div class="user-info grid">
+					<p class="username">sandy</p>
+					<p class="note">下午好, 工作辛苦了, 喝杯水保持身体健康哦~</p>
+					<a href="#" class="alert f-r"><span class="icon-base01 alert"></span><span class="tip">9</span></a>
+					<div class="clearf">
+						<span class="icon-base01 os-active"></span>
+						<span class="icon-base01 phone"></span>
+						<span class="icon-base01 email"></span>
+						<span class="safe p"><span>安全等级: </span><span class="s-c"><span class="safe-j"></span></span>高</span>
+						<span class="lasttime p">上次登录时间: 2015-4-20 17:20:35</span>
+					</div>
+				</div>
+				<div class="menu grid">
+					#parse("/front/common/user-menu.vm")
+				</div>
+				<div class="context grid">
+
+				<!-- 充值成功 -->
+					<div class="success">
+						<span class="icon-base01 ok"></span>
+						<h3 class="ok-text">快捷充值申请已提交，需要等待银行处理结果！</h3>
+						<div class="line"></div>
+					</div>
+					<div class="tips">
+						<p>温馨提示：</p>
+						1.  一个账户只能绑定一张银行卡，您充值的资金将只能提现到该银行卡内；<br>
+						2.  充值操作支持国内大部分银行的网上银行，只要您开通了网上银行的账户即可充值；<br>
+						3.  由于大多数银行的网银系统只支持IE浏览器，请您进行充值时使用IE浏览器；<br>
+						4.  充值过程中，请勿关闭浏览器窗口，操作完成后，浏览器会自动跳转返回到网站界面；<br>
+						5.  如果您在充值过程中遇到任何问题，请咨询客服人员。
+					</div>
+					<div class="go-f">
+						<a href="/userManage/rechargeRecord" class="f">查看充值记录</a>
+						<a href="/userManage/topUp/withholdingIndex">继续充值</a>
+					</div>
+				<!-- 充值成功end -->
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- include foot module, adjusted according to your needs -->
+	#parse("/front/index/common/footer-mjr.vm")
+	<!-- end include -->
+	<script src="resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/mjr/js/laydate.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="resources/mjr/js/run.js"></script>
+</body>
+</html>

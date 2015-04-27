@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>融资发布审核管理</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body>
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<h3 class="con-title">融资发布审核管理</h3>
+			<!--查询条件-->
+			<form action="/guaranteeCenter/loanDeployGuaranteeAuth" method="post">
+				<div class="fn-inquiry">
+					<div class="fn-condition time-cond">
+						<dl class="fn-clear">
+							<dt>编号：</dt>
+							<dd>
+								<input type="text" class="fn-text w120" name="guaranteeLicenseNo" value="$!{queryConditions.guaranteeLicenseNo}" />
+							</dd>
+							<dt>名称：</dt>
+							<dd>
+								<input type="text" class="fn-text w120" name="guaranteeLicenseName" value="$!{queryConditions.guaranteeLicenseName}" />
+							</dd>
+							<dd class="ml10">
+    							<a href="javascript:;" class="fn-h-btn"><button type="submit" >搜索 </button></a>
+    						</dd>
+						</dl>
+						
+					</div>
+				</div>
+			</form>
+			<!--列表-->
+			<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+				<tr class="thead">
+					<td width="100">意向承诺函编号</td>
+					<td width="100">意向承诺函名称</td>
+					<td width="100">融资发布状态</td>
+					<td width="150">创建时间</td>
+					<td width="100">操作</td>
+				</tr>
+				#if($!page.result.size()==0)
+    				<tr class="even">
+        				<td colspan=5 align=center>暂时没有记录</td>
+        			</tr>
+				#end
+				#foreach($info in $page.result)
+					<tr>
+						<td>$!{info.guaranteeLicenseNo}</td>
+						<td>$!{info.guaranteeLicenseName}</td>
+						<td style="color:green;">待发布</td>
+						<td>$!dateUtil.simpleFormat($!{info.demandDate})</td>
+						<td>
+							#set($t = $permission.check('/tradeQuery/manualReimbursement'))
+							#if($t>0)
+								<a href="/guaranteeCenter/loanDeployGuartAuthDetail/$!{info.demandId}">融资发布审核</a>
+							#end
+						</td>
+					</tr>
+				#end
+			</table>
+			<!--分页-->
+			<div class="fn-tb-bottom fn-clear">
+				#parse("/backstage/page/page.vm")
+			</div>
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'guarantee');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/guaranteeCenter/loanDeployGuaranteeAuth"
+			+"?guaranteeLicenseNo=$!{queryConditions.guaranteeLicenseNo}"
+			+"&guaranteeLicenseName=$!{queryConditions.guaranteeLicenseName}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url; 
+		}
+    </script>
+</body>
+</html>

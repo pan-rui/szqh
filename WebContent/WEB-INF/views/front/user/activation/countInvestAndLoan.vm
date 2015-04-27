@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户首页</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp" style="color:#666;">
+	<div class="main-content fn-right">
+		#set($t = $permission.check('/tradeQuery/entries/12/1'))
+			#if($t > 0)
+			<div class="mc-border">
+				<h3 class="con-title">投资统计(元)</h3>
+				<!--列表-->
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+					<tr>
+						<td colspan="3">已投资：$!{investCount.totalTransactions} 笔，累计投资金额：<span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.totalInvestedAmount})}</span></td>
+					</tr>
+					<tr style="display:none;">
+                        <td>待成立的投资：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.collectingInvestedAmount})}</span></td>
+						<td>未成立的投资：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.faildInvestedAmount})}</span></td>
+						<td class="text-r"></td>
+					</tr>
+					<tr style="display:none;">
+						<td>待收回本金：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.notPaidInvestedPrincipleAmount})}</span></td>
+						<td>待收回利息收益：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.notPaidInvestedProfitAmount})}</span></td>
+						<td class="text-r"></td>
+					</tr>
+					<tr style="display:none;">
+						<td>已收回本金：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.paidInvestedPrincipleAmount})}</span></td>
+						<td>已收回利息收益：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.paidInvestedProfitAmount})}</span></td>
+						<td class="text-r"></td>
+					</tr>
+					<tr style="display:none;">
+						<td>待回款：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.notPaidInvestedAmount})}</span></td>
+						<td>已回款：</td>
+						<td><span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{investCount.paidInvestedAmount})}</span></td>
+						<td class="text-r"></td>
+					</tr>
+				</table>
+			</div>
+			#end
+			#set($t = $permission.check('/tradeQuery/borrowingRecord'))
+			#if($t > 0)
+			<div class="mc-border">
+				<h3 class="con-title">融资统计(元)</h3>
+				<!--列表-->
+				<table cellpadding="0" cellspacing="0" border="0" width="100%" class="fn-table sl-wrap sl-wrap-table">
+					<tr>
+                        <td colspan="2">累计申请融资： $!{loanedCount.totalTransactions} 笔，累计融资金额：<span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{loanedCount.totalLoanedMoney})}</span></td>
+						<td>成功融资：<span class="ft-f60">￥$!{moneyUtil.getFormatAmount($!{loanedCount.successLoanedMoney})}</span></td>
+						<td class="text-r"></td>
+					</tr>
+				</table>
+			</div>
+			#end
+        </div>
+	</body>
+</html>
+			

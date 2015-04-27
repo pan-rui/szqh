@@ -1,0 +1,26 @@
+<form action="/backstage/customNoteSubmit" method="post" class="ui-form" id="add_customNote_form">
+<fieldset>
+	<legend><h3><span id='customName'>$!{itemInfo.infoName}</span></h3></legend>	
+	<div class="customModule">
+		<input type="hidden" name="demandId" value="$!{info.demandId}"/>
+		<input type="hidden" name="customId" id="customId" value=""/>
+		<input type="hidden" name="selItemId" value=""/>
+		<div class="item">
+			<textarea name="customNote" id="customNote" class="u-area" style="width:700px;height:400px;"></textarea>
+		</div> 
+		<!--
+		<div class="item">
+			<label for="" class="u-label">融资人补充话语：</label>
+			<textarea name="loanStatement" id="" class="u-area"  checklen="ckloanStatement" maxlen ="125" ></textarea>
+			<label class="u-tip" id ="ckloanStatement">字数限制125个字</label>
+		</div>-->
+	</div>
+</fieldset>
+</form>
+
+<div class="item mt10" #if($!{doType}=='info') style="display:none;" #else style="margin-left:200px;" #end >
+    <a href="javascript:;"  class="u-btn u-btn-blue" id='look_btn'>预览</a>
+	<a href="javascript:;"  class="u-btn u-btn-blue wite-submit">发布</a>
+	<a href="javascript:;"  class="u-btn u-btn-blue save_btn" id='custom_save_btn'>保存并编辑下一页</a>
+	<a href="javascript:history.go(-1);" class="u-btn u-btn-gray">取消</a>
+</div>

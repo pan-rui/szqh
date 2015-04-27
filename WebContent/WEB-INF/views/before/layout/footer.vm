@@ -1,0 +1,16 @@
+<div class="foot">
+    <div class="container fn-clear">
+        <div class="foot-nav fn-left"> <span class="foot-hot-line"><b>客服热线：</b>400 251 3547</span>
+            <p><a href="#">关于我们</a><span class="split">|</span><a href="#">法律法规</a><span class="split">|</span><a href="#">新手指引</a><span class="split">|</span><a href="#">理财攻略</a><span class="split">|</span><a href="#">网站地图</a></p>
+        </div>
+        <div class="foot-icon fn-right">
+            <ul>
+                <li><a class="foot_icon icon1" href="#"></a></li>
+                <li><a class="foot_icon icon2" href="#"></a></li>
+                <li><a class="foot_icon icon3" href="#"></a></li>
+                <li><a class="foot_icon icon4" href="#"></a></li>
+                <li><a class="foot_icon icon5" href="#"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

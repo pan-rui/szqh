@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>创建单位用户</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")	
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;"  >开户管理</a> > 机构用户管理</p>
+					</div>
+					<form action="/backstage/userManage/institutionManage/addInstitutionsUserSubmit" class="ui-form"  id="institutions_form" method="POST">
+						<fieldset>
+							<legend><h3>$!appConstantsUtil.getProductName()金融开户信息</h3></legend>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>用户名：</label>
+								<input type="text" class="u-input w170" name="userName" />
+								<p class="u-tip" id="user_Name">用户名为6-20位字母或数字或下划线组合</p>
+								
+							</div>
+							<!--<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>机构简码：</label>
+								<input type="text" class="u-input w170" name="institutionsInCode" />
+								6-10字母
+							</div>-->
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>机构简码：</label>
+								<input type="text" class="u-input w170" maxlength="30" name="identityName" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>机构号段范围：</label>
+								<input type="text" class="u-input w70" maxlength="9" name="identityStartNo"/> ~ <input type="text" class="u-input w70" maxlength="9" name="identityEndNo" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>用户角色：</label>
+								<p class="u-text">
+									<input type="hidden"   name="roleIds"  value="1"/>
+									<input type="checkbox" class="checkbox" name="roleIds" value="7"/><label for="" class="mr10">$!appConstantsUtil.getProductName()金融</label>
+									<input type="checkbox" class="checkbox" name="roleIds" value="8"/><label for="" class="mr10">承诺机构</label>
+									<input type="checkbox" class="checkbox" name="roleIds" value="9"/><label for="" class="mr10">保荐机构</label>
+									<input type="checkbox" class="checkbox" name="roleIds" value="10"/><label for="">营销机构</label>
+									<input type="checkbox" class="checkbox" name="roleIds" value="13"/><label for="">融资人</label>
+									
+								</p>
+							</div>
+							<div class="item">
+								<div id="refereesDiv" style="display:none">
+    								<label for="" class="u-label">推荐人：</label>
+    								<input type="text" class="u-input w170" name="referees"/><span>请填写推荐人编号</span><b id="referees-messge-right"></b><b id="referees-messge"></b>
+								</div>
+							</div>
+
+							<input type="hidden" name="type" value="JG"/>
+							<input type="hidden" name="state" value="inactive"/>
+							<input type='hidden' id="uploadHost" value="$!{uploadHost}"/>
+						</fieldset>
+						<fieldset>
+							<legend><h3>易极付开户信息</h3></legend>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>账户名：</label>
+								<input type="text" class="u-input w170" readOnly name="accountName" />
+								<p class="u-tip">
+									易极付账户名由$!appConstantsUtil.getProductName()用户名生成并自动绑定
+                                </p>
+								
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>企业名称：</label>
+								<input type="text" class="u-input w170" name="enterpriseName" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>组织机构代码：</label>
+								<input type="text" class="u-input w170" name="organizationCode"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>税务登记号：</label>
+								<input type="text" class="u-input w170" name="taxRegistrationNo" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>营业执照注册号：</label>
+								<input type="text" class="u-input w170" name="businessLicenseNo" />
+							</div>
+							<div class="item fn-clear Y-selectarea">
+								<label  class="u-label"><span class="required">*</span>营业执照所在地：</label>
+    							<input name="businessLicenseProvince" type="hidden" />
+    							<input name="businessLicenseCity" type="hidden"/>
+								<div class="jqtransform jqtransform-select3">
+									<select name="p"  class="Y-province">
+									</select>
+								</div>
+								<div class="jqtransform jqtransform-select3">
+									<select name="c"  data="thisCity" class="Y-city">	
+									</select>
+								</div>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>常用地址：</label>
+								<input type="text" class="u-input w170" name="commonlyUsedAddress"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>邮政编码：</label>
+								<input type="text" class="u-input w170" name="zipCode"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>公司联系电话(座机)：</label>
+								<input type="text" class="u-input w170" name="companyPhone"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>经营期限：</label>
+								<input type="date" yearRange='[-10,40]' class="u-input w112 fn-isdate" name="businessPeriod"/>
+								<p class="u-tip"><input type="checkbox" id="isForever" class="checkbox" name="businessPeriod" value="longTime"/><label for="">长期</label></p>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>法人代表姓名：</label>
+								<input type="text" class="u-input w170" name="legalRepresentativeName" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>法人身份证号码：</label>
+								<input type="text" class="u-input w170" name="legalRepresentativeCardNo" onChange="javascript:this.value=this.value.toUpperCase();"/>
+								<p class="u-tip"> 身份证号末位为字母"X",只能为大写 </p>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>法人身份证期限：</label>
+								<input type="date" yearRange='[-10,40]' class="u-input w112 fn-isdate1" name="legalRepresentativeCardPeriod"/>
+								<p class="u-tip"><input type="checkbox" id="isForeverCard" class="checkbox" name="legalRepresentativeCardPeriod" value="longTime"/><label for="">长期</label></p>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>常用联系人：</label>
+								<input type="text" class="u-input w170" name="contactName" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>联系人身份证号：</label>
+								<input type="text" class="u-input w170" name="contactCertNo" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>联系电话：</label>
+								<input type="text" class="u-input w170" name="mobile" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>邮箱：</label>
+								<input type="text" class="u-input w170"  name="mail"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>上传企业营业执照副本扫描件：</label>
+								<span class="sl-file">
+									<input type="file" exts="png|jpg|bmp" class="sl-file-input" id="businessLicensePathUpload"/>
+									支持图片格式为:jpg、png、bmp,最大为3M.
+								</span>
+								<div id="businessLicensePath_imgcontainer" style = "display:none;height:265px;">
+									<input type='hidden' id="businessLicensePath" name="businessLicensePath"/>
+									<a href="javascript:;" id="businessLicensePathImgLink" name="businessLicensePathImgLink" title="企业营业执照副本扫描件">  
+										<img id="businessLicensePathImg" name="businessLicensePathImg" title="企业营业执照副本扫描件" style = "width:450px;height:260px;"  src=""/>
+                                    </a> 
+								</div>
+							</div>
+							
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>上传加盖公章的企业营业执照副本扫描件</label>
+								<span class="sl-file">
+									<input type="file" exts="png|jpg|bmp" class="sl-file-input" id="businessLicenseCachetPathUpload"/>
+									支持图片格式为:jpg、png、bmp,最大为3M.
+								</span>
+								<div id="businessLicenseCachetPath_imgcontainer" style = "display:none;height:265px;">
+									<input type='hidden' id="businessLicenseCachetPath" name="businessLicenseCachetPath"/>
+									<a href="javascript:;" id="businessLicenseCachetPathImgLink" name="businessLicenseCachetPathImgLink" title="加盖公章的企业营业执照副本扫描件">  
+										<img id="businessLicenseCachetPathImg" name="businessLicenseCachetPathImg" title="加盖公章的企业营业执照副本扫描件" style = "width:450px;height:260px;"  src=""/>
+                                    </a> 
+								</div>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>上传法人代表身份证正面照片：</label>
+								<span class="sl-file">
+									<input type="file" exts="png|jpg|bmp" class="sl-file-input" id="certFrontPathUpload"/>
+									请上传身份证正面彩色照，支持图片格式为:jpg、png、bmp,最大为3M.
+								</span>
+								<div id="certFrontPath_imgcontainer" style = "display:none;height:265px;">
+									<input type='hidden' id="certFrontPath" name="certFrontPath"/>
+									<a href="javascript:;" id="certFrontPathImgLink" name="certFrontPathImgLink" title="法人代表身份证正面照片">  
+										<img id="certFrontPathImg" name="certFrontPathImg" title="法人代表身份证正面照片" style = "width:450px;height:260px;"  src=""/>
+                                    </a> 
+								</div>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>上传法人代表身份证背面照片：</label>
+								<span class="sl-file">
+									<input type="file" exts="png|jpg|bmp" class="sl-file-input" id="certBackPathUpload"/>
+									请上传身份证反面彩色照，支持图片格式为:jpg、png、bmp,最大为3M.
+								</span>
+								<div id="certBackPath_imgcontainer" style = "display:none;height:265px;">
+									<input type='hidden' id="certBackPath" name="certBackPath"/>
+									<a href="javascript:;" id="certBackPathImgLink" name="certBackPathImgLink" title="法人代表身份证背面照片">  
+										<img id="certBackPathImg" name="certBackPathImg" title="法人代表身份证背面照片" style = "width:450px;height:260px;"  src=""/>
+                                    </a> 
+								</div>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>上传开户许可证：</label>
+								<span class="sl-file">
+									<input type="file" exts="png|jpg|bmp" class="sl-file-input" id="openingLicensePathUpload"/>
+									支持图片格式为:jpg、png、bmp,最大为3M.
+								</span>
+								<div id="openingLicensePath_imgcontainer" style = "display:none;height:265px;">
+									<input type='hidden' id="openingLicensePath" name="openingLicensePath"/>
+									<a href="javascript:;" id="openingLicensePathImgLink" name="openingLicensePathImgLink" title="开户许可证照片">  
+										<img id="openingLicensePathImg" name="openingLicensePathImg" title="开户许可证照片" style = "width:450px;height:260px;"  src=""/>
+                                    </a> 
+								</div>
+							</div>
+							
+							<div class="item">
+								<label for="" class="u-label"><span class="required"></span>银行开户名：</label>
+								<input type="text" class="u-input w170" name="bankOpenName" />
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required"></span>银行账户：</label>
+								<input type="text" class="u-input w170" name="bankCardNo" />
+							</div>
+							<div class="item fn-clear">
+								<input name="bankKey" type="hidden" />
+								<label for="" class="u-label"><span class="required"></span>开户银行：</label>
+								<div class="jqtransform jqtransform-select3">
+									<select name="bankType" >
+										<option >请选择银行</option>
+									</select>
+								</div>
+							</div> 
+							
+						</fieldset>
+						<div class="item">
+							<a href="javascript:;" class="u-btn u-btn-blue submit_form" >创建 </a><a href="/backstage/userManage/institutionManage" class="u-btn u-btn-gray">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+		$_GLOBAL.yrdPrefixion = "$!appConstantsUtil.getYrdPrefixion()";
+    	seajs.use($_GLOBAL.mode + 'institutions_user');
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+	<div class="top">
+    	<div class="w990">
+            <ul class="top_nav">
+				#if($sessionScope)
+                <li><a href="javascript:;"><span>您好，$!{sessionScope.userName}</span></a></li>
+				<li><a href="$!{rc.contextPath}/login/logout?redirect=/login/login" style="color: #a60000;">[安全退出]</a></li>
+                <li class="ns"></li>
+                <li><a href="$!{rc.contextPath}/userManage/userHome">我的账户</a></li>
+                <li class="ns"></li>
+                <li><a href="/deduct/launchDeduction">充值</a></li>
+				#else
+				<li><a href="$!{rc.contextPath}/login/login">登录</a></li>
+				<li class="ns"></li>
+				<li><a href="/anon/investorsOpen">免费注册</a></li>
+				#end
+            </ul>
+        </div>
+    </div>
+    
+    <div class="head">
+    	<div class="w990">
+            <div class="fn-left">
+            	<font size="6" color="#999999">$!appConstantsUtil.getProductName()<span>|</span></font> <font size="4" color="#999999">您的金融服务专家</font>
+            </div>
+            <div class="main_nav fn-right">
+            	<a href="/">首页</a>
+                <span>/</span>
+                <a href="$!{rc.contextPath}/userManage/userHome">账户管理</a>
+                <span>/</span>
+                <a href="$!{rc.contextPath}/boot/invest/10/1">我要投资</a>
+				<span>/</span>
+                <a target="_blank" href="/help/center">帮助中心</a>
+            </div>
+        </div>
+    </div>

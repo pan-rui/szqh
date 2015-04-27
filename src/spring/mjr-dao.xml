@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:osgi="http://www.springframework.org/schema/osgi"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/osgi http://www.springframework.org/schema/osgi/spring-osgi.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+	
+	<context:annotation-config />
+	<import resource="classpath*:spring/yrd-common-dal-db.xml"/>
+<!--	<bean id="identityObtainer" class="com.yjf.yrd.ibatis.IdentityObtainerImpl" parent="baseSqlMapClientDAO" />
+	<bean id="roleDao" class="com.yjf.yrd.ibatis.RoleDaoImpl" parent="baseSqlMapClientDAO">
+		  <property name="identityObtainer" ref="identityObtainer" />
+	</bean>
+	<bean id="permissionDao" class="com.yjf.yrd.ibatis.PermissionDaoImpl" parent="baseSqlMapClientDAO">
+		  <property name="identityObtainer" ref="identityObtainer" />
+	</bean>
+	<bean id="userRoleDao" class="com.yjf.yrd.ibatis.UserRoleDaoImpl" parent="baseSqlMapClientDAO"/>
+	<bean id="rolePermissionDao" class="com.yjf.yrd.ibatis.RolePermissionDaoImpl" parent="baseSqlMapClientDAO"/>-->
+	<bean id="testDao" class="com.yjf.yrd.mjr.dao.TestDao" parent="baseSqlMapClientDAO"/>
+
+</beans>

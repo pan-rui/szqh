@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>添加银行卡</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body>
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<h3 class="con-title mb20">快捷签约</h3> 
+			<form action="/bank/addBankCard?signed=yes" method="post" id="signBankCard_form">
+				<div class="fn-item">
+                    <label style="font-size:18px;"><strong >电子商务交易转账服务条款: </strong></label>
+					<div class="fm-license">
+                        <div class="license-con">
+                          <br>
+                            1、易极付电子商务交易转账服务是重庆易极付科技有限公司（以下简称“易极付”）为各大银行借记卡账户客户提供的通过易极付账户进行交易的电子支付服务。凡是持有银行借记卡账户且已在易极付合作电商平台开户的会员（以下简称“会员”），均可申请该项服务。
+						   </br>
+						   <br >
+                            2、会员只可通过平台网站申请银行借记账户易极付电子商务交易转账服务，将易极付账户和银行借记卡账户建立绑定支付关系，并自行承担由此产生的一切法律责任。
+                            </br>
+						   <br >
+                            3、易极付受会员委托对会员在平台网站发起的电子指令进行资金处理。会员须妥善保管易极付账户、支付密码、本人证件号码、卡面信息等重要信息，因未妥善保管易极付账户、支付密码、本人证件号码、卡面信息等重要信息而引起的风险和损失由会员本人自行承担。
+                            </br>
+						   <br >
+                            4、会员同意本服务责任条款并完成建立易极付账户和银行借记账户的绑定关系，即视为会员同意并授权易极付按照其提交的电子指令从绑定借记账户中自动代扣相应的电子商务交易款项。
+                            </br>
+						   <br >
+                            5、会员不得利用银行卡借记账户与易极付账户的绑定关系进行虚假交易、洗钱以及其他违法行为，且有义务配合易极付进行相关调查。因会员从事虚假交易、洗钱以及其他违法行为导致易极付任何损失（包括但不限于易极付因为不能及时发现该行为而被有关机关处罚所产生的损失）的，会员应对易极付承担损失赔偿责任。
+                            </br>
+						   <br >
+                            6、易极付仅为会员提供基于其电子指令的支付清结算服务，会员在通过易极付支付清结算过程中所产生的一切与交易本身有关的争议均由会员之间以及会员与平台网站之间自行协商解决，概与易极付无关，易极付不承担由此产生的任何法律责任。
+                            </br>
+						   <br >
+                            7、会员在平台网站发起的所有电子支付指令，易极付都视同会员充分知晓并授权易极付完成。若相关电子支付指令出现错误，易极付进行支付执行，引起的纠纷和损失概由会员及平台网站自行解决和承担，易极付不承担由此产生的任何责任及后果。
+                            </br>
+						   <br >
+                            8、会员在平台网站通过易极付划拨资金时，易极付将收取相应手续费，手续费的收取标准以平台网站公布的为准。
+                            </br>
+						   <br >
+                            9、当因系统或银行等各种原因造成易极付账户异常，会员应立即上报易极付或相关服务商，并配合进行调查核实，任何情况下，会员不得将错误资金转入其银行卡账户。
+							</br>
+						   <br >
+                            10、当易极付发现会员账户异常或出现差错时，有权暂时停止该账户的使用，待原因查明后，依法恢复使用。除非能够证明易极付对此有过错，否则易极付对由此产生的任何后果均不承担法律责任。
+                            </br>
+						   <br >
+                            11、若会员利用系统故障、网络故障、系统缺陷等获取非法所得，会员承担全部法律责任。易极付保留追究该会员法律责任（包括但不限于要求承担全部损失赔偿责任或向国家机关举报追究相应刑事责任）的权利。
+                            </br>
+						   <br >
+                            12、本服务条款在会员签订之后至会员正式通知易极付解约之前一直有效，若有任何其他协议或条款（包括但不限于会员与银行之间所签订的委托扣款协议）与本服务条款的内容和描述有冲突或不一致的，以本服务条款为准。
+                            </br>
+						   <br >
+                            13、选择接受条款的会员，视同完全理解和接受本服务责任条款的全部内容且无任何异议。易极付拥有对本责任条款的最终解释权。
+							<br >
+						</div>
+                    </div>
+					<input type="checkbox" id="license" name="license" checked="checked" class="checkbox">
+                    <label style="color:#666;">
+						已阅读并同意
+						<a id="btn_license" href="javascript:;">《电子商务交易转账服务条款》</a>
+					</label>
+                </div>
+				<div class="fn-item">
+					<a href="javascript:;" class="fn-g-btn mr10"><button type="submit">同意</button></a>
+					<a href="/userManage/userHome" class="fn-h-btn"><span>返回</span></a>
+				</div>
+			</form>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		var signBankCard_form = $('#signBankCard_form');
+		signBankCard_form.submit(function(){
+			return validateForm();
+		});
+		function validateForm(){
+			if($('#license').attr("checked")=="checked"){
+				return true;
+			}else{
+				alert("请勾选服务条款！");
+				return false;
+			}
+		}
+		#if($!{fail}){
+			alert("未签约，请先同意服务条款");
+		}
+		#end
+    </script>
+</body>
+</html>

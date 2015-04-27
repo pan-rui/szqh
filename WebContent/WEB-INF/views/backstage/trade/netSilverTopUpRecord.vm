@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>交易管理-充值查询</title>
+		<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+    </head>
+	<body>
+		<div class="warp">
+			<!--头部-->
+    		#parse("/backstage/layout/logo.vm")
+    		<!--内容-->
+			<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">交易管理</a> > 充值查询</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstage/netSilverTopUpRecord" method="get" id="netSilverTopUpRecord_form">
+							<dl>
+								<dt>充值流水号：</dt>
+								<dd><input type="text" class="u-input w170"  name="payNo" value="$!{queryOrder.payNo}"/></dd>
+							</dl>
+							<dl>
+								<dt>充值银行卡号：</dt>
+								<dd><input type="text" class="u-input w170"  name="bankAccountNo" value="$!{queryOrder.bankAccountNo}"/></dd>
+							</dl>
+							<dl>
+								<dt>$!appConstantsUtil.getProductName()用户名：</dt>
+								<dd><input type="text" class="u-input w170"  name="userId" value="$!{userName}"/></dd>
+							</dl>
+							<dl>
+								<dt>金额区间：</dt>
+								<dd><input type="text" class="u-input w90 mask_money" name="minAmountIn" value="$!{queryOrder.minAmountIn}"/> - <input type="text" class="u-input w90 mask_money" name="maxAmountIn" value="$!{queryOrder.maxAmountIn}"/></dd>
+							</dl>
+							<dl>
+								<dt>时间区间：</dt>
+								<dd><input type="date" class="u-input w90" name="startTime" value="$!yrdDateUtil.simpleFormat($!{queryOrder.startTime})"/> - <input type="date" class="u-input w90" name="endTime"  value="$!yrdDateUtil.simpleFormat($!{queryOrder.endTime})"/></dd>
+							</dl>
+							<button type="submit" class="s-btn" style="cursor:pointer;">搜索</button>
+                        </form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<!--
+							<a href="javascript:;" class="p-btn syschLocal" style="cursor:pointer;">同步到本地</a>
+							-->
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="130">($!appConstantsUtil.getProductName())充值流水号</th>
+								<th width="130">(易极付)充值流水号</th>
+								<th width="60">用户名</th>
+								<th width="100">充值金额(元)</th>
+								<th width="50">充值方式</th>
+								<th width="100">充值银行</th>
+								<th width="120">银行卡号</th>
+                                <th width="50">充值状态</th>
+                                <th width="120">充值时间</th>
+							</tr>
+							#if($!page.result.size()==0 || !$!page.result)
+                				<tr class="even">
+                    				<td colspan=11 align=center>暂时没有提现记录</td>
+                    			</tr>
+							#end
+							#foreach($info in $page.result)	
+								<tr>
+									<td>$!{info.outBizNo}</td>
+    								<td>$!{info.payNo}</td>
+                                    <td>$!{info.accountName}</td>
+    								<td>$!{info.amouontIn}</td>
+    								<td>#if($!{info.apiAccess}=="EBANK_B2C"||$!{info.apiAccess}=="EBANK_B2B")网银划入
+    									#elseif($!{info.apiAccess}=="DEDUCT") 快捷划入
+    									#end</td>
+    								<td>$!{info.bankName}</td>
+    								<td>$!{info.bankAccountNo}</td>
+                                    <td class="orange">
+        								<b>
+                							#if($!{info.status}=="DEPOSITED" || $!{info.status}=="SUCCESS") 
+                							成功
+            								#elseif($!{info.status}=="FAILURE" || $!{info.status}=="CANCELED" || !$!{info.status})
+                							失败
+            								#else
+                							处理中
+            								#end	
+        								</b>
+    								</td>
+                                    <td>$!yrdDateUtil.simpleFormatYmdhms($!{info.payTime})</td>
+                                </tr>
+								#end
+                        </table>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+                    </div>
+                </div>
+            </div>
+		</div>
+        </div>
+		<script type="text/javascript">
+    	var $_GLOBAL = {};
+        </script>
+    	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+    	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+    	<script type="text/javascript">
+        	seajs.use($_GLOBAL.mode + 'demo');
+    		function toPage(totalPage, pageNo){
+        		if(totalPage<pageNo){
+        			return false;
+        		}
+    			var url = "/backstage/netSilverTopUpRecord"
+    			+"?startTime=$!yrdDateUtil.simpleFormat($!{queryOrder.startTime})"
+    			+"&endTime=$!yrdDateUtil.simpleFormat($!{queryOrder.endTime})"
+    			+"&minAmountIn=$!{queryOrder.minAmountIn}"
+    			+"&maxAmountIn=$!{queryOrder.maxAmountIn}"
+    			+"&payNo=$!{queryOrder.payNo}"
+    			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+    			window.location.href=url;
+    		}
+			$(".syschLocal").click(
+				function(){
+					if(window.confirm("确认进行同步？")){
+    					var url = '/backstage/syschLocalRechargeFlow';
+                		var data = {};
+                		var result = $_GLOBAL.ajax(url, data);
+    					alert(result.message);
+    					document.location.href = document.location.href;
+					}
+				}
+			);
+        </script>
+    </body>
+</html>

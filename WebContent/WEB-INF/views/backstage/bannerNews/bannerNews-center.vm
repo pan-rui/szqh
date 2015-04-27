@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>发布公告服务</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">对外服务管理</a> > 图片新闻</p>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="/backstage/addBannerNews?type=$!{type}" class="p-btn addUser">新增</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						
+						<table class="m-table">
+							<tr>
+
+								<th width="200">标题</th>
+
+								<th width="100">外部链接</th>
+								<th width="120">创建时间</th>
+								<th width="80">状态</th>
+								<th width="150">操作</th>
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+
+								<td>$!{info.title}</td>
+
+								<td>$!{info.remark}</td>
+								<td>$!{dateUtil.simpleFormat($!{info.addTime})}</td>
+								<td>
+									#if($!{info.status}==1)
+										创建完毕
+									#elseif($!{info.status}==2)
+										已上线
+									#elseif($!{info.status}==3)
+										已下线
+									#end	
+								</td>
+								<td><a href="/backstage/updateBannerNews?popId=$!{info.popId}">修改</a> | <a name="online_link" data="$!{info.popId}" href="javascript:;">上线</a> | <a name="offline_link" data="$!{info.popId}" href="javascript:;">下线</a>
+								| <a name="offline_privew" target="_blank" href="/help/announcement/$!{info.popId}">预览</a></td>
+								
+							</tr>
+						#end
+						</table>
+						<input type="hidden" value="JG" data="userType"/>
+						<div class="p-box pages-b fn-clear">
+							<a href="/backstage/addBannerNews?type=$!{type}" class="p-btn addUser">新增</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+        seajs.use($_GLOBAL.mode + 'popCenter');
+ 		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/bannerNews?"
+			+"payNo=$!{order.payNo}"
+			+"&pageSize=$!{page.pageSize}&type=$!{type}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

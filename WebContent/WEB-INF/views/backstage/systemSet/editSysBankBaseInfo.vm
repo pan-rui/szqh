@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>银行维护设置</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")	
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">系统设置</a> >银行维护</p>
+					</div>
+					<form action="/backstage/sysBankInfoManage/updateSysBankInfo" method="post" class="ui-form" id="edit_form">
+						<fieldset>
+							<legend><h3>$!appConstantsUtil.getProductName()银行维护</h3></legend>
+							<div class="item">
+								<label for="" class="u-label">银行简称：</label>
+								<input type="text" class="u-input w170"  readOnly  name="bankCode" value="$!{info.bankCode}"  maxlength=""/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label">银行名称：</label>
+								<input type="text" class="u-input w170"  readOnly name="bankName" value="$!{info.bankName}"  maxlength=""/>
+							</div>
+                            <div class="item" name="singleDeduct">
+                                <label for="" class="u-label"><span class="required">*</span>单笔限额：</label>
+                                <input type="text" class="u-input w170" name="singleDeductLimit" value="$!{info.withholdingAmount}" maxlength="11"/>
+                                <p class="u-tip" >元</p>
+                                <label class="u-tip">人民币大写：  <b id="singleDeducChinese" class="u-tip"></b></label>
+                            </div>
+                            <div class="item" name="singleWithdrawal" style="display: none">
+                                <label for="" class="u-label"><span class="required">*</span>提现限额：</label>
+                                <input type="text" class="u-input w170" name="singleWithdrawalLimit" value="$!{info.withdrawAmount}" maxlength="11"/>
+                                <p class="u-tip" >元</p>
+                                <label class="u-tip">人民币大写：  <b id="singleWithdrawalChinese" class="u-tip"></b></label>
+                            </div>
+                            <div class="item">
+                                <label for="" class="u-label"><span class="required">*</span>每日限额：</label>
+                                <input type="text" class="u-input w170" name="dayWithholdingAmount" value="$!{info.dayWithholdingAmount}" maxlength="11"/>
+                                <p class="u-tip" >元</p>
+                                <label class="u-tip">人民币大写：  <b id="dayWithholdingChinese" class="u-tip"></b></label>
+                            </div>
+							<div id="selectModules" class="item" style="z-index:10;">
+								<label for="" class="u-label">签约方式：</label>
+								<div class="jqtransform jqtransform-select3">
+									<select name="signedWay">
+										<option #if($!{info.signedWay}=="") selected  #end value="">&nbsp;</option>
+										<option #if($!{info.signedWay}=="1") selected  #end value="1">不签约</option>
+										<option #if($!{info.signedWay}=="2") selected  #end value="2">柜台签约</option>
+										<option #if($!{info.signedWay}=="3") selected  #end value="3">代签</option>
+										<option #if($!{info.signedWay}=="4") selected  #end value="4">网签</option>
+                                    </select>
+									
+                                </div>
+							</div><br/><br/>
+							
+							<div class="item">
+								<label for="" class="u-label">银行图片：</label>
+								<input type="text" class="u-input w170" name="logoUrl" value="$!{info.logoUrl}"  maxlength=""/>
+							</div>
+							
+							<div class="item">
+								<label for="" class="u-label">银行备注：</label>
+								<input type="text" class="u-input w170"  name="memo" value="$!{info.memo}"  maxlength=""/>
+							</div>
+							<div id="selectModules" class="item" style="z-index:10;">
+								<label for="" class="u-label">是否停用：</label>
+								<div class="jqtransform jqtransform-select3">
+									<select name="isStop">
+										<option #if($!{info.isStop}=="") selected  #end value="" >&nbsp;</option>	
+										<option #if($!{info.isStop}=="0") selected  #end value="0" >停用</option>
+										<option #if($!{info.isStop}=="1") selected  #end value="1" >正常</option>
+                                    </select>
+									
+                                </div>
+							</div><br/><br/>
+							<input type="hidden" id="rawAddTime" name="rawAddTime" value="$!dateUtil.simpleFormat($!{info.rawAddTime})"/>
+							<input type="hidden" id="rawUpdateTime" name="rawUpdateTime" value="$!dateUtil.simpleFormat($!{info.rawUpdateTime})"/>
+						</fieldset>
+
+						<div class="item">
+                            <input type="button" id="SysBankInfo_form" class="u-btn u-btn-gray"  value="更新"/><a href="/backstage/sysBankInfoManage" class="u-btn u-btn-gray">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/datepicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="/resources/js/xheditor/xheditor-1.2.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/xheditor/xheditor_lang/zh-cn.js"></script>
+	<script type="text/javascript">
+	seajs.use($_GLOBAL.mode + 'delBaseBankinfo');
+	$(document).ready(function(){
+		var s = $("[name=singleWithdrawalLimit]").val().replace(".00","");
+		var s2 = $("[name=singleDeductLimit]").val().replace(".00","");
+		
+		$("[name=singleWithdrawalLimit]").attr("value",s);
+		$("[name=singleDeductLimit]").attr("value",s2);
+
+	})
+		
+    </script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<form action="/backstage/loanerBaseInfoSubmit" method="post" class="ui-form" id="add_loanerBaseInfo_form">
+<fieldset>
+	<legend><h3>$!{itemInfo.infoName}</h3></legend>	
+	<div class="loanerBaseInfo">
+		<input type="hidden" name="selItemId" value=""/>
+		<input type="hidden" name="demandId" value="$!{info.demandId}"/>
+		
+		<div class="item">
+			<label for="" class="u-label"><span class="required">*</span>借款人用户名：</label>
+			<input type="text" readOnly class="u-input w170" name="loanerUserName" maxlength="32" value="$!{info.userName}"/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真实姓名：
+			<input type="text" readOnly class="u-input w170" name="loanerRealName" maxlength="32" value="$!{realName}"/>
+		</div>
+		
+		<div class="item" style="z-index:18;">
+			<label for="" class="u-label"><span class="required">*</span>性别：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="gender">
+					<option value="">---&nbsp;请选择&nbsp; ---</option>
+					<option value="男" #if($!{loanerInfo.gender}=="男") selected #end>男</option>
+					<option value="女" #if($!{loanerInfo.gender}=="女") selected #end>女</option>
+				</select>
+			</div>
+			
+			<label for="" class="u-label2"><span class="required">*</span>年龄：</label>
+			<input type="text" class="u-input mask_money mask_only_number" name="age" maxlength="2" value="$!{loanerInfo.age}"/>
+		</div>
+		
+		<div class="item" style="z-index:17;">
+			<label for="" class="u-label"><span class="required">*</span>学历：</label>
+			<div class="jqtransform jqtransform-select3">
+				<input type="hidden" class="edus" value="$!{loanerInfo.education}">
+				<select name="education">
+					<option value="">---&nbsp;请选择&nbsp; ---</option>
+					<option value="小学" #if($!{loanerInfo.education}=="小学") selected #end>小学</option>
+					<option value="初中" #if($!{loanerInfo.education}=="初中") selected #end>中学</option>
+					<option value="高中" #if($!{loanerInfo.education}=="高中") selected #end>高中</option>
+					<option value="大学" #if($!{loanerInfo.education}=="大学") selected #end>大学</option>
+					<option value="硕士" #if($!{loanerInfo.education}=="硕士") selected #end>硕士</option>
+					<option value="博士" #if($!{loanerInfo.education}=="博士") selected #end>博士</option>
+				</select>
+			</div>
+			
+			<label for="" class="u-label2"><span class="required">*</span>婚姻状态：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="married">
+					<option value="">---&nbsp;请选择&nbsp; ---</option>
+					<option value="已婚" #if($!{loanerInfo.married}=="已婚") selected #end>已婚</option>
+					<option value="未婚" #if($!{loanerInfo.married}=="未婚") selected #end>未婚</option>
+					<option value="离异" #if($!{loanerInfo.married}=="离异") selected #end>离异</option>
+				</select>
+			</div>
+		</div>
+		
+		<br></br>
+		<div class="item" style="z-index:16;">
+			<label for="" class="u-label"><span class="required">*</span>职业：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="profession">
+					<option value="">---&nbsp;请选择&nbsp; ---</option>
+					<option value="工人" #if($!{loanerInfo.profession}=="工人") selected #end>工人</option>
+					<option value="农民" #if($!{loanerInfo.profession}=="农民") selected #end>农民</option>
+					<option value="个体" #if($!{loanerInfo.profession}=="个体") selected #end>个体</option>
+					<option value="公务员" #if($!{loanerInfo.profession}=="公务员") selected #end>公务员</option>
+					<option value="事业单位人员" #if($!{loanerInfo.profession}=="事业单位人员") selected #end>事业单位人员</option>
+					<option value="军人" #if($!{loanerInfo.profession}=="军人") selected #end>军人</option>
+					<option value="其他" #if($!{loanerInfo.profession}=="其他") selected #end>其他</option>
+				</select>
+			</div>
+			
+			<label for="" class="u-label2"><span class="required">*</span>子女状况：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="haveChild">
+					<option value="">---&nbsp;请选择&nbsp; ---</option>
+					<option value="无" #if($!{loanerInfo.haveChild}=="无") selected #end>无</option>
+					<option value="有" #if($!{loanerInfo.haveChild}=="有") selected #end>有</option>
+				</select>
+			</div>
+		</div>
+		
+		<br></br>
+
+		<div class="item">
+			<label for="" class="u-label"><span class="required">*</span>户籍城市：</label>
+			<input type="text" class="u-input" name="householdRegister" maxlength="32" value="$!{loanerInfo.householdRegister}"/>
+		</div>
+		
+		<div class="item">
+			<label for="" class="u-label"><span class="required">*</span>月收入水平：</label>
+			<input type="text" class="u-input mask_money mask_only_number" name="salary" maxlength="32" value="$!{loanerInfo.salary}"/>
+			<p class="u-tip">元/月</p>
+		</div>
+	</div>
+</fieldset>
+
+<fieldset>
+	<legend><h3>借款人资产信息</h3></legend>	
+		<div class="item" style="z-index:14;">
+			<label for="" class="u-label">是否有房：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="haveHouse">
+					<option value="无"  #if($!{loanerInfo.haveHouse}=="无") selected #end>无</option>
+					<option value="有"  #if($!{loanerInfo.haveHouse}=="有") selected #end>有</option>
+				</select>
+			</div>
+		</div>
+		<br></br>
+		<div class="item">
+			<label for="" class="u-label">房屋面积：</label>
+			<input type="text" class="u-input w170 mask_money" name="houseArea" maxlength="20" value="$!{loanerInfo.houseArea}"/> m2
+		</div>
+		
+		<div class="item">
+			<label for="" class="u-label">房屋估值：</label>
+			<input type="text" class="u-input w170 mask_money" name="houseValue" maxlength="20" value="$!{loanerInfo.houseArea}"/> 万元
+		</div>
+		
+		<div class="item" style="z-index:13;">
+			<label for="" class="u-label">是否有车：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="haveCar">
+					<option value="无" #if($!{loanerInfo.haveCar}=="无") selected #end>无</option>
+					<option value="有" #if($!{loanerInfo.haveCar}=="有") selected #end>有</option>
+				</select>
+			</div>
+		</div>
+		<br></br>
+		<div class="item">
+			<label for="" class="u-label">车牌号码：</label>
+			<input type="text" class="u-input w170" name="carNumber" maxlength="20" value="$!{loanerInfo.carNumber}"/>
+		</div>
+		
+		<div class="item">
+			<label for="" class="u-label">车辆估值：</label>
+			<input type="text" class="u-input w170 mask_money" name="carValue" maxlength="20" value="$!{loanerInfo.carValue}"/> 万元
+		</div>
+		
+		<div class="item" style="z-index:12;">
+			<label for="" class="u-label">房产抵押：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="houseMortgage">
+					<option value="否">否</option>
+					<option value="是" #if($!{loanerInfo.houseMortgage}=="是") selected #end>是</option>
+				</select>
+			</div>
+		</div>
+		<br></br>
+		<div class="item" style="z-index:11;">
+			<label for="" class="u-label">车产抵押：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="carMortgage">
+					<option value="否">否</option>
+					<option value="是" #if($!{loanerInfo.carMortgage}=="是") selected #end>是</option>
+				</select>
+			</div>
+		</div>
+		<br></br>
+		
+		<div class="item">
+			<label for="" class="u-label">其他资产：</label>
+			<textarea class="u-area" name="otherAssets" checklen="cksponsorStatement" maxlen ="500">$!{loanerInfo.otherAssets}</textarea>
+			<label class="u-tip" id ="cksponsorStatement">字数限制500个字</label>
+		</div>
+		<!--
+		<div class="item">
+			<label for="" class="u-label"><span class="required">*</span>月收入水平：</label>
+			<input type="text" class="u-input w170 salary" name="salaryLevel" maxlength="32" value="$!{loanerInfo.salaryLevel}"/>
+		</div>
+		<div class="item" style="z-index:10;">
+			<label for="" class="u-label"><span class="required">*</span>是否有其他贷款：</label>
+			<div class="jqtransform jqtransform-select3">
+				<select name="otherLoans">
+					<option value="无">无</option>
+					<option value="有" #if($!{loanerInfo.otherLoans}=="有") selected #end>有</option>
+				</select>
+			</div>
+		</div>
+		<br></br>
+		<div class="item">
+			<label for="" class="u-label">扩展信息1：</label>
+			<textarea class="u-area" name="info1" checklen="cksponsorStatement" maxlen ="125"> $!{loanerInfo.info1}</textarea>
+			<label class="u-tip" id ="cksponsorStatement">字数限制125个字</label>
+		</div>
+		<div class="item">
+			<label for="" class="u-label">资产信息：</label>
+			<textarea class="u-area" name="info2" checklen="cksponsorStatement" maxlen ="125"> $!{loanerInfo.info2}</textarea>
+			<label class="u-tip" id ="cksponsorStatement">字数限制125个字</label>
+		</div>
+		<div class="item">
+			<label for="" class="u-label">财务状况：</label>
+			<textarea class="u-area" name="info3" checklen="cksponsorStatement" maxlen ="125"> $!{loanerInfo.info3}</textarea>
+			<label class="u-tip" id ="cksponsorStatement">字数限制125个字</label>
+		</div>
+		<div class="item">
+			<label for="" class="u-label">抵押物详情：</label>
+			<textarea class="u-area" name="info4" checklen="cksponsorStatement" maxlen ="125"> $!{loanerInfo.info4}</textarea>
+			<label class="u-tip" id ="cksponsorStatement">字数限制125个字</label>
+		</div>
+		<div class="item">
+			<label for="" class="u-label">风险保证金保障：</label>
+			<textarea class="u-area" name="info5" checklen="cksponsorStatement" maxlen ="125"> $!{loanerInfo.info5}</textarea>
+			<label class="u-tip" id ="cksponsorStatement">字数限制125个字</label>
+		</div>	
+		-->
+</fieldset>
+
+<fieldset>
+	<legend><h3>借款人其他信息</h3></legend>
+	<div class="item">
+		<textarea name="otherInfo" id="otherInfo" class="u-area" style="width:700px;height:400px;">$!{loanerInfo.otherInfo}</textarea>
+	</div> 
+</fieldset>
+
+<fieldset>
+	<legend><h3>借款人资料信息审核情况（可选）</h3></legend>
+	<div class="item">
+		<input type="checkbox" name="isAuthentication" id="isAuthentication" class="checkbox" #if($!{loanerInfo.isAuthentication}=="on") checked #end /><label >已审核身份证</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" name="isAuditAccount" id="isAuditAccount" class="checkbox" #if($!{loanerInfo.isAuditAccount}=="on") checked #end /><label >已审核户口本</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" name="isAuditMarriage" id="isAuditMarriage" class="checkbox" #if($!{loanerInfo.isAuditMarriage}=="on") checked #end /><label >已审核结婚证</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" name="isAuditHouseContract" id="isAuditHouseContract" class="checkbox" #if($!{loanerInfo.isAuditHouseContract}=="on") checked #end /><label >已审核购房合同/房产证</label>
+		<br></br>
+		<input type="checkbox" name="isAuditMortgage" id="isAuditMortgage" class="checkbox" #if($!{loanerInfo.isAuditMortgage}=="on") checked #end /><label >已审核抵押手续</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" name="isAuditIncome" id="isAuditIncome" class="checkbox" #if($!{loanerInfo.isAuditIncome}=="on") checked #end /><label >已审核收入证明</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="checkbox" name="isAuditCredit" id="isAuditCredit " class="checkbox" #if($!{loanerInfo.isAuditCredit}=="on") checked #end /><label >已审核信用报告</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</div> 
+</fieldset>
+
+<fieldset>
+	<legend><h3>附件上传</h3></legend>
+	<div class="item">
+		
+		<ul>
+		#foreach($!info in $!loanerAttaclist)
+			<li style="width:500px">
+				<span>$!info.message</span>
+				<span  class="">
+					<a code='$!{info.code}' href="javascript:;" class='loan_management fn-ys4-btn attach u-btn u-btn-blue attach2' style="margin:5px;">上传</a>
+				</span>
+			</li>
+		#end
+		</ul>
+	</div>
+
+	<!--上传扫描件-->
+    <div class="fn-layer f-active upload-scan" style="width:750px;position:absolute;left:-9999px;" id="upload-scan2" >
+    	<div class="f-con">
+			<div class="f-top mb10">
+				<p>图片支持jpg、jpeg、png、bmp格式，单张图片大小不超过1M，双击可编辑图片名称,图片名称不超过50字</p>
+			</div>
+			#set($index=1)
+			#foreach($!info in $!loanerAttaclist)
+					<input type="hidden" value="" name="pathName_$!info.code" id="pathHiddenId_2_$index"/>
+				#set($index=$index+1)
+			#end
+			<input type="hidden" value="" name="OTHER_attachPaths" id="OTHER_attachPaths"/>
+			<div class="fn-item fn-clear" style="width:550px;">
+				<label class="fn-label">上传图片</label>
+                <img style="width:50px;height:50px;" class="uploadimg" id="uploadimg2"/>
+            </div>
+			<input type="file" id='upfile' class="fn-text w205" value="" name="credentialsImage"/>
+			<div id="queueDiv"></div>
+				<ul id="hidden_imgs_ul" class="upload-img fn-clear hidden_imgs_ul_del">
+					<li id="upimg-model" style='display:none'>
+						<img src="" alt="" />
+						<a href="javascript:;" class="del" title="删除"></a>
+						<div class="fn-imgInfo" style="text-align:center;"><span></span><input style="display:none;" maxlength='50' /></div>
+					</li>								
+				</ul>
+			
+			<b class="fn-tip"></b>
+			<div class="fn-item">
+				<a href="javascript:;" class="fn-g-btn loanChecckSubmit">完成</a>
+			</div>
+		</div>
+ 	</div>
+	
+</fieldset>
+</form>
+
+<div class="item mt10" #if($!{doType}=='info') style="display:none;" #else style="margin-left:200px;" #end>
+    <a href="javascript:;"  class="u-btn u-btn-blue" id='look_btn'>预览</a>
+	<a href="javascript:;"  class="u-btn u-btn-blue wite-submit">发布</a>
+	<a href="javascript:;"  class="u-btn u-btn-blue save_btn" id='2_save_btn'>保存并编辑下一页</a>
+	<a href="javascript:history.go(-1);" class="u-btn u-btn-gray">取消</a>
+</div>

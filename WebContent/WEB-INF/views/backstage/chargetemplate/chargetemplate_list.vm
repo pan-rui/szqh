@@ -1,0 +1,428 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>模板管理-收费模板管理</title>
+	<link type="text/css" href="$!{rc.contextPath}/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">模板管理</a> > 收费模板管理</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="" method="get" name="frm">
+							<dl>
+								<dt>模板名称：</dt>
+								<dd><input type="text" class="u-input w120" name="name" value="$!{request.getParameter('name')}"/></dd>
+							</dl>
+							<dl>
+								<dt>收费对象：</dt>
+								<dd>
+                                    <div class="jqtransform jqtransform-select3">
+										<select name="roles" id="">
+											<option value="loaner">融资人</option>
+											<option value="investor">投资人</option>
+											<option value="guarantee">承诺机构</option>
+                                            <option value="sponsor">保荐机构</option>
+											<option value="marketing">营销机构</option>
+											<option value="broker">经纪人</option>
+										</select>
+									</div>
+                                </dd>
+							</dl>
+                            <dl>
+								<dt>模板类型：</dt>
+								<dd> #set($t=$!{request.getParameter('type')})
+                                    <div class="jqtransform jqtransform-select3">
+										<select name="type" id="">
+											<option value="">全部</option>
+											<option value="public"#if($t=='public') selected="selected"#end>通用</option>
+											<option value="private"#if($t=='private') selected="selected"#end>定制</option>
+										</select>
+									</div>
+                                </dd>
+							</dl>
+							<a href="javascript:void(0);" class="s-btn" id="charge-template-search">搜索</a>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="javascript:void(0);" class="p-btn" id="charge-template-create">新增收费模板</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="240">模板名称</th>
+								<th width="240">收费对象</th>
+								<th width="240">模板类型</th>
+                                <th width="240">修改时间</th>
+                                <th class="text-r">操作</th>
+							</tr>
+							#foreach($template in $page.result)
+							<tr>
+								<td>$!{template.name}</td>
+                                <td roleId="$!{template.roleId}"></td>
+								<td t="$!{template.type}"></td>
+                                <td>$!dateUtil.simpleFormat($!{template.modifyDate})</td>
+                                <td class="text-r"><a href="javascript:void(0);" templateId="$!{template.id}">修改</a></td>
+							</tr>
+							#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	
+	
+	<!--修改收费模板信息-->
+	<div class="m-layer" style="display:none;width:860px;" id="charge-template-update">
+		<div class="title">
+			<h2><span id="status-template">修改</span>收费模板信息</h2>
+		</div>
+		<div class="cont">
+			<form action="" class="ui-form pt20">
+				<fieldset>
+					<div class="item">
+						<label for="" class="u-label"><span class="required">*</span>模板名称：</label>
+						<input type="text" class="u-input w170" value="" id="charge-template-name"/>
+						<input type="hidden" value="" id="charge-template-id"/>
+						<p class="u-tip">最多50个字符</p>
+					</div>
+					<div class="item fn-clear">
+						<label for="" class="u-label"><span class="required">*</span>收费对象：</label>
+						<div class="jqtransform jqtransform-select3">
+							<select name="roleId" id="roleId">
+								<option value="13" roleId="13">融资人</option>
+								<option value="12" roleId="12">投资人</option>
+								<option value="8" roleId="8">承诺机构</option>
+								<option value="9" roleId="9">保荐机构</option>
+								<option value="10" roleId="10">营销机构</option>
+								<option value="11" roleId="11">经纪人</option>
+							</select>
+						</div>
+					</div>
+					<div class="item">
+						<label for="" class="u-label"><span class="required">*</span>模板类型：</label>
+						<p class="u-text">
+							<input type="radio" class="radio" value="public" name="charge-template-type" /><label for="" class="mr10">通用</label>
+							<input type="radio" class="radio" value="private" name="charge-template-type" /><label for="">定制</label>
+						</p>
+					</div>
+				</fieldset>
+				<fieldset class="mb10">
+					<legend><h3>业务收费配置</h3></legend>
+					<div class="item">
+						<input type="radio" class="radio" id="charge-template-rule-amount" name="charge-template-rule" value="amount"/><label for="">固定金额</label>
+						<input type="text" class="u-input w120 ml10" id="charge-template-amount-value"/> 元
+					</div>
+					<div class="item">
+						<input type="radio" class="radio" id="charge-template-rule-percentage" name="charge-template-rule" value="percentage"/><label for="">百分比值</label>
+						<input type="text" class="u-input w120 ml10" id="charge-template-percentage-value"/> %
+					</div>					
+					<div class="item">
+						<input type="radio" class="radio" id="charge-template-rule-interval" name="charge-template-rule" value="interval"/><label for="">阶梯收费</label>
+						<div class="limit" id="rules-detail" style="display:none;">
+							<table class="" id="charge-template-rules">
+								<tr>
+									<td>额度范围</td><td>资费额度</td>
+								</tr>
+								<tr name="charge-template-rule-detail">
+									<td><input type="text" class="u-input w120" name="charge-template-rule-detail-start"/> - <input type="text" class="u-input w120" name="charge-template-rule-detail-end"/> 元</td>
+									<td>
+										<input type="text" class="u-input w120 mr5 fn-left" name="charge-template-rule-detail-value"/>
+										<div class="jqtransform jqtransform-select3 fn-left" name="charge-template-rule-detail-method">
+											<select name="" id="">
+												<option value="">元</option>
+												<option value="">%</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<a href="javascript:void(0);" class="u-btn u-btn-gray" id="charge-template-add-rule">添加一栏</a>
+						</div>
+					</div>
+				</fieldset>
+				<fieldset>
+					<div class="item">
+						<label for="" class="u-label"><span class="required">*</span>收费方式：</label>
+						<p class="u-text mb10"><input type="radio" class="radio" name="charge-template-method" id="charge-template-method-trade" value="trade"/><label for="">按笔</label></p>
+						<p class="mb10"><input type="radio" class="radio" name="charge-template-method" id="charge-template-method-month" value="month"/><label for="">按月(首次收费时间)</label>
+							<input type="date" class="u-input w120 ml10" id="charge-template-method-month-date" name="charge-template-date"/></p>
+						<p class="mb10"><input type="radio" class="radio" name="charge-template-method" id="charge-template-method-season" value="season"/><label for="">按季(首次收费时间)</label>
+							<input type="date" class="u-input w120 ml10" id="charge-template-method-season-date" name="charge-template-date"/></p>
+						<p class=""><input type="radio" class="radio" name="charge-template-method" id="charge-template-method-year" value="year"/><label for="">按年(首次收费时间)</label>
+							<input type="date" class="u-input w120 ml10" id="charge-template-method-year-date" name="charge-template-date"/></p>
+					</div>
+					<div class="item">
+						<label for="" class="u-label"><span class="required">*</span>收费项目：</label>
+						<p class="u-text" id="charge-template-project">
+							<input type="checkbox" class="checkbox" /><label for="" class="mr10">登记费</label>
+							<input type="checkbox" class="checkbox" /><label for="">发布费</label>
+						</p>
+					</div>
+				</fieldset>
+				<div class="item mt10">
+					<a href="javascript:void(0);" class="u-btn u-btn-blue" id="charge-template-submit">提交</a><a href="javascript:void(0);" class="u-btn u-btn-gray" id="charge-template-back">返回</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/plugins/jquery.window.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" >
+	   seajs.use($_GLOBAL.mode + 'chargettemplate');
+	</script>
+    <script type="text/javascript">
+    	$(function () {
+		  var productName="$!appConstantsUtil.getProductName()";
+    	  var tps = $('td[t]');
+    	  for(var i = 0; i < tps.length; i++){
+    	    var t = $(tps[i]);
+    	    var temp = t.attr('t');
+    	    if(temp == 'private'){
+    	      t.append('定制');
+    	    }else if(temp == 'public'){
+    	      t.append('通用');
+    	    }
+    	  }
+    	  var tds = $('td[roleId]');
+    	  for(var i = 0; i < tds.length; i++){
+    	    var t = $(tds[i]);
+    	    var temp = t.attr('roleId');
+    	    if(temp == '7'){
+    	      t.append(productName+'金融');
+    	    }else if(temp == '8'){
+    	      t.append('承诺机构');
+    	    }else if(temp == '9'){
+    	      t.append('保荐机构');
+    	    }else if(temp == '10'){
+    	      t.append('营销机构');
+    	    }else if(temp == '11'){
+    	      t.append('经纪人');
+    	    }else if(temp == '12'){
+    	      t.append('投资人');
+    	    }else if(temp == '13'){
+    	      t.append('融资人');
+    	    }
+    	  }
+    	});
+    	
+    	$('#charge-template-add-rule').click(function (){
+             addRule('', '', '', '');
+    	});
+    	
+    	
+    	$('#charge-template-search').click(function (){
+    	    toPage($!{page.totalPageCount}, $!{page.currentPageNo});
+    	});
+    	
+    	$('.text-r a[templateId]').click(function (){
+    	   document.getElementById('status-template').innerHTML = '修改';
+    	   clear();
+    	   var url = '$!{rc.contextPath}/chargetemplate/lookup/' + $(this).attr('templateId');
+    	   var json = $_GLOBAL.ajax(url);
+    	   initdata(json);
+    	   show();
+    	});
+    	
+    	
+    	$('.radio[name=charge-template-rule]').click(function (){
+    	   $('.radio[name=charge-template-rule]:checked').removeAttr('checked');
+    	   var t = $(this);
+    	   t.attr('checked', 'checked');
+    	   if(t.attr('id') == 'charge-template-rule-interval'){
+    	     if($('#charge-template-rules tr').length < 2){
+    	     	addRule('', '', '', '');
+    	     }
+    	     $('#rules-detail').show();
+    	   }else{
+    	     $('#rules-detail').hide();
+    	   }
+    	});
+    	
+    	$('.radio[name=charge-template-method]').click(function (){
+    	   var url = '$!{rc.contextPath}/chargetemplate/projects/' + $(this).val();
+    	   var projects = $_GLOBAL.ajax(url);
+    	   var t = $('#charge-template-project');
+    	   t.empty();
+    	   for(var i = 0; i < projects.length; i++){
+    	     t.append('<input type="checkbox" class="checkbox" projectId="' + projects[i].id + '"/><label for="" class="mr10">' + projects[i].project + '</label>');
+    	   }
+    	});
+    	
+    	$('#charge-template-create').click(function (){
+    	   document.getElementById('status-template').innerHTML = '新增';
+    	   clear();
+    	   show();
+    	});
+    	
+    	$('#charge-template-submit').click(function (){
+    	   var ruleModel = $('.radio[name=charge-template-rule]:checked').val();
+    	   var data = 'name=' + $('#charge-template-name').val() + '&roleId=' + $('#roleId').val() + '&type=' + $('.radio[name=charge-template-type]:checked').val() + '&ruleModel=' + ruleModel;
+    	   var id = $('#charge-template-id').val();
+    	   var url = '$!{rc.contextPath}/chargetemplate/';
+    	   if(id.length < 1){
+    	      url += 'add';
+    	   }else{
+    	      url += 'modify';
+    	      data += ('&id=' + id);
+    	   }
+    	   var method = $('.radio[name=charge-template-method]:checked').val();
+    	   data += ('&method=' + method);
+    	   if(method != 'trade'){
+    	     data += ('&chargeDateString=' + $('#charge-template-method-' + method + '-date').val());
+    	   }
+    	   var projects = $('#charge-template-project .checkbox:checked');
+    	   for(var i = 0; i < projects.length; i++){
+    	     data += '&projectIds=' + $(projects[i]).attr('projectId');
+    	   }
+    	   if(ruleModel == 'interval'){
+    	     $('tr[name="charge-template-rule-detail"]').each(function (index){
+    	        var detail = $(this);
+    	        data += ('&ruleStarts=' + detail.find('input[name=charge-template-rule-detail-start]').val() + '&ruleEnds=' + detail.find('input[name=charge-template-rule-detail-end]').val());
+    	        var ruleMethod = detail.find('select[name=charge-template-rule-detail-method]').val();
+    	        var ruleValue = detail.find('input[name=charge-template-rule-detail-value]').val();
+    	        if(ruleMethod == 'amount'){
+    	          ruleValue *= 100;
+    	        }else if(ruleMethod == 'percentage'){
+    	          ruleValue /= 100;
+    	        }
+    	        data += ('&ruleValues=' + ruleValue + '&ruleMethods=' + ruleMethod);
+    	     });
+    	   }else if(ruleModel == 'amount'){
+    	     data += ('&ruleMethods=' + ruleModel + '&ruleValues=' + ($('#charge-template-amount-value').val() * 100));
+    	   }else if(ruleModel == 'percentage'){
+    	     data += ('&ruleMethods=' + ruleModel + '&ruleValues=' + ($('#charge-template-percentage-value').val() / 100));
+    	   }
+    	   var json = $_GLOBAL.ajax(url, data);
+    	   var status = document.getElementById('status-template').innerHTML;
+    	   if(json){
+    	    alert(status + '成功！');
+    	    document.location.href = document.location.href;
+    	   }else{
+    	    alert(status + '失败！');
+    	   }
+    	});
+    	
+    	function toPage(totalPage, current){
+    	  if(current > totalPage){
+    	    return ;
+    	  }
+    	  var action = '$!{rc.contextPath}/chargetemplate/conditions/' + current + '/$!{page.pageSize}';
+    	  $('form[name=frm]').attr('action', action);
+    	  document.frm.submit();
+    	}
+    	
+    	function addRule(start, end, t, value){
+    	    var temp = '';
+    	    if(t == 'percentage'){
+    	      temp = '<option value="amount">元</option><option value="percentage" selected="selected">%</option>';
+    	    }else{
+    	      temp = '<option value="amount" selected="selected">元</option><option value="percentage">%</option>';
+    	    }
+    	    var html = '<tr name="charge-template-rule-detail"><td><input type="text" class="u-input w120" name="charge-template-rule-detail-start" value="' + start + '"/> - <input type="text" class="u-input w120" name="charge-template-rule-detail-end" value="' + end + '"/> 元</td><td><input type="text" class="u-input w120 mr5 fn-left" name="charge-template-rule-detail-value" value="' + value + '"/><div class="jqtransform jqtransform-select3 fn-left"><select name="charge-template-rule-detail-method" id="">' + temp + '</select></div></td></tr>';
+    	    $('#charge-template-rules').append(html);
+    	}
+    	
+    	function initdata(json){
+    	  $('#charge-template-id').val(json.id);
+    	  $('#charge-template-name').val(json.name);
+    	  var model = json.ruleModel;
+    	  if(model == 'amount'){
+    	    $('#charge-template-rule-amount').attr('checked', 'checked');
+    	    if(json.chargeRules.length > 0){
+	    	    var t = (json.chargeRules)[0];
+	    	    $('#charge-template-amount-value').val(t.chargeValue / 100);
+    	    }
+    	  }else if(model == 'percentage'){
+    	    $('#charge-template-rule-percentage').attr('checked', 'checked');
+    	    if(json.chargeRules.length > 0){
+	    	    var t = (json.chargeRules)[0];
+	    	    $('#charge-template-percentage-value').val(t.chargeValue * 100);
+    	    }
+    	  }else if(model == 'interval'){
+    	    $('#charge-template-rule-interval').attr('checked', 'checked');
+    	    $('#rules-detail').show();
+    	    var t = json.chargeRules;
+    	    for(var i = 0; i < t.length; i++){
+    	       var method = t[i].method;
+    	       var value = t[i].chargeValue;
+    	       if(method == 'amount'){
+    	         value = value / 100;
+    	       }else{
+    	       	 value = value * 100;
+    	       }
+    	       addRule(t[i].start, t[i].end, t[i].method, value);
+    	    }
+    	  }
+          $('#charge-template-method-' + json.method).attr('checked', 'checked');
+          var time = $('#charge-template-method-' + json.method + '-date');
+          if(time != null){
+           time.val(json.chargeDateString);
+          }
+          var projects = json.projects;
+          var projectsParent = $('#charge-template-project');
+          for(var i = 0; i < projects.length; i++){
+             projectsParent.append('<input type="checkbox" class="checkbox" checked="checked" id="charge-template-project-' + projects[i].id + '" projectId="' + projects[i].id + '"/><label for="" class="mr10">' + projects[i].project + '</label>');
+          }
+    	}
+    	
+    	function clear(){
+    	  $('#charge-template-id').val('');
+    	  $('#roleId :first-child').attr('selected', 'selected');
+    	  $('#charge-template-name').val('');
+    	  $('#charge-template-percentage-value').val();
+    	  $('#charge-template-amount-value').val();
+    	  $('.radio[name=charge-template-type][value=public]').attr('checked', 'checked');
+    	  $('#charge-template-rule-amount').attr('checked', 'checked');
+    	  $('#charge-template-rule-percentage').removeAttr('checked');
+    	  $('#charge-template-rule-interval').removeAttr('checked');
+    	  var trs = $('#charge-template-rules tr');
+    	  for(var i = 1; i < trs.length; i++){
+    	     $(trs[i]).remove();
+    	  }
+    	  $('#rules-detail').hide();
+    	  $('.radio[name=charge-template-method]').removeAttr('checked');
+    	  $('#charge-template-project').empty();
+    	  $('input[name=charge-template-date]').val('');
+    	}
+    	
+    	function show(){
+    	   $('body').window({
+    	      content:'#charge-template-update',
+    	      simple:true,
+    	      closeEle:'#charge-template-back'
+    	   });
+    	}
+    </script>
+</body>
+</html>
+
+
+
+
+

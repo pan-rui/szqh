@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>交易管理-代扣查询</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">交易管理</a> > 代扣查询</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstage/deductTopUp?type=back" method="post">
+							<dl>
+								<dt>时间区间：</dt>
+								<dd><input type="date" class="u-input w90" name="startDate" value="$!{queryTradeOrder.startDate}"/> - <input type="date" yearRange='[-20,20]' class="u-input w90" name="endDate" value="$!{queryTradeOrder.endDate}"/></dd>
+							</dl>
+                            <dl>
+								<dt>状态：</dt>
+								<dd>
+									<div class="jqtransform jqtransform-select3">
+										<select name="status" id="">
+											<option value="">全部</option>
+											<option value="1" #if($!{queryTradeOrder.status[0]}==1) selected="selected"  #end>代扣成功</option>
+											<option value="0" #if($!{queryTradeOrder.status[0]}==0) selected="selected"  #end>代扣失败</option>
+											<option value="2" #if($!{queryTradeOrder.status[0]}==2) selected="selected"  #end>代扣处理中</option>
+										</select>
+									</div>
+								</dd>
+							</dl>
+							<button type="submit" class="s-btn" style="cursor:pointer;">搜索</button>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="130">代扣流水号</th>
+								<th width="130">账户ID</th>
+								<th width="100">代扣金额(元)</th>
+								<th width="100">代扣银行</th>
+								<th width="130">银行卡号</th>
+                                <th width="50">代扣状态</th>
+                                <th width="130">代扣时间</th>
+							</tr>
+							
+							#if($!page.result.size()==0 || !$!page.result)
+            				<tr class="even">
+                				<td colspan=9 align=center>暂时没有代扣记录</td>
+                			</tr>
+							#end
+							#foreach($info in $page.result)
+							<tr>
+								<td>$!{info.outBizNo}</td>
+                                <td class="orange"><b>$!{info.yjfAccountId}</b></td>
+								<td>$!{info.amount}</td>
+								<td>$!{info.bankName}</td>
+                                <td >$!{info.bankAccountNo}</td>
+								<td class="orange">
+									<b>
+									#if($!{info.status}==1)
+										代扣成功
+        							#elseif($!{info.status}==0)
+										代扣失败
+									#else	
+        								代扣处理中
+        							#end</b>
+								</td>
+                                <td>$!dateUtil.simpleFormat($!{info.payTime})</td>
+							</tr>
+							#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/deductTopUp"
+			+"?type=back"
+			+"&startDate=$!{queryTradeOrder.startDate}"
+			+"&endDate=$!{queryTradeOrder.endDate}"
+			+"&status=$!{queryTradeOrder.status[0]}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			
+			window.location.href=url;
+		}
+		#if($!{faild})
+			alert('$!{faild}');
+		#end
+    </script>
+</body>
+</html>

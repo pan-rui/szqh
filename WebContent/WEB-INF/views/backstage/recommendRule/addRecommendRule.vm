@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>推广参数配置</title>
+    <link type="text/css" href="/resources/css/after.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="warp">
+    <!--头部-->
+    #parse("/backstage/layout/logo.vm")
+    <!--内容-->
+    <div class="container fn-clear">
+        #parse("/backstage/layout/left.vm")
+        <div class="main-content fn-right">
+            <div class="mc">
+                <div class="top">
+                    <p><a href="">活动管理</a> > 推广参数配置</p>
+                </div>
+                <form action="/backstage/recommendRule/addRecommendRuleSubmit" method="post" class="ui-form" id="addRecommendRule" style="font-size: 14px;">
+                    <fieldset>
+                        <legend><h3>推广参数配置</h3></legend>
+
+                        <div class="item">
+                            <p for="" class="u-text">*活动开关：</p>
+                            <input type="radio" name="zt" value="NORMAL" #if($!{info.status} == "NORMAL") checked #end> 开启 <input type="radio" name="zt" value="STOP" #if($!{info.status} == "STOP") checked #end> 关闭
+                            <input type="hidden" name="status" id="status" >
+                        </div>
+
+
+
+                        <div class="item">
+                            <p for="" class="u-text">*奖励对象：</p>   <input type="radio" name="dx" id="dx_t" value="two" #if($!{info.rewardObj} == "two") checked #end> 两方均获得奖励 <input type="radio" name="dx" id="dx_o" value="one" #if($!{info.rewardObj} == "one") checked #end> 推荐用户得奖励
+                            <input type="hidden" name="rewardObj" id="rewardObj">
+                        </div>
+
+
+                        <div class="item">
+                            <p for="" class="u-text">*推广奖励：</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="fn" id="fn_t" value="t" #if($!{info.rewardType} != "ONLY_INVEST") checked
+                            #end> 推荐用户完成
+
+                                <select name="jlType" id="jlType" style="width: 150px;">
+                                    #foreach($type in $!{wayType})
+                                        #if($!{type.code}!="ONLY_INVEST")
+                                            <option value="$!{type.code}" #if($!{info.rewardType}==$!{type.code}) selected="selected"    #end>$!{type.message} </option>
+                                        #end
+                                    #end
+                                </select>  后赠送
+
+                                <select name="giveTypeT" id="giveTypeT" style="width: 150px;">
+                                    #foreach($type in $!{giveType})
+                                        <option value="$!{type.code}" #if($!{info.giveType}==$!{type.code}) selected="selected"    #end>$!{type.message} </option>
+                                    #end
+                                </select>
+
+
+                             <input type="text" id="giveAmount_t" name="giveAmount_t" class="mask_money" #if($!{info.rewardType} != "ONLY_INVEST") value="$!{info.giveAmount}" #end> 元
+                            </p>
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="fn" id="fn_o" value="o" #if($!{info.rewardType} == "ONLY_INVEST") checked #end> 推荐用户完成首笔投资满 <input id="amount" name="amount" class="mask_money" value="$!{info.amount}"> 元
+                            后赠送
+                            <select name="giveTypeO" id="giveTypeO" style="width: 150px;">
+                                #foreach($type in $!{giveType})
+                                    <option value="$!{type.code}" #if($!{info.giveType}==$!{type.code}) selected="selected"    #end>$!{type.message} </option>
+                                #end
+                            </select><input type="text" class="mask_money" id="giveAmount_o" name="giveAmount_o" #if($!{info.rewardType} == "ONLY_INVEST") value="$!{info.giveAmount}" #end> 元
+                        </div>
+
+                        <input type="hidden" id="rewardType" name="rewardType">
+                        <input type="hidden" id="giveType" name="giveType">
+                        <input type="hidden" id="giveAmount" name="giveAmount">
+                         <input type="hidden" id="version" name="version" value="NOW"/>
+
+                        <div class="item mt20">
+                        <a href="javascript:;" class="u-btn u-btn-blue fn-submit1">保存</a>
+                            <a href="javascript:history.go(-1);" class="u-btn u-btn-gray">取消</a>
+                       </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var $_GLOBAL =
+    {
+    }
+    ;
+</script>
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+
+    seajs.use($_GLOBAL.mode +'addRecommendRule');
+
+
+</script>
+</body>
+</html>

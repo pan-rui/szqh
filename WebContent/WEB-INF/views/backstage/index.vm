@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理员首页</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+	.font{color:#FF0000;}
+</style>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">后台管理员首页</a> > 任务列表</p>
+					</div>
+					<div class="ui-form" style="width:600px;">
+						<fieldset>
+						<legend><h3>工作事宜提醒</h3></legend>
+						<div >
+							<table class="m-table">
+								<tr>
+                                    <td>实名认证中的用户：<span class="font">$!{inRealNamAuthentication}</span>个</td>
+									<td><a href="/backstage/userManage/unRealNamePass?realNameAuthentication=IN">查看明细</a></td>
+								</tr>
+								<tr>
+									<td>待审核的产品：<span class="font">$!{witeLoanDemand}</span>个</td>
+									<td><a href="/backstage/pageQueryLoanDemand?module=WITE">立即处理</a></td>
+								</tr>
+								<tr style="display: none">
+									<td>待上传承诺函、合同的产品：<span class="font">$!{noLetterContract}</span>个</td>
+									<td><a href="/backstage/pageQueryLoanDemand?module=noLetterContract&letterPdfUrl=Y&contractPdfUrl=Y">查看明细</a></td>
+								</tr>
+								<tr>
+									<td>即将还款的产品：<span class="font">$!{waitRepay}</span>个</td>
+									<td><a href="/backstage/trade/mainTrade/12/1?status=8&startExpireDate=$!dateUtil.simpleFormat($tradeBeginExpireDate)&endExpireDate=$!dateUtil.simpleFormat($tradeEndExpireDate)">查看明细</a></td>
+								</tr>
+							</table>
+                        </div>
+					</fieldset>
+					<fieldset >
+						<legend><h3>项目一览表</h3></legend>
+						<div >
+							<table class="m-table">
+								<tr>
+                                    <td>发行的产品：<span class="font">$!{issueLoanDemand}</span>个产品，金额：<span class="font">$!{issueAmounts}</span>元</td>
+								</tr>
+								<tr>
+									<td>成立的产品：<span class="font">$!{establishLoanDemand}</span>个产品，金额：<span class="font">$!{establishAmounts}</span>元</td>
+								</tr>
+								<tr>
+									<td>解除担保产品：<span class="font">$!{relieveLoanDemand}</span>个产品，金额：<span class="font">$!{relieveAmounts}</span>元</td>
+								</tr>
+								<tr>
+									<td>目前在保产品：<span class="font">$!{guaranteeLoanDemand}</span>个产品，金额：<span class="font">$!{guaranteeAmounts}</span>元</td>
+								</tr>
+							</table>
+                        </div>
+                    </fieldset>
+					</div>
+                    
+				</div>
+            </div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+
+</body>
+</html>

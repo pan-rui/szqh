@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>借款申请审核</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">借款管理</a> > 借款申请审核</p>
+					</div>
+					<form action="" method="post" class="ui-form" id="add_loanapply_form1" name="add_loanapply_form1" >
+						<fieldset>
+							<legend><h3>$!{info.loanerName}申请借款基本信息</h3></legend>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>借款人姓名：</label>
+								<input type="text" disabled="disabled" class="u-input w170" name="loanerName" value="$!{info.loanerName}"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>手机号码：</label>
+								<input type="text" disabled="disabled" name="loanerPhone" class="u-input w170"value="$!{info.loanerPhone}"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>身份证号码：</label>
+								<input type="text" disabled="disabled" name="loanerIdentity" class="u-input w170" value="$!{info.loanerIdentity}"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>现居住地址：</label>
+								<input type="text" disabled="disabled" class="u-input w170" name="loanerAddress"  value="$!{info.loanerAddress}"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>申请金额：</label>
+								<input type="text" disabled="disabled" class="u-input w170" name="loanAmount"  value="$!{info.loanAmount}"/>万元
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>借款用途：</label>
+								<input type="text" disabled="disabled" name="loanPurpose"  class="u-input w170" value="$!{info.loanPurpose}"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>还款期限：</label>
+								<input type="text" disabled="disabled" class="u-input w170" name="timeLimit"  value="$!{info.timeLimit}"/>个月
+							</div>
+						</fieldset>
+						<fieldset>
+							<br/>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>发送至相关信贷公司：：</label>
+								<div class="jqtransform jqtransform-select3">
+									<select name="guaranteeId" id="">
+										<option value="">---&nbsp;请选择相关信贷公司&nbsp;---</option>
+										#foreach($guarantee in $!{guarantee})
+										<option value="$!{guarantee.userId}">$!{guarantee.enterpriseName}</option>
+										#end
+									</select>
+								</div>
+							</div>
+						</fieldset>
+						<input type="hidden" name="status" value="$!{info.status}"/>
+						<input type="hidden" name="applyId" value="$!{info.applyId}"/>
+						<input type="hidden" name="loanerId" value="$!{info.loanerId}"/>
+						<input type="hidden" name="loanName" value="$!{info.loanName}"/>
+						<input type="hidden" name="applyTime" value="$!applyTime"/>
+						<input type="hidden" name="userName" value="$!{info.userName}"/>
+						<input type="hidden" name="loanerName" value="$!{info.loanerName}"/>
+						<input type="hidden" name="loanerPhone" value="$!{info.loanerPhone}"/>
+						<input type="hidden" name="loanerIdentity" value="$!{info.loanerIdentity}"/>
+						<input type="hidden" name="loanerAddress" value="$!{info.loanerAddress}"/>
+						<input type="hidden" name="loanAmount" value="$!{info.loanAmount}"/>
+						<input type="hidden" name="loanPurpose" value="$!{info.loanPurpose}"/>
+						<input type="hidden" name="timeLimit" value="$!{info.timeLimit}"/>
+						
+						<div class="item mt10">
+                            <a href="javascript:;"  class="u-btn u-btn-blue  fn-submit1">通过</a><a href="javascript:;"  class="u-btn u-btn-blue  fn-submit2">驳回</a><a href="javascript:history.go(-1);" class="u-btn u-btn-gray">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/datepicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="/resources/js/xheditor/xheditor-1.2.1.min.js"></script>
+	<script type="text/javascript" src="/resources/js/xheditor/xheditor_lang/zh-cn.js"></script>
+	<script type="text/javascript" src="/resources/js/content/chineseAmountExchange.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'updateLoanApply');
+		
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>查看项目详情</title>
+	<link type="text/css" href="$!{rc.contextPath}/resources/css/home.css" rel="stylesheet" />
+	<style type="text/css">
+		b.error-tip{font-size: 14px; display:inline-block; vertical-align:middle; font-weight:normal; color:#ff9999; background:url(/resources/images/common/icon.gif) no-repeat -105px -272px; padding-left:20px; line-height:16px; width:250px; }
+		.fn-item{ padding:0 0 10px 150px; position:relative; zoom:1; font-size: 16px;}
+        .fn-item .fn-label{ float:left; display:inline-block;  margin-left:-150px; line-height:29px; height:29px; vertical-align:middle; text-align:right; width:145px; color:#666; }
+		.fn-item .fn-span{ font-size: 15px; display:inline-block; line-height:29px; height:29px; vertical-align:middle; color:#666; }
+        .fn-item .fn-label .required{ color:#a60000; font-family:SimSun; margin-right:5px; }
+        .fn-text{width: 200px; color:#666; border:1px solid #ccc; border-radius:3px; height:29px; background:#f7f7f7 url(../../images/common/fm-text-bg.gif) repeat-x left top; padding:0 10px; vertical-align:middle; line-height:29px; }
+        .fn-text-p{ color:#666; border:0px solid #ccc; border-radius:3px; height:29px; background:#f7f7f7 url(../../images/common/fm-text-bg.gif) repeat-x left top; padding:0 10px; vertical-align:middle; line-height:29px; }
+        .fn-text:focus{ background-color:#fff; }
+		html{
+			background-color:white;
+			background: url(..) repeat;
+		}
+		.details {
+			background-color:white;
+			background: url(..) repeat;
+        }
+		.download {
+            padding-left: 10px;
+            background: url(/resources/images/common/download.gif) no-repeat left center;
+        }
+ </style>
+</head>
+<body style="background-color:white;">
+	<div>
+		<div class="details">
+			<h3 class="title">需求详情<span class="d-arrow"></span></h3>
+			<h4 class="sec-title">基本信息</h4>
+			<ul class="infor fn-clear">
+				<input type="hidden" name="demandId" value="$!{item.demandId}"/>
+				<li><span>合同编号：</span> #if($!{item.guaranteeAudit}=="IS") $!{contractNo} #else 待成立 #end </li>
+				<li><span>承诺函编号：</span>$!{item.guaranteeLicenseNo}</li>	
+				<li><span>需求金额：</span>#if($!{trade.status}==1)$!{moneyUtil.getFormatAmount($!{item.loanAmount})}#else$!{moneyUtil.getFormatAmount($!{trade.loanedAmount})} #end 元</li>
+				<li><span>投资接受人：</span>$!{item.userName}</li>
+				<li><span>年化收益率：</span>$!{moneyUtil.getPercentage($!{item.interestRate})}%</li>
+				#set($unit = '天')
+				#if($!{item.timeLimitUnit} == 'W' || $!{item.timeLimitUnit} == 'M')
+					#set($unit = '个月')
+				#elseif($!{item.timeLimitUnit} == 'Y')
+					#set($unit = '年')
+				#end
+				<li><span>项目用途：</span>$!{item.loanPurpose}</li>
+				<li><span>期限：</span>$!{item.timeLimit} $unit</li>
+				#if($!{trade.status}==1)
+				#set($am = $!{trade.loanedAmount})
+				<li><span>已投金额：</span>$!{moneyUtil.getFormatAmount($am)} 元</li>
+				#set($least = $!{moneyUtil.getFormatAmount($!{item.leastInvestAmount})})
+				<li class="ft-f60"><span>最低投资：</span>$least元<br/>
+					#if($!{lastInvestAvailable})
+						#set($st1=$permission.check('/invest/invest'))
+						#if($st1 > 0)
+    						<span id="contract-demo" class="wnd-tip wnd-tip-tooltip" style="width:150px;">
+    							项目尾投阶段不受此处最低投资限制,当前最低投资以万为单位
+    							<a id="lastInvestAvlb" href="javascript:;">
+    							点此投资</a>
+                            </span><br/>
+						#end
+					#end
+				</li>
+				#set($ia = $!{investableAmount})
+				<li><span>还需金额：</span>$!{moneyUtil.getFormatAmount($ia)} 元</li>
+				
+				<li><span>满标条件：</span>$!{tradeUtil.getSaturationCondition($!{item.saturationConditionMethod}, $!{item.saturationCondition})}</li>
+				#end
+				
+				#if($!{trade.status}==1)
+					<li><span>起投时间：</span>
+					$!{dateUtil.simpleFormat($!{item.investAvalibleTime})}</li>
+					<li><span>状态：</span>筹款中</li>
+					<li><span>截止时间：</span>
+					$!{dateUtil.simpleFormat($!{item.deadline})}</li>
+				#elseif($!{trade.status}==6)
+    				<li><span>成立时间：</span>
+    				#if($!{trade.effectiveDateTime})$!{dateUtil.simpleFormat($!{trade.effectiveDateTime})}#else暂无数据#end</li>
+    				<li><span>状态：</span>待成立</li>
+				#else
+					#if($!{trade.status}==3 || $!{trade.status}==7)
+						<li><span>还款时间：</span>
+							$!{dateUtil.simpleFormat($!{trade.finishDate})}</li>
+						<li><span>状态：</span>已还款</li>
+					#else
+						<li><span>成立时间：</span>
+							$!{dateUtil.simpleFormat($!{trade.effectiveDateTime})}</li>
+						<li><span>状态：</span>已成立</li>
+					#end	
+				#end
+				
+				<li><span>兑付方式：</span>到期兑付本金及收益</li>	
+				#if($!{item.selfDefinedTitle} !="")
+				<li><span>定义标题：</span>$!{item.selfDefinedTitle}</li>
+				#end
+			</ul>
+			<h4 class="sec-title">项目信息</h4>
+			<dl class="infor" >
+				<!--
+				<dt>公司简介：</dt>
+				<dd>重庆富润旺达科技有限公司成立于2009年7月，是一家专注于做医疗设备的服务公司，公司自成立以来，保持年收益增长率达到14%，且生产的设备操作便捷，人性化，得到了客户很高的评价；</dd>
+				<dt class="mt20">融资人补充话语：</dt>
+				<dd>此次融资我们将以企业的经营利润为担保，足够支付本金和利息。</dd>
+				-->
+				<dt>$!{item.loanNote}</dt>
+				
+			</dl>
+			<h4 class="sec-title">承诺信息</h4>
+			<ul class="infor fn-clear">
+				<li><span>承诺机构：</span>$!{item.guaranteeName}</li>
+				<li><span style="width:100px;">担保机构话语：</span>$!{item.guaranteeStatement}</li>
+				<!--
+				<li><span>企业资信：</span>资信情况良好，利润稳定。</li>
+				-->
+				<li><span>#if(1==$!{trade.status})担保承诺函#else承诺函#end：</span>
+				#if($!{item.guaranteeAudit}=="NO"&&2==$!{trade.status})
+					<span style="color:#F60;width:300px;">提示:担保公司已出具正式承诺函,正在盖章上传中 </span>
+				#end
+				</li>
+				<li class="clear"><span></span><img style="margin-left:20px;" src="$!{item.guaranteeLicenseUrl}" width="360" height="240" alt="担保承诺函"/></li>
+				<li>
+    				#if($!{audit})
+                            <div>
+    							#if($!{item.contractPdfUrl} && $!{item.letterPdfUrl})
+        							<a href="/upload/downLoadFile?demandId=$!{item.demandId}&type=downLoad&fileType=letter" class="download">下载承诺函(正式)</a>&nbsp;
+            						<a target="_blank" href="/upload/downLoadFile?demandId=$!{item.demandId}&type=privew&fileType=letter" >预览</a>
+            						&nbsp;&nbsp;&nbsp;&nbsp;
+            						<a href="/upload/downLoadFile?demandId=$!{item.demandId}&type=downLoad&fileType=contract" class="download">下载合同(正式)</a>&nbsp;
+            						<a target="_blank" href="/upload/downLoadFile?demandId=$!{item.demandId}&type=privew&fileType=contract" >预览</a>
+    							#else
+									<!--
+    								<a href="$!{pdfhost}/tradeDownload/downLoadWord?type=contract&tradeId=$!{trade.id}&detailID=0&downType=downLoad" class="download">下载合同(原始)</a>
+            						<a target="_blank" href="$!{pdfhost}/tradeDownload/downLoadWord?type=contract&tradeId=$!{trade.id}&detailID=0&downType=privew" >预览</a>
+            						<a>&nbsp;&nbsp;</a>
+                					<a href="$!{pdfhost}/tradeDownload/downLoadWord?type=letter&tradeId=$!{trade.id}&detailID=0&downType=downLoad" class="download">下载承诺函(原始)</a>
+            						<a target="_blank" href="$!{pdfhost}/tradeDownload/downLoadWord?type=letter&tradeId=$!{trade.id}&detailID=0&downType=privew" >预览</a>
+									-->
+								#end
+    							&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="/tradeQuery/investReceipt/$!{tradeId}?detailId=$!{detailId}" class="download">投资凭证</a>
+            				</div>
+    						<div><span style="color:#f60;width:600px;text-align:left;">提示：“正式”为承诺函、合同已加盖公章PDF文件 ,“原始”为未加盖公章PDF文件 </span></div>
+    				#end
+				</li>
+			</ul>
+			#if($!{item.sponsorId} > 0)
+			<h4 class="sec-title">保荐信息</h4>
+			<ul class="infor fn-clear">
+				<li><span>保荐机构：</span>$!{item.sponsorName}</li>
+				<li><span class="long">保荐机构话语：</span>$!{item.sponsorStatement}</li>
+			</ul>
+			#end
+			<div class="bottom-btn">
+				<a  href="$!{returnUrl}" class="btn gray-btn">返回</a>
+			</div>
+		</div>
+	</div>
+
+	#parse("/front/index/common/js.vm")
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/content/chineseAmountExchange.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/comp/security.js"></script>
+	
+	<script type="text/javascript">
+		
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+	<div class="header">
+		<div class="container fn-clear">
+			<h1 class="fn-left"><a href="$!{rc.contextPath}/">
+			<font size="6" color="#999999">$!appConstantsUtil.getProductName()</a><span>|</span></font><font size="4" color="#999999">您的金融服务专家</font>
+			</h1>
+			<ul class="nav fn-right">
+				<li><a href="$!{rc.contextPath}/">首页</a></li>
+				<li class="slant">/</li>
+				#if($sessionScope)
+				<li><a href="$!{rc.contextPath}/userManage/userHome">&nbsp;&nbsp;<span>$!{sessionScope.userName}</span>&nbsp;&nbsp;</a></li>
+				<li><a href="$!{rc.contextPath}/login/logout?redirect=/login/login" > <span style="font-size:12px;">[安全退出]</span></a></li>
+				#else
+				<li><a href="$!{rc.contextPath}/login/login">用户登录</a></li>
+				#end
+				<li class="slant">/</li>
+				#set($pg = 12)
+				#if($page) #set($pg = $!{page.pageSize}) #end
+
+				#set($t = $permission.check('/tradeQuery/entries/12/1'))
+				#if($t > 0)
+				<li><a href="$!{rc.contextPath}/boot/invest/$pg/1">我要投资</a></li>
+				<li class="slant">/</li>
+				#end
+				<li><a target="_blank" href="/help/center">帮助中心</a></li>
+				<li class="slant">/ </li>
+				<li ><a target="_blank" href="/help/institutionIntroduction/1">关于我们</a></li>
+			</ul>
+		</div>
+	</div>

@@ -1,0 +1,6 @@
+<script>
+  
+  window.parent.payPassOk('$!paytk');
+  
+  
+</script>

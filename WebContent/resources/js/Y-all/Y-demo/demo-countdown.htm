@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta charset="UTF-8"/>
+	<title>combo test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+<div id='div1' style=" margin-top:10px;">
+
+<span id='countdown' class="countdown-countdown"><span>发送短信</span></span><a id='countdownEle'></a>
+
+
+</div>
+<form>
+<div>
+<span class="Y-countdown" key="c1">自动1</span>
+<div>
+<div id="div3" style="display:none;">
+<span class="Y-countdown">自动2</span>
+<div>
+</form>
+<script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+	var $_GLOBAL = {};
+</script>
+<script type="text/javascript" src="../../lib/sea.js"></script>
+<script type="text/javascript">
+	 seajs.use("./demo-countdown.js");
+	 $(document).click(function(){
+	     $('#div3').show();
+	 });
+</script>
+</body>
+</html>

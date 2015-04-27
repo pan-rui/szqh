@@ -1,0 +1,83 @@
+	 <!------------------------------------------>	
+		<div class="pro-list">
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="100%"  class="pro-table pro-table2">
+				<tr>
+				    <th class="f-tac" width="14%"><span class="ml20">项目名称</span></th>
+					<th class="f-tar" width="13%" class="first">成立金额</th>
+					<th class="f-tac" width="10%">借款期限</th>
+					<th class="f-tac" width="14%">年化净收益率</th>
+					<th class="f-tac" width="17%">投资期限</th>
+					<th class="f-tac" width="14%">担保机构</th>
+					<th class="f-tac" width="14%">进度（满标）</th>
+					<th class="f-tac" width="14%">投标状态</th>
+				</tr>
+				#foreach($trade in $!{page.result})
+				<tr class="leftTime">
+				    <td class="f-tac">$!{trade.loanName}</td>
+					#set($percent = "100%")
+                    #if($!{trade.tradeStatus.value}==1)
+                        #set($percent = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.loanAmount},$!{trade.leastInvestAmount}))
+                    #else
+                        #set($percent = '100%')
+                    #end
+
+					
+				    #set($needAmount =  $moneyUtil.getMoneyByw($!{trade.loanAmount}, $!{trade.loanedAmount})) <!--还差多少万-->
+					
+					<input  type="hidden" value="$percent" class="per"/>    
+					<td class="f-tar orange14">￥$!{trade.tradeAmount.toStandardString()}</td>
+					<!--#set($r = $!{trade.rate} * 100)-->
+					<td class="f-tac orange14">$!{trade.timeLimit} $!{trade.timeLimitUnit.viewName}</td>
+					<td class="f-tac orange14">$!rateUtil.getRate($!trade.interestRate)</td>
+                   
+					<td class="f-tac">
+						<input value="$!{currentDate.getTime()}" class="currentDate" type="hidden"/>	##当前时间	
+						<input value="$!{trade.deadline.getTime()}" class="getDeadTime" type="hidden"/>	
+						<input value="$!{trade.investAvlDate.getTime()}" class="getinvestAvlDate" type="hidden"/>
+						<input value="#if($!{trade.tradeEffectiveDate})$!{yrdDateUtil.formatDay($!{trade.tradeEffectiveDate})}#else#end" class="geteffectiveDate" type="hidden"/>
+						##<input value="$!{trade.tradeFinishDate}" class="tradeFinishDate" type="hidden"/>
+						<input value="$!{trade.tradeStatus.value}" class="tradeValue" type="hidden"/>
+						
+						<span class="showLeftTime #if($!{trade.tradeStatus.value}==1 && ${needAmount}>0 )#else showLeftTime_b#end"></span></td>
+					
+					<td class="f-tac">$!{trade.guaranteeName} </td>
+					#if($!{trade.tradeStatus.value}==1)
+						#set($p = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.loanAmount},$!{trade.leastInvestAmount}))
+                        <td class="f-tal"><div class="bar-p100"><span class="plan_bg "><span class="plan" style="width:${p};"></span></span>${p}</div>
+						<p>还需要<b class="num">$!{moneyUtil.getMoneyByw($!{trade.loanAmount}, $!{trade.loanedAmount})}</b>万</p>
+						</td>
+					#else
+					    #set($p = '100%')
+					    <td class="f-tac"><div class="bar-p100"><span class="plan_bg mr10"><span class="plan100" style="width:${p};"></span></span>${p}</div></td>
+					#end	
+					
+					
+					
+					<td class="f-tac" >
+					
+					
+					#if($!{trade.tradeStatus.value}==1 && ${needAmount}>0 )
+					<a class="tz_btn" href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}">我要投资</a>
+					#elseif($!{trade.tradeStatus.value}==3||$!{trade.tradeStatus.value}==7||$!{trade.tradeStatus.value}==8)		 
+					<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}">$!{trade.tradeStatus.loanderStatus}</a>
+					#elseif($!{trade.tradeStatus.value}==2)
+						<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}">还款中</a>
+					
+					#else	
+					<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}">投资已满</a>
+					#end
+					
+					</td>
+				 
+				</tr>
+				#end
+			</table>		
+        </div>
+		<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/plugins/jquery.window.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'entries');
+    </script>
+		

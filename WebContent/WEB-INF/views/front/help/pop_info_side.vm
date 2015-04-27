@@ -1,0 +1,93 @@
+#parse("/front/index/common/header-title.vm")
+<style type="text/css">
+.brief-con span{
+    line-height:20px;  
+	text-align:left;
+    height:20px;  
+	height:auto;
+	display:inline-block;
+}
+.pages a{
+	color:#b74f03;
+}
+</style>
+<body class="warp f-bgGray">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	
+    <div class="container fn-clear mt20 m-news2">
+		
+		<!--sidebar-->
+        <div class="l-sb5">
+			<h2 class="title">
+				<img src="/styles/images/common/news_title.jpg"/>
+			</h2>
+			<!--menu-->
+            <div class="m-menu">
+                <ul>
+					
+					#foreach($info in $page.result)
+						<!--item-->
+                    <li #if($info.popId==$popInfo.popId) class="active" #end>
+						<a href="/help/toModule?popId=$!{info.popId}&moduleCode=$!{moduleInfo.moduleCode}">
+                            <i class="spe">&gt;</i>
+                            <i class="u-arrows left gray"></i>
+                            <span class="txt">$!{info.title}</span>
+						</a>
+					</li>
+					<!--item End-->
+                     #end
+					
+				</ul>
+			</div>
+			<!--menu End-->
+		</div>
+		<!--sidebar End-->
+		
+		<!--main-->
+        <div class="l-mn5">
+            <div class="l-mnIn5">
+				
+				<div class="m-article">
+					
+					<!--title-->
+    				<h3 class="u-title2">
+                        <span class="txt">$popInfo.title</span>
+            		</h3>
+					<!--title End-->
+					
+					<!--content-->
+                    <div class="content">$popInfo.content</div>
+					<!--content End-->
+				
+                </div>
+				
+				
+			</div>
+		</div>
+		<!--main End-->
+		
+	</div>
+	
+	
+	
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "$!{rc.contextPath}/help/toModule?moduleCode=$!{moduleInfo.moduleCode}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

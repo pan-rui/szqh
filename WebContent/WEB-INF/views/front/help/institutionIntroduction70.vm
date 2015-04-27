@@ -1,0 +1,325 @@
+#parse("/front/index/common/header-title.vm")
+
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+
+<!--container-->
+<div class="container2">
+<!--box-->
+<div class="l-box2 mt40">
+	
+	<!--头部-->
+    <div class="l-box2Hd">
+		<!--title-->
+        <h3 class="l-box2HdTt"><span>我要投资</span></h3>
+		<!--title End-->
+	</div>
+	<!--头部结束-->
+	
+	<!--l-box2Bd-->
+    <div class="l-box2Bd m-proDetail">
+        <!--标题-->
+		<div class="u-tt3">
+			项目名称：家具公司短期周转
+		</div>
+        <!--标题结束-->
+		
+		<!--容器-->
+        <div class="l-ct content state3">
+			<!--content-->
+            <div class="l-cn">
+				<!--content Inner-->
+                <div class="l-cnIn">
+					
+					<!--data-->
+					<div class="l-ct data">
+						<!--col-->
+						<div class="col1 first">
+    						<dl>
+                                <dt>借款金额（元）</dt>
+                                <dd>￥<strong>500,000.00</strong></dd>
+    						</dl>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col2">
+    						<dl>
+                                <dt>年化利率</dt>
+                                <dd><strong>15</strong>%</dd>
+    						</dl>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col3">
+    						<dl>
+                                <dt>用款期限</dt>
+                                <dd><strong>6</strong>个月</dd>
+    						</dl>
+                        </div>
+						<!--col End-->
+                    </div>
+					<!--data End-->
+					
+					<!--简介 -->
+                    <div class="l-ct summary">
+						<!--col-->
+						<div class="col1 first">
+                            <p>起投金额：500 元</p>
+                            <p>担保公司：河北容祥担保有限公司</p>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col2">
+    						<p>已投金额：300,000元</p>
+                            <p>反担保方式：固定资产抵押</p>
+                        </div>
+						<!--col End-->
+						<!--col-->
+						<div class="col3">
+    						<p>还需借款：200,000元</p>
+                            <p>还款方式：每月付息，到期还本</p>
+                        </div>
+						<!--col End-->
+					</div>
+					<!--简介 结束-->
+					
+				</div>
+				<!--content Inner End-->
+			</div>
+			<!--content End-->
+			<!--sidebar-->
+            <div class="l-sdb">
+				<!--sidebar:状态1
+                <div class="l-sdbIn proccess">
+					
+					<h5>投资进度</h5>
+					
+					<div class="u-proccessWrap mt5">
+                        <div class="u-proccess3">
+                            <div class="inner" style="width:50%">&nbsp;</div>
+    					</div>
+                        <span>50%</span>
+                    </div>
+					
+                    <p class="mt5">剩余时间</p>
+					
+                    <p>6天22时47分 19秒 </p>
+					
+                    <p class="mt5 fn-cOrg">满标条件：90%</p>
+					
+                    <p class="mt10">
+                        <a href="javascript" class="u-btn blue lg">立即投资</a>
+					</p>
+					
+				</div>
+				sidebar End-->
+				
+				<!--sidebar:状态2
+				<div class="l-sdbIn proccess">
+					
+					<h5>投资进度</h5>
+					
+					<div class="u-proccessWrap mt5">
+                        <div class="u-proccess3">
+                            <div class="inner" style="width:50%">&nbsp;</div>
+    					</div>
+                        <span>50%</span>
+                    </div>
+					
+                    <p class="mt5">投资期限</p>
+					
+                    <p>2014-11-21合同成立 </p>
+					
+                    <p class="mt5 fn-cOrg">满标条件：90%</p>
+					
+                    <p class="mt10">
+                        <a href="javascript" class="u-btn org lg">还款中</a>
+					</p>
+					
+				</div>
+			</div>
+			sidebar End-->
+				
+			
+			<div class="l-sdbIn proccess">
+				
+				<h5>投资进度</h5>
+				
+				<div class="u-proccessWrap mt5">
+                    <div class="u-proccess3">
+                        <div class="inner" style="width:50%">&nbsp;</div>
+					</div>
+                    <span>50%</span>
+                </div>
+				
+                <p class="mt5">投资期限</p>
+				
+                <p>合同终止 </p>
+				
+                <p class="mt5 fn-cOrg">满标条件：90%</p>
+				
+                <p class="mt10">
+                    <a href="javascript" class="u-btn org lg">正常还款</a>
+				</p>
+				
+			</div>
+		</div>
+		
+		</div>
+		<!--容器结束-->
+		
+		<!--信息-->
+        <div class="m-projectInfo">
+			
+			<!--选项卡-->
+            <div class="m-tab2">
+				<!--标签-->
+                <ul class="m-tab2Strips">
+                    <li class="active">个人信息</li>
+                    <li>项目信息</li>
+                    <li>担保信息</li>
+                    <li>融资证照</li>
+                    <li>投资明细</li>
+				</ul>
+				
+				<!--个人信息-->
+                <div class="m-tab2Content active">
+					
+                    <table width="900" border="0" cellpadding="0" cellspacing="0" class="m-infoTable">
+						<!--row1-->
+                        <tr>
+                            <td>性别：男 </td>
+                            <td>年龄：40岁</td>
+							<td>婚姻状况：已婚</td>
+						</tr>
+						<!--row1 End-->
+						<!--row2-->
+                        <tr>
+                            <td>工作城市：北京 </td>
+                            <td>公司性质：民营</td>
+							<td>职务：总经理 </td>
+						</tr>
+						<!--row2 End-->
+						<!--row3-->
+                        <tr>
+                            <td>年收入：100万 </td>
+                            <td>学历：本科</td>
+							<td></td>
+						</tr>
+						<!--row3 End-->
+					</table>
+					
+				</div>
+				<!--个人信息结束End-->
+				
+				
+				<!--项目信息-->
+                <div class="m-tab2Content">
+					用户自己编辑1
+                    
+				</div>
+				<!--项目信息End-->
+				
+				
+				<!--项目信息-->
+                <div class="m-tab2Content">
+					用户自己编辑2
+                    
+				</div>
+				<!--项目信息End-->
+				
+				
+				<!--融资证明-->
+                <div class="m-tab2Content">
+					
+                    <ul class="l-ct m-picList">
+                        <li class="l-col4"><img alt="融资证照" src="/styles/images/common/certificate1.jpg"/></li>
+                        <li class="l-col4"><img alt="融资证照" src="/styles/images/common/certificate2.jpg"/></li>
+                        <li class="l-col4"><img alt="融资证照" src="/styles/images/common/certificate3.jpg"/></li>
+                        <li class="l-col4"><img alt="融资证照" src="/styles/images/common/certificate4.jpg"/></li>
+					</ul>
+                    
+				</div>
+				<!--融资证明End-->
+				
+				<!--投资明细-->
+                <div class="m-tab2Content m-table">
+                    <table class="table">
+						<!--header-->
+                        <tr>
+                            <th width="30%">投资人</th>
+                            <th width="25%">投资金额（元）</th>
+                            <th width="25%">投资时间</th>
+                            <th width="20%">状态</th>
+						</tr>
+						<!--header End-->
+						<!--row-->
+                        <tr class="odd">
+                            <td class="first">吕**</td>
+                            <td>￥200.00</td>
+                            <td>2014-11-11 15:17:31</td>
+                            <td>投标中-待成立</td>
+						</tr>
+						<!--row End-->
+						
+						<!--row-->
+                        <tr>
+                            <td class="first">吕**</td>
+                            <td>￥200.00</td>
+                            <td>2014-11-11 15:17:31</td>
+                            <td>投标中-待成立</td>
+						</tr>
+						<!--row End-->
+						
+						<!--row-->
+                        <tr class="odd">
+                            <td class="first">吕**</td>
+                            <td>￥200.00</td>
+                            <td>2014-11-11 15:17:31</td>
+                            <td>投标中-待成立</td>
+						</tr>
+						<!--row End-->
+						
+						<!--row-->
+                        <tr>
+                            <td class="first">吕**</td>
+                            <td>￥200.00</td>
+                            <td>2014-11-11 15:17:31</td>
+                            <td>投标中-待成立</td>
+						</tr>
+						<!--row End-->
+					</table>
+                    
+				</div>
+				<!--投资明细End-->
+				
+				
+			</div>
+			<!--选项卡结束-->
+			
+		</div>
+		<!--信息结束-->
+		
+	</div>
+	<!--l-box2Bd 结束-->
+	
+</div>
+<!--box-->
+</div>
+<!--container End-->
+
+
+
+<script type="text/javascript">
+	var $_GLOBAL = {};
+</script>
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+	seajs.use($_GLOBAL.mode + 'projectDetail');
+</script> 
+
+
+	#parse("/front/index/common/footer-yrd.vm")
+</body>
+</html>

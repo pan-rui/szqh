@@ -1,0 +1,103 @@
+	<div class="footer">
+		<div class="f-container">
+			<div class="partner fn-clear">
+				<h4>合作伙伴</h4>
+				<ul>
+					<li><a target="_blank" href="https://ppm.yiji.com/"><img style="width:175px;height:26px;" src="$!{rc.contextPath}/resources/images/home/YJF.jpg" alt="易极付" /></a></li>
+					<li><a target="_blank" href="http://www.cqsxdb.com"><img style="width:175px;height:26px;" src="$!{rc.contextPath}/resources/images/home/sanxia.jpg" alt="重庆市三峡担保集团有限公司" /></a></li>
+					<li><a target="_blank" href="http://www.yutaidb.com/"><img style="width:175px;height:26px;" src="$!{rc.contextPath}/resources/images/home/YTDB.png" alt="重庆渝台担保公司" /></a></li>
+                    <li><a target="_blank" href="http://www.edu-guaranty.com/"><img style="width:175px;height:26px;" src="$!{rc.contextPath}/resources/images/home/JYDB.png" alt="重庆教育担保公司" /></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="copyright">
+			<p>版权所有 © $!appConstantsUtil.getPlatformName() 未经许可不得复制、转载或摘编，违者必究!</p>
+			<p>Copyright Chongqing Yijiu Financial Service Co.,LTD. ALL Rights Reserved</p>
+			<p>公司地址：$!appConstantsUtil.getPlatformAddress()　邮编：400000</p>
+			<p>渝ICP备13007122号</p>
+		</div>
+	</div>
+		<ul id="right_sidebar" >
+            <li><a href="javascript:;" ><img id="custom" src="$!{rc.contextPath}/resources/images/common/icon_service.png"/></a></li>
+    </ul>
+	</br>&nbsp;</br>
+	<div id="right_sidebar_show" class="sidebar-container-cs right" style="display:none">
+		<div class="sidebar-body">
+			<ul class="sidebar-menu">
+				<li>
+    				<a style="color:white" id="customService" href="javascript:;">在线咨询<img border=0 SRC='http://wpa.qq.com/pa?p=1:43486831:10' alt='[$!{appConstantsUtil.getProductName()}金融]'/></a>
+    			</li>
+                <li>服务热线 :</br>
+					<span style="margin-left:25px;"> ：$!appConstantsUtil.getCustomerServicePhone()</span>
+				</li>
+    			<li>客服时间: </br>
+                    <span style="margin-left:25px;">周一至周五</span></br>
+					<span style="margin-left:25px;">9：00~18：00</span>
+    			</li>
+    			
+		   </ul> 	
+		</div>
+    </div>
+	<link rel="stylesheet" type="text/css" href="$!{rc.contextPath}/resources/css/common/siderBar/css/red-glass/sidebar.css" />
+	<style rel="stylesheet" type="text/css">
+        div.sidebar-container-cs {
+            width : 208px;
+            height : 345px;
+            position:fixed;
+            filter: alpha(opacity=87);
+            -moz-opacity:0.87;
+            opacity:0.87;
+            -moz-box-shadow:0px 0px 20px #a60000;
+            -webkit-box-shadow:0px 0px 20px #a60000;
+            box-shadow:0px 0px 20px #a60000;
+            background: -webkit-linear-gradient(#FF8400, #E7561C);
+        	filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FF8400',endColorStr='#E7561C',gradientType='1'); 
+        	background: -o-linear-gradient(#FF8400, #E7561C);
+        	background: -moz-linear-gradient(#FF8400, #E7561C);
+        	background: -ms-linear-gradient(#FF8400, #E7561C);
+            background-repeat: repeat-x;
+            z-index: 10;
+        }
+		div.sidebar-container-cs.right {
+            top:50%;
+            right:0px;
+            -moz-border-radius-bottomleft: 10px;
+            -moz-border-radius-topleft: 10px;
+            -webkit-border-bottom-left-radius: 10px;
+            -webkit-border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+		.a-siderBar {
+    		color:white;
+            text-decoration:none;
+            font-weight:bold;
+            font-size:12pt;
+		}
+	</style>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/plugins/jquery.sidebar.js"></script>
+	<script type="text/javascript">
+		$("ul#right_sidebar").sidebar({
+            position:"right"
+        });	
+		$("#customService").click(function(){
+			var url = "";
+			var num = parseInt(10*Math.random());
+			if(num >=5){
+				url= "tencent://message/?uin=744472261&Site=$!appConstantsUtil.getProductName()金融&Menu=yes";
+			}else{
+				url= "tencent://message/?uin=1423484567&Site=$!appConstantsUtil.getProductName()金融&Menu=yes";
+			}
+			$("#customService").attr("href",url);
+		});
+		$("#custom").hover(function(){
+			$("#right_sidebar_show").show();
+		});
+		$("#right_sidebar_show").hover(function(){
+			
+		},function(){
+			$("#right_sidebar_show").hide();
+		});
+	</script>

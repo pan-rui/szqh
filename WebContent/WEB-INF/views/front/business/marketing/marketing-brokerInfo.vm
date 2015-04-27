@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>账户首页</title>
+    <link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+<!--头部-->
+    #parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+    <div class="blank20"></div>
+    <div class="bd-box container fn-clear">
+        #parse("/front/user/common/left1.vm")
+
+
+        <div class="m-content fn-right">
+            <div class="m-content-box role">
+                <div class="title3 mt10"><span><a href="javascript:window.history.back(-1);" style="color:#fff">《 返回</a></span><span class="two ml15">人员详细信息</span></div>
+                <div class="blank30"></div>
+                <div class="r-box details">
+                    <dl class="fn-clear">
+                        <dt>用户名：</dt>
+                        <dd>$!{info.userName}</dd>
+
+                        <dt>账户状态：</dt>
+                        <dd>#if($!{info.realNameAuthentication})#if($!{info.realNameAuthentication}=="IS")已认证#elseif($!{info.realNameAuthentication}=="IN") 认证中 #else 认证未通过 #end#else未认证 #end</dd>
+
+                        <dt>真实姓名：</dt>
+                        <dd>$!{info.realName}  &nbsp;</dd>
+
+                        <dt>身份证号码：</dt>
+                        <dd>$!{info.certNo} &nbsp;</dd>
+
+                        <dt>手机号码：</dt>
+                        <dd>$!{info.mobile}  &nbsp;</dd>
+
+                        <dt>电子邮箱：</dt>
+                        <dd>$!{info.mail}   &nbsp;</dd>
+                    </dl>
+                    <a class="orange-btn-b" href="javascript:window.history.back(-1);">返回</a>
+                </div>
+                <div class="blank30"></div>
+            </div>
+        </div>
+
+
+
+        <div class="blank50"></div>
+    </div>
+
+
+    #parse("/front/index/common/footer-yrd.vm")
+
+    <script type="text/javascript">
+        var $_GLOBAL = {};
+    </script>
+    <script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+    <script type="text/javascript">
+        seajs.use($_GLOBAL.mode + 'demo');
+        $('.footer').css('visibility','hidden').hide();
+        setTimeout(function(){
+            $('.footer').css('visibility','').show();
+        },10);
+    </script>
+
+</body>
+</html>

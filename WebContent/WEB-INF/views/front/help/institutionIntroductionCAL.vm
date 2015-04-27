@@ -1,0 +1,49 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>收益计算器</span></h2>
+       
+        	<div style="margin-top:50px;margin-left:100px;line-height:50px;font-size:14px;">
+					<div class="calculator">
+							<label class="w80">本金：</label><input type="text" id="capital" />元
+    						</br>
+							
+							<label class="w80">收益率：</label><input type="text" id="rate" style="width:50px;"/>%
+    						</br>
+							
+							<label class="w80">期限：</label><input type="text" id="deadline" style="width:50px;"/>月
+					</div>
+					<div style="width:100px;height:200px;float:left;">	
+						<div class="hr-menu fn-left fn-hr-menu">
+							<a  href="javascript:;" id="count"style="margin-top:80px;">计算</a>
+							
+						</div>
+							
+					</div>	
+					<div style="width:300px;height:200px; line-height: 200px; float:left;text-align:center;border:solid 1px #1E8A02;font-size:20px;">
+							<p><span>收益： </span><a id="earnings" style="color:red;"> <a> <p>
+					</div>
+			</div>
+		</div>
+    
+    <div class="blank50"></div>
+	</div>
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + "institutionIntroductionCal");
+		
+    </script>
+</body>
+</html>

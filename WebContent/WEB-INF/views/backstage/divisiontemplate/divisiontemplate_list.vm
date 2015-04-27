@@ -1,0 +1,405 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>模板管理-分润模板管理</title>
+	<link type="text/css" href="$!{rc.contextPath}/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="">模板管理</a> > 分润模板管理</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="" method="get" name="frm">
+							<dl>
+								<dt>模板名称：</dt>
+								<dd><input type="text" class="u-input w120" name="name" value="$!{request.getParameter('name')}"/></dd>
+							</dl>
+							<dl>
+								<dt>发送范围：</dt>
+								<dd>#set($status=$!{request.getParameter('status')})
+                                    <div class="jqtransform jqtransform-select3">
+										<select name="status" id="">
+											<option value="all"#if($status == 'all') selected="selected"#end>全部</option>
+											<option value="normal"#if($status == 'normal') selected="selected"#end>正常</option>
+											<option value="disable"#if($status == 'disable') selected="selected"#end>禁用</option>
+										</select>
+									</div>
+									<input type="hidden" name="bar" value="$!{request.getParameter('bar')}" />
+                                </dd>
+							</dl>
+							<a href="javascript:void(0);" class="s-btn">搜索</a>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="javascript:void(0);" class="p-btn" id="template-add">新增分润模板</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+								<th width="240">模板名称</th>
+								<th width="240">分润阶段</th>
+								<th width="240">分润方式</th>
+                                <th width="240">修改时间</th>
+                                <th width="80">状态</th>
+                                <th width="120">操作</th>
+                                <th class="text-r"></th>
+							</tr>
+							#foreach($template in $page.result)
+							<tr>
+								<td>$!{template.templateName}</td>
+                                <td>$!template.divisionPhase.message</td>
+								<td>$!template.divisionWay.message</td>
+                                <td>$!dateUtil.simpleFormat($!{template.modifyDate})</td>
+                                <td> #if($!template.templateStatus.code =='normal')正常#elseif($!template.templateStatus.code =='disable')禁用#end</td>
+                                <td><a href="javascript:void(0);" name="template-modify" templateId="$!{template.divisionTemplateId}">修改</a>
+                                #if($!template.templateStatus.code =='normal')
+                                    <a href="javascript:void(0);"  name="tempalte_status" status="disable" templateId="$!{template.divisionTemplateId}">禁用</a></td>
+                                #end
+                                #if($!template.templateStatus.code =='disable')
+                                    <a href="javascript:void(0);" name="tempalte_status" status="normal"  templateId="$!{template.divisionTemplateId}">激活</a></td>
+                                #end
+
+                            </tr>
+							#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	
+	
+	
+	<!--修改收费模板信息-->
+	<div class="m-layer" style="width:860px;display:none;" id="template-modify">
+		<div class="title">
+			<h2><span id="status-template">修改</span>收费模板信息</h2>
+		</div>
+		<div class="cont">
+			<form action="" class="ui-form pt20">
+				<fieldset>
+					<div class="item">
+						<input type="hidden" id="template-id" />
+						<input type="hidden" id="template-status"/>
+						<label for="" class="u-label"><span class="required">*</span>模板名称：</label>
+						<input type="text" class="u-input w170" value="" id="template-name"/>
+						<p class="u-tip">最多50个字符</p>
+					</div>
+					<div class="item fn-clear">
+						<label for="" class="u-label"><span class="required">*</span>参与角色：</label>
+						<p class="u-text">
+							<input type="checkbox" class="checkbox" roleId="12"/><label for="" class="mr10">投资人</label>
+							<input type="checkbox" class="checkbox" roleId="7"/><label for="" class="mr10">$!appConstantsUtil.getProductName()金融</label>
+							<input type="checkbox" class="checkbox" roleId="8"/><label for="" class="mr10">承诺机构</label>
+							<input type="checkbox" class="checkbox" roleId="9"/><label for="" class="mr10">保荐机构</label>
+							<input type="checkbox" class="checkbox" roleId="10"/><label for="" class="mr10">营销机构</label>
+							<input type="checkbox" class="checkbox" roleId="11"/><label for="">经纪人</label>
+                            #if($!{twoLevelBroker}=="Y")
+                                <input type="checkbox" class="checkbox" roleId="3"/><label for="">二级经纪人</label>
+                            #end
+
+						</p>
+					</div>
+					<div class="item">
+						<label for="" class="u-label"><span class="required">*</span>模板配置：</label>
+					</div>
+				</fieldset>
+				<fieldset class="mb10">
+					<legend><h3>业务收益配置(年利率)</h3></legend>
+					<div class="item" roleId="7" style="display:none;">
+						<label for="" class="u-label">$!appConstantsUtil.getProductName()金融收取：</label>
+						<input type="text" class="u-input w120" /> %
+					</div>
+					<div class="item" roleId="12" style="display:none;">
+						<label for="" class="u-label">投资人收取：</label>
+						<input type="text" class="u-input w120" /> %
+					</div>				
+					<div class="item" roleId="8" style="display:none;">
+						<label for="" class="u-label">承诺机构收取：</label>
+						<input type="text" class="u-input w120" /> %
+					</div>	
+					<div class="item" roleId="9" style="display:none;">
+						<label for="" class="u-label">保荐机构收取：</label>
+						<input type="text" class="u-input w120" /> %
+					</div>	
+					<div class="item" roleId="10" style="display:none;">
+						<label for="" class="u-label">营销机构收取：</label>
+						<input type="text" class="u-input w120" /> %
+					</div>	
+					<div class="item" roleId="11" style="display:none;">
+						<label for="" class="u-label">经纪人收取：</label>
+						<input type="text" class="u-input w120" /> %
+					</div>
+                    #if($!{twoLevelBroker}=="Y")
+                        <div class="item" roleId="3" style="display:none;">
+                            <label for="" class="u-label">二级经纪人收取：</label>
+                            <input type="text" class="u-input w120" /> %
+                        </div>
+                    #end
+                </fieldset>
+				<fieldset>
+					<div class="item">
+						<label for="" class="u-label"><span class="required">*</span>分润阶段：</label>
+						<p class="u-text">
+							<input type="radio" class="radio" id="template-invest" name="template-invest"/><label for="" class="mr10">募资阶段</label>
+							<input type="radio" class="radio" id="template-repay" name="template_repay"/><label for="">还款阶段</label>
+						</p>
+					</div>
+					<div class="item showDiv" style="display:none">
+						<label for="" class="u-label"><span class="required">*</span>分润方式：</label>
+						<p class="u-text">
+							<input type="radio" class="radio" id="template-sit" name="template-sit"/><label for="" class="mr10">$!divisionWay_sit.message</label>
+							<input type="radio" class="radio" id="template-month" name="template-month"/><label for="">$!divisionWay_month.message</label>
+                            <input type="radio" class="radio" id="template-month_principal_interest" name="template-month_principal_interest"/><label for="">$!divisionWay_interest.message</label>
+						</p>
+					</div>
+				</fieldset>
+				<div class="item mt10">
+					<a href="javascript:void(0);" class="u-btn u-btn-blue" id="template-submit">提交</a><a href="javascript:void(0);" class="u-btn u-btn-gray" id="template-modify-close">返回</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/plugins/jquery.window.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/sea.js"></script>
+	
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+    <script type="text/javascript">
+		$('#template-repay').click(function(){
+			$('.showDiv').css('display','block');
+		});
+		$('#template-invest').click(function(){
+			$('.showDiv').css('display','none');
+		});
+	
+        $('[name="tempalte_status"]').click(function() {
+            var _this = this;
+            var url = '/backstage/divisiontemplate/changeStatus';
+            Y.confirm('请选择','确定执行该操作？',function(opn){
+                if(opn=="yes"){
+                    var templateId = $(_this).attr("templateId");
+                    var status = $(_this).attr("status");
+                    var data = {'status' : status, 'templateId' : templateId};
+                    var result = $_GLOBAL.ajax(url, data);
+                    if(result.code == 1){
+                        alert(result.message);
+                        window.location.href = window.location.href;
+                    }else{
+                        alert(result.message);
+                    }
+                }
+            })
+        });
+
+
+
+
+        $('a[class=s-btn]').click(
+	    	function (){
+	    	  toPage($!{page.totalPageCount}, $!{page.currentPageNo});
+	    	}
+    	);
+    	
+    	$('#template-add').click(function (){
+    	  document.getElementById('status-template').innerHTML = '新增'
+    	  clear();
+    	  show();
+    	});
+    	
+    	$('a[name=template-modify]').click(function (){
+    		document.getElementById('status-template').innerHTML = '修改';
+    	   clear();
+    	   var templateId = $(this).attr('templateId');
+    	   var url = '$!{rc.contextPath}/backstage/divisiontemplate/lookup/' + templateId;
+    	   var json = $_GLOBAL.ajax(url);
+    	   inittemplate(json);
+    	   show();
+    	});
+    	
+    	$('.u-text .checkbox').click(function (){
+    	  var t = $(this);
+    	  if(t.attr('checked') == 'checked'){
+    	    $('div[class=item][roleId=' + t.attr('roleId') + ']').show();
+    	  }else{
+    	    $('div[class=item][roleId=' + t.attr('roleId') + ']').hide();
+    	  }
+    	});
+    	
+    	$('.u-text input[class=radio]').click(function (){
+    	   var t = $(this);
+    	   if(t.attr('checked') == 'checked'){
+    	     var id = t.attr('id');
+    	     if(id == 'template-invest'){
+    	       $('#template-repay').removeAttr('checked');
+    	     }else if(id == 'template-repay'){
+    	       $('#template-invest').removeAttr('checked');
+    	     }else if(id == 'template-sit'){
+    	       $('#template-month').removeAttr('checked');
+               $('#month_principal_interest').removeAttr('checked');
+    	     }else if(id == 'template-month'){
+    	       $('#template-sit').removeAttr('checked');
+               $('#month_principal_interest').removeAttr('checked');
+             }else if(id == 'template-month_principal_interest'){
+                 $('#template-sit').removeAttr('checked');
+                 $('#template-month').removeAttr('checked');
+             }
+    	   }
+    	});
+    	
+    	$('#template-submit').click(function(){
+		   var totle=0;
+    	   var id = $('#template-id').val();
+    	   var url = '$!{rc.contextPath}/backstage/divisiontemplate/';
+    	   var data = 'templateName=' + $('#template-name').val() + "&templateNote=备注" + '&templateStatus=' + $('#template-status').val();
+    	   if(id != null && id.length > 0){
+    	       url += 'modify';
+    	       data += ('&divisionTemplateId=' + id);
+    	   }else{
+    	       url += 'add';
+    	   }
+    	   if($('#template-sit').attr('checked') == 'checked'){
+    	   		data += '&divisionWay=sit';
+    	   }else if($('#template-month').attr('checked') == 'checked'){
+    	   		data += '&divisionWay=month';
+    	   }else if($('#template-invest').attr('checked') == 'checked'){
+		  		 data += '&divisionWay=sit';
+		   }else if($("#template-month_principal_interest").attr('checked') == 'checked'){
+               data += '&divisionWay=month_principal_interest';
+           }
+
+
+
+
+    	   if($('#template-invest').attr('checked') == 'checked'){
+    	   		data += '&divisionPhase=invest';
+    	   }else if($('#template-repay').attr('checked') == 'checked'){
+    	   		data += '&divisionPhase=repay';
+    	   }
+    	   var inputs = $('div[class=item][roleId]:visible');
+    	   for(var i = 0; i < inputs.length; i++){
+    	     var t = $(inputs[i]);
+    	     data += ('&roleIds=' + t.attr('roleId'));
+    	     data += ('&percentages=' + (t.find('input[class="u-input w120"]').val() / 100));
+    	     var cur = parseFloat(t.find('input[class="u-input w120"]').val());
+    	     if(cur<0){
+    	     	alert("年利率不能为负数");
+    	     	return false;
+    	     }
+			 totle+=cur
+    	   }
+		   if(totle > 100){
+		   	 	alert("收益年利率配置总和超过100%");
+			 	return false;
+		    }
+            //20141209
+            if($('#template-repay').attr('checked') == 'checked'){
+                if( $('input[class=checkbox][roleId=' + 3+ ']').attr("checked") == 'checked'){
+                    alert("还款阶段不能选二级经纪人");
+                    return false;
+                }
+
+                if( $('input[class=checkbox][roleId=' + 11+ ']').attr("checked") == 'checked'){
+                    alert("还款阶段不能选经纪人");
+                    return false;
+                }
+
+
+            }
+
+
+
+            var json = $_GLOBAL.ajax(url, data);
+    	   var status = document.getElementById('status-template').innerHTML;
+    	   if(json){
+    	     alert(status + '成功！');
+    	     document.location.href = document.location.href;
+    	   }else{
+    	     alert(status + '失败！');
+    	   }
+    	});
+    	
+    	function clear(){
+    	   $('#template-id').val('');
+    	   $('#template-name').val('');
+    	   $('#template-status').val('normal');
+    	   var radioes = $('.u-text .radio:checked');
+    	   for(var i = 0; i < radioes.length; i++){
+    	     $(radioes[i]).removeAttr('checked');
+    	   }
+    	   var checkboxes = $('.u-text .checkbox:checked');
+    	   for(var i = 0; i < checkboxes.length; i++){
+    	     $(checkboxes[i]).removeAttr('checked');
+    	   }
+    	   var inputs = $('.item input[class="u-input w120"]');
+    	   for(var i = 0; i < inputs.length; i++){
+    	     $(inputs[i]).val('');
+    	   }
+    	   $('div[class=item][roleId]').hide();
+    	}
+    	
+    	function inittemplate(json){
+    	   $('#template-id').val(json.divisionTemplateId);
+    	   $('#template-name').val(json.templateName);	
+    	   $('#template-status').val(json.templateStatus.toLowerCase());
+    	   $('#template-' + json.divisionPhase.toLowerCase()).attr('checked', 'checked');
+    	   $('#template-' + json.divisionWay.toLowerCase()).attr('checked', 'checked');
+    	   var rules = json.rules;
+    	   for(var i = 0; i < rules.length; i++){
+    	     $('input[class=checkbox][roleId=' + rules[i].roleId + ']').attr('checked', 'checked');
+    	     var t = $('div[class=item][roleId=' + rules[i].roleId + ']');
+    	     t.show();
+    	     t.find('input[class="u-input w120"]').val(rules[i].divisionRule);
+    	   }
+    	}
+    	
+    	function show(){
+    	   $('body').window({
+    	      content:'#template-modify',
+    	      simple:true,
+    	      closeEle:'#template-modify-close'
+    	   });
+    	}
+    
+    	function toPage(totalPage, page){
+    	  if(page > totalPage){
+    	   return ;
+    	  }
+    	  var action = '$!{rc.contextPath}/backstage/divisiontemplate/conditions/' + page + '/$!{page.pageSize}';
+    	  $('form[name=frm]').attr('action', action);
+    	  document.frm.submit();
+    	}
+    	
+    </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,51 @@
+#parse("/front/index/common/header-title.vm")
+<style type="text/css">
+.brief-con span{
+	##float:left;  
+    line-height:20px;  
+	text-align:left;
+    height:20px;  
+	height:auto;
+	display:inline-block;
+}
+</style>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+	<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box container">
+    	#if($!{announcementCenter})
+    	<h2 class="title1"><span>新闻公告</span></h2>
+        <ul class="help-list mt20">
+         #foreach($info in $announcements)
+        	 <li><a href="/help/announcement/$!{info.popId}"> $velocityCount. $!{info.title}</a><span>$!{dateUtil.dtSimpleFormat($!{info.modifyTime})}</span></li>
+         #end
+        </ul>
+        #else
+			<h1 style="text-align: right; font-size: 16px; font-weight: bold;"><a href="/help/announcementCenter" style="color:#009DDA;" >&lt;&lt;返回列表</a></h1>
+		   <h3 style="text-align: center; font-size: 16px; font-weight: bold; padding: 30px 0px;">$!{popNotice.title}</h3>
+		   <div class="news-con">
+			  $!{popNotice.content}
+			  ##<h4 class="text-logo"style="text-align:right;">$!appConstantsUtil.getPlatformName()</h4>
+			  ##<h4 class="text-r" style="margin-right:50px;text-align:right;">$!{dateUtil.dtSimpleFormat($!{popNotice.modifyTime})}</h4>
+		   </div>
+        #end
+    </div>
+    <div class="blank50"></div>
+    </div>
+	
+	
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

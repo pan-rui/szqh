@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		  http://www.springframework.org/schema/beans 
+		  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		  http://www.springframework.org/schema/context 
+		  http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		  http://www.springframework.org/schema/aop 
+          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd" >
+
+	<context:component-scan base-package="com.yjf.yrd.*" />
+	<mvc:resources location="/resources/**" mapping="/resources/**"/>
+	<mvc:resources location="/uploadfile/**" mapping="/uploadfile/**"/>
+	<mvc:resources location="/images/**" mapping="/images/**"/>
+	<mvc:resources location="/styles/**" mapping="/styles/**"/>
+	<mvc:resources location="/img/**" mapping="/img/**"/>
+	<mvc:resources location="/css/**" mapping="/css/**"/>
+	<mvc:resources location="/backstagecss/**" mapping="/backstagecss/**"/>
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	    <property name="interceptors">
+	       <array>
+	         <!-- 拦截器 -->
+	         <bean class="com.yjf.yrd.base.LogInterceptor" />
+	       </array>
+	    </property>	
+	</bean>
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <property name="order" value="2" />
+	</bean>	
+	
+	<bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+	    <property name="cache" value="true" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="requestContextAttribute" value="rc" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeRequestAttributes" value="true"/>
+		<property name="order" value="1" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.velocity.VelocityView" />
+		<property name="allowSessionOverride" value="true"/>
+		<property name="toolboxConfigLocation" value="/WEB-INF/config/velocity-toolbox.xml" />
+		
+	</bean>
+	
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+   		<property name="resourceLoaderPath" value="/WEB-INF/views/" />
+   		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+				<prop key="parser.pool.size">100</prop>
+				<prop key="velocimacro.library.autoreload">true</prop>
+			</props>
+		</property>
+    </bean>
+
+	<bean id="viewNameTranslator"
+		class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator">
+		<property name="stripExtension" value="false"></property>
+	</bean>
+
+	
+	<bean id="conversion-service"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+			</list>
+		</property>
+	</bean> 
+
+	<!-- AnnotationBeanValidationConfigurationLoader -->
+	<bean id="configurationLoader" class="org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader" />
+    
+    <mvc:interceptors>
+	    <mvc:interceptor>
+	    	<mvc:mapping path="/bank/**"/>
+	    	<mvc:mapping path="/guaranteeCenter/**"/>
+	    	<mvc:mapping path="/upload/**"/>
+	    	<mvc:mapping path="/boot/**"/>
+	    	<mvc:mapping path="/invest/**"/>
+	    	<mvc:mapping path="/userManage/**"/>
+	    	<mvc:mapping path="/withdrawals/**"/>
+	    	<mvc:mapping path="/security/**"/>
+	    	<mvc:mapping path="/help/**"/>
+	    	<mvc:mapping path="/investorManager/**"/>
+	    	<mvc:mapping path="/backstage/**"/>
+	    	<mvc:mapping path="/tradeQuery/**"/>
+			<mvc:mapping path="/repayQuery/**"/>
+			<mvc:mapping path="/loanQuery/**"/>
+	    	<mvc:mapping path="/loan/**"/>
+	    	<mvc:mapping path="/marketingCenter/**"/>
+	    	<mvc:mapping path="/guaranteeOperator/**"/>
+	    	<mvc:mapping path="/deduct/**"/>
+	    	<mvc:mapping path="/transferBankAccount/*"/>
+	    	<mvc:mapping path="/PasswordManage/**"/>
+	    	<mvc:mapping path="/error.htm"/>
+	    	<mvc:mapping path="/"/>
+	    	<mvc:mapping path="/userGift/**"/>
+            <mvc:mapping path="/userGiftMoney/**"/>
+            <mvc:mapping path="/repayQuery/colletions/**"/>
+	    	<bean class="com.yjf.yrd.base.YrdInterceptor" />
+	    </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

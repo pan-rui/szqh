@@ -1,0 +1,65 @@
+﻿/*
+ * @name: 易龙
+ * @overview: 
+ * @require:
+ */ 
+ @charset "utf-8";
+ @import url("base.css");
+ @import url("comp.css");
+ @import url("form.css");
+/*首页*/
+.jj10 {padding-top: 20px;padding-bottom: 20px;border: 1px solid #1E8A02;padding-left: 20px; margin-top: 20px;}
+.cc10{color:#F37800;}
+.cc20{font-weight: bold;color:#0090FF;}
+.banner { height:354px; position:relative; }
+.banner_pic { width:100%; height:354px; overflow:hidden; position:absolute; top:0; left:0; z-index:1; }
+.banner_pic li { width:100%; text-align:center; height: 354px; overflow:hidden; display: block;}
+.banner_pic li a{ display: block; width: 1000px; height: 354px; margin: 0px auto; overflow: hidden;}
+.banner_bar { position:absolute; left:50%; bottom:14px; z-index: 2; margin-left: -200px;}
+.banner_bar a { float:left; width:10px; height:10px; background:url(images/home/banner_bar.png) no-repeat -16px 0; margin:0 4px; overflow:hidden; }
+.banner_bar a.on, .banner_bar a:hover { background-position:0 0; }
+.home-container { width:100%; height:354px; margin:0 auto; position:relative; z-index:2; }
+.home-reg { width:280px; height:354px; line-height:30px; background: url(images/home/reg_bg.png) no-repeat 0 0; overflow:hidden; position:absolute; top:0px; right:50%; margin-right: -500px; z-index:2; }
+.home-reg .border-fff { width:248px; height:335px; padding:10px 20px; overflow:hidden; }
+.home-reg .border-fff .login-head { height: 85px;}
+.home-reg h2 { color:#ffffff; font-size:14px; font-weight: bold; height: 30px;}
+.home-reg h2 span{ padding-left: 20px; font-size:12px; font-weight: normal;}
+.home-reg h2 strong { color: #ffd200; line-height: 38px; height: 28px;}
+.home-reg p { color: #ddd; margin-top: 6px; overflow: hidden; font-size: 12px; }
+p.err{ min-height: 16px; line-height: 14px; overflow: hidden; color: #fff000; margin: 5px 0px; width: 100%; text-align: center;}
+/*
+.home-reg p span { font-size: 14px; line-height: 26px; float: left; padding-top: 10px; }
+.home-reg p i.orange { color: #ffd200; font-size:18px; padding-right: 3px; }
+.home-reg strong { color:#ffd200; font-weight: normal; font-size:28px;}
+.home-reg .h-reg-btn { width:238px; height:36px; text-align:center; line-height:36px; color:#ffffff; font-size:16px; background:#2385b7; display:block; margin:0px auto; margin-top: 20px; }
+.home-reg a:hover.h-reg-btn { background: #43a9e3; }
+.home-reg p.f-tar a { color:#09f; }
+.home-reg .log-item {padding-bottom: 15px;}
+.home-reg .log-form a{ color: #ffffff;}
+.home-reg .log-form a.reg{color:#ca971e; text-decoration: underline;}
+.home-reg .log-form .m-form {padding-left: 10px;}
+.home-reg .log-form .f-tar { padding-right: 25px; }
+.home-reg .log-form .log-btn a.fn-g-btn { padding: 0px; width: 210px; height: 37px; text-align: center; line-height: 37px; color: #ffffff; font-size: 16px; background: url(images/common/button.png) no-repeat 0 0; display: block; margin: 5px 0; font-family: "Microsoft Yahei";}
+.home-reg .log-form .log-btn a:hover.fn-g-btn { color: #fff000;}
+.home-net { background: #f0f0f0;}
+*/
+.home-reg { width:300px; height:270px; line-height:30px;overflow:hidden; position:absolute; top:50px; right:50%; margin-right: -490px; z-index:2; }
+.home-reg .border-fff { width:248px; height:208px; padding:10px 25px; overflow:hidden; }
+.home-reg h2 { color:#ffffff; font-size:18px; }
+.home-reg p { color: #ddd; margin-top: 6px; overflow: hidden; font-size: 12px; }
+.home-reg p span { font-size: 14px; line-height: 26px; float: left; padding-top: 10px; }
+.home-reg p i.orange { color: #ff7c00; font-size:18px; padding-right: 3px; }
+.home-reg strong { color:#ff7c00; font-weight: normal; font-size:28px; margin-top: 5px; overflow: hidden; display: inline-block; }
+.home-reg .h-reg-btn { width:238px; height:36px; text-align:center; line-height:36px; color:#ffffff; font-size:16px; background:#f16b2b; display:block; margin:0px auto; margin-top: 20px; }
+.home-reg a:hover.h-reg-btn { background: #ff5500; }
+.home-reg p.f-tar a { color:#09f; }
+
+.net-credit { padding:30px 0px 20px 0px; overflow:hidden; background:url(images/common/ptjs-icon.jpg) no-repeat 0 0; height: 71px;}
+.net-credit h1 { font-size:14px; color: #323232; font-family: "Microsoft Yahei"; font-weight: bold;}
+.net-credit-txt { width:250px; padding-left: 80px; padding-right: 30px;}
+.net-credit-txt p { line-height:20px; padding-top:2px; }
+.net-credit-txt p a { color:#0078c8; }
+.net-credit-num { width:260px; text-align:left; text-indent: 110px;}
+.net-credit-money { width: 380px; text-align: left; text-indent: 120px;}
+.net-credit-num p, .net-credit-money p { font-size:14px; color: #323232; font-family: "Microsoft Yahei"; font-weight: bold;line-height:20px; text-align: left; }
+.net-credit-num strong, .net-credit-money strong { display:block; color:#b68815; font-size:28px; font-weight:normal; text-align: left; }

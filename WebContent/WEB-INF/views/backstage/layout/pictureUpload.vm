@@ -1,0 +1,39 @@
+<div class="fn-layer" style="width:100%;">
+	<ul  class="fn-clear">
+		<li>
+			<a code='LOAN_MANAGEMENT' href="javascript:;" class='loan_management fn-ys4-btn attach'>上传</a>
+        </li>
+		<li>
+			 <img id="image"  style="width:120px;height:100px"/>
+        </li>
+		<li>
+		<span id="imageUrl"></span>
+        </li>
+    </ul>
+</div>
+
+<div class="fn-layer f-active upload-scan" style="width:100%;position:absolute;left:-9999px;">
+             <div class="f-con">
+                 <div class="f-top mb10">
+                     <p>图片支持jpg、jpeg、png、bmp格式，单张图片大小不超过1M，双击可编辑图片名称,图片名称不超过50字</p>
+                       </div>
+						<input type="hidden" value="" name="OTHER_attachPaths" id="OTHER_attachPaths"/>
+                			<div class="fn-item fn-clear" style="width:550px;">
+                				<label class="fn-label">上传图片</label>
+                                   <img style="width:50px;height:50px;" class="uploadimg" />
+                             </div>
+                				<input type="file" id='upfile' class="fn-text w205" value="" name="credentialsImage"/>
+								<div id="queueDiv">
+                							<ul id="hidden_imgs_ul" class="upload-img fn-clear hidden_imgs_ul_del">
+                								<li id="upimg-model" style='display:none'>
+                									<img src="" alt="" />
+                									<a href="javascript:;" class="del" title="删除"></a>
+                								</li>								
+                							</ul>
+                							<b class="fn-tip"></b>
+                						</div>
+                				<div class="fn-item">
+                					<a href="javascript:;" class="fn-g-btn loanChecckSubmit">完成</a>
+                				</div>
+                			</div>
+</div>

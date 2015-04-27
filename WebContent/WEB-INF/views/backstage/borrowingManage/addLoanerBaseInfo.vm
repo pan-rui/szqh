@@ -1,0 +1,155 @@
+<fieldset>
+    					
+							<div class="addLoanerBaseInfo">
+								<div class="geRen">
+        							<legend><h3>借款人个人信息：</h3></legend>	
+        							<div class="item">
+        								<label for="" class="u-label"><span class="required">*</span>借款人名字：</label>
+        								<input type="text" readOnly class="u-input w170" name="loanerUserName" maxlength="20" value="$!{loanerInfo.loanerUserName}"/>
+        							</div>
+        							
+        							<div class="item" style="z-index:20;">
+        								<label for="" class="u-label"><span class="required">*</span>性别：</label>
+        								<div class="jqtransform jqtransform-select3">
+        									<select name="gender">
+        										<option value="男">男</option>
+        										<option value="女" #if($!{loanerInfo.gender}=="女") selected="selected" #end>女</option>
+        									</select>
+        								</div>
+        							</div>
+        							</br></br>
+        							<div class="item">
+        								<label for="" class="u-label"><span class="required">*</span>年龄：</label>
+        								<input type="text" class="u-input w170" name="age" maxlength="2" value="#if($!{loanerInfo.age})$!{loanerInfo.age}#else 0 #end"/>
+        							</div>
+        							
+        							<div class="item">
+        								<label for="" class="u-label"><span class="required">*</span>工作城市：</label>
+        								<input type="text" class="u-input w170" name="householdRegister" maxlength="20" value="$!{loanerInfo.householdRegister}"/>
+        							</div>
+        							
+        							<div class="item" style="z-index:50;">
+        								<label for="" class="u-label"><span class="required">*</span>学历：</label>
+        								<div class="jqtransform jqtransform-select3">
+    										<input type="hidden" class="edus" value="$!{loanerInfo.education}">
+        									<select name="education" id="edu_selc">
+        										<option value="">---&nbsp;请选择学历&nbsp; ---</option>
+        										<option value="小学" selected="selected">小学</option>
+        										<option value="初中" selected="">中学</option>
+        										<option value="高中" selected="">高中</option>
+        										<option value="大学" selected="">大学</option>
+        										<option value="硕士" selected="">硕士</option>
+        										<option value="博士" selected="">博士</option>
+        									</select>
+        								</div>
+        							</div>
+									</br></br>
+        							<div class="item">
+        								<label for="" class="u-label"><span class="required">*</span>年收入：</label>
+        								<input type="text" class="u-input w170 salary" name="salaryLevel" maxlength="20" value="$!{loanerInfo.salaryLevel}"/>
+        							</div>
+        							</br></br>
+    								<div class="item" style="z-index:47;">
+        								<label for="" class="u-label"><span class="required">*</span>婚姻状况：</label>
+        								<div class="jqtransform jqtransform-select3">
+        									<select name="married">
+        										<option value="否">否</option>
+        										<option value="是" #if($!{loanerInfo.married}=="是") selected="selected" #end>是</option>
+        									</select>
+        								</div>
+        							</div>
+    
+        							</br></br>
+									<!--
+        							<div class="item" style="z-index:46;">
+        								<label for="" class="u-label"><span class="required"></span>是否有小孩：</label>
+        								<div class="jqtransform jqtransform-select3">
+        									<select name="haveChild">
+        										<option value="无">无</option>
+        										<option value="有" #if($!{loanerInfo.haveChild}=="有") selected="selected" #end>有</option>
+        									</select>
+        								</div>
+        							</div>
+									-->
+    								<div class="item">
+    									<label for="" class="u-label"><span class="required"></span>公司性质：</label>
+        								<textarea class="u-area" name="info2" maxlength="90"> $!{loanerInfo.info2}</textarea>
+        								<label class="u-tip">字数限制90个字</label>
+        							</div>
+    								</br></br>
+    								<div class="item">
+        								<label for="" class="u-label"><span class="required">*</span>职务：</label>
+        								<input type="text" class="u-input w170" name="info1" maxlength="20" value="$!{loanerInfo.info1}"/>
+        							</div>
+    								</br></br>
+    								##<h1>借款人资产状况</h1>
+									<!--
+            							<div class="item" style="z-index:45;">
+            								<label for="" class="u-label"><span class="required">*</span>是否有房：</label>
+            								<div class="jqtransform jqtransform-select3">
+            									<select name="haveHouse">
+            										<option value="无">无</option>
+            										<option value="有"  #if($!{loanerInfo.haveHouse}=="有") selected="selected" #end>有</option>
+            									</select>
+            								</div>
+            							</div>
+            							</br></br>
+            							<div class="item" style="z-index:44;">
+            								<label for="" class="u-label"><span class="required">*</span>是否有车：</label>
+            								<div class="jqtransform jqtransform-select3">
+            									<select name="haveCar">
+            										<option value="无">无</option>
+            										<option value="有" #if($!{loanerInfo.haveCar}=="有") selected="selected" #end>有</option>
+            									</select>
+            								</div>
+            							</div>
+            							</br></br>
+									-->
+    								<div class="item" style="z-index:43;">
+        								<label for="" class="u-label">其他贷款情况：</label>
+    									<textarea class="u-area" name="otherLoans" maxlength="90"> $!{loanerInfo.otherLoans}</textarea>
+        								<label class="u-tip">字数限制90个字</label>
+        							</div>
+        							
+        							<div class="item">
+        								<label for="" class="u-label">其他资产情况：</label>
+        								<textarea class="u-area" name="otherAssets" maxlength="90"> $!{loanerInfo.otherAssets}</textarea>
+        								<label class="u-tip">字数限制90个字</label>
+        							</div>
+									<!--
+                					<h3>单位信息：</h3>								
+            								<div class="item">
+            									
+                								<textarea class="u-area" name="info2" maxlength="100"> $!{loanerInfo.info2}</textarea>
+                								<label class="u-tip">字数限制100个字</label>
+                							</div>
+            						<h3>车产信息：</h3>	
+            							
+            								<div class="item">
+            
+                								<textarea class="u-area" name="info3" maxlength="100"> $!{loanerInfo.info3}</textarea>
+                								<label class="u-tip">字数限制100个字</label>
+                							</div>
+									-->
+    								</div>
+								
+								<div class="qiYe">
+    						<h3>借款企业信息：</h3>
+    								<div class="item">
+										<label for="" class="u-label">企业介绍：</label>
+        								<textarea class="u-area" name="info4" maxlength="90"> $!{loanerInfo.info4}</textarea>
+        								<label class="u-tip" >字数限制90个字</label>
+        							</div>
+    								<div class="item">
+    									<label for="" class="u-label">经营范围：</label>
+        								<textarea class="u-area" name="info5" maxlength="90"> $!{loanerInfo.info5}</textarea>
+        								<label class="u-tip">字数限制90个字</label>
+        							</div>
+    								<div class="item">
+    									<label for="" class="u-label">经营状况：</label>
+        								<textarea class="u-area" name="info6" maxlength="90"> $!{loanerInfo.info6}</textarea>
+        								<label class="u-tip">字数限制90个字</label>
+        							</div>
+								</div>
+							</div>
+						</fieldset>

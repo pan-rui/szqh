@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户首页</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+   #parse("/front/user/common/left1.vm")
+   
+   
+  
+	<div class="m-content fn-right">
+        	<div class="m-content-box role">
+        		<div class="title3 mt10"><span><a href="/investorManager/investorManage">《 返回</a></span><span class="two ml15">收益配置</span></div>
+                <div class="blank30"></div>
+                
+				
+				
+				
+				<div id="setContainer" >
+				<form action="/investorManager/setQuota" class="price-active" method="post" id="profit_form_one" name="profit_form_one">
+						
+			       <input type="hidden"  name="pageNo"  value="$!{pageNo}">  
+				   <input type="hidden"  name="userName"  value="$!{userName}">
+				   <input type="hidden"  name="realName"  value="$!{realName}">  		
+				
+    				<fieldset class="border-b fn-mb20" style="margin-top:10px;">
+    				    
+    				 <div class="warm-tip">
+							<p>温馨提示：该收益配置功能将实现您与客户共同分享佣金收益，请谨慎配置，如有疑问请联系客服。</p>
+						</div>
+						
+    				    <div class="blank30"></div>
+    				
+        				<div class="fn-item">
+							<label class="fn-label"><span class="required">*</span><span id="quota">设置额度（%）：</span></label>
+							<input type="text" id="distributionQuota" class="fn-text w170" name="distributionQuota" value="$!{distributionQuota}"/>
+							<p>该配置为分享佣金收益给您客户的额度</p>
+        				</div>
+						<div class="fn-item">
+							<label class="fn-label"><span id="quota">备注：</span></label>
+							<input type="text" class="fn-text w170" name="note" value="$!{note}"/>
+        				</div>
+						<div class="fn-item">
+							<input type="hidden" name="customerId" value="$!{customerId}"/>
+							<input type="hidden" name="tblBaseId" value="$!{tblBaseId}"/>
+							<input type="hidden" name="token" value="$!{token}"/>
+        					<a href="javascript:;" class="fn-g-btn fn-mr5"><button type="submit">保存</button></a>
+							<a href="/investorManager/investorManage" class="fn-h-btn"><span>返回</span></a>
+        				</div>
+                    </fieldset>
+    			</form>
+			</div>
+				
+				
+                <div class="blank30"></div>
+            </div>
+        </div>
+
+
+
+
+  
+  <div class="blank50"></div>
+</div>
+
+#parse("/front/index/common/footer-yrd.vm")	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'profitAsign');
+    </script>
+	
+	
+</body>
+</html>

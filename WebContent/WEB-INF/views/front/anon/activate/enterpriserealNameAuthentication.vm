@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>实名资料审核</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+<!--头部-->
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--右侧内容-->
+		<div class="main-content fn-right">
+			<div class="mc-border">
+				<ul class="fn-steps fn-clear">
+        			<li>1.用户注册</li>
+        			<li>2.发送激活邮件</li>
+        			<li>3.用户激活</li>
+        			<li class="current">4.实名认证</li>
+					<li>5.绑定银行信息</li>
+        			<li>6.注册成功</li>
+        		</ul>
+				<div class="fn-y-tip">
+    				<em></em>
+    				<div class="fn-y-con">
+    					<p>由于需要等待公安系统回复，实名认证要一个工作日后才能完成。您的个人信息,$!appConstantsUtil.getProductName()金融将为您保密。</p>
+    				</div>
+    			</div>
+				<form action="/userManage/updateEnterpriseInfo" method="post" class="mt20" id="updateEnterpriseInfo_form">
+					<fieldset class="border-b fn-mb20">
+						<input type="hidden" name="activaStep" value="activating"/>
+						<input type="hidden" name="authState" value="$!{realNameStatus}"/>
+						<input type="hidden" name="token" value="$!{token}"/>
+							<div class="fn-item">
+								<h4 style="font-size: 16px;font-weight: bold;"><span id="status" class="ft-f60">
+									#if($!{realNameStatus}=="IN")
+										状态:实名认证中....
+									#elseif($!{realNameStatus}=="IS")
+										状态:实名认证通过
+								    #elseif($!{realNameStatus}=="NO")
+										状态:实名认证未通过
+								    #elseif($!{realNameStatus}=="")
+										状态:未进行实名认证
+								    #end
+								</span></h4>
+							</div>
+						
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>企业名称：</label>
+								<input type="text" class="fn-text w235"  name="enterpriseName" value="$!{info.enterpriseName}" />
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>组织机构代码：</label>
+								<input type="text" class="fn-text w235"  name="organizationCode" value="$!{info.organizationCode}" />
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>税务登记号：</label>
+								<input type="text" class="fn-text w235"  name="taxRegistrationNo" value="$!{info.taxRegistrationNo}" />
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>营业执照注册号：</label>
+								<input type="text" class="fn-text w235"  name="businessLicenseNo" value="$!{info.businessLicenseNo}" />
+							</div>
+							<div class="fn-item fn-clear" style="z-index:10;">
+            					<label class="fn-label"><span class="required">*</span>开户所在地：</label>
+            					<div class="jqtransform jqtransform-select3 Y-selectarea" province="$!{info.businessLicenseProvince}" city="$!{info.businessLicenseCity}">
+            						<select name="businessLicenseProvince" class="Y-province">
+            						</select>
+            						<select name="businessLicenseCity" class="Y-city">
+            						</select>
+            					</div>
+            				</div>
+							
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>常用地址：</label>
+								<input type="text" class="fn-text w235"  name="commonlyUsedAddress" value="$!{info.commonlyUsedAddress}" />
+							</div>
+							<div class="fn-item">
+								<label class="fn-label">邮政编码：</label>
+								<input type="text" class="fn-text w235"  name="zipCode" value="$!{info.zipCode}" />
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>法人代表姓名：</label>
+								<input type="text" class="fn-text w235"  name="legalRepresentativeName" value="$!{info.legalRepresentativeName}" />
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>法人身份证号码：</label>
+								<input type="text" class="fn-text w235"  name="legalRepresentativeCardNo" value="$!{info.legalRepresentativeCardNo}" onChange="javascript:this.value=this.value.toUpperCase();" />
+							</div>
+							<div class="fn-item fn-clear">
+								<label class="fn-label"><span class="required">*</span>法人身份证到期时间：</label>
+								<div class="fn-time fn-left">
+									<input type="date" yearRange='[-10,40]' class="fn-text w90 fn-isdate1" name="cardPeriod" #if($!{info.cardPeriod}!="longTime") value="$!{info.cardPeriod}" #end  />
+									<img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img" style="z-index:10" />
+								</div>
+								<p class="fn-left mt5 ml10"><input id="isForeverCard" type="checkbox" name="cardPeriod"   #if($!{info.cardPeriod}=="longTime") checked="checked"  #end  class="checkbox" value="longTime"/><label for="">长期</label></p>
+								<p class="fn-left mt5 ml10"><label for="" style="color:#AD2B4F;">注意：身份证到时期时间为身份证背面下方时间,请正确填写以免影响实名认证。</label></p>
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>常用联系人：</label>
+								<input type="text" class="fn-text w235"  name="contactName" value="$!{info.contactName}" />
+                            </div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>联系人身份证号码：</label>
+								<input type="text" class="fn-text w235"  name="contactCertNo" value="$!{info.contactCertNo}" onChange="javascript:this.value=this.value.toUpperCase();"/>
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>联系人电话：</label>
+								<input type="text" class="fn-text w235"  name="mobile" value="$!{info.mobile}" />
+                            </div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>公司联系电话(座机)：</label>
+								<input type="text" class="fn-text w235"  name="comPhone" value="$!{info.comPhone}" />
+                            </div>
+							
+							
+							<div class="fn-item fn-clear">
+								<label class="fn-label"><span class="required">*</span>经营期限：</label>
+								<div class="fn-time fn-left">
+									<input type="date" yearRange='[-10,40]' class="fn-text w90 fn-isdate" name="businessPeriod" #if($!{info.businessPeriod}!="longTime") value="$!{info.businessPeriod}" #end/>
+									<img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img" style="z-index:10" />
+								</div>
+								<p class="fn-left mt5 ml10"><input id="isForever" type="checkbox" name="businessPeriod" #if($!{info.businessPeriod}=="longTime") checked="checked"  #end  class="checkbox" value="longTime"/><label for="">长期</label></p>
+							</div>
+							<div class="fn-item">
+								<label class="fn-label"><span class="required">*</span>上传图片：</label>
+								<div class="upload-pic">
+									<p>请上传以上证件的原件扫描件，证件要求：</p>
+									<p>证件必须是彩色原件电子版，可以是扫描件或者数码拍摄照片。</p>
+									<p>仅支持.jpg.bmp.png的图片格式。<em class="ft-f60">图片大小不超过3M。</em></p>
+									<dl class="fn-clear fn-mt10">
+										<dt>
+											<input type='hidden' id="certFrontPath" name="businessLicensePath" value="$!{info.businessLicensePath}"/>
+											<a href="javascript:;" id="certFrontPath_ImgLink" name="certFrontPath_ImgLink" title="证件的原件正面扫描件">
+												#if($!{info.businessLicensePath})
+    												<img id="certFrontPath_Img" width="305" height="155" name="certFrontPath_Img" title="证件的原件正面扫描件"  src="$!{info.businessLicensePath}"/>
+    											#else
+    												<img id="certFrontPath_Img" width="305" height="155" name="certFrontPath_Img" title="证件的原件正面扫描件"  src="$!{rc.contextPath}/resources/images/common/pic-2.gif"/>
+												#end
+											</a>
+										</dt>
+										<dt>
+											<span class="sz">企业营业执照副本扫描件：</span>
+											<div class="upload-btn">
+    											<input type="file" exts="png|jpg|bmp|gif" class="sl-file-input" id="certFrontPath_Upload" />
+    										</div>
+										</dt>
+									</dl>
+									<dl class="fn-clear fn-mt10">
+										<dt>
+											<input type='hidden' id="cardFrontPath" name="certFrontPath" value="$!{info.certFrontPath}"/>
+											<a href="javascript:;" id="cardFrontPath_ImgLink" name="cardFrontPath_ImgLink" title="证件的原件正面扫描件">
+												#if($!{info.certFrontPath})
+    												<img id="cardFrontPath_Img"  width="305" height="155" name="cardFrontPath_Img" title="身份证正面照"  src="$!{info.certFrontPath}"/>
+    											#else
+    												<img id="cardFrontPath_Img"  width="305" height="155" name="cardFrontPath_Img" title="身份证正面照"  src="$!{rc.contextPath}/resources/images/common/pic-2.gif"/>
+    											#end
+											</a>
+										</dt>
+										<dt>
+											<span class="sz">法人身份证正面照：</span>
+											<div class="upload-btn">
+    											<input type="file" exts="png|jpg|bmp|gif" class="sl-file-input" id="cardFrontPath_Upload" />
+    										</div>
+										</dt>
+									</dl>
+									<dl class="fn-clear fn-mt10">
+										<dt>
+											<input type='hidden' id="certBackPath" name="certBackPath" value="$!{info.certBackPath}"/>
+											<a href="javascript:;" id="certBackPath_ImgLink" name="certBackPath_ImgLink" title="身份证背面照">
+												#if($!{info.certBackPath})
+    												<img id="certBackPath_Img"  width="305" height="155" name="certBackPath_Img" title="身份证背面照"  src="$!{info.certBackPath}"/>
+    											#else
+    												<img id="certBackPath_Img"  width="305" height="155" name="certBackPath_Img" title="身份证背面照"  src="$!{rc.contextPath}/resources/images/common/pic-2.gif"/>
+    											#end
+											</a>
+										</dt>
+										<dt>
+											<span class="sz">法人身份证背面照：</span>
+											<div class="upload-btn">
+    											<input type="file" exts="png|jpg|bmp|gif" class="sl-file-input" id="certBackPath_Upload" />
+    										</div>
+										</dt>
+									</dl>
+									<dl class="fn-clear fn-mt10">
+										<dt>
+											<input type='hidden' id="openingLicensePath" name="openingLicensePath" value="$!{info.openingLicensePath}"/>
+											<a href="javascript:;" id="certBackPath_ImgLink" name="certBackPath_ImgLink" title="身份证背面照">
+												#if($!{info.openingLicensePath})
+    												<img id="openingLicensePathImg"  width="305" height="155" name="openingLicensePathImg" title="开户许可证照"  src="$!{info.openingLicensePath}"/>
+    											#else
+    												<img id="openingLicensePathImg"  width="305" height="155" name="openingLicensePathImg" title="开户许可证照"  src="$!{rc.contextPath}/resources/images/common/pic-2.gif"/>
+    											#end
+											</a>
+										</dt>
+										<dt>
+											<span class="sz">开户许可证：</span>
+											<div class="upload-btn">
+    											<input type="file" exts="png|jpg|bmp|gif" class="sl-file-input" id="openingLicensePathUpload" />
+    										</div>
+										</dt>
+									</dl>
+								</div>
+							</div>
+					</fieldset>
+					<div class="fn-item">
+						<input type='hidden' id="uploadHost" value="$!{uploadHost}"/>
+						<a href="javascript:;" class="fn-g-btn"><button id="submit_button" type="submit">实名认证</button></a>
+						<span class="sz">我现在不想实名认证</span><a href="/anon/allFlowSuccess" class="fn-h-btn"><span>登录后认证</span></a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'enterpriseInfo');
+    </script>
+</body>
+</html>

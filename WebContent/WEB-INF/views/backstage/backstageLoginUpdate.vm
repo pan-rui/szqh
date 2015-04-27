@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Pragma" contect="no-cache"> 
+	<title>辅助工具-修改密码</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">辅助工具</a> > 修改密码</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstagelogin/updateUserPassword"  id="updateUserPassword_form" method="post">
+							<fieldset>
+							<div class="item">
+								<label for="" class="u-label">用户名：</label>
+								<input type="text" class="u-input" name="userName" id="userName" readonly value="$!{userName}"/>
+                            </div>
+                            <div class="item">
+                                    <label for="" class="u-label"><span class="required">*</span>旧密码：</label>
+                                    <input type="password" class="u-input" name="oldPassword" id="oldPassword"/>
+                                    &nbsp;<label style="color:red;" class="err"></label>
+                            </div>
+
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>新密码：</label>
+								<input type="password" class="u-input" name="newPassword" id="newPassword"/>
+								&nbsp;<label style="color:red;" class="err"></label>
+                            </div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>新密码确认：</label>
+								<input type="password" class="u-input" name="reNewPassword" id="reNewPassword"/>
+								&nbsp;<label style="color:red;" class="err"></label>
+                            </div>
+							<input type="hidden" name="userId" id="userId" value="$!{userId}"/>
+							</fieldset>
+							<div class="item">
+                            <a href="javaScript:;" class="u-btn u-btn-gray"  id="updateUserPassword">更新</a><a href="/backstage/backstageIdex" class="u-btn u-btn-gray">取消</a>
+                            </div>
+                            
+						</form>
+					</div>
+					
+						</div>
+					</div>
+				</div>
+    </div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>	
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+	seajs.use($_GLOBAL.mode + 'backStageUpdate');
+    </script>
+</body>
+</html>

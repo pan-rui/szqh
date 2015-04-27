@@ -1,0 +1,275 @@
+#parse("/front/index/common/header-title.vm")
+
+
+<!--计算器样式崔海浩 2014、11.26-->
+
+<body class="warp l-home">
+	#parse("/front/index/common/header-yrd.vm")
+
+<!---content begin--------------------------------------->
+
+
+<div class="banner">
+	<div class="home-container">
+	<div class="m-banner m-banner1">
+    	<ul>
+			#foreach($banner in $bannerNews)
+                <li style="background: url($!{banner.rem1}) no-repeat center 0px;">#if($!{banner.parentId} ==101)    #if($stringUtil.isNotBlank(${banner.remark}))   <a href="${banner.remark}" target="_blank"></a>#end #end </li>
+            #end
+		</ul>
+    </div>	  		
+			<div class="home-reg">
+            	#if($sessionScope)
+					<!--
+                	<div class="border-fff">
+                    	<h2>欢迎来到$!appConstantsUtil.getProductName()</h2>                   	
+                        <p class="logInfo">您当前登录的账号是:$!{sessionScope.userName}</p>
+                        <strong>&nbsp;</strong>
+                        <a class="h-reg-btn" href="/userManage/userHome">进入我的账户</a>
+                    </div>
+					-->
+                #else
+					<!--
+                    <div class="border-fff">
+
+                     <div class="login-head">
+						<h2>登录$!appConstantsUtil.getProductName()</h2>
+
+					 </div>
+						
+					   
+        			   <div class="log-form">
+                        	<form action="$!{rc.conextPath}/login/dologin" method="post" class="m-form" id="login_form">
+								#if($!{appConstantsUtil.getLoginWithOutCheckCode()}=="Y" || $!{appConstantsUtil.getLoginWithOutCheckCode()}=="YY")
+            						#set($withOutImgCode=false)
+            					#else
+            						#set($withOutImgCode=true)	
+            					#end
+            					#if($!{needcheck})
+            						#set($withOutImgCode=true)
+								#end
+								##隐藏区域
+    							<input type="hidden" class="needCode" #if($withOutImgCode) value="false" #else value="ture" #end />	
+    							<input type="hidden" name="whithControl" value="1" id="whithControl">
+    							<input type="hidden" name="password" id="password"/>	
+								
+								<div class="log-group">
+									
+                                    <div class="log-item first">
+                                        <input type="text" placeholder="用户名" class="fn-text username"  name="userName">
+                                    </div>
+									
+                                    <div class="log-item">
+										<input type="password" placeholder="密码" class="fn-text password" id="passwords"/>
+									</div>
+									
+								</div>
+                                <p class="err">#if($!{request.getParameter('message')}) $!{request.getParameter('message')} #end</p>				##登陆是否需要验证码
+            					#if($withOutImgCode)
+								<div class="log-item">
+                                    <input type="text" placeholder="验证码" class="fn-text w50 verifyCode" id="verifyCode" name="captcha">
+                                    <a title="全英文字符不分大小写" href="javascript:;" class="new_captcha">
+                                    	<img id="newcaptcha" class="code-img" src="/anon/getImgCode" alt=""   />
+                                    </a>
+                                    <a href="javascript:;" class="new_captcha">刷新</a> <h3 class="ImgCodeErr" style="color:red;margin-left:60px;display:none;">验证码错误</h3>
+                                </div>
+                                #end
+                                <div class="log-btn mt10"><input type="hidden" name="redirect" value="$!{request.getParameter('redirect')}"/>
+									<a class="fn-g-btn" href="javascript:;"  id="submit-a">登&nbsp;&nbsp;录</a>
+                                </div>
+                                <div class="shop fn-clear"><a class="reg fn-right" href="/anon/newInvestorsOpen">免费注册</a><a class="fn-left" href="/PasswordManage/forgetLogPassword">忘记登录密码？</a></div>
+                            </form>
+                         </form>
+                    </div>
+                    </div>
+					-->
+                #end 
+			</div>
+        </div> 
+</div>
+
+<!-----1------->
+<!-----2------->	
+<div class="m-data container mt20" style="margin-top:25px;">
+    <ul class="l-ct">
+		<li style="l-ct"><img class="img" src="/styles/images/home/icon-data3.png"/><strong>$!{totalUserCount}</strong> 位投资人已经加入梦金融</li>
+		<li class="l-ct"><img class="img" src="/styles/images/home/icon-data1.png"/>累计投资额<strong>$!{dealedAmount}</strong> 元</li>
+		<li class="l-ct"><img class="img" src="/styles/images/home/icon-data4.png"/>为投资人赚取收益<strong>$!{benefitAmount2}</strong> 元</li>
+	</ul>
+</div>
+<div class="m-notice container fn-clear">
+    <div class="title">最新动态<i class="u-sep">&gt;</i></div>
+	
+    <div class="fn-right">
+        <a class="u-btn" href="/help/announcementCenter">更多动态</a>
+	</div>
+	
+    <div class="content">
+		<div id="rolling" class="content-inner">
+        <ul>
+			#foreach($info in $noticesIndexs)
+            <li class="link"><a href="/help/announcement/$!{info.popId}"><span class="fn-right">$!{dateUtil.dtSimpleFormat($!{info.addTime})}</span>$!{info.title}</a></li>
+			#end
+		</ul>
+		</div>
+	</div>
+</div>
+          
+<div class="mt30">
+	<!--entry-->
+    <div class="home-section container fn-clear">
+     <div class="home-newpro">    		
+	   <h3>
+         <a class="btn-more" href="/boot/invest/10/1" target="_blank">更多</a>
+		 <span class="active">最新投资列表</span>
+	   </h3>	
+      <iframe id="iframe1" style="visibility:hidden;" width="1100px"  frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+	 </div>
+    </div>
+	<!--entry结束-->
+	
+	<!--banner2-->
+	<div class="banner banner2 mt20" style="display:none;">
+    	<div class="m-banner m-banner2">
+        	<ul>
+    			<li style="background: url(/styles/images/common/step3.jpg) no-repeat center 0px;"></li>
+    			<li style="background: url(/styles/images/common/step4.jpg) no-repeat center 0px;"></li>
+    			<li style="background: url(/styles/images/common/step5.jpg) no-repeat center 0px;"></li>
+            </ul>
+        </div>
+    </div>
+	<!--banner2 结束-->
+	
+	 <div class="home-section container fn-clear">
+            
+        
+      <div class="l-panel mt40 m-news ml40">
+            <h3 class="title"><span>新闻公告</span><a href="/help/announcementCenter">更多</a></h3>
+            <div class="inner">
+                <ul class="list">
+                #foreach($infoOne in $noticesIndexsOne) 
+                    <li><a href="/help/announcement/$!{infoOne.popId}"><span class="fn-right">$!{dateUtil.dtSimpleFormat($!{infoOne.addTime})}</span> $stringUtil.subString( $!{infoOne.title},15,"..")</a></li>
+    			#end
+				</ul>
+			</div>
+        </div>										
+    </div>
+	
+	<div class="l-panel m-partner  container ">
+            <h3 class="title  mt20"><span>合作伙伴</span></h3>
+            <div class="inner mt20">
+				<ul>	
+                   
+    				<li><a href="http://www.cqbornsoft.com/" target="_blank"><img alt=""  src="/styles/images/home/agency_img1.gif"/></a></li>
+    				<li><a href="https://www.yiji.com/" target="_blank"><img alt=""  src="styles/images/home/agency_img2.gif"/></a></li>   
+    			#foreach($info in $cooperateList.result)
+					<li style="height:50px;"><a href="$!{info.cooHerf}" target="_blank" title="$!{info.cooName}"><img alt="$!{info.cooName}" src="$!{info.picUrl}" width="125" height="30"></a></li>
+				#end
+				</ul>
+			</div>
+	</div>
+</div>
+<!---content end--------------------------------------->
+	
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+	<script src="/resources/js/lib/jquery.slidy.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		seajs.use($_GLOBAL.mode + 'login');
+	</script>
+	#parse("/front/index/common/footer-yrd.vm")
+	
+	<script type="text/javascript">
+   		var pictags=$('.banner-img li');
+        var numtags=$(".banner-btn a");
+        var current;//设置当前帧的变量容器
+        var timer=8000;//设置切换的间隔时间
+        
+        //初始所有标签样式
+        function disall(){
+        	for(var i=0; i<numtags.length; i++){
+        		numtags[i].className="";
+        		//pictags[i].style.display="none";
+        		$('.banner-img li').eq(i).fadeOut(500);
+        	}
+        }
+        
+        //获取当前帧的索引值
+        function setnow(){
+        	for(i=0;i<numtags.length;i++){
+        		if(numtags[i].className=="on"){
+        			current=i;
+        		}
+        	}
+        }
+        
+        //设置自动切换
+        function gonext(){
+        	setnow();//获取当前帧索引
+            current+=1;//帧自增1
+        	//判断：如果当前帧索引值是否大于切换按钮总数，如果大于按钮总数则回到初始状态
+        	if(current>=numtags.length){
+        		current=0;
+        	}
+        	disall();
+        	$(".banner-btn a").eq(current).addClass('on');
+        	$('.banner-img li').eq(current).fadeIn(500);
+        	//numtags[current].className="on";
+        	//pictags[current].style.display="block";
+        }
+        //开始自动切换
+        var h=setInterval("gonext()",timer);
+        //手动切换
+        $(".banner-btn a").click(function(){
+        	clearInterval(h);
+        	var now=$(this).index();
+        	$(this).siblings(".banner-btn a").removeClass("on");
+        	$(this).addClass("on");
+        	$('.banner-img').children('li').fadeOut(500);
+        	$('.banner-img').children('li').eq(now).fadeIn(500);
+        	h=setInterval("gonext()",timer);
+        });
+    </script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'static-index');
+		$('area').click(function(){
+			window.open($(this).attr('path'));
+			return false;
+		})
+		/**
+		lastScrollY=0;
+        function heartBeat(){ 
+            var diffY;
+            if (document.documentElement && document.documentElement.scrollTop)
+            diffY = document.documentElement.scrollTop;
+            else if (document.body)
+            diffY = document.body.scrollTop
+            else
+            {
+			//Netscape stuff
+			}
+            percent=.1*(diffY-lastScrollY); 
+            if(percent>0)percent=Math.ceil(percent); 
+            else percent=Math.floor(percent); 
+            document.getElementById("lovexin12").style.top=parseInt(document.getElementById
+            ("lovexin12").style.top)+percent+"px";
+            document.getElementById("lovexin14").style.top=parseInt(document.getElementById
+            ("lovexin12").style.top)+percent+"px";
+            lastScrollY=lastScrollY+percent; 
+        }
+        suspendcode12="<DIV id=\"lovexin12\" style='left:2px;POSITION:absolute;TOP:0px;z-index:9999;'><img src='$!{rc.contextPath}/resources/images/advertis/denglongleft.gif' alter='对联左'/></div>"
+        suspendcode14="<DIV id=\"lovexin14\" style='right:2px;POSITION:absolute;TOP:0px;z-index:9999;'><img src='$!{rc.contextPath}/resources/images/advertis/denglongright.gif' alter='对联右'/></div>"
+        document.write(suspendcode12); 
+        document.write(suspendcode14); 
+        window.setInterval("heartBeat()",1);
+		*/
+		
+		
+    </script>
+</body>
+</html>

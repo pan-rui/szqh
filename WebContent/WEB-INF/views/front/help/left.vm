@@ -1,0 +1,19 @@
+<!--左侧导航-->
+<div class="m-menu fn-left">
+	<h2 style="font-size:14px;">帮助中心</h2>
+	<ul>
+		#foreach($info in $helps)
+			#if($!{info.parentId} == -1)
+				<li><a style="background:no-repeat 14px 12px;font-size:14px;" href="/help/popHelp/$!{info.popId}">$!{info.title}</a>
+					<ul class="fn-list">
+        				#foreach($child in $helps)
+							#if($!{child.parentId} == $!{info.popId})
+								<li><a style="font-size:14px;" href="/help/popHelp/$!{child.popId}">$!{child.title}</a></li>
+							#end
+						#end
+					</ul>
+				</li>
+			#end	
+		#end
+	</ul>
+</div>

@@ -1,0 +1,74 @@
+#parse("/front/index/common/header-title.vm")
+	<link type="text/css" href="/styles/sub.css" rel="stylesheet" />
+    <style type="text/css">
+	.wyjk_tck {
+        width: 630px;
+        height: 127px;
+		margin-left: 70px;
+		margin-top: 100px;
+     }
+	 .tck_ul01 {
+        margin-top: 15px;
+        width: 450px;
+        height: 180px;
+    }
+	.tck_ul01 li {
+		margin: 20px;
+    }
+	</style>
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<!--内容-->
+	<div class="sq_was">
+		<div class="jk_sqleft" style="background: #F0EDED;">
+        	<div class="sqleft_title"><ul class="title_ul"><li><img src="$!{rc.conextPath}/styles/images/sub_img/sub_wyjk_icon01.jpg" width="16" height="14" /></li>
+                <li class="sq_txt18">贷款申请信息</li>
+        		</ul></div>
+            <div class="wyjk_tck">
+              <ul class="tck_ul">
+                <li><img src="$!{rc.conextPath}/styles/images/sub_img/sub_wyjk_icon.jpg" width="88" height="64" /></li>
+              </ul>
+              <ul class="tck_ul01" style="background: #DBDBDB;">
+                  <li>您的贷款申请已提交，请耐心等待审核！如需了解审核</li>
+                  <li>进度请点击<a href="$!{rc.conextPath}/loanQuery/loanSchedule" class="tck_txt14">我的账户</a>查看。</li>
+                  <li>现在去： <a href="$!{rc.conextPath}/loanQuery/loanSchedule" class="tck_txt12">我的账户 </a>｜ <a href="$!{rc.conextPath}/loan/applyDetails" class="tck_txt12">返回申请页面</a></li>
+              </ul>
+        	</div>
+			
+		</div>
+	
+	
+	<div class="jk_sqright">
+        <div class="r_people">现消费贷已成功申请<span style=" color:#ff6600;">$!totalCount</span>笔</div>
+        #if($!totalCount==0)
+	    				<div class="r_txt">
+                          <ul>
+                            <li>暂时没有成功申请消费贷记录</li>
+                          </ul>
+                        </div>
+					#end
+                    #foreach($item in $!{page.result})  
+                    <div class="r_txt">
+                      <ul>
+                        <li class="r_txt1">$!{item.loanerName} $!{item.loanAmount}万元</li>
+                        <li>$!{item.guaranteeName}将与你联系</li>
+                      </ul>
+                    </div>
+                    #end
+      </div>
+    </div>
+	
+	</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + '');
+    </script>
+</body>
+</html>

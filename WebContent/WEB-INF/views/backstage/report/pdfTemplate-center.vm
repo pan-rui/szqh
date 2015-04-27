@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>PDF模板中心</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="/backstage/pdftemplate">PDF模板管理</a> 合同/凭证模板管理</p>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="/backstage/pdftemplate/addPdfTemplate" class="p-btn addUser">新增PDF模板</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						
+						<table class="m-table">
+							<tr>
+								<th width="40">模板ID</th>
+								<th width="80">模板类别</th>
+								<th width="80">模板名</th>
+								<th width="120">PDF文件名</th>
+								<th width="120">更新时间</th>
+								<th width="40">默认模板</th>
+								<th width="40">状态</th>
+								<th width="150">操作</th>
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td>$!{info.id}</td>
+								<td>$!{info.typeCode.typeName}</td>
+								<td>$!{info.name}</td>
+								<td>$!{info.pdfName}</td>
+								<td>$!{dateUtil.simpleFormat($!{info.rawUpdateTime})}</td>
+								<td>$!{info.isDefault.message}</td>
+								<td>$!{info.state.message}</td>
+								<td><a href="/backstage/pdftemplate/setPdfTemplate?templateId=$!{info.id}">修改</a>
+									| <a href="javascript:if (confirm('确认删除？') ){ window.location.href ='$!{rc.contextPath}/backstage/pdftemplate/delPdfTemplate?templateId=$!{info.id}&redirect=' + document.location.href;}"  id="deleteBtn" >删除</a>
+									| <a href="/backstage/pdftemplate/previewPdf?templateId=$!{info.id}"  target="_blank"  >预览</a></td>
+							</tr>
+						#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							<a href="/backstage/pdftemplate/addPdfTemplate" class="p-btn addUser">新增PDF模板</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'pdfTemplCenter');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/pdftemplate?"
+			+"pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

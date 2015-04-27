@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta charset="UTF-8"/>
+	<title>demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<link type="text/css" rel="stylesheet" href="../Y-source/css/Y-all.css"></link>
+</head>
+<body>
+<input id="date"/>
+<select id="opn">
+<option value="isLeapYear">是否润年</option>
+<option value="add" param="['m',2]">增加2个月</option>
+<option value="add" param="['day',-2]">减少2天</option>
+</select>
+<div id="result"></div>
+</body>
+<script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+	var $_GLOBAL = {};
+</script>
+<script type="text/javascript" src="../../lib/sea.js"></script>
+<script type="text/javascript">
+ seajs.use("./demo-date.js");
+</script>
+</html>

@@ -1,0 +1,264 @@
+<html >
+	<head >
+		<title >
+			权限列表
+        </title>
+		 <link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+		<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+<style>
+		* {
+		 margin:0;
+		 padding:0
+		}
+		html, body {
+		 height: 100%;
+		 width: 100%;
+		 font-size:12px
+		}
+		.white_content {
+		 display: none;
+		 position: absolute;
+		 top: 25%;
+		 left: 15%;
+		 width: 70%;
+		 padding: 6px 16px;
+		 border: 12px solid #D6E9F1;
+		 background-color: white;
+		 z-index:1002;
+		 overflow: auto;
+		}
+		.black_overlay {
+		 display: none;
+		 position: absolute;
+		 top: 0%;
+		 left: 0%;
+		 width: 100%;
+		 height: 100%;
+		 background-color:#f5f5f5;
+		 z-index:1001;
+		 -moz-opacity: 0.8;
+		 opacity:.80;
+		 filter: alpha(opacity=80);
+		}
+		.close {
+		 float:right;
+		 clear:both;
+		 width:100%;
+		 text-align:right;
+		 margin:0 0 6px 0
+		}
+		.close a {
+		 color:#333;
+		 text-decoration:none;
+		 font-size:14px;
+		 font-weight:700
+		}
+		.con {
+		 text-indent:1.5pc;
+		 line-height:21px
+		}
+</style>
+    </head>
+	<body >
+		<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")	
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;"  >权限管理</a> >角色管理</p>
+					</div>
+            		<table class="m-table">
+            			<thead >
+            				<td width="10px">
+            					角色ID
+                            </td>
+            				<td width="100px">
+            					角色代码
+                            </td>
+            				<td width="100px">
+            					角色名称
+                            </td>
+            				<td width="100px">
+            				    父角色ID
+                            </td>
+            				<td width="100px">
+            					备注
+                            </td>
+                            <td width="100px">
+            				      操作
+            				</td>
+                        </thead>
+            			<tbody >
+            				
+            					#foreach($role in $!{page.result})
+            				<tr >
+            				<td >
+            					$!{role.id}
+                            </td>
+            				<td >
+            					$!{role.code}
+                            </td>
+            				<td >
+            					$!{role.name}
+                            </td>
+            				<td >
+            				    $!{role.parent}
+                            </td>
+            				<td >
+            					$!{role.note}
+                            </td>
+                            <td>
+            				      <a href="javascript:;" onclick="javascript:if(window.confirm('此操作将会修改该条角色信息,您确定修改吗?')){document.location.href = '$!{rc.contextPath}/backstage/authority/toModifyRole?roleId=$!{role.id}&redirect=' + document.location.href;}">编辑</a>&nbsp; #if(!($role.getId() == 1 || ($role.getId() >= 7 && $role.getId() <= 14)))<a href="javascript:;" onclick="show($!{role.id})">授权</a>&nbsp;#end<a href="javascript:if(window.confirm('此操作将会删除该条权限,您确定删除吗?')){document.location.href = '$!{rc.contextPath}/backstage/authority/roles_del?ids=$!{role.id}&redirect=' + document.location.href;}">删除</a>
+            				</td>
+                            </tr>
+            					#end
+                            
+                        </tbody>
+                    </table>
+				<div class="p-box pages-b fn-clear">
+						  <a href="javascript:document.location.href = '$!{rc.contextPath}/backstage/authority/toAddRole?redirect=' + document.location.href">添加角色</a>
+						#parse("common/page.vm")
+					</div>
+					
+                </div>
+            </div>
+	  </div>
+   </div>	
+	<div id="light" class="white_content">
+	      <div class="close"><a href="javascript:void(0)" onclick="hide()"> 关闭</a></div>
+	      <div class="con"> 
+	     
+	     
+	     
+	     <table class="m-table">
+			<thead style=" font-size: 12px;">
+			    <td width="50">
+					选择
+                </td>
+				<!--<td width="30">
+					ID
+                </td>
+				 <td width="100">
+					权限代码
+				</td> -->
+				<td width="100">
+					权限名称
+                </td>
+				<td width="100">
+					权限操作
+                </td>
+				<!--  <td width="100">
+					回执操作
+                </td> -->
+				<td width="100">
+					备注
+                </td>
+            </thead>
+			<tbody id="permissions" style=" font-size: 12px;">
+				
+                
+            </tbody>
+        </table>
+	     
+	     
+	      
+	      </div>
+	      <a href="javascript:;" onclick="grant()">授权</a>
+	</div>
+	
+	
+	
+	<div id="fade" class="black_overlay"></div>
+	
+	
+	<input type="hidden" id="selectedRoleId"/>
+	 #set($ajaxMain='$')
+    </body>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		   function toPage(totalPage, current){
+		     if(isNaN(current)){
+			   return ;
+			 }
+			 if(current < 1 || current > totalPage){
+			   return ;
+			 }
+		     document.location.href = '$!{rc.contextPath}/backstage/authority/roles/' + current + '/$!{page.pageSize}';
+		   }
+		  
+		    function show(id){
+		    	$('#selectedRoleId').val(id);
+		         var t = $('#permissions');
+		   		 t.empty();
+	   		 	 $!{ajaxMain}.ajax({
+					 url:'$!{rc.contextPath}/backstage/authority/permissionsHad/' + id + '/1/1000',
+					 dataType:'json',
+					 type:'post',
+					 data:{},
+					 async:false,
+					 success:function(json){
+					   var result = json.result;
+					   var html = '';
+					   for(var i = 0; i < result.length; i++){
+					   	 //html += '<tr><td><input type="checkbox" checked="checked"  name="permissionId" permissionId="' + result[i].id + '"/></td><td >'+ result[i].id +'</td><td >' + result[i].code + '</td><td >' + result[i].name + '</td><td >' + result[i].operate + '</td><td >' + result[i].backOperate + '</td><td >' + result[i].note + '</td></tr>';
+					     html += '<tr><td><input type="checkbox" checked="checked"  name="permissionId" permissionId="' + result[i].id + '"/></td><td >'  + result[i].name + '</td><td >' + result[i].operate + '</td><td >' + result[i].note + '</td></tr>';
+					   }
+					   t.append(html);
+					 }
+				});
+				
+		   		 
+				 $!{ajaxMain}.ajax({
+					 url:'$!{rc.contextPath}/backstage/authority/ggpbr/' + id + '/1/1000',
+					 dataType:'json',
+					 type:'post',
+					 data:{},
+					 async:false,
+					 success:function(json){
+					   var result = json.result;
+					   var html = '';
+					   for(var i = 0; i < result.length; i++){
+					     html += '<tr><td><input type="checkbox" name="permissionId" permissionId="' + result[i].id + '"/></td><td >'+ result[i].name + '</td><td >' + result[i].operate + '</td><td >'  + result[i].note + '</td></tr>';
+					   }
+					   t.append(html);
+					 }
+				});
+					
+				
+				
+				 $('#light').show();
+				 $('#fade').show();
+			 }
+			function hide(){
+				 $('#light').hide();
+				 $('#fade').hide();
+			}
+			
+			function grant(){
+			   var permissions = $('input[name=permissionId]:checked');
+			   var ids = '';
+			   for(var i = 0; i < permissions.length; i++){
+			     if(ids.length > 0){
+			       ids += '&';
+			     }
+			     ids += 'permissionIds=' + $(permissions[i]).attr('permissionId');
+			   }
+			   confirm("确认变更该角色的权限？");
+			   //alert(ids);
+			   $.ajax({
+					 url:'$!{rc.contextPath}/backstage/authority/grantptroldd/' + $('#selectedRoleId').val(),
+					 type:'post',
+					 data:ids,
+					 async:false,
+					 success:function(json){
+					  hide();
+					 }
+			   });
+			}
+			
+        </script>
+</html>

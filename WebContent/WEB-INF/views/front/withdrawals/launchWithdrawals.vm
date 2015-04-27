@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>申请提现</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+
+</style>
+<body class="warp">
+		#parse("/front/index/common/header-yrd.vm")
+		<div class="home-section_bd pt20">
+          <div class="blank20"></div>
+          <div class="bd-box container fn-clear">
+           #parse("/front/user/common/left1.vm")
+		   <!--内容-->
+			#if($!{fail})
+			<div class="m-content fn-right">
+				<br>
+				<div class="log-success fn-fail">
+        			<em></em>
+        			<h1>$!{fail}</h1>
+        			<p>您可能需要：<a href="/userManage/userRealNameInfo" class="fn-o-btn ml5"><span>实名认证</span></a>
+						#if($!{yjfAccountInfo.userStatus.code}=='W')或<a href="/anon/activeYjfAccount" class="fn-o-btn ml5"><span>激活支付账户</span></a>#end</p>
+					</div>
+			</div>
+		#else
+		<!--右侧内容-->
+		  <div class="m-content fn-right">
+				<iframe frameborder="0" width="817" height="900" scrolling="yes" src="$!withdrawUrl"></iframe>
+    	 
+		      <div style="font-size:12pt;margin-left:10px;">
+				<!--
+					<span id="countAmounTitle">注意：每笔提现会产生</span><span class="ft-f60">￥10.00</span>元的手续费
+				-->
+			  </div>
+			  </br>
+		  </div>
+		 
+		 
+		 
+		#end
+          
+        </div>
+      </div>
+      <div class="blank50"></div>
+    </div>
+    #parse("/front/index/common/footer-yrd.vm")	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+	
+    	seajs.use($_GLOBAL.mode + 'launchWithdrawals');
+		$("#checkBankChanels").click(function(){
+    		if($(this).text() == "查看银行支付能力"){
+    			$(this).text("");
+				$(this).text("关闭");
+			}else{
+				$(this).text("");
+				$(this).text("查看银行支付能力");
+			}
+			$("#showBankChanels").toggle();
+		});
+    </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,187 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors 熊洋 (xywindows@gmail.com)
+ * @date    2015-03-11 10:58:59
+ * @version 砸金蛋专题页
+ */
+
+/******************************************************
+ * grid  布局
+ * 前缀  .g-
+ ******************************************************
+ */
+/*两栏布局*/
+.g-ct{ width: 1200px; margin-left: auto; margin-right: auto; }
+.g-mn2{ float: left; width: 100%; }
+.g-mnIn2{ padding-right: 581px; }
+.g-sb2{ float: left; position: relative; width: 581px; zoom: 1; z-index: 1; margin: 0 0 0 -581px; }
+
+.g-col{ float: left; }
+.g-col.col3{ width: 33.33%; }
+
+/******************************************************
+ * unit  元件
+ * 前缀  .u-
+ ******************************************************
+ */
+
+/**
+ * 按钮
+ */
+.u-btn2{ display: inline-block; *display: inline; *zoom: 1; vertical-align: middle; }
+.u-btn2:hover{ text-decoration: none; }
+/*颜色*/
+.u-btn2.white,
+.u-btn2.yellow{ width: 78px; height: 38px; line-height: 35px; text-align: center; background-repeat: no-repeat; background-position: center center; font-size:16px; color: #382f2f; }
+.u-btn2.white{ background-image: url(images/eggFrenzy/btn_white.png); }
+.u-btn2.yellow{ background-image: url(images/eggFrenzy/btn_yellow.png); }
+/*黄色2*/
+.u-btn2.yellow2{ background: #ffd659; color: #3a3737; border-radius: 3px; }
+
+/*尺寸*/
+.u-btn2.lg{ padding: 4px 16px; font-size: 16px; font-family: microsoft yahei; }
+
+/******************************************************
+ * function  功能
+ * 前缀  .f-
+ ******************************************************
+ */
+/*清除浮动*/
+.f-cf:after{ display: block; content: ' '; width: 0; font-size: 0; visibility: hidden; clear: both; }
+.f-cf{ *zoom: 1; }
+
+/*外边距*/
+/*上*/
+.f-mt40{ margin-top: 40px; }
+.f-mt50{ margin-top: 50px; }
+.f-mt60{ margin-top: 60px; }
+/*左*/
+.f-pl1em{ padding-left: 1em; }
+
+/*背景色*/
+.f-bgRed{ background-color: #5d0605; }
+.f-bgRed2{ background-color: #ec302f; }
+
+/*文本居中*/
+.f-tac{ text-align: center; }
+.f-tar{ text-align: right; }
+
+/*缩进*/
+.f-ti2em{ text-indent: 2em; }
+
+/******************************************************
+ * module  布局
+ * 前缀  .m-
+ ******************************************************
+ */
+/*banner*/
+.m-banner2{ position: relative; height: 479px; zoom: 1; z-index: 1; background: url(images/eggFrenzy/banner.jpg) no-repeat top center; }
+.m-banner2 .bottom{ position: absolute; width: 100%; padding:19px 0 0 0; bottom: -18px; background: url(images/eggFrenzy/bannerBt.png) no-repeat center center; z-index: 2; }
+.m-banner2 .g-ct{ height: 60px; line-height: 60px; text-align: center; color: #fff; font-size: 16px; }
+.m-banner2 .u-btn2{ margin: 0 40px 0 10px; }
+
+/*页面片段*/
+.m-section{ background: #5d0605; }
+
+/*面板*/
+.m-panel3{ position: relative; zoom: 1; z-index: 1; }
+.m-panel3 .tag{ position: absolute; height: 57px; top: -19px; left: 17px; z-index: 1; }
+.m-panel3 .tag.tag1{ width: 90px; background: url(images/eggFrenzy/title1.png) no-repeat 0 0; }
+.m-panel3 .tag.tag2{ width: 123px; background: url(images/eggFrenzy/title2.png) no-repeat 0 0; }
+.m-panel3 .tag.tag3{ width: 123px; background: url(images/eggFrenzy/title3.png) no-repeat 0 0; }
+.m-panel3 .tag.tag4{ width: 132px; background: url(images/eggFrenzy/title4.png) no-repeat 0 0; }
+/*颜色*/
+/*白色*/
+.m-panel3.white{ background: #fff; }
+/*红色*/
+.m-panel3.red{ background: #ec302f; }
+
+/*砸蛋面板*/
+.m-egg{ position: relative; height: 448px; zoom: 1; z-index: 1; }
+.m-egg .cloud{ position: absolute; width: 100%; height: 78px; bottom: 0; left: 0; z-index: 2; background: url(images/eggFrenzy/cloud.png) no-repeat 8px top; }
+.m-egg .inner{ position: relative; padding:100px 100px 0; zoom: 1; z-index: 1; }
+.m-egg .itm{ position:relative; zoom: 1; z-index: 1; height: 230px; width: 240px; margin: 0 auto; cursor: pointer; }
+.m-egg .itm .layer{ position: absolute; width: 100%; height: 100%; top:0; left: 0; visibility: hidden; }
+.m-egg .itm .layer1{ background: url(images/eggFrenzy/egg.png) no-repeat center bottom; }
+.m-egg .itm .layer2{ background: url(images/eggFrenzy/egg_break.png) no-repeat 40px 42px; }
+.m-egg .itm .layer3{ background: url(images/eggFrenzy/light.png) no-repeat 9px 3px; }
+.m-egg .itm .layer4{ background: url(images/eggFrenzy/hammer.png) no-repeat 158px 0px; }
+.m-egg .itm .layer5{ background: url(images/eggFrenzy/hammer.png) no-repeat 138px 20px; }
+.m-egg .m-messageBox{ display: none; }
+/*显示信息*/
+.m-egg.showMask .mask{ display: block; }
+/**/
+.m-egg .loading,
+.m-egg .mask{ position: absolute; top:0; left: 0; width: 100%; height: 100%; z-index: 2; }
+/*加载状态*/
+.m-egg .loading{ background: url(images/eggFrenzy/loading.gif) no-repeat center center; }
+/*遮罩*/
+.m-egg .mask{ display: none; background: url(images/eggFrenzy/dot.png) repeat 0 0; }
+/*步骤*/
+.m-egg.step2 .inner1,
+.m-egg.step2 .cloud{ display: none; }
+.m-egg.step2 .inner2{ display: block; }
+/*状态*/
+/*鼠标悬浮*/
+.m-egg .itm:hover .layer4{ visibility: visible; }
+/*默认状态*/
+.m-egg .itm.state1 .layer1{ visibility: visible; }
+/*锤子轰*/
+.m-egg .itm.state2 .layer1{ visibility: visible; }
+.m-egg .itm.state2 .layer4{ visibility: hidden; }
+.m-egg .itm.state2 .layer5{ visibility: visible; }
+/*蛋砸开*/
+.m-egg .itm.state3{ cursor: default; }
+.m-egg .itm.state3 .layer2,
+.m-egg .itm.state3 .layer3{ visibility: visible; }
+.m-egg .itm.state3 .layer4{ visibility: hidden; }
+
+/*抽奖明细*/
+.m-raffleInfo{ position: relative; zoom: 1; z-index: 1; }
+.m-raffleInfo .cloud{ position: absolute; width: 100%; height: 103px; bottom: 0; left: 0; z-index: 2; background: url(images/eggFrenzy/cloud.png) no-repeat center top; }
+
+.m-winnerList,
+.m-prizeList{ height: 730px; }
+
+/*获奖名单*/
+.m-winnerList .inner{ padding: 80px 20px 0; }
+
+/*奖品列表*/
+.m-prizeList{ border-left: 1px dashed #9b0a0a; }
+.m-prizeList .inner{ padding: 90px 35px 0; }
+/*列表*/
+.m-prizeList .list{ overflow: hidden; }
+.m-prizeList .list li{ float: left; width: 50%; height: 72px; margin-bottom: 23px; }
+.m-prizeList .list .icon{ float: left; width: 72px; height: 72px; background-position: center center; background-repeat: no-repeat; }
+.m-prizeList .list span{ display: block; padding-left: 95px; font-size: 16px; color: #fff; }
+.m-prizeList .list .first{ margin: 10px 0 5px; }
+
+
+/*表单*/
+.m-table3 table{ width: 100%; font-family: arial,microsoft yahei; }
+.m-table3 th{ height: 45px; font-size: 18px; font-weight: bold; color: #eedd82; }
+.m-table3 td{ height: 37px; font-size: 14px; color: #fff; padding: 0 1em; }
+
+/*规则*/
+.m-rule{ height: 325px; margin-bottom: 50px; }
+.m-rule .inner{ padding: 60px 0 0 50px; }
+.m-rule .list li{ color: #fff; font-size: 14px; margin-bottom: 13px; }
+
+
+/**
+ * 消息面板
+ */
+.m-messageBox{ display: none; position: fixed; top: 45%; left:50%; margin: -68px 0 0 -159px; width: 319px; height: 136px; background:#fff url(images/eggFrenzy/messageBox_bg.png) no-repeat center center; border-radius: 3px; z-index: 9999; }
+.m-messageBox .hd{ position:relative; height: 25px; padding: 10px 10px 0; zoom: 1; z-index: 1; }
+.m-messageBox .hd .tool{ float: right; }
+.m-messageBox .hd .tool:hover{ text-decoration: none; }
+.m-messageBox .hd .tool.close{ width:12px; height:12px; background: url(images/eggFrenzy/tool_close.png) no-repeat center center; }
+.m-messageBox .bd{ padding:0 10px; }
+.m-messageBox .msg{ color: #7d1a19; font-size: 18px; font-family: microsoft yahei; text-align: center; margin-bottom: 15px; }
+.m-messageBox .func .u-btn2{ margin: 0 5px; }
+
+/**
+ * 遮罩
+ */
+.u-mask{ position: fixed; display: none; width: 100%; height: 100%; top: 0; right: 0; bottom: 0; left: 0; background: url(images/eggFrenzy/rgray.png) repeat 0 0; z-index: 9998; }

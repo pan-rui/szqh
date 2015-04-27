@@ -1,0 +1,61 @@
+#parse("/front/index/common/header-title.vm")
+
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+<!--content begin----------------->	
+	
+
+
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="container">
+        <div class="bd-box">
+            <div class="m-box-hd">
+                <h3 class="box-title">找回密码</h3>
+            </div>
+            <div class="m-box">
+                <div class="blank5"></div>
+                <div class="log-form mt20">
+                    <form action="/PasswordManage/updatePassword" method="post" class="mt20" id="password_form">
+                        <div class="fn-item">
+                            <label class="fn-label"><span class="required">*</span>新登录密码：</label>
+                            
+                            <input type="password" class="fn-text fn-t-disable w230" name="newPassword" id="newPassword"/>
+                            
+                            <p class="fn-tip"></p>
+                        </div>
+						
+						<div class="fn-item">
+                            <label class="fn-label"><span class="required">*</span>确认登录密码：</label>
+                            
+                            <input type="password" class="fn-text fn-t-disable w230" name="newPasswordTo" id=""/>
+                            <input type="hidden"  name="md5UserBaseId" value="$!{md5UserBaseId}"/>
+							<input type="hidden"  name="randomMD5"   value="$!{randomMD5}"  />
+                            <p class="fn-tip"></p>
+                        </div>
+                        <div class="fn-item">
+                             <a class="fn-g-btn mr5" href="#"><button type="submit" name="next">确定</button></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+
+
+<script type="text/javascript">
+	var $_GLOBAL = {};
+</script>
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+	seajs.use($_GLOBAL.mode + 'forgetPassWord');
+</script> 
+
+
+<!--content end----------------->	
+	#parse("/front/index/common/footer-yrd.vm")
+</body>
+</html>

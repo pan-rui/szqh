@@ -1,0 +1,110 @@
+
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+
+<!---content begin--------------------------------------->
+
+
+<!-------------------我要融资------------------------->
+<div class="financing fn-clear">
+    <h3 class="financtitle ml15"><span>我要融资，请填写您的融资需求信息</span></h3>
+    <ul class="financnav">
+         <li class="on"><a href="/loanRequest/toLoanRequest/P">个人经营融资</a></li>
+		 <li><a href="/loanRequest/toLoanRequest/C">企业流动资金融资</a></li>
+    </ul>
+    <div class="financon mt20 ml15">
+        <!-------------------个人经营融资------------------------->
+        <div class="personfnc">
+			<form action="/loanRequest/sendLoanRequestMail/P" id="personfnc_form" methord="post">
+                <div class="fnccon">
+                    <div class="fnctab">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td width="120" align="right">姓名：</td>
+                            <td><input id="" type="text" name="name" class="1"/><p style="display:none;" class="show1">*请填写正确的姓名<p></td>
+                            <td align="right">身份证号码：</td>
+                            <td><input id="idcard" type="text" name="idcard" class="2" /><p style="display:none;" class="show2">*请填写正确的身份证号码<p></td>
+                          </tr>
+                          <tr>
+                            <td width="120" align="right">婚姻状况：</td>
+                            <td><input class="radiomar" type="radio" value="未婚" name="merry" checked="true"/><span>未婚</span>
+								<input class="radiomar" type="radio" value="已婚" name="merry"/><span>已婚</span></td>
+                            <td align="right">联系方式(手机)：</td>
+                            <td><input id="" type="text"  name="phone" class="3"/><p style="color:red;display:none;" class="show3">*请填写正确的手机号码<p></td>
+                          </tr>
+                          <tr>
+                            <td width="120" align="right">企业名称：</td>
+                            <td><input id="" type="text"  name="companyName" class="4"/><p style="display:none;" class="show4">*请填写企业名<p></td>
+                            <td align="right">企业组织机构代码：</td>
+                            <td><input id="" type="text"  name="companyID" class="5"/><p style="display:none;" class="show5">*请填写企业机构代码<p></td>
+                          </tr>
+                          <tr>
+                            <td width="120" align="right">企业办公地址：</td>
+                            <td><input id="" type="text"  name="companyAdds" class="6"/><p style="display:none;" class="show6">*请填企业办公地址<p></td>
+                            <td align="right">主营业务：</td>
+                            <td><input id="" type="text"  name="busyness" class="7"/><p style="display:none;" class="show7">*请填写企业主营业务<p></td>
+                          </tr>
+                          <tr>
+                            <td width="120" align="right">借款金额：</td>
+                            <td><input id="" type="text"  name="loanAmout" class="8"/>元<p style="display:none;" class="show8">*请填写借款金额（元）<p></td>
+                            <td align="right">借款期限：</td>
+                            <td><input id="" type="text"  name="loanTime" class="9"/>月<p style="display:none;" class="show9">*请填写正确的借款期限（月）<p></td>
+                          </tr>
+                          <tr>
+                            <td width="120" align="right">您可承担的利率：</td>
+                            <td><input id="" type="text"  name="rate" class="10"/>%<p style="display:none;" class="show10">*请填写你可以承担的利率<p></td>
+                            <td align="right">还款来源：</td>
+                            <td><input id="" type="text"  name="paySourse" class="11"/><p style="display:none;" class="show11">*请填写你的还款来源<p></td>
+                          </tr>
+                          <tr>
+                            <td width="120" align="right">具体用途：</td>
+                            <td><input id="" type="text"  name="purpose" class="12"/><p style="display:none;" class="show12">*请填写借款用途<p></td>
+                            <td align="right">担保措施：</td>
+                            <td><input id="" type="text"  name="danbao" class="13"/><p style="display:none;" class="show13">*请填写担保措施<p></td>
+                          </tr>
+						<input type='hidden' id="loanRequestUrl" name="loanRequestUrl"/>
+#*						  
+						  <tr>
+							<td colspan="4">
+								<div class="item" style="padding-left: 120px;">
+    								<span class="sl-file" style="width:300px">
+    									<input type="file" exts="zip|rar" class="" id="personUrl_Upload" />
+    								</span>
+    								<div id="personUrl_container" style = "display:none;height:265px;">
+    									<input type='hidden' id="loanRequestUrl" name="loanRequestUrl"/>
+    									<input type='hidden' id="uploadHost" value="$!{uploadHost}"/>
+    								</div>
+								</div>	
+							</td>
+						  </tr>
+			*#			  
+                        </table>
+    					<div style="hidden">
+                			<input type="hidden" value="${token}" name="token"/>
+                			<input type="hidden" value="1" name="type"/>
+    					</div>	
+                    </div>
+                </div>
+                <div class="fncbtn mt20"><a href="javascript:;" class="fn-submit0">申请借款</a></div>
+			</form>	
+        </div>
+<!-------------------个人经营融资 end------------------------->
+		
+
+
+</div>
+
+<!---content end--------------------------------------->
+	
+</div>
+
+	#parse("/front/index/common/footer-yrd.vm")
+	
+	#parse("/front/index/common/js.vm")
+	<script src="/resources/js/lib/jquery.slidy.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'loanRequestPage.js');
+	</script>
+</body>
+</html>

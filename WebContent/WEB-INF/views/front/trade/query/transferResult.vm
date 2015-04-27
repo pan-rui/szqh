@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户资料（实名资料）</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+<!--section_bd-->
+<div class="home-section_bd pt20">
+  <!--container-->
+  <div class="bd-box container fn-clear mt20">
+   #parse("/front/user/common/left1.vm")
+   <!--content-->
+    <div class="m-content fn-right">
+      <div class="m-content-box">
+		
+		<!--title-->
+        <h3 class="u-title4">#if($!{result.isSuccess()})债权转让申请发布成功 #else 债权转让申请发布失败 #end</h3>
+		<!--title End-->
+		
+		
+        <div class="u-messageBox2">
+            <h3 class="title">#if($!{result.isSuccess()}) <i class="u-icon success"></i> 债权转让申请发布成功 #else  <i class="u-icon failure"></i>$!{result.message}！ #end</h3>
+            <div class="content">
+                <label class="label">提示：</label>
+				<ul class="list">
+					<li>1、转让申请将会在平台进行公布，一旦有投资人成功购买，则转让成功</li>
+					<li>2、转让成功后，转让资金将直接进入您的支付账户，您可以在交易明细里查看</li>
+					<li>3、转让有效期内未完成转让的，平台将自动撤销转让申请</li>
+					<li>4、提交转让申请后，有权在转让未达成前，手动撤销转让申请</li>
+                </ul>
+                <div class="mt50">
+                    <a class="u-btn yellow3 nm7" href="/tradeQuery/entries/12/1/2">确定</a>
+				</div>
+			</div>
+		</div>
+		
+	  </div>
+    </div>
+   <!--content End-->
+	
+  </div>
+  <!--container End-->
+</div>
+<!--section_bd End-->
+#parse("/front/index/common/footer-yrd.vm")	
+<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'debtList');
+    </script>
+</body>
+</html>
+

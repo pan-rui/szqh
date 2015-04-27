@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>砸金蛋</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+	<link type="text/css" href="/styles/eggFrenzy.css" rel="stylesheet" />
+</head>
+<body class="f-bgRed">
+<!--头部-->
+#parse("/front/index/common/header-yrd.vm")
+<!--banner-->
+<div class="m-banner2">
+	<div class="bottom">
+        <div class="g-ct">
+#if(!$sessionScope)
+			   您还未登录，请先登录 
+             <a class="u-btn2 white" href="/login/login">登陆</a>
+			    如您还没有帐号，请先   
+             <a class="u-btn2 yellow" href="/anon/newInvestorsOpen">注册</a>
+#end
+		</div>
+	</div>
+</div>
+<!--banner End-->
+
+<!--container-->
+<div class="g-ct f-mt60">
+	
+    <div class="m-panel3 red m-egg">
+		<!--tag-->
+        <h3 class="tag tag1"></h3>
+		<input type="hidden" id="lotteryActivityInstanceId" name="lotteryActivityInstanceId"  value="$!{lotteryActivity.lotteryActivityInstanceId}"/>
+        <input type="hidden" id="activityId" name="activityId"  value="$!{lotteryActivity.id}"/>
+
+
+		<!--金蛋-->
+        <div class="inner f-cf">
+            
+			<!--col-->
+            <div class="g-col col3">
+				<div class="itm state1">
+					<div class="layer layer1"></div>
+					<div class="layer layer2"></div>
+					<div class="layer layer3"></div>
+					<!--hammer-->
+                    <div class="layer layer4"></div>
+					<!--hammer click-->
+                    <div class="layer layer5"></div>
+                </div>
+			</div>
+			<!--col End-->
+			
+			<!--col-->
+            <div class="g-col col3">
+				<div class="itm state1">
+					<div class="layer layer1"></div>
+					<div class="layer layer2"></div>
+					<div class="layer layer3"></div>
+					<!--hammer-->
+                    <div class="layer layer4"></div>
+					<!--hammer click-->
+                    <div class="layer layer5"></div>
+                </div>
+			</div>
+			<!--col End-->
+			
+			<!--col-->
+            <div class="g-col col3">
+				<div class="itm state1">
+					<div class="layer layer1"></div>
+					<div class="layer layer2"></div>
+					<div class="layer layer3"></div>
+					<!--hammer-->
+                    <div class="layer layer4"></div>
+					<!--hammer click-->
+                    <div class="layer layer5"></div>
+                </div>
+			</div>
+			<!--col End-->
+			
+		</div>
+		
+		
+        <div class="mask"></div>
+		
+        <div class="cloud"></div>
+	</div>
+	
+	
+    <div class="m-raffleInfo f-cf f-mt50 f-bgRed2">
+		<!--main-->
+        <div class="g-mn2">
+            <div class="g-mnIn2">
+				
+				<!--获奖名单-->
+    			<div class="m-panel3 m-winnerList">
+            		<!--tag-->
+                    <h3 class="tag tag2"></h3>
+                    <div class="inner">
+						<!--table-->
+                        <div class="m-table3">
+                            <table>
+                                <tbody>
+            						<!--head-->
+                                    <tr>
+                                        <th class="f-tac" width="35%">用户</th>
+                                        <th class="f-tac" width="35%">奖品</th>
+                                        <th class="f-tac" width="30%">时间</th>
+            						</tr>
+            						<!--head End-->
+								</tbody>
+                            </table>
+                        </div>
+						
+                        <div class="m-table3 rows">
+							 <table >
+                                <tbody>
+                                #foreach($winner in $winners)
+                                <tr>
+                                    <td class="f-tac">$!{winner.userName}</td>
+                                    <td>$!{winner.awards}，$!{winner.prizeAmount}</td>
+                                    <td><td>$!dateUtil.simpleFormat($!{winner.rawAddTime})</td></td>
+                                </tr>
+                                #end
+            					</tbody>
+            				</table>
+            			</div>
+            			<!--table End-->
+						
+						
+            		</div>
+            	</div>
+				<!--获奖名单结束-->
+				
+				
+			</div>
+		</div>
+		<!--main End-->
+		<!--sidebar-->
+        <div class="g-sb2">
+		
+			<!--获奖名单-->
+			<div class="m-panel3 m-prizeList">
+        		<!--tag-->
+                <h3 class="tag tag3"></h3>
+                <div class="inner">
+        			
+                    <ul class="list">
+
+               #foreach($info in $ruleDetails)
+                        <li>
+                            <i class="icon" style="background-image:url(/styles/images/eggFrenzy/jiangping.png)"></i>
+                            <span class="first" >${info.seqNum}等奖</span>
+                            <span> #if(${info.prizeType.code} !="PHYSICAL") ${info.prizeAmount} #end ${info.prizeType.message}</span>
+						</li>
+               #end
+
+					</ul>
+					
+					
+        		</div>
+        	</div>
+			<!--获奖名单结束-->
+			
+			
+		</div>
+		<!--sidebar End-->
+        <div class="cloud"></div>
+	</div>
+	
+    <div class="m-rule m-panel3 red f-cf f-mt60">
+		<!--tag-->
+        <h3 class="tag tag4"></h3>
+        <div class="inner">
+			
+            <ul class="list">
+				<li>1、活动时间：$!dateUtil.simpleFormat($!{lotteryActivity.startTime})-$!dateUtil.simpleFormat($!{lotteryActivity.endTime})。 </li>
+
+				<li>2、实物奖品将在每周最后一个工作日进行发放，发放方式实情况而定 </li>
+
+				<li>3、为保障抽奖活动公平公正；严禁使用非本人身份证、银行卡恶意刷奖，一经发现，立即取消活动资格； </li>
+
+				<li>4、红金宝可能会根据本活动的实际举办情况对活动规则进行变动或调整，相关变动或调整将公布在活动页面上，并于公布时即时生效 </li>
+
+				<li>注：本活动规则解释权归红金宝所有,如有疑问请联系平台客服，电话：$!{appConstantsUtil.getCustomerServicePhone()}</li>
+			</ul>
+			
+			
+		</div>
+	</div>
+	
+	<!--ct-->
+</div>
+
+<!--messageBox-->
+<div class="m-messageBox">
+    <div class="hd"><a class="tool close" href="javascript:;">&nbsp;</a></div>
+    <div class="bd">
+        <div class="msg">恭喜您获得50元红包!</div>
+        <div class="func f-tac">
+			<a class="u-btn2 yellow2 lg reset" href="javascript:;">继续抽奖</a>
+		</div>
+	</div>
+</div>
+<!--messageBox End-->
+<!--mask-->
+<div class="u-mask"></div>
+<!--mask End-->
+
+<!--container End-->
+#parse("/front/index/common/footer-yrd.vm")	
+<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'eggFrenzy');
+    </script>
+</body>
+</html>
+

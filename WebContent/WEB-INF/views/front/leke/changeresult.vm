@@ -1,0 +1,43 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="popwin">
+	
+        <div class="popbanner"></div>
+        <div class="popque ml20 mt20" style="text-align:center">
+    		<p style="font-size:17px;">申请结果：</p>
+            <p style="color:red">    
+				#if($!{result}=="brokerNoExsit") 
+				<p>你输入的推荐人编号不存在：请确保你输入的编号正确！</p>
+				<div class="submitbtn mt20 mb20">
+					<a href="javascript:history.go(-1);">返回</a>
+				</div>
+				#elseif($!{result}=="success")
+					<p>信息已提交，正在审核中!</p>
+					<div class="submitbtn mt20 mb20">
+						<a href="/">确定</a>
+					</div>
+				#else
+					<p>申请失败！</p>
+					<div class="submitbtn mt20 mb20">
+						<a href="javascript:history.go(-1);">返回</a>
+					</div>
+				#end
+				
+			
+			</p>
+            
+        </div>
+
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+	<script src="/resources/js/lib/jquery.slidy.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'chageToLeke.js');
+	</script>
+</body>
+</html>

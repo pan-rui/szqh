@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户首页</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+  
+   
+				<form action="/" method="post" id="_form">
+						<div class="fn-item"  style="padding: 0 0 15px 100px;">
+							<iframe style="width:800px;height:600px;"  id="iframe1" src="/tradeQuery/investReceiptDownLoad/$!{tradeId}?detailId=$!{detailId}&checkType=preview"  runat="server" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+                        </div>
+						<div class="fn-item"  style="padding: 0 0 15px 100px;">
+							<center >
+								<a  href="/tradeQuery/investReceiptDownLoad/$!{tradeId}?detailId=$!{detailId}&checkType=downLoad"  class="fn-g-btn"><span>下载</span></a>&nbsp;&nbsp; 
+								
+								#if( $stringUtil.isNotEmpty($!{appConstantsUtil.getCertificateServiceUrl()})&& $!{appConstantsUtil.getCertificateServiceUrl()}!='N' ) <!--根据 系统参数SYS_PARAM_CERTIFICATE_SERVICE_URL 决定是否显示保全 -->
+								
+								<a href="javascript:" id="creatCertificate"   class="fn-g-btn" ><span>数据保全证书</span></a>&nbsp;&nbsp; 
+								
+								#end	
+								
+								<a  href="javascript:window.close();"  class="fn-h-btn"><span>返回</span></a> 
+							</center>
+						</div>
+			</form>
+  
+  
+  <div class="blank50"></div>
+  
+ 
+  
+</div>
+
+
+#parse("/front/index/common/footer-yrd.vm")	
+
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	
+	$('#creatCertificate').click(function (){
+	
+			var url = '/tradeQuery/queryReceiptCertificate';
+			var data = { tradeId : $!{tradeId}, detailId : $!{detailId}};	
+	
+			
+			var result = $_GLOBAL.ajax(url, data);
+			if(result.code==1){
+				//alert("数字证书已生成,开始审核");
+				document.location.href = result.url;
+				//window.open(result.url);
+				
+			}else{
+				alert(result.message);
+			}
+			
+	
+//		alert(11);
+		
+	});
+	
+	
+    </script>
+</body>
+</html>

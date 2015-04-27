@@ -1,0 +1,104 @@
+<div class="m-foot2-wrap">
+	<div class="m-foot2">
+	<div class="container">
+		<div class="foot_page1">
+		<span><strong>服务热线</strong><img src="/styles/images/foot/icon-mobile.png" class="ml10 img-midle"/><em class="ml10">$!{appConstantsUtil.getCustomerServicePhone()}</em> （周一至周五 每天9:00-17:30） </span><span><img src="/styles/images/foot/icon-home.png" class="img-midle"/><em>$!{appConstantsUtil.getPlatformAddress()}</em></span>
+		</div>
+		<div class="foot_page2">
+			<p class="text-midle"><a href="/help/infoCenter?defaultMCode=ABOUT_US">关于我们</a>
+				<em>|</em><a href="/help/infoCenter?defaultMCode=CONTACT_US">联系我们</a>
+				<em>|</em><a href="/help/toModule?moduleCode=GUIDES">新手指引</a>
+				<em>|</em><a href="/help/toModule?moduleCode=QUESTIONS">常见问题</a>
+				<em>|</em><a href="/help/center">帮助中心</a></p>
+			<p class="text-midle">版权所有：$!appConstantsUtil.getPlatformName()  $!appConstantsUtil.getProductICP()</p>		
+		</div>
+	</div>
+	</div>
+</div>
+
+
+<!--右侧漂浮-->
+<ul class="m-float">
+    <li><a class="server" target="_blank" href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzkzODA1MzAwOF8yNDUyNDZfNDAwOTYwODE5OV8yXw"><span>在线客服</span></a></li>
+    <li><a class="computer" href="/help/institutionIntroduction/1-count"><span>收益计算</span></a></li>
+    <li><a class="twCode" href="javascript:;"><span>官方微博</span></a></li>
+</ul>
+
+<div class="u-erma erma1" >
+	<div class="e_title" style="position: static;">
+    	<a href="javascript:;" class="close" title="关闭" style="position: static;">x</a>
+	</div>
+    <div class="em_cont" style="position: static;">
+    	<img src="/styles/images/common/w2v.jpg" width="322" style="position: static;">
+    </div>
+    <div class="em_foot" style="position: static;">
+    	<p style="position: static;text-align:center">$!appConstantsUtil.getProductName()官方微信号  扫一扫有惊喜</p>
+    </div>
+</div>
+<script type="text/javascript" src="$!{rc.contextPath}/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+~function(){
+/*显示关闭二维码*/
+var wxWrap=$('.m-foot2 .u-wx'),
+	opened;
+	
+wxWrap.hover(wxWrapHoverHandler,wxWrapHoverHandler);
+
+function wxWrapHoverHandler(e){
+	if(wxWrap.is('.active')||e.type==='mouseoute'){
+		wxWrap.removeClass('active');
+		opened=false;
+	}else{
+		wxWrap.addClass('active');
+		opened=true;
+	}
+	e.preventDefault();
+}
+
+$(document.body).click(function(e){
+if(opened && !$.contains(wxWrap[0],e.target)){
+		wxWrap.removeClass('active');
+		opened=false;
+	}
+});
+
+
+/*返回顶部*/
+var documentElem=$(document.documentElement);
+$('.u-backTop').click(function(){
+	$('body,html').animate({
+		scrollTop:0
+	});
+})
+
+
+/*微信二维码*/
+$('.twCode').click(function(){
+    $('body').Y('Window',{
+        simple: true,
+        content: '.u-erma',
+        closeEle: '.close,[type=reset]'
+    });
+});
+
+
+/*右侧浮窗hover效果*/
+var floatItem=$('.m-float li');
+
+floatItem.hover(floatMouseHandler,floatMouseHandler);
+
+function floatMouseHandler(e){
+	if(e.type=='mouseenter'){
+		$(this).stop().animate({
+			'right':0
+		},'fast')
+	}else{
+		$(this).stop().animate({
+			'right':'-40px'
+		},'fast')
+	}
+}
+
+}();
+</script>   
+

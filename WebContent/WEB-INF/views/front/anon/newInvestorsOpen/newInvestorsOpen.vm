@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户注册</title>
+    <base href="$!{rc.contextPath}/">
+    <link rel="stylesheet" href="resources/mjr/css/global.css"/>
+    <link rel="stylesheet" href="resources/mjr/css/common.css"/>
+    <style type="text/css" rel="stylesheet">
+        input.error-tip {
+            border: 1px solid #ff9999;
+        }
+
+        b.error-tip {
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: normal;
+            color: #ff9999;
+            background: url(resources/images/common/icon.gif) no-repeat -105px -272px;
+            padding-left: 20px;
+            line-height: 16px;
+            width: 320px;
+        }
+
+        b.right-tip {
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: normal;
+            background: url(resources/images/common/icon.gif) no-repeat -105px -93px;
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="css/ie7fix.css">
+    <![endif]-->
+    <script src="resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/mjr/js/lbslide.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/mjr/js/base.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="signin" message="$!{request.getParameter("message")}" >
+<!-- include siteNav module, adjusted according to your needs -->
+    #parse("/front/common/register-top.vm")
+<!-- <div role="include" data-src="include/siteNav.html"></div> -->
+<div class="md-header pc-header-height">
+    <div class="md-default-c pc-width clearf">
+        <div class="f-l height-145 width-70">
+            <div class="logo">
+                <img src="resources/mjr/img/logo.png" alt="">
+                <span>免费注册</span>
+            </div>
+        </div>
+        <div class="f-r height-145">
+            <a href="/login/login" title="" class="flat-simple simple-gray f-r">快速登录</a>
+        </div>
+    </div>
+</div>
+<!-- end include -->
+<div class=" md-module-info signup">
+    <div class="md-default-c pc-width clearf">
+        <form id="investorsOpen_form" action="/anon/mjr/newPerfectInfo" method="post">
+            <div id="step1">
+                <!-- 第一步 -->
+                <div class="su-progress su-p-1"></div>
+                <div class="md-grid-default s-b f-l clearf step-1">
+                    <div class="f-l l-f">
+                        <input type='hidden' name="investorReferees" value="$!{investorNO}"/>
+                        <label for="u-name" class="input-text-default">手机号码：
+                            <p><span class="icon-base01 uphone"></span></p>
+                            <input type="text" name="userName" value="" placeholder="请输入手机号码">
+                            <b class="fn-tip">本网站采用手机号码注册，请输入手机号码</b>
+                        </label>
+                        <label for="u-pwd" class="input-text-default">登录密码：
+                            <p><span class="icon-base01 upwd"></span></p>
+                            <input type="password" name="logPassword" value="" placeholder="请输入密码">
+                            <b class="fn-tip">由6—20英文字母、数字或符号组成，建议使用大小写字母与数字混合设置密码，不可输入空格。</b>
+                        </label>
+                        <label for="u-name" class="input-text-default">确认密码：
+                            <p><span class="icon-base01 uname"></span></p>
+                            <input type="password" name="logPasswordTO" value="" placeholder="请再次输入密码">
+                        </label>
+                        #if($!{referees})
+                            <input type='hidden' name="referees" value="$!{referees}"/>
+                        ##<input type="text" disabled=disabled class="fn-text w235" name="referees" value="$!{brokerNo}"/>#if($!{referNotExist})<b class="error-tip">$!{referNotExist}</b>#end
+                        #else
+                            <label for="u-name" class="input-text-default">推荐人编号：
+                                <p><span class="icon-base01 uname"></span></p>
+                                <input type="text" name="referees" value="" placeholder="朋友推荐的用户，记得填写推荐码">
+                            </label>
+                        #end
+                        <label for="agreement" class="agreement-c">
+                            <input type="checkbox" id="agreement" name="license" checked="checked" value=""
+                                   placeholder=""/>
+                            <span>我已阅读并接受 <a href="javascript:;"
+                                             class="agreement btn_license">《$!appConstantsUtil.getProductName()
+                                网站服务协议》</a></span>
+                        </label>
+                        <input type="hidden" id="smsBizType" name="business" value="register"/>
+                        <input type="hidden" id="bundPhone" class="fn-text w235" maxlength="11" name="mobile"/>
+                        <input type='hidden' name="varifyMethord" value="0"/>
+                        <input type="hidden" name="token" value="$!{token}"/>
+                        <input type="hidden" name="type" value="GR"/>
+                        <a href="javascript:;" class="flat-3d" id="step1-next">下一步</a>
+
+                    </div>
+                    <div class="f-r l-r">
+                        <div class="gi-slide">
+                            <a href="javascript:;" class="sPrev"><span class="icon-base01 prev"></span></a>
+                            <a href="javascript:;" class="sNext"><span class="icon-base01 next"></span></a>
+                            <ul>
+                                <li>
+                                    <span class="icon-base hands1"></span>
+
+                                    <h3 class="info-title">便捷</h3>
+
+                                    <div class="info-context">方便快捷的理财方式随时随地可以操作</div>
+                                </li>
+                                <li>
+                                    <span class="icon-base peoples1"></span>
+
+                                    <h3 class="info-title">收益</h3>
+
+                                    <div class="info-context">10%-15%年化收益让资产永不贬值</div>
+                                </li>
+                                <li>
+                                    <span class="icon-base money1"></span>
+
+                                    <h3 class="info-title">安全</h3>
+
+                                    <div class="info-context">风控严格把关提供本息保障</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 第一步end -->
+            <!-- 第二步 -->
+            <div id="step2" style="display:none">
+                <div class="su-progress su-p-2"></div>
+                <div class="md-grid-default s-b f-l clearf step-2">
+                    <div class="f-l l-f">
+                        <div class="clearf">
+                            <label for="phone-check" class="input-text-default clearf">手机验证码:
+                                <input type="text" name="code" id="code" value="" placeholder="">
+                                <a href="javascript:;" class="f-r flat-full getphone" id="getCode"><span
+                                        class="icon-base01 uphone1"></span>获取验证码</a>
+                            </label>
+                        </div>
+                        <p class="notice-1"><span class="blue">注意: </span>服务器保持手机动态密码时间为5分钟，请您及时验证！</p>
+
+                        <div class="clearf">
+                            <label for="u-check" class="input-text-default clearf">验证码：
+                                <p><span class="icon-base01 uckey"></span></p>
+                                <input type="text" name="imgCode" value="" placeholder="输入验证码">
+                                <img src="/anon/getImgCode" class="code-img newImgCod" width="102" height="31"
+                                     id="newImgCod"/>
+                                <a href="javascript:;" class="f-r newImgCod">刷新</a>
+
+                                <div class="check-box f-r"></div>
+                            </label>
+                        </div>
+                        <p class="notice-1">请填入上图中的字母和数字，不用区分大小写</p><br>
+                        <a href="javascript:;" class="flat-3d" id="step2-next">确认</a>
+
+                    </div>
+                    <div class="f-r">
+                        <div class="gi-slide">
+                            <a href="javascript:;" class="sPrev"><span class="icon-base01 prev"></span></a>
+                            <a href="javascript:;" class="sNext"><span class="icon-base01 next"></span></a>
+                            <ul>
+                                <li>
+                                    <span class="icon-base hands1"></span>
+
+                                    <h3 class="info-title">便捷</h3>
+
+                                    <div class="info-context">方便快捷的理财方式随时随地可以操作</div>
+                                </li>
+                                <li>
+                                    <span class="icon-base peoples1"></span>
+
+                                    <h3 class="info-title">收益</h3>
+
+                                    <div class="info-context">10%-15%年化收益让资产永不贬值</div>
+                                </li>
+                                <li>
+                                    <span class="icon-base money1"></span>
+
+                                    <h3 class="info-title">安全</h3>
+
+                                    <div class="info-context">风控严格把关提供本息保障</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- 第二步end -->
+        <!-- 第三步 -->
+        <div id="step3" style="display:none">
+            <div class="su-progress su-p-3"></div>
+            <div class="md-grid-default s-b f-l clearf">
+                <div class="f-l l-f">
+                    <div class="l-f-1">
+                        <h3><span class="icon-base01 right"></span>恭喜您, 注册成功！</h3>
+                    </div>
+                    <div class="line"></div>
+                    <div class="l-f-2">
+                        <p>为了您的资金安全, 投资前请认证！</p>
+                        <a href="javascript:;" class="flat-full button-color-orange"><span
+                                class="icon-base01 uname1"></span>马上登录</a>
+                        <a href="/userManage/topUp/withholdingIndex" class="pp">立即充值</a>
+                        <a href="/boot/invest/10/1" class="pp">查看产品</a>
+                        <a href="/userManage/mjr/userHome" class="ps pp">进入我的账户</a>
+
+                        <p>系统<span class="f-c-rad">10秒</span>后将自动跳转到首页</p>
+                    </div>
+                </div>
+                <div class="f-r">
+                    <div class="gi-slide">
+                        <a href="javascript:;" class="sPrev"><span class="icon-base01 prev"></span></a>
+                        <a href="javascript:;" class="sNext"><span class="icon-base01 next"></span></a>
+                        <ul>
+                            <li>
+                                <span class="icon-base hands1"></span>
+
+                                <h3 class="info-title">便捷</h3>
+
+                                <div class="info-context">方便快捷的理财方式随时随地可以操作</div>
+                            </li>
+                            <li>
+                                <span class="icon-base peoples1"></span>
+
+                                <h3 class="info-title">收益</h3>
+
+                                <div class="info-context">10%-15%年化收益让资产永不贬值</div>
+                            </li>
+                            <li>
+                                <span class="icon-base money1"></span>
+
+                                <h3 class="info-title">安全</h3>
+
+                                <div class="info-context">风控严格把关提供本息保障</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 第三步end -->
+    </div>
+</div>
+<div class="j-license" style="display:none">
+    <h3 class="f-tac" style="font-size:16px;">《$!appConstantsUtil.getProductName()网站服务协议》</h3>
+
+    <div class="license-con" style="width:750px;height:500px;margin:30px 0; overflow: auto;">
+        #parse("/front/anon/investorsOpen/investorServiceLicence.vm")
+    </div>
+</div>
+<!-- include foot module, adjusted according to your needs -->
+<!-- <div role="include" data-src="include/siteFoot.html"></div> -->
+<div class="md-footer">
+    <span>版权所有：深圳前海汇能互联网金融服务有限公司 粤ICP备15017117</span>
+</div>
+<!-- end include -->
+<script type="text/javascript">
+    var $_GLOBAL ={};
+    (function(){
+        var message = $('body:first').attr("message");
+        if(message&&message!=='') alert(message);
+    })();
+
+</script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+    seajs.use($_GLOBAL.mode +'newInvestorsOpen');
+</script>
+<script type="text/javascript" src="resources/mjr/js/run.js"></script>
+</body>
+</html>

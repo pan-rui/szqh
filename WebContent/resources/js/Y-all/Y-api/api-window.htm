@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Y.Window</title>
+</head>
+<style>
+    table{
+		border: 1px solid #C8CCD1;
+		border-width: 1px 0 0 1px;
+		border-spacing: 0px;
+		line-height: 1.5em;
+		font-family: Arial, Helvetica, sans-serif,"宋体";
+		vertical-align: middle;
+		border-collapse: separate;
+	}
+	.table_1{
+	}
+	.table_1 td{
+		border: 1px solid #C8CCD1;
+		border-width: 0 1px 1px 0;
+	}
+	table td{
+		padding: 5px 10px;
+		line-height: 18px;
+		text-align: left;
+		vertical-align: top;
+	}
+	.head_tr{background: #E5EFFB;color:#555;}
+	.table_0{color:#2679ba;}
+	.table_0 a{
+		font-size: 12px;
+		line-height: 20px;
+		text-decoration: underline;
+		text-align: -webkit-match-parent;
+		border-collapse: separate;
+		border-spacing: 2px;
+		border-color: gray;
+	}
+	h2{color:#1366b9;}
+	.block{color:block;}
+	.color_0{color:#555;}
+	.color_1{color:#0A8021;}
+</style>
+<body>
+<h2>目录</h2>
+<table class="table_0">
+	<tr>
+		<td><a href="api-tip.htm">Y.Tip</a></td>
+	</tr>
+	<tr>
+		<td><a href="api-msg.htm">Y.Msg</a></td>
+	</tr>
+	<tr>
+		<td><a href="api-imgplayer.htm">Y.ImgPlayer</a></td>
+	</tr>
+</table>
+<h2 id="constructor">构造函数</h2>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>构造函数</td>
+		<td>描述</td>
+	</tr>
+	<tr>
+		<td class="color_1">Window</td>
+		<td class="color_0">生成一个弹出层，根据参数可有模态，非模态；<br/>
+		非模态下多个窗体共存时支持点击前置</td>
+	</tr>
+</table>
+<h2 id="config_args">配置参数</h2>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>配置参数</td>
+		<td>参数说明</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>renderTo</td>
+		<td>jquery选择器或对象,或html字符串,默认'body' </td>
+		<td class="color_0">渲染位置，一般都应该不配置或配置为'body'</td>
+	</tr>
+	<tr class="color_1">
+		<td>title</td>
+		<td>字符串</td>
+		<td class="color_0">标题</td>
+	</tr>
+		<tr class="color_1">
+		<td>content</td>
+		<td>jquery选择器或对象,或html字符串，必须 </td>
+		<td class="color_0">组件内容</td>
+	</tr>
+	<tr class="color_1">
+		<td>contentClone</td>
+		<td>true/false,默认false </td>
+		<td class="color_0">为true则渲染克隆内容而非原内容</td>
+	</tr>
+	<tr class="color_1">
+		<td>contentRecovery</td>
+		<td>true/false,默认true </td>
+		<td class="color_0">为true时，且渲染内容为原页面内容（且未clone）时，销毁时将内容渲染到原容器</td>
+	</tr>
+	<tr class="color_1">
+		<td>removeLocation</td>
+		<td>true/false,默认true </td>
+		<td class="color_0">为true移除content的样式中的position，left，top 属性</td>
+	</tr>
+	<tr class="color_1">
+		<td>dragAble</td>
+		<td>true/false,默认true </td>
+		<td class="color_0">是否激活拖拽</td>
+	</tr><tr class="color_1">
+		<td>autoSize</td>
+		<td>true/false,默认true </td>
+		<td class="color_0">为true时会根据内容尺寸自动修正大小(若内容尺寸不确定,请不要使用该功能)</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>modal</td>
+		<td>true/false,默认true </td>
+		<td class="color_0">是否启用遮罩</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>noheader</td>
+		<td>true/false,默认false</td>
+		<td class="color_0">若该项为true,则组件将不渲染标题栏,同时默认不激活拖拽,<br/>
+              若仍然需要激活拖拽,需要配置dragEle项为组件指定一个触发拖拽的元素,<br/>
+			  同理若还需要关闭,可配置closeEle</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>noStyle</td>
+		<td>true/false,默认false </td>
+		<td class="color_0">为true则无样式渲染组件</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>simple</td>
+		<td>true/false,默认false </td>
+		<td class="color_0">为true时以最简单模式渲染组件，content内容即为组件UI<br/>
+		因此有关样式的配置将通通失效(组件位置的配置仍然有效)，也没有header,body的结构，<br/>
+		同时失效的还有noheader(必然为true)，contentClone,title,closeBtn,autoSize,width,height,<br/>
+		el,wndEle,headerStyle,bodyStyle等；
+		</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>dragEle</td>
+		<td> jquery选择器字符串</td>
+		<td class="color_0">在组件find一个当没有标题栏时触发拖拽的元素</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>closeEle</td>
+		<td>jquery选择器字符串</td>
+		<td class="color_0">在组件find一个当没有标题栏时触发关闭的元素</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>closeAction</td>
+		<td>可选值为'hide'/'close'</td>
+		<td class="color_0">为hide时关闭组件时调用hide方法而非distroy方法</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>noManager</td>
+		<td>true/false，默认false</td>
+		<td class="color_0">为true时不设置管理器，不应配置该项，<br/>
+		无管理器无法确保弹出层显示在最上层</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>el</td>
+		<td>字符串，类似 'div'或 'span'</td>
+		<td class="color_0">指定组件最外层容器标签类型</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>width</td>
+		<td>数值，默认无</td>
+		<td class="color_0">配置可自动组件宽度</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>height</td>
+		<td>数值，默认无</td>
+		<td class="color_0">配置可自动组件高度</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>left</td>
+		<td>数值，默认无</td>
+		<td class="color_0">配置可自动组件left位置</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>top</td>
+		<td>数值，默认无</td>
+		<td class="color_0">配置可自动组件top位置</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>wndStyle</td>
+		<td>jquery的css方法支持的样式对象</td>
+		<td class="color_0">作用于组件最外层容器的样式</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>headerStyle</td>
+		<td>jquery的css方法支持的样式对象</td>
+		<td class="color_0">作用于组件header的样式</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>bodyStyle</td>
+		<td>jquery的css方法支持的样式对象</td>
+		<td class="color_0">作用于组件body的样式</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>overStyle</td>
+		<td>jquery的css方法支持的样式对象</td>
+		<td class="color_0">作用于组件遮罩层的样式</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>show</td>
+		<td>事件函数</td>
+		<td class="color_0">组件显示时调用</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>close</td>
+		<td>事件函数</td>
+		<td class="color_0">组件关闭时调用</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>beforeshow</td>
+		<td>事件函数</td>
+		<td class="color_0">组件显示前，返回false终止显示</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>beforeclose</td>
+		<td>事件函数</td>
+		<td class="color_0">组件关闭前调用，返回false终止关闭</td>
+	</tr>
+	</tr><tr class="color_1">
+		<td>distroy</td>
+		<td>事件函数</td>
+		<td class="color_0">组件销毁时调用</td>
+	</tr>
+	<tr class="color_1">
+		<td>其他</td>
+		<td>无</td>
+		<td class="color_0">参见Y.box配置</td>
+	</tr>
+</table>
+<h2 id="object_function">对象方法</h2>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>方法</td>
+		<td>参数说明</td>
+		<td>返回值</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>show(speed)</td>
+		<td>speed为数字，显示速度，可不配置，默认为'fast'</td>
+		<td>false或无（被beforeshow阻止时返回false）</td>
+		<td class="color_0">显示组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>close(speed)</td>
+		<td>speed为数字，隐藏速度，可不配置，默认为'fast'</td>
+		<td>false或无</td>
+		<td class="color_0">关闭组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>hide(speed)</td>
+		<td>speed为数字，隐藏速度，可不配置，默认为'fast'</td>
+		<td>无</td>
+		<td class="color_0">隐藏组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>distroy()</td>
+		<td></td>
+		<td>无</td>
+		<td class="color_0">销毁组件，清除注册在dom上的事件,<br/>
+		默认情况下close方法会调用此方法,除非配置closeAction为'hide'</td>
+	</tr>
+	<tr class="color_1">
+		<td>其他</td>
+		<td></td>
+		<td></td>
+		<td class="color_0">参见Y.box方法</td>
+	</tr>
+</table>
+<h2 id="object_function">对象属性</h2>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>属性</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>el</td>
+		<td class="color_0">最外层容器jquery对象</td>
+	</tr>
+	<tr class="color_1">
+		<td>wnd</td>
+		<td class="color_0">同el，最外层容器jquery对象</td>
+	</tr>
+	<tr class="color_1">
+		<td>body</td>
+		<td class="color_0">主体部分jquery对象</td>
+	</tr>
+	<tr class="color_1">
+		<td>item</td>
+		<td class="color_0">内容部分jquery对象，即content配置</td>
+	</tr>
+	<tr class="color_1">
+		<td>manager</td>
+		<td class="color_0">管理器，管理器负责管理多个window组件的显示zindex，<br/>
+		一般情况下不需要对该对象进行操作</td>
+	</tr>
+	<tr class="color_1">
+		<td>其他</td>
+		<td class="color_0">参见Y.box</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,47 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>安全保障</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">
+			<div class="con-list">
+					<ul>										
+						<li><a href="/help/institutionIntroduction/4">安全保障</a></li>
+						
+						<li class="on"><a href="/help/institutionIntroduction/17">技术安全</a></li>
+						<li><a href="/help/institutionIntroduction/18">隐私安全</a></li>
+						<li><a href="/help/institutionIntroduction/16">法律法规</a></li>
+					</ul>
+				</div>
+    			<div class="brief-con" style="float:right;width:750px;">
+    				
+                   	</br>
+                    <h4><span style="width: 150px; display: inline-block;color: #fff;background: #3366ff;padding-left: 10px;border: 3px solid #ccc;">技术安全之一：</span><span style="width: 560px;text-align: center;display: inline-block;color: #3366ff;border-bottom: 3px solid #3366ff; line-height: 30px;">架构安全</span></h4>
+					<p style="text-indent:2em;">$!appConstantsUtil.getProductName()采用分层分布式开发，扩展性强，安全性高，有利于标准化。用户端只能通过逻辑层来访问数据层，减少了入口点，把很多危险的系统功能都屏蔽了。网站结构更清晰，有利于后期的维护和升级。</p>	
+                    </br>
+					<h4><span style="width: 150px; display: inline-block;color: #fff;background: #f4a52e;padding-left: 10px;border: 3px solid #ccc;">技术安全之二：</span><span style="width: 560px;text-align: center;display: inline-block;color: #f4a52e;border-bottom: 3px solid #f4a52e; line-height: 30px;">数据安全</span></h4>
+					<p style="text-indent:2em;">$!appConstantsUtil.getProductName()结合系统的安全保护特点，针对网络数据库所带来的非法访问、黑客攻击、数据篡改等安全问题进行了分析，在 SQL Server 本身的安全管理机制的基础上，利用身份认证技术，数字签名技术、访问控制技术和数据库加密技术等形成一整套安全增强方案，具体体现在针对数据库中的敏感数据的安全需求，提出数据库加密模型，设计一种基于三重DES算法和RSA算法的混合加密算法，实现系统中的数据保密性，该安全增强方案大大的弥补了数据安全方面的自身缺陷。</p>	
+                    </br>
+					<h4><span style="width: 150px; display: inline-block;color: #fff;background: #f60;padding-left: 10px;border: 3px solid #ccc;">技术安全之三：</span><span style="width: 560px;text-align: center;display: inline-block;color: #f60;border-bottom: 3px solid #f60; line-height: 30px;">服务器安全</span></h4>
+					<p style="text-indent:2em;">服务器采用高性能服务器，可最大程度的提升用户的网页浏览速度。服务器放在上海专业的双线全封闭机房，数据每五分钟备份一次，可保证用户数据信息正确、安全。</p>		
+					</br>
+	
+					
+			   </div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+	
+</body>
+</html>

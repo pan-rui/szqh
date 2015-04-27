@@ -1,0 +1,76 @@
+<html >
+	<head >
+		<title >
+			添加角色
+        </title>
+		<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+		<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+    </head>
+	<body >
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")	
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;"  >权限管理</a> > #if($!{type}=='modify') 修改#else添加#end角色</p>
+					</div>	
+                     <form #if($!{type}=='modify') action="$!{rc.contextPath}/backstage/authority/modifyRole" #else action="$!{rc.contextPath}/backstage/authority/addRole"#end method="post" name="frm">
+						<fieldset>
+							<legend><h3>#if($!{type}=='modify') 修改#else添加#end角色信息</h3></legend>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span> 角色代码：</label>
+								<input type="text" class="u-input w170" name="code" value="$!{item.code}"/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span> 角色名称：</label>
+								<input type="text" class="u-input w170" name="name" value="$!{item.name}"/>
+							</div>
+							<div class="item" style="display: none">
+								<label for="" class="u-label"><span class="required">*</span> 父&nbsp;角色：</label>
+								<input type="text" class="u-input w170"  name="parent" value="$!{item.parent}""/>
+							</div>
+							<div class="item">
+								<label for="" class="u-label"> 备&nbsp;&nbsp;注：</label>
+
+								<input type="text" class="u-input w170"  name="note" value="$!{item.note}""/>
+							</div>
+							<input type="hidden" name="redirect" value="$!{request.getParameter('redirect')}"/>
+						  </fieldset>
+						 <div class="item">
+							#if($!{type}=='modify') 
+								<input type="hidden" name="id" value="$!{item.id}"/>
+							#end
+							 <a class="u-btn u-btn-blue submit_form" href="javascript:addRole();" >提交</a>
+                         </div>
+                     </form>
+				</div>
+            </div>
+	  </div>
+   </div>	
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	 <script type="text/javascript">
+	 function addRole(){
+	   var code = $('input[name=code]').val();
+	   if(code == null || code.length < 1){
+	   alert("角色代码不能为空");
+	    return ;
+	   }
+	   var name = $('input[name=name]').val();
+	   if(name == null || name.length < 1){
+	   	alert("角色名称不能为空");
+	    return ;
+	   }
+
+         var parent = $('input[name=parent]').val();
+         if(parent == null || parent.length < 1){
+             $('input[name=parent]').val(0);
+         }
+	   document.frm.submit();
+	 }
+     </script>
+    </body>
+</html>

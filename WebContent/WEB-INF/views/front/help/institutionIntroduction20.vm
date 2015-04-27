@@ -1,0 +1,75 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>产品介绍</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">
+			<div class="con-list">
+					<ul>					
+						<li><a href="/help/institutionIntroduction/1">产品介绍</a></li>	
+						<li class="on"><a href="/help/institutionIntroduction/20">产品特色</a></li>	
+						<li><a href="/help/institutionIntroduction/2">注册流程</a></li>
+						<li><a href="/help/institutionIntroduction/22">用户提现</a></li>
+					</ul>
+				</div>
+    			<div class="brief-con" style="float:right;width:750px;">
+               <h4 style="border-bottom: 2px solid #f60"><span style="width: 155px; display: inline-block; color: #fff; background: #f60; padding-left: 15px;">产品特色之--收益高</span></h4>
+				<p style="padding-left:10px; padding-top: 10px;">
+					
+$!appConstantsUtil.getProductName()： 年化收益8%以上</br>
+同比余额宝： 余额宝年化收益约5%</br>
+同比银行存款： 银行一年期定期存款利率3.3%</br>
+
+				</p>	
+				</br>
+				<h4 style="border-bottom: 2px solid #57ba45;"><span style="width: 155px; display: inline-block; color: #fff; background: #57ba45; padding-left: 15px;">产品特色之--门槛低</span></h4>
+				<p style="padding-left:10px; padding-top: 10px;">
+					
+$!appConstantsUtil.getProductName()： 50元即可进行投资</br>
+同比银行理财产品： 一般需要5万元</br>
+同比信托产品： 一般要100万以上才能购买</br>
+
+					
+				</p>
+				</br>
+				<h4 style="border-bottom: 2px solid #4aa9f9"><span style="width: 155px; display: inline-block; color: #fff; background: #4aa9f9; padding-left: 15px;">产品特色之--周期短</span></h4>
+				<p style="padding-left:10px; padding-top: 10px;">
+
+$!appConstantsUtil.getProductName()：1星期、1个月、3个月、6个月、1年</br>
+同比基金：一般1—2年</br>
+同比债券：一般3年以上</br>
+					
+				
+				</p>
+				</br>
+				<h4 style="border-bottom: 2px solid #ba448e"><span style="width: 155px; display: inline-block; color: #fff; background: #ba448e; padding-left: 15px;">产品特色之--保安全</span></h4>
+				<p style="padding-left:10px; padding-top: 10px;">
+					  
+投资人资金由第三方机构托管，平台不接触资金</br>
+所有融资项目均有第三方有资质的机构提供担保</br>
+合作金融机构可提供100%的本息保障</br>
+					
+					
+					
+					
+				</p>
+				</br>
+	
+		     </div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+
+</body>
+</html>

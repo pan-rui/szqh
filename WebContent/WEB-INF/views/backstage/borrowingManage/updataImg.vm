@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>正式担保函</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+	<link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")	
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">融资管理</a> >附件管理</p>
+					</div>
+					<form action="/backstage/updataImg/add/updateImg2" class="ui-form" id="img_form" method="POST">
+						<input type="hidden" class="u-input w170"  name="param_id" id="param_id"  value="$!{info.demandId}"  maxlength=""/>
+						<fieldset>
+							<legend><h3>$!appConstantsUtil.getProductName()附件修改</h3></legend>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>融资人：</label>$!{info.userName}
+								
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span> 	融资金额(元)：</label>$!{info.loanAmount.toStandardString()}
+								
+							</div>
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>承诺机构：</label>$!{info.guaranteeName}
+								
+							</div>
+							
+							<div class="item">
+								<label for="" class="u-label"><span class="required">*</span>项目名称：</label>$!{info.loanName}
+                                <input type="hidden" class="u-input w170"  name="param_name" id="param_name"  value="$!{info.loanName}"  maxlength="">
+							</div>
+							<div class="item">
+								<p style="color:red;">图片依次对应前台 &nbsp;&nbsp; 融资企业信息、银行托管托收协议、查看票面   &nbsp;&nbsp;三个内容</p>
+                            				
+								##<h1 style="color:green;">（机构用户融资）融资证照分别对应前台（融资人身份证正反面，担保函，企业基本证照）</h1>
+        						#foreach($attachmentModuleTypeInfo in $list)
+									#if("LOAN_MANAGEMENT"==${attachmentModuleTypeInfo.moduleType.code})
+            							<h2>项目证照（已经上传）</h2>
+            							<div class="b-border pro-info" style="overflow: hidden;">
+            							#foreach($attachmentInfo in $attachmentModuleTypeInfo.attachmentInfos)
+    										<div style="position:relative;width:50px;height:50px;margin:5px; display: block; float:left;">
+                								<img style="width:50px;height:50px;"attachmentId="$!attachmentInfo.attachmentId" filePhysicalPath="$!attachmentInfo.filePhysicalPath" requestPath="$!attachmentInfo.requestPath" src='$!attachmentInfo.requestPath'/>
+        										<a style="position: absolute; right: 5px; top: 5px;" class="delimg" href="javascript:;">X</a>
+    										</div>
+            							#end		
+            							</div>
+									#end	
+								#end
+								#foreach($!info in $!enumlist)
+									#if("LOAN_MANAGEMENT"==$!info.code)
+										<li style="width:200px"><span>项目证照</span><span  class=""><a code='$!{info.code}' href="javascript:;" class='loan_management fn-ys4-btn attach'>上传</a></span></li>	
+									#end
+								#end
+							</div>
+							<div class="fn-layer f-active upload-scan" style="width:750px;position:absolute;left:-9999px;">
+                            		<div class="f-con">
+                            			<div class="f-top mb10">
+											<p style="color:red;">图片依次对应前台 &nbsp;&nbsp; 融资企业信息、银行托管托收协议、查看票面   &nbsp;&nbsp;三个内容 </p>
+                            				
+                            				<p>图片支持jpg、jpeg、png、bmp格式，单张图片大小不超过1M，</p>
+                            			</div>
+										#set($index=1)
+										#foreach($!info in $!enumlist)
+												<input type="hidden" value="" name="pathName_$!info.code" id="pathHiddenId_$index"/>
+											#set($index=$index+1)
+										#end
+                					<input type="hidden" value="" name="OTHER_attachPaths" id="OTHER_attachPaths"/>
+                						<div class="fn-item fn-clear" style="width:550px;">
+                						<label class="fn-label">上传图片</label>
+                                        <img style="width:50px;height:50px;" class="uploadimg" />
+                                        </div>
+                						<input type="file" id='upfile' class="fn-text w205" value="" name="credentialsImage"/>
+                							<div id="queueDiv"></div>
+                							<ul id="hidden_imgs_ul" class="upload-img fn-clear hidden_imgs_ul_del">
+                								<li id="upimg-model" style='display:none'>
+                									<img src="" alt="" />
+                									<a href="javascript:;" class="del" title="删除"></a>
+                									<div class="fn-imgInfo" style="text-align:center;"><span></span><input style="display:none;" maxlength='50' /></div>
+                								</li>								
+                							</ul>
+                							<b class="fn-tip"></b>
+                						
+                						</div>
+                				<div class="fn-item">
+                					<a href="javascript:;" class="fn-g-btn loanChecckSubmit">完成</a>
+                				</div>
+                			</div>
+							
+						</fieldset>
+
+						<div class="item">
+                            <a href="javascript:;"  class="u-btn u-btn-blue submit_form">更新</a><a href="/backstage/pageQueryLoanDemand?module=OVER" class="u-btn u-btn-gray">取消</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+
+    	seajs.use($_GLOBAL.mode + 'updataImg');
+		
+		
+    </script>
+</body>
+</html>

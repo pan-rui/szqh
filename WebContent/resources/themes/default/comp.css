@@ -1,0 +1,36 @@
+/* CSS Document */
+@charset "utf-8";
+
+.pl10{ padding-left:10px; }
+.pr10{ padding-right:10px; }
+.mlr7{ padding:0 7px; }
+
+.ta_l{ text-align:left; }
+.ta_c{ text-align:center; }
+.ta_r{ text-align:right; }
+
+.w990{ width:990px; }
+
+.fc_333{ color:#333; }
+.fc_999{ color:#999; }
+.fc_666{ color:#666; }
+.fc_a60{ color:#a60000; }
+
+.fw_b{ font-weight:bold; }
+
+
+.footer{margin-top:26px; padding:30px 0 0; background:#e3e3e3 url(image/footer-bg.jpg) repeat-x; font-family:"微软雅黑";}
+.footer .container{min-height:auto; _height:auto; width: 960px; margin: 0 auto; color: #666; }
+.footer .partner h4{float:left; margin-right:45px; font-size:14px;}
+.footer .partner ul{float:left;}
+.footer .partner li{float:left; margin-right:35px;}
+.footer .partner .par-icon{display:block; float:left; height:27px;}
+.footer .copyright{ margin:30px 0 0 0; padding:25px 0; text-align:center; color:#999; background:url(image/footer-line.jpg) repeat-x left top; }
+.footer .copyright .cc{ width:990px; height:70px; margin:0 auto; position:relative; }
+.footer .copyright .l_img, .footer .copyright .r_img{ position:absolute; top:-10px; }
+.footer .copyright .l_img{ left:200px; }
+.footer .copyright .r_img{ right:170px; }
+.footer .foot-link{text-align:center; padding-bottom:30px; color:#999;}
+.footer .foot-link a{color:#999;}
+
+

@@ -1,0 +1,27 @@
+<ul>
+	<li class="fix-hover">
+		<a href="#" class="btn l">充值</a>
+		<a href="#" class="btn r">提现</a>
+	</li>
+	<li class="list on">
+		<a href="/userManage/mjr/userHome"><span class="icon-base01 search"></span>账户总览</a>
+	</li>
+	<li class="list">
+		<a href="/userManage/balanceChangeRecord"><span class="icon-base01 cupts"></span>交易明细</a>
+	</li>
+	<li class="list">
+		<a href="/userManage/mjr/accountSetting"><span class="icon-base01 editor"></span>账户设置</a>
+	</li>
+	<li class="list">
+		<a href="/userManage/mjr/entries/12/1"><span class="icon-base01 tj"></span>投资的项目</a>
+	</li>
+	<li class="list">
+		<a href="/userGiftMoney/pageQuery"><span class="icon-base01 gift"></span>奖励查询</a>
+	</li>
+	<li class="list">
+		<a href="#"><span class="icon-base01 peoples"></span>好友推荐</a>
+	</li>
+	<li class="list">
+		<a href="/investorManager/investorManage"><span class="icon-base01 linkbook"></span>客户管理</a>
+	</li>
+</ul>

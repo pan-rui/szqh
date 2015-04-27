@@ -1,0 +1,92 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>产品介绍</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">
+			<div class="con-list">
+					<ul>					
+						<li><a href="/help/institutionIntroduction/1">产品介绍</a></li>	
+						<li><a href="/help/institutionIntroduction/20">产品特色</a></li>	
+						<li><a href="/help/institutionIntroduction/2">注册流程</a></li>
+						<li class="on"><a href="/help/institutionIntroduction/21">投资流程</a></li>
+						<li><a href="/help/institutionIntroduction/22">用户提现</a></li>
+					</ul>
+				</div>
+    			<div class="brief-con" style="float:right;width:750px;">
+					<!--
+                    <p class="mt30"><img src="/styles/images/common/lct.jpg" alt="" /></p>
+    				<p class="mt30"><a style="width: 238px; height: 36px; text-align: center; line-height: 36px; color: #ffffff; font-size: 16px; background: #f16b2b; display: block; margin: 0px auto;" href="/login/login">立即投资</a></p>
+    				-->
+
+			
+				<p>1.用户充值</p>
+				<p style="font-size:14px">2.1.投资人充值
+                 </p>
+				<p>1.1.1  投资人使用账户登录到$!appConstantsUtil.getProductName()前台，如图：</p>						
+				<p class="mt30"><img src="/styles/images/zhuceNew/21.jpg"  /></p>
+				<p style="text-align:center;font-size:14px">图1-1-1投资人登录账户</p>
+				<p>1.1.2  点击我的账户或者用户名进入我的账户界面</p>
+				<p class="mt30"><img src="/styles/images/zhuceNew/22.jpg" /></p>
+				<p style="text-align:center;font-size:14px">图1-1-2 投资人登录成功界面</p>
+				<p>1.1.3  进入我的账户界面，点击充值按钮进行充值，如图a：
+				</p>
+				<p class="mt30"><img src="/styles/images/zhuceNew/23.jpg" /></p>
+				<p style="text-align:center;font-size:14px">图1-1-3 充值界面a</p>
+				<p>1.1.4  账户充值银行选择界面，输入需要充值的金额，点击充值，如图b：</p>
+			
+				<p class="mt30"><img src="/styles/images/zhuceNew/24.jpg" /></p>
+				<p style="text-align:center;font-size:14px">图1-1-4 发送激活邮件成功页面</p>
+				<p>1.1.5 账户 进入选择银行界面，确定需要充值的金额，确认充值，去网银付款，如图c：</p>
+				<p class="mt30"><img src="/styles/images/zhuceNew/5.jpg"  /></p>
+				<p style="text-align:center;font-size:14px">图1.1.5  充值界面c</p>
+				<p>注：最后进入选择的银行网银界面，进行付款充值，最后充值成功，进行充值的就可以投资$!appConstantsUtil.getProductName()了</p>
+</br>			
+				<p>2.用户投资</p>
+				<p style="font-size:14px">3.1.投资人投资
+                 </p>
+				<p>2.1.1   投资人使用账户登录到$!appConstantsUtil.getProductName()前台，如图：</p>						
+				<p class="mt30"><img src="/styles/images/zhuceNew/31.jpg"  /></p>
+				<p style="text-align:center;font-size:14px">图2-1-1投资人登录</p>
+				<p>2.1.2  选中之前发布的融资信息，点击后面的立即投资按钮，进入投资页面，如图：</p>
+				<p class="mt30"><img src="/styles/images/zhuceNew/32.jpg" /></p>
+				<p style="text-align:center;font-size:14px">图2-1-2</p>
+				<p>2.1.3  在投资页面中点击立即投资按钮进行投资，如图：
+				</p>
+				<p class="mt30"><img src="/styles/images/zhuceNew/33.jpg" /></p>
+				<p style="text-align:center;font-size:14px">图2-1-3</p>
+				<p>注意：投资之前，投资人必须确保投资账户上有足够的钱进行投资。</p>
+				<p>2.1.4  在确认投资页面输入需要投资的金额，以及验证码，如图：</p>
+				<p class="mt30"><img src="/styles/images/zhuceNew/34.jpg" /></p>
+				<p style="text-align:center;font-size:14px">图图2-1-4 确认投资</p>
+				<p>注意：</br>
+1.	投资的金额只能小于等于融资金额。</br>
+2.	需要点击获取验证码链接进行验证码的获取，并正确输入发送到手机上的验证码。
+</p>
+				<p>2.1.5  点击确认投资按钮，系统将提示放款成功，用户手机也将收到放款成功的短信，如图：</p>
+				<p class="mt30"><img src="/styles/images/zhuceNew/35.jpg"  /></p>
+				<p style="text-align:center;font-size:14px">图2.1.5 投资成功界面</p>
+
+</br>	
+
+</br>	
+
+
+		     </div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+
+</body>
+</html>

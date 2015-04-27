@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>用户管理-机构人员管理</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<!--头部-->
+	#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+			<div class="mc">
+    			<div class="top">
+    				<p><a href="">开户管理</a> > 机构人员管理</p>
+    			</div>
+    			<div class="search fn-clear">
+    				<form action="/backstage/userManage/institutions/institutionsMember"  id="institutionMember_form" method="post">
+    					<dl>
+    						<dt>选择机构：</dt>
+    						<dd>
+    							<div class="jqtransform jqtransform-select3">
+    								<select name="userId" id="userId">
+										#foreach($info in $!{list})
+    									<option value="$!{info.userId}" #if($!{info.userId}==$!{queryConditions.userId}) selected="selected" #end >$!{info.realName}</option>
+										#end
+    								</select>
+    							</div>
+    						</dd>
+    					</dl>
+    					<dl>
+    						<dt>真实名称：</dt>
+    						<dd><input type="text" name="realName"  value="$!{queryConditions.realName}" maxlength="25" class="u-input w235" /></dd>
+    					</dl>
+    					<a href="javascript:;" class="s-btn mr5 submit_form">搜索</a>
+    				</form>
+    			</div>
+    			<div class="t-box">
+    				<div class="p-box pages-t fn-clear">
+    					#parse("/backstage/page/page.vm")
+    				</div>
+    				<table class="m-table">
+    					<tr>
+    						<th width="150">用户ID</th>
+    						<th width="150">账户名</th>
+    						<th width="150">真实名称</th>
+							<th width="150">用户编号</th>
+    						<th width="200">状态</th>
+    						<th >操作</th>
+    					</tr>
+						#if($page.result.size()==0 || !$page.result)
+            				<tr class="even">
+                				<td colspan=5 align=center>暂无机构人员</td>
+                			</tr>
+						#end
+						#set($t = $permission.check('/backstage/userManage/personalManage/detailPersonalInfo'))
+						#foreach($info in $page.result)
+    					<tr>
+    						<td>$!{info.userBaseId}</td>
+    						<td>$!{info.userName}</td>
+    						<td>$!{info.realName}</td>
+							<td>$!{info.memberNo}</td>
+
+							<td class="red">	$!{info.state.message}</td>
+
+    						<td><a href="/backstage/userManage/institutions/personalMember?userId=$!{info.userId}">查看成员</a>
+								#if($t>0)
+								<span class="line">|</span><a href="/backstage/userManage/personalManage/detailPersonalInfo?userBaseId=$!{info.userBaseId}&userId=$!{info.userId}&memberNo=$!{info.memberNo}" class="updateUser">详情</a>
+								#end
+							</td>
+    					</tr>
+					#end
+    				</table>
+    				<div class="p-box pages-b fn-clear">
+    					#parse("/backstage/page/page.vm")
+    				</div>
+    			</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+		$_GLOBAL.sessionID = "";
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'institutionsMember');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/userManage/institutions/institutionsMember"
+			+"?userId=$!{queryConditions.userId}"
+			+"&realName=$!{queryConditions.realName}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

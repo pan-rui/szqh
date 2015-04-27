@@ -1,0 +1,34 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>安全保</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">	
+					<div class="con-list">
+					<ul>
+						<li><a href="/help/institutionIntroduction/12">收益高</a></li>
+						<li><a href="/help/institutionIntroduction/13">门槛低</a></li>
+						<li><a href="/help/institutionIntroduction/14">周期短</a></li>	
+						<li class="on"><a href="/help/institutionIntroduction/15">安全保</a></li>
+					</ul>
+				</div>
+    			<div class="brief-con" Style="float:right;width:750px;">
+    				<p style="text-indent:2em;">$!appConstantsUtil.getProductName()除了自身的“十大”风险控制体系，所有项目再引入独立的第三方担保机构，对投资人的本金提供100%的安全保障。一旦借款人无法按时还款，担保机构则立即对投资人进行本金代偿，让投资人放心投资，高枕无忧。</p>  								
+				</div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+	
+</body>
+</html>

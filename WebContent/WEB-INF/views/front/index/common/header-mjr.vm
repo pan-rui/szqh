@@ -1,0 +1,70 @@
+<div class="md-nav">
+		<div class="md-default-c clearf pc-width">
+			<ul class="f-l">
+				<li class="md-nav-menu">
+					<div>
+						<span class="text">客服热线：</span>
+						<span class="icon-base call"></span>
+						<span class="number">$!{appConstantsUtil.getCustomerServicePhone()}</span>
+						<a href="#" title="" class="text"></a>
+					</div>
+				</li>
+				<li class="md-nav-menu">
+					<div>
+						<span class="text">关注我们：</span>
+						<a href="#" title="" class="icon-base weixin"></a>
+						<a href="#" title="" class="icon-base weibo"></a>
+						<a href="#" title="" class="icon-base qq"></a>
+					</div>
+				</li>
+			</ul>
+			<ul class="f-r">
+				<li class="md-nav-menu">
+					<div>
+						<span class="icon-base phone"></span>
+						<span class="text">APP客户端下载</span>
+					</div>
+				</li>
+				<li class="md-nav-menu">
+					<div>
+						<span class="text">帮助中心</span>
+					</div>
+				</li>
+				<li class="md-nav-menu">
+					<div>
+						#if($sessionScope)
+						<span class="text">Hi！</span>
+						<a href="$!{rc.contextPath}/userManage/userHome" title="" class="name">#if($!{sessionScope.realName}) $!{sessionScope.realName} #else $!{sessionScope.userName} #end </a>
+						<span class="text">，欢迎！</span>
+						<a href="/login/logout?redirect=/login/login" title="" class="text">（安全退出）</a>
+						#else
+            			
+						#end
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="md-header pc-header-height">
+		<div class="md-default-c pc-width clearf">
+			<div class="f-l height-145 width-70">
+				<div class="logo">
+					<img src="resources/mjr/img/logo.png" alt=""/>
+				</div>
+				<div class="md-header-nav">
+					<ul class="md-header-nav-c clearf">
+						<li class="on"><a href="/" title="">首页</a></li>
+						<li><a href="$!{rc.contextPath}/boot/invest/10/1" title="">我要投资</a></li>
+						<li><a href="#" title="">我要借款</a></li>
+						<li><a href="/help/infoCenter?defaultMCode=ABOUT_US" title="">关于我们</a></li>
+						<li><a href="$!{rc.contextPath}/userManage/mjr/userHome" title="">我的账户</a></li>
+						<li><a href="/help/toModule?moduleCode=QUESTIONS" title="">新手学堂</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="f-r height-145">
+				<a href="/login/login" title="" class="flat-full f-r">快速登录</a>
+				<a href="/anon/mjr/newInvestorsOpen" title="" class="flat-full f-r">立即注册</a>
+			</div>
+		</div>
+	</div>

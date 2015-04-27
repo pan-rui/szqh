@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>公司简介</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header.vm")
+	
+	<!--内容-->
+	<div class="container brief fn-clear">
+		<div class="h-content mc-border">
+			<h3>$!appConstantsUtil.getProductName()金融保简介</h3>
+			<div class="brief-con">
+				<h4>一、什么是$!appConstantsUtil.getProductName()金融：</h4>
+				<p>“$!appConstantsUtil.getProductName()”是担保业务与互联网结合的产物，是$!appConstantsUtil.getProductName()金融服务有限公司倾力打造的互联网金融新模式。$!appConstantsUtil.getProductName()平台注册的投资人向投资接受人定向投资，由国有担保公司为投资接受人向投资人就投资本金和收益进行担保。</p>
+                </br>           
+                <h4>二、$!appConstantsUtil.getProductName()金融的特色：</h4>
+				<p>（1）由国有担保公司向相关注册投资人提供投资接受人兑付本金及收益的履约担保。若投资接受人出现违约，担保公司在规定工作日内先行偿付；</p>
+				<p>（2）投资人和投资接受人通过其在第三方支付机构易极付开设的专属资金账户完成资金清结算；</p>
+				<p>（3）除第三方支付机构业务手续费外，不分享投资人的收益，也不向投资人收取其他费用。</p>
+				</br>
+				<h4>三、投资期限和收益率：</h4>
+				<p>（1）投资期限一般有：1月、3月、6月、9月，具体以发布为准；</p>
+				<p>（2）投资收益率一般高于银行同期理财产品，具体以发布为准。</p>
+                </br>
+                </br>
+				<p class="text-r">$!appConstantsUtil.getPlatformName()</p>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

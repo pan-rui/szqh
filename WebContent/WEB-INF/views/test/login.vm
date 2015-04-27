@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户登录</title>
+    <base href="$!{rc.contextPath}/">
+    <link rel="stylesheet" href="resources/mjr/css/global.css">
+    <link rel="stylesheet" href="resources/mjr/css/common.css">
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="css/ie7fix.css">
+    <![endif]-->
+    <script src="resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/mjr/js/lbslide.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/mjr/js/base.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="signin">
+<!-- include siteNav module, adjusted according to your needs -->
+
+<!-- <div role="include" data-src="include/siteNav.html"></div> -->
+    #parse("/front/common/register-top.vm")
+<div class="md-header pc-header-height">
+    <div class="md-default-c pc-width clearf">
+        <div class="f-l height-145 width-70">
+            <div class="logo">
+                <img src="resources/mjr/img/logo.png" alt="">
+                <span>用户登录</span>
+            </div>
+        </div>
+        <div class="f-r height-145">
+            <a href="/" title="" class="flat-simple simple-gray f-r">返回首页</a>
+        </div>
+    </div>
+</div>
+<!-- end include -->
+<div class="md-module-info">
+    <div class="md-default-c pc-width clearf">
+        <div class="md-grid-default s-b f-l">
+            <form action="$!{rc.conextPath}/login/dologin" method="post" class="m-form" id="login_form">
+                #if($!{appConstantsUtil.getLoginWithOutCheckCode()}==
+                    "Y" || $!{appConstantsUtil.getLoginWithOutCheckCode()}=="YY")
+                    #set($withOutImgCode=false)
+                #else
+                    #set($withOutImgCode=true)
+                #end
+                #if($!{needcheck})
+                    #set($withOutImgCode=true)
+                #end
+                <h4>登录$!appConstantsUtil.getProductName()</h4>
+                <label for="u-name" class="input-text-default">我的账号：
+                    <p><span class="icon-base01 uname"></span></p>
+                    <input type="text" name="userName" value="" placeholder="用户名/手机号码">
+                </label>
+                <label for="u-pwd" class="input-text-default">我的密码：
+                    <p><span class="icon-base01 upwd"></span></p>
+                    <input type="password" name="passwords" value="" placeholder="请输入密码" id="passwords">
+                </label>
+
+                <p class="clearf"><a href="/PasswordManage/forgetLogPassword" title="" class="f-r">忘记密码？</a></p>
+
+                <p class="err">#if($!{request.getParameter('message')}) $!{request.getParameter('message')} #end</p>
+                #if($withOutImgCode)
+                    <div class="clearf">
+                        <label for="u-check" class="input-text-default clearf">验证码：
+                            <p><span class="icon-base01 uckey"></span></p>
+                            <input type="text" name="captcha" value="" placeholder="" id="verifyCode">
+                            <a title="全英文字符不分大小写" href="javascript:;" class="new_captcha">
+                                <img id="newcaptcha" class="code-img " src="/anon/getImgCode" alt=""/>
+                            </a>
+                            <a href="javascript:;" class="f-r new_captcha">刷新</a>
+
+                            <h3 class="ImgCodeErr" style="color:red;margin-left:60px;display:none;">验证码错误</h3>
+
+                            <div class="check-box f-r"></div>
+                        </label>
+                    </div>
+                #end
+                <input type="hidden" class="needCode" #if($withOutImgCode) value="false" #else value="ture" #end />
+                <input type="hidden" name="whithControl" value="1" id="whithControl">
+                <input type="hidden" name="password" id="password"/>
+                <input type="hidden" name="redirect" value="$!{request.getParameter('redirect')}"/>
+                <a href="javascript:;" class="flat-3d" id="submit-a">马上登录</a>
+
+                <p class="w-mid">还没有账号？<a href="/anon/newInvestorsOpen" class="orange">马上注册</a></p>
+            </form>
+        </div>
+        <div class="f-r">
+            <div class="gi-slide">
+                <a href="javascript:;" class="sPrev"><span class="icon-base01 prev"></span></a>
+                <a href="javascript:;" class="sNext"><span class="icon-base01 next"></span></a>
+                <ul>
+                    <li>
+                        <span class="icon-base hands1"></span>
+
+                        <h3 class="info-title">便捷</h3>
+
+                        <div class="info-context">方便快捷的理财方式随时随地可以操作</div>
+                    </li>
+                    <li>
+                        <span class="icon-base peoples1"></span>
+
+                        <h3 class="info-title">收益</h3>
+
+                        <div class="info-context">10%-15%年化收益让资产永不贬值</div>
+                    </li>
+                    <li>
+                        <span class="icon-base money1"></span>
+
+                        <h3 class="info-title">安全</h3>
+
+                        <div class="info-context">风控严格把关提供本息保障</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- include foot module, adjusted according to your needs -->
+<!-- <div role="include" data-src="include/siteFoot.html"></div> -->
+<div class="md-footer">
+    <span>版权所有：深圳前海汇能互联网金融服务有限公司 粤ICP备15017117</span>
+</div>
+<!-- end include -->
+<script type="text/javascript">
+    var $_GLOBAL =
+    {
+    }
+    ;
+</script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript" src="/resources/js/comp/swfobject.js"></script>
+<script type="text/javascript">
+    seajs.use($_GLOBAL.mode +'demo');
+</script>
+<script type="text/javascript" src="resources/mjr/js/run.js"></script>
+</body>
+</html>

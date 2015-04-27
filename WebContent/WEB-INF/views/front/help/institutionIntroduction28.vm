@@ -1,0 +1,40 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box db-p14 container">
+    	<h2 class="title1 mt10"><span>新手指南</span></h2>
+        <div class="mt20">
+        	<div class="about-txt">
+			<div class="con-list">
+				<ul>
+					<li class="on"><a href="/help/institutionIntroduction/8">新手指南</a></li>
+				</ul>
+			</div>
+			
+			<div Style="float:right;width:750px;" class="brief-con">
+				
+				<p style="border-bottom: 1px solid #ccc;"><img src="/styles/images/zhuceNew/g1.jpg" alt="" /></p>
+				<p style="border-bottom: 1px solid #ccc;"><img src="/styles/images/zhuceNew/g2.jpg" alt="" /></p>
+				<p style="border-bottom: 1px solid #ccc;"><img src="/styles/images/zhuceNew/g3.jpg" alt="" /></p>
+				<p style="border-bottom: 1px solid #ccc;"><img src="/styles/images/zhuceNew/g4.jpg" alt="" /></p>
+				<p style="border-bottom: 1px solid #ccc;"><img src="/styles/images/zhuceNew/g5.jpg" alt="" /></p>
+				<p style="border-bottom: 1px solid #ccc;"><img src="/styles/images/zhuceNew/g6.jpg" alt="" /></p>
+				<p style="border-bottom: 1px solid #ccc;"><img src="/styles/images/zhuceNew/g7.jpg" alt="" /></p>
+				
+            </div>
+			</div>
+        </div>
+    </div>
+	
+    <div class="blank50"></div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+	
+</body>
+</html>

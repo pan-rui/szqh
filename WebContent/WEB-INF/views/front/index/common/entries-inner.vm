@@ -1,0 +1,82 @@
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="newpro-table">
+		         #if($!{page.result.size()}>0)
+					<tr>
+							<th class="title">项目名称</th>
+							<th class="f-tac">年化收益率</th>
+							<th class="f-tac">项目金额</th>
+							<th class="f-tac" >借款期限</th>
+							<th class="number f-tac">距离截止/开标时间</th>
+							##<th class="f-tac" >起投金额</th>
+							<th class="bar f-tac">进度（满标）</th>
+							<th class="button  f-tac">投标状态</th>
+						</tr>
+				 #else
+					<tr><h1 style="padding:50px;font-size:16px;color:#646464">暂无相关项目</h1></tr>
+				 #end	
+        		 #foreach($trade in $!{page.result})
+						<tr class="leftTime">
+                            #set($percent = "100%")
+                            #if($!{trade.tradeStatus.value}==1)
+                                #set($percent = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.loanAmount},$!{trade.leastInvestAmount}))
+                            #else
+                                #set($percent = '100%')
+                            #end
+
+
+							#set($needAmount =  $moneyUtil.getMoneyByw($!{trade.loanAmount}, $!{trade.loanedAmount}))
+							<input  type="hidden" value="$percent" class="per"/>     
+							<td width="450" class="title f-ffYahei">
+								<a title="$!{trade.loanName}" href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});" >
+									$stringUtil.subString($!{trade.loanName},8,"..")
+                     #if(${trade.canUseGiftMoney}) 	<span class="hb"><img src="/styles/images/common/hongbao.gif" alt="红包"></span>		#end
+								</a>
+							</td>
+
+							<td width="150" class="f-tac interest" style="padding-top:12px;"><strong>$!rateUtil.getRateOnly($!trade.interestRate)</strong>%</td>
+							<td width="200" class="money f-tac">$moneyUtil.getMoneyByw($!{trade.tradeAmount})万</td>
+							<td width="200" class="f-tac f-ffYahei"><em>$!{trade.timeLimit} $!{trade.timeLimitUnit.viewName}</em></td>
+							<td width="262" class="number f-tac f-ffYahei">
+							<input value="$!{currentDate.getTime()}" class="currentDate" type="hidden"/>	##当前时间								
+							<input value="$!{trade.deadline.getTime()}" class="getDeadTime" type="hidden"/>	
+							<input value="$!{trade.investAvlDate.getTime()}" class="getinvestAvlDate" type="hidden"/>
+							<input value="#if($!{trade.tradeEffectiveDate})$!{yrdDateUtil.formatDay($!{trade.tradeEffectiveDate})}#else#end" class="geteffectiveDate" type="hidden"/>
+							##<input value="$!{trade.tradeFinishDate})}" class="tradeFinishDate" type="hidden"/>
+							<input value="$!{trade.tradeStatus.value}" class="tradeValue" type="hidden"/>
+						
+							<span class="showLeftTime #if($!{trade.tradeStatus.value}==1 && ${needAmount}>0 )#else showLeftTime_b#end"></span>
+							</td>
+                        ##<td width="160" class="minMoney f-tar"  style="padding-top:9px;"><strong>$moneyUtil.getMoneyInt($trade.leastInvestAmount)</strong>元</td>
+                        <td width="215" class="bar"><div class="bar-p100">
+							<p>
+								<span class="plan_bg mr10"><span #if("100%"=="${percent}") class="plan100"  #else class="plan" #end style="width:${percent};"></span>
+								</span>${percent}</div>
+							</p>
+							#if($!{trade.tradeStatus.value}==1)
+                            <p>还需要$!{moneyUtil.getMoneyByw($!{trade.loanAmount}, $!{trade.loanedAmount})}万</p>
+							#end
+						<!--
+						#if($!{trade.tradeStatus.value}==1)
+						<p>还需要<b class="num">$!{moneyUtil.getMoneyByw($!{trade.loanAmount}, $!{trade.loanedAmount})}</b>万</p>
+						#end
+						-->
+						</td>
+						
+									#if($!{trade.tradeStatus.value}==1 && ${needAmount}>0 )
+										<td width="120" class="button">
+										#if(${percent}=="0.0%")
+											<a class="gray" href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});" >我要投资</a>
+										#else
+											<a href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});" >我要投资</a>
+										#end
+										</td>
+									#elseif($!{trade.tradeStatus.value}==3||$!{trade.tradeStatus.value}==7||$!{trade.tradeStatus.value}==8)
+										<td width="120" class="button"><a  class="f-full full100" href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});">$!{trade.tradeStatus.loanderStatus}</a></td>
+									#elseif($!{trade.tradeStatus.value}==2||$!{trade.tradeStatus.value}==8)
+										<td width="120" class="button"><a  class="f-full full200" href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});">还款中</a></td>
+									#else	
+											<td width="120" class="button"><a  class="f-full full200" href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});">投资已满</a></td>
+									#end
+								
+						</tr>
+				 #end
+			</table>

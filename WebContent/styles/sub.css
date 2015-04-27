@@ -1,0 +1,556 @@
+/*------------------------------担保公司介绍页样式开始---------------------- */
+.sub_was {
+	width:1000px;
+	height:auto;
+	overflow:hidden;
+	margin:0 auto;
+}
+.sub_dbgssjlog {
+	height:100px;
+	width:998px;
+	border:1px solid #d9d9d9;
+	margin-top:18px;
+	background:url(images/sub_img/sub_dbgsjs_bg.jpg) repeat-x;
+}
+.sub_dbgss_txt {
+	margin:15px auto;
+	padding-top:7px;
+<!--
+-->
+ text-align:center;
+}
+.sub_dbgss_title {
+	width:971;
+	height:33px;
+	background:url(images/sub_img/sub_dbgsjs_xian.jpg) no-repeat;
+	margin-top:30px;
+	line-height:30px;
+	padding-left:25px;
+}
+.sub_dbgss_txt01 {
+	width:859px;
+	height:169px;
+	margin:34px auto 40px auto;
+	line-height:25px;
+	text-indent:25px;
+}
+.sub_font18 {
+	font-size:18px;
+	color:#824b01;
+	font-weight:bold;
+}
+.sub_dbgss_title01 {
+	height:40px;
+	width:880px;
+	border-bottom:1px solid #d9d9d9;
+	line-height:40px;
+	margin:15px auto 15px auto;
+}
+.sub_font16 {
+	color:#ff6600;
+	font-size:16px;
+	font-weight:bold;
+}
+.sub_dbgss_pic {
+	width:823px;
+	height:280px;
+	margin:25px auto 25px auto;
+}
+.dbgss_pic {
+	width:363px;
+	height:264px;
+	border:1px solid #d9d9d9;
+	padding:5px;
+	float:left;
+}
+.dbgss_pic01 {
+	float:right;
+}
+.gsjj_xian {
+	width:998px;
+	border:1px solid #d9d9d9;
+}
+.sub_dbgss_contas {
+	width:434px;
+	height:180px;
+	margin:30px 0 0 60px;
+}
+.sub_dbgss_contas li {
+	margin:10px 0;
+	font-family:"微软雅黑";
+}
+.contas_txt {
+	color:#666;
+}
+.sub_cfont16 {
+	font-size:16px;
+	color:#824b01;
+}
+.dbgsslogo_left {
+	float:left;
+}
+.dbgsslogo_right {
+	float:left;
+	margin:-10px 0 0 20px;
+	padding:0px;
+}
+.sub_font28 {
+	font-size:28px;
+	color:#666;
+	font-family:"微软雅黑";
+}
+.sub_font18gray {
+	font-size:18px;
+	margin-top:-6px;
+	color:#666;
+}
+/*------------------------------我要借款样式开始---------------------- */
+.sub_wyjkwas {
+	width:100%;
+	height:1067px;
+	background:url(images/sub_img/sub_wyjk_bg.jpg) no-repeat center;
+}
+.sub_wyjkuang {
+	padding:630px 0 0 0px;
+	width:912px;
+	height:290px;
+	margin:0px auto;
+}
+.sub_wyjk_txt {
+	width:813px;
+	height:130px;
+	margin:20px auto;
+}
+.wyjk_txt_left {
+	width:300px;
+	height:100px;
+	float:left;
+}
+.wyjk_txt_left li, .wyjk_txt_right li {
+	font-size:16px;
+	font-family:"微软雅黑";
+	margin:10px 0;
+}
+.wyjk_txt_right {
+	width:400px;
+	height:100px;
+	float:right;
+	margin-right:90px;
+}
+.wyjk_txt18 {
+	font-size:18px;
+	color:#000;
+	font-family:"微软雅黑";
+}
+.wyjk_line {
+	width:463px;
+	height:66px;
+	margin-top:20px;
+	margin:0px auto;
+}
+.wyjk_btn {
+	width:460px;
+	height:66px;
+	border:none;
+	background:url(images/sub_img/sub_wyjk_jkbtn.jpg) no-repeat;
+	cursor:pointer;
+}
+/*------------------------------我要借款申请页面---------------------- */
+.sq_was {
+	width:998px;
+	height:auto;
+	overflow:hidden;
+	margin:34px auto 0 auto;
+}
+.jk_sqleft {
+	width:704px;
+	height:530px;
+	float:left;
+	margin-bottom:20px;
+}
+.jk_sqright {
+	width:278px;
+	float:right;
+	height:auto;
+	border:1px solid #d9d9d9;
+	margin-bottom:20px;
+	margin-top:28px;
+}
+.sqleft_title, .sub_logintitle {
+	width:100%;
+	height:34px;
+	line-height:34px;
+	background:url(images/sub_img/sub_sq_title.jpg) no-repeat;
+}
+.sqleft_tiao {
+	width:662px;
+	height:38px;
+	margin:15px auto;
+	background:url(images/sub_img/sub_wyjk_tiao.jpg) no-repeat;
+	text-align:center;
+	color:#ff6600;
+	line-height:38px;
+}
+.sqleft_main {
+	width: 650px;
+	height: 347px;
+	margin-left: 35px;
+}
+.main_ul {
+	clear:both;
+	margin:10px 0;
+}
+.main_ul li {
+	float:left;
+}
+.main_txt {
+	width:100px;
+	text-align:right;
+	margin-right:10px;
+	color:#333;
+	font-family:"微软雅黑";
+	font-size:14px;
+}
+.main_txt span{
+	margin-right: 3px;
+	color: red;
+}
+.main_input {
+	width:268px;
+	height:28px;
+	border:1px solid #abadb3;
+	line-height:28px;
+	margin-bottom:15px;
+}
+.main_input01 {
+	width:218px;
+}
+.main_txt01 {
+	width:50px;
+	height:30px;
+	background:#ff6803;
+	color:#FFF;
+	line-height:30px;
+	text-align:center;
+}
+.main_img {
+	margin:3px 0 0 10px;
+}
+.main_ul select {
+	width: 269px;
+	height: 30px;
+	margin-bottom: 15px;
+}
+.main_red {
+	color:#F00;
+}
+.main_btn01 {
+	width:188px;
+	height:49px;
+	margin:10px auto;
+	background:url(images/sub_img/sub_wyjk_btn01.gif) no-repeat;
+	line-height:49px;
+	text-align:center;
+	font-family:"微软雅黑";
+	font-size:18px;
+	color:#FFF;
+}
+.main_btn01 a {
+	color:#FFF;
+}
+.r_people {
+	width:277px;
+	height:39px;
+	background:#eaeaea;
+	line-height:39px;
+	text-align:center;
+	font-size:16px;
+	font-family:"微软雅黑";
+	color:#824b01;
+}
+.r_txt {
+	width:238px;
+	height:auto;
+	border-bottom:1px solid #d9d9d9;
+	margin:10px auto;
+	padding:8px 10px;
+}
+.r_txt li {
+	margin:7px 0;
+}
+.r_txt1 {
+	font-size:13px;
+	color:#333;
+	font-weight:bold;
+}
+.title_ul li {
+	float:left;
+}
+.sq_txt18 {
+	font-size:18px;
+	color:#824b01;
+	font-family:"微软雅黑";
+	margin-top:-4px;
+}
+.title_ul img {
+	margin:7px 10px 0 15px;
+}
+.sq_was01 {
+	width:702px;
+	border:1px solid #d9d9d9;
+	height:auto;
+	overflow:hidden;
+}
+.r_xian {
+	border-bottom:none;
+}
+/*----------------------------弹出框样式---------------------------*/
+
+.wyjk_tck {
+	width:459px;
+	height:127px;
+}
+.wyjk_tck ul {
+	float:left;
+}
+.tck_ul {
+	width:93px;
+	height:95px;
+	margin:20px 0 0 10px;
+}
+.tck_ul01 {
+	margin-top:15px;
+}
+.tck_ul01 li {
+	margin:10px;
+}
+.tck_txt14 {
+	font-size:14px;
+	color:#ff6600;
+}
+.tck_txt12 {
+	color:#ff6600;
+}
+/*----------------------------会员注册样式---------------------------*/
+
+.sub_loginwas {
+	width:100%;
+	height:583px;
+	background:#fcf9e8;
+}
+.sub_logintitle {
+	width:1000px;
+	background:url(images/sub_img/sub_dbgsjs_xian.jpg) no-repeat;
+	height:33px;
+	margin:30px 0 0 0;
+}
+.sub_loginkuang {
+	width:998px;
+	height:392px;
+	border:1px solid #d9d9d9;
+	background:#fff;
+}
+.login_left {
+	width:357px;
+	height:200px;
+	float:left;
+	margin:90px 0 0 60px;
+	background:#FFF;
+}
+.login_left li {
+	float:left;
+	margin-bottom:25px;
+}
+.login_right {
+	float:right;
+	width:577px;
+	height:391px;
+}
+.login_txt {
+	width:100px;
+	text-align:right;
+	margin:3px 10px 0 0;
+	font-size:14px;
+	font-weight:bold;
+	color:#333;
+}
+.login_left input {
+	width:235px;
+	height:32px;
+	color:#999;
+	line-height:32px;
+}
+.login_ul li {
+	margin:-10px 0 0 50px;
+}
+.login_p {
+	margin:-10px 20px;
+	width:144px;
+	float:right;
+	clear:both;
+}
+.login_btn {
+	width:235px;
+	height:32px;
+	background:url(images/sub_img/sub_loginok.jpg) no-repeat;
+	float:left;
+	line-height:32px;
+	text-align:center;
+	margin:0 0 0 100px;
+	color:#FFF;
+	border:none;
+	cursor:pointer;
+}
+.login_btn a {
+	color:#FFF;
+	font-size:14px;
+	font-weight:bold;
+}
+.login_txt01 {
+	width:123px;
+	height:21px;
+	float:right;
+	margin:-10px 10px 20px 0;
+}
+/*-------------------------------------注册成功--------------------------------------------*/
+
+.sub_loginwas01 {
+	background:#FFF;
+}
+.sub_logincg, .sub_loginsb {
+	width:856px;
+	height:329px;
+	margin:95px auto 0 auto;
+	background:url(images/sub_img/sub_loginbg.jpg) no-repeat;
+}
+.login_txt02 {
+	padding:99px 0 0 229px;
+	font-family:"微软雅黑";
+	font-size:16px;
+	font-weight:bold;
+}
+.login_txt03 {
+	padding:50px 0 0 229px;
+	font-size:14px;
+	font-family:"微软雅黑";
+	float:left;
+}
+.sub_loginsb {
+	background:url(images/sub_img/sub_loginbg01.jpg) no-repeat;
+}
+.loginsb_btn {
+	width:121px;
+	height:31px;
+	background:url(images/sub_img/sub_wyjk_btn02.gif) no-repeat;
+	float:left;
+	border:none;
+	cursor:pointer;
+}
+.login_txt04 {
+	float:left;
+	margin:45px 0 0 0;
+}
+/*----------------------------------注册失败------------------------------------------------------------*/
+
+/*----------------------------------注册弹出框------------------------------------------------------------*/
+.login_kuang {
+	width:411px;
+	height:137px;
+	background:url(images/sub_img/sub_login_kuang.png) no-repeat;
+}
+.l_kuang {
+	width:383px;
+	height:113px;
+	display:block;
+	padding:15px 0 0 17px;
+}
+.l_kuang li {
+	line-height:21px;
+}
+.l_kuangtxt {
+	color:#333;
+}
+.l_kuangtxt01 {
+	color:#ff6600;
+}
+/*------------------------------------首页部份样式---------------------------------------------------------------*/
+.newpro-list img {
+	margin:7px 4px;
+}
+.font14 {
+	font-size:14px;
+	color:#ff6600;
+	font-weight:bold;
+}
+.pic_tz, .pic_tz01, .pic_tz02, .pic_tz03 {
+	width:107px;
+	height:49px;
+	background:url(images/common/tz-button.png) no-repeat 0 0;
+	margin-top:-10px;
+	float:right;
+}
+.project-table {
+	border-bottom:1px solid #d9d9d9;
+}
+.pic_tz01 {
+	background:url(images/common/tz-button.png) no-repeat -105px 0;
+}
+.pic_tz02 {
+	background:url(images/common/tz-button.png) no-repeat -212px 0
+}
+.pic_tz03 {
+	background:url(images/common/tz-button.png) no-repeat -318px 0
+}
+.step {
+	height:50px;
+	line-height:50px;
+	color:#824b01;
+	font-weight:bold;
+	font-size:16px;
+	background:#F00;
+	background:url(images/sub_img/sub_tiao1.jpg) no-repeat;
+	margin:-15px 0 0 0;
+}
+.step img {
+	margin-top:13px;
+}
+.fn-left01 {
+	margin-top:20px;
+}
+.footer01 {
+	width:431px;
+	height:81px;
+	margin:20px 0 0 0;
+	float:left;
+}
+.txt15 {
+	font-size:18px;
+	color:#eaddb5;
+}
+.footer01 {
+	width:100%;
+	height:182px;
+	background:#9c8003;
+}
+.footer02 {
+	width:980px;
+	margin:0 auto;
+	height:auto;
+	background:#f00;
+	height:100px;
+}
+.f_left {
+	width:436px;
+	height:40px;
+	float:left;
+}
+.txt18 {
+	font-size:18px;
+	color:#eaddb5;
+	
+}
+.m01{ margin-left:80px;}
+.m002{ border:none;}
+
+.bankcardlist img{ margin-top:5px;}
+.sel1{ border-bottom:none;}

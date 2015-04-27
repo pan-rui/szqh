@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>提交快捷划入申请</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+	<!--左侧导航-->
+	#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+    	<div class="main-content fn-right">
+			<ul class="fn-steps fn-clear">
+    			<li>1.快捷划入申请</li>
+    			<li>2.快捷划入信息</li>
+    			<li class="current">3.快捷划入失败</li>
+    		</ul>
+			<div class="fn-operate fn-fail">
+				<em></em>
+                <h4>您的快捷划入申请失败。<span class="ft-f60"> $!{reason}</span></h4>
+				<p class="mt5">当前账户可用余额：$!{availableBalance} 元</p>
+                <p class="mt5">您可能需要：<a href="/userManage/userHome">返回我的账户</a><span>|</span><a href="/deduct/launchDeduction">重新快捷划入</a></p>
+			</div>
+       </div>
+	</div> 
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

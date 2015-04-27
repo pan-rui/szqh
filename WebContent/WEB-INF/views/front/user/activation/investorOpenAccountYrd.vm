@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>经纪人角色-客户管理-投资人开户</title>
+    <link type="text/css" href="/styles/style.css" rel="stylesheet"/>
+    <link type="text/css" href="/resources/js/jqzoom_ev-2.3/css/jquery.jqzoom.css" rel="stylesheet"/>
+</head>
+<body>
+    #parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+    <div class="blank20"></div>
+    <div class="bd-box container fn-clear">
+        #parse("/front/user/common/left1.vm")
+        <div class="m-content fn-right">
+            <div class="m-content-box role">
+                <div class="title3 mt10"><span><a class="return" href="javascript:history.go(-1);">《 返回</a></span><span class="two ml15">#if($!{openType}=="investor") 投资人 #else 二级经纪人 #end 开户</span></div>
+                <div class="blank30"></div>
+                <div class="r-box">
+                    <form action="/investorManager/investorOpenAccountSubmit" method="post"
+                          id="investorOpenAccount_form">
+                        <div class="fn-item">
+                            <label class="fn-label">账户类型：</label>
+
+                            <p class="fn-words">个人账户</p>
+                            <input type="hidden" name="type" value="GR"/>
+                        </div>
+                        <div class="fn-item">
+                            <label class="fn-label">用户名：</label>
+                            <input type="text" class="fn-text w230" name="userName"/>
+                        </div>
+                        <div class="fn-item">
+                            <label class="fn-label"> <span id="realNameText">真实姓名：</span></label>
+                            <input type="text" class="fn-text w230" name="realName"/>
+
+                            <b class="fn-tip">若名称里有生僻字，请点此<a href="javascript:;">打开生僻字库</a>进行选择</b>
+                        </div>
+                        <div class="fn-item">
+                            <label class="fn-label">常用电子邮箱：</label>
+                            <input type="text" class="fn-text w230" name="mail"/>
+
+                            <input type="hidden" id="openType" name="openType" value="$!{openType}">
+
+                            <p class="fn-tip">新增完成后需要通过邮箱激活用户</p>
+
+                            <div class="warm-tip">
+                                <p>温馨提示：开户过程需要发送邮件，可能会由于网络原因稍有延时，请您耐心等待开户结果！</p>
+                            </div>
+                        </div>
+                        <div class="fn-item">
+                            <input type="hidden" id="availabelBroker" name="availabelBroker" value="$!{availabelBroker}"/>
+                            <input type='hidden' id="uploadHost" value="$!{uploadHost}"/>
+                            <input type="hidden" name="enterpriseName" value=""/>
+                            <input type='hidden' id="token" name="token" value="$!{token}"/>
+                            <a href="javascript:;" class="orange-btn-b" id="nextBtn">
+									确定开户
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <div class="blank30"></div>
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+    #parse("/front/index/common/footer-yrd.vm")
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+    seajs.use($_GLOBAL.mode +'investorOpenAccount');
+</script>
+</body>
+</html>

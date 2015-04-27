@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>推荐好友</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+.recomIcon {
+    background: url(/resources/images/common/icons_324000.png) no-repeat 9999px 9999px;
+    height: 25px;
+    padding: 7px 0 0 42px;
+    vertical-align: middle;
+    display: inline-block;
+    color: #333;
+}
+.recomIcons {
+    background: url(/resources/images/common/icons_680980.png) no-repeat 9999px 9999px;
+    height: 30px;
+    padding: 17px 0 0 55px;
+    vertical-align: middle;
+    display: inline-block;
+    color: #333;
+}
+.byQQ {
+	background-position: -634px -2px;
+	padding-left: 45px;
+}
+.byMSN {
+	background-position: -561px -72px;
+}
+.byURL {
+	background-position: -487px -140px;
+}
+.byEmail {
+	background-position: -421px -210px;
+}
+.bySMS {
+	background-position: -323px -300px;
+}
+.bySinaBlog {
+	background-position: 0px 0px;
+}
+.byTXBlog {
+	background-position: 0px -1760px;
+}
+.byQzone {
+	background-position: 0px -32px;
+}
+.byRenren {
+	background-position: 0px -64px;
+}
+.byKaixin {
+	background-position: 0px -192px;
+}
+.m-layer {
+box-shadow: 0 1px 2px #333;
+}
+.m-layer .ly-title {
+    font-size: 14px;
+    color: #a60000;
+    font-weight: bold;
+    border-bottom: 1px solid #e4e4e4;
+    height: 39px;
+    line-height: 39px;
+    padding: 0 10px;
+}
+.m-layer .ly-cont {
+    padding: 20px;
+    background: #fff;
+}
+.red-btn {
+    margin-right: 10px;
+    color: #fff;
+    background-position: 0 0;
+}
+.btn {
+    display: inline-block;
+    zoom: 1;
+    width: 100px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 14px;
+    background: url(/resources/images/home/btn.jpg) no-repeat;
+}
+
+.gray-btn {
+color: #666;
+background-position: 0 -46px;
+}
+</style>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/zeroclipboard/jquery.zclip.min.js"></script>
+	<script type="text/javascript" src="/resources/js/plugins/jquery.window.js"></script>
+<body class="warp">
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<h3 class="con-title">马上推荐</h3>
+			<div class="fn-y-tip">
+				<em></em>
+				<div class="fn-y-con">
+					<p>推荐好友注册一起赚钱,分享投资心得,投资赚钱两不误。</p>
+				</div>
+			</div>
+			<form action="" method="post" class="price-active" style="margin-bottom:150px;" id="share_form">
+				<div class="fm-pay border-b">
+    				<h4>通过QQ、MSN等推荐</h4>
+    				<ul class="selected-bank fn-clear" id="select_bank_list">
+    					<li  >
+    						<a class="recomIcons byQQ" id="tencent" data-resource-uri="C005" href="javascript:;">推荐给QQ好友</a>
+    					</li>
+						<li  >
+    						<a class="recomIcons byMSN" id="msn" data-resource-uri="C006" href="javascript:;">推荐给MSN好友</a>
+    					</li>
+						<li  >
+    						<a class="recomIcons byURL" data-resource-uri="C010" href="javascript:;">直接复制推广链接</a>
+    					</li>
+						
+    				</ul>
+    			</div>
+				<div class="fm-pay border-b">
+    				<h4>通过邮件、短信推荐（免费）</h4>
+    				<ul class="selected-bank fn-clear" id="select_bank_list">
+    					<li  >
+    						<a class="recomIcons byEmail" data-resource-uri="C007" href="javascript:;">邮件推荐好友</a>
+    					</li>
+						<li  >
+    						<a class="recomIcons bySMS" data-resource-uri="C009" href="javascript:;">短信推荐好友</a>
+    					</li>
+						
+    				</ul>
+    			</div>
+				<div class="fm-pay border-b">
+    				<h4>通过微博、社区推荐</h4>
+    				<ul class="selected-bank fn-clear" id="select_bank_list">
+    					<li  >
+    						<a class="jiathis_button_tsina recomIcon bySinaBlog" href="javascript:;">推荐到新浪微博</a>
+    					</li>
+						<li  >
+    						<a class="jiathis_button_tqq recomIcon byTXBlog" href="javascript:;">推荐到腾讯微博</a>
+    					</li>
+						<li  >
+    						<a class="jiathis_button_qzone recomIcon byQzone" href="javascript:;">推荐到Qzone</a>
+    					</li>
+						<li  >
+    						<a class="jiathis_button_renren recomIcon byRenren" href="javascript:;">推荐到人人网</a>
+    					</li>
+						<li  >
+    						<a class="jiathis_button_kaixin001 recomIcon byKaixin" href="javascript:;">推荐到开心网</a>
+    					</li>
+    				</ul>
+    			</div>
+			</form>
+			<div id="recomand-group" class="m-layer" style="display:none;width:600px;height:200px">
+				<div class="ly-cont">
+				<form action="" method="post" class="price-active" style="margin-bottom:150px;" id="share_form">
+    					<fieldset>
+						<div class="ly-title">
+                			<h4 style="font-weight: bold;">复制内容</h4>
+                		</div>
+            			<div class="fn-y-tip">
+            				<em></em>
+            				<div class="fn-y-con">
+								<p>很抱歉,目前只支持粘贴复制，后续会推出新的推荐方式！</p>
+            					<p>直接点击复制内容,将链接发给您的好友。$!{recomandUrl}</p>
+            				</div>
+            			</div>
+        				</fieldset>
+    					<div class="fn-item">
+    						<input type="hidden" id="recomandUrl" value="$!{recomandUrl}"/>
+    						<a href="javascript:;" id="copyBtn" class="btn red-btn"><span>复制内容</span></a>
+							<a href="javascript:;" id="backBtn" class="btn gray-btn">返回</a>
+    						<script type="text/javascript">
+                            	$(document).ready(function(){ 
+                            		  $('#copyBtn').zclip({
+                                    	  path:'/resources/swf/ZeroClipboard.swf',
+                                    	  copy:function(){return $('#recomandUrl').val();}
+                                      });
+                            		   $(".byQQ,.byMSN,.byURL,.byEmail,.bySMS,.bySinaBlog,.byTXBlog,.byQzone,.byRenren,.byKaixin").click(function(){
+                            			 $('body').window({
+                                	      content:'#recomand-group',
+                                	      simple:true,
+										  closeEle:'#backBtn'
+                                	   });
+                             		 });
+                            	});
+                             </script>
+            			</div>
+					</form>	
+				</div>	
+			</div>	
+		</div>
+	</div>  
+   	#parse("/front/index/common/footer.vm")
+</body>
+</html>
+
+
+
+
+

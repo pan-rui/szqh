@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="/resources/mjr/css/global.css">
+	<link rel="stylesheet" href="/resources/mjr/css/common.css">
+	<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" href="/resources/mjr/css/ie7fix.css">
+	<![endif]-->
+	<script src="/resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/resources/mjr/js/lbslide.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="/resources/mjr/js/base.js" type="text/javascript" charset="utf-8"></script>-->
+</head>
+<body>
+	<!-- include siteNav module, adjusted according to your needs -->
+	
+	<!-- <div role="include" data-src="include/siteNav.html"></div> -->
+	#parse("/front/index/common/header-mjr.vm")
+	<!-- end include -->
+
+	<div class="md-showcase">
+		<div class="banner">
+			<div class="slide-main" id="touchMain">
+		        <a class="prev" href="javascript:;" stat="prev1001"><img src="img/l-btn.png" /></a>
+		        <div class="slide-box" id="slideContent">
+		            <!-- beginn Banner -->
+					#foreach($banner in $bannerNews)
+    						#if($!{banner.parentId} ==101)
+    							#if($stringUtil.isNotBlank(${banner.remark}))
+                					<div class="slide" id="bgstylea">
+                		            	<div class="one-img">
+                		            		<a stat="sslink-2" href="${banner.remark}" target="_blank">
+                			                	<img src="$!{banner.rem1}" alt="">
+                			            	</a>
+                		            	</div>
+                		            </div>
+							#end
+								#end 
+					#end
+		        </div>
+		        <a class="next" href="javascript:;" stat="next1002"><img src="img/r-btn.png" /></a>
+		        <div class="item">
+					#foreach($banner in $bannerNews)
+    						#if($!{banner.parentId} ==101)
+    							#if($stringUtil.isNotBlank(${banner.remark}))
+                					<a  stat="item1001" href="javascript:;"></a>
+							#end
+								#end 
+					#end
+		        </div>
+				<!-- end Banner -->
+		    </div>
+		</div>
+		<div class="extend-bar">
+			<div class="md-default-c pc-width">
+				<ul class="ad-0 clearf">
+					<li>
+						<span class="icon-base peoples0"></span>
+						<span class="num">$!{totalUserCount}</span>
+						<span class="text">位投资人已经加入梦金融</span>
+					</li>
+					<li>
+						<span class="icon-base money0"></span>
+						<span class="text">累计投资金额</span>
+						<span class="num">$!{dealedAmount}</span>
+					</li>
+					<li>
+						<span class="icon-base hands0"></span>
+						<span class="text">为投资人赚取收益</span>
+						<span class="num">$!{benefitAmount2}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	
+		
+	<div class="md-module-info">
+		<div class="md-default-c pc-width clearf">
+			<div class="md-grid-default clearf f-l info-2 pc-grid-padding">
+				<div class="info-a pc-info-a-width">
+					<div class="info-ico icon-base money"></div>
+					<h3 class="info-title">简单</h3>
+					<div class="info-context">方便快捷的理财方式随时随地可以操作</div>
+				</div>
+				<div class="info-a pc-info-a-width">
+					<div class="info-ico icon-base peoples"></div>
+					<h3 class="info-title">收益</h3>
+					<div class="info-context">10%-15%年化收益让资产永不贬值</div>
+				</div>
+				<div class="info-a pc-info-a-width padding-fixd">
+					<div class="info-ico icon-base hands"></div>
+					<h3 class="info-title">安全</h3>
+					<div class="info-context">风控严格把关提供本息保障</div>
+				</div>
+			</div>
+			
+			<!--begin 公告和新闻 -->
+			<div class="table-default f-l">
+				<ul class="table-title">
+					<li class="table-title-key pc-width-tt on" id="noticesOne" onmouseover="noticesShow(1)">最新公告</li>
+					<li class="table-title-key pc-width-tt" id="noticesTwo"  onmouseover="noticesShow(2)">新闻动态</li>
+				</ul>
+				<div class="table-context">
+					<div class="table-context-c" id="noticesIndexsOne">
+						<ul class="context-list pc-width-list">
+							#foreach($infoOne in $noticesIndexsOne)
+								<li><div><a href="/help/announcement/$!{infoOne.popId}">$stringUtil.subString( $!{infoOne.title},15,"..")</a></div></li>
+							#end
+						</ul>
+					</div>
+					<div class="table-context-c" id="noticesIndexsTwo" style="display:none;" >
+						<ul class="context-list pc-width-list">
+							<!--<li><div><a href="javascript:;">梦金融20150415新标发布预告预告预告</a><span class="tag-hot f-l">HOT</span></div></li>-->
+							#foreach($infoOne in $noticesIndexsTwo)
+								<li><div><a href="/help/announcement/$!{infoOne.popId}">$stringUtil.subString( $!{infoOne.title},15,"..")</a></div></li>
+							#end
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--end 公告和新闻 -->
+			
+			<div class="md-grid-default clearf f-l info-guide">
+				<h3 class="with-underline underline-hight-10">新手指引</h3>
+				<div class="i-g-c">
+					<div class="i-g-c-b">
+						<div class="icon-base step-1"></div>
+						<span class="text text-1">注册、登录</span>
+						<div class="icon-base step-2"></div>
+						<span class="text text-2">身份认证</span>
+						<div class="icon-base step-3"></div>
+						<span class="text text-3">充值、投资</span>
+						<div class="icon-base step-4"></div>
+						<span class="text text-4">提现</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="md-module-guide">
+		<div class="md-default-c pc-width">
+			
+        	<!--begin 新手专区  -->
+			<!--
+			<div class="md-m-g-list">
+				<div class="default-title">
+					<h3 class="title-m">新手标专区</h3>
+					<span class="title-s">还等什么，赶紧加入吧!</span>
+				</div>
+				<div class="md-grid-l-showcase">
+					<div class="showcase showcase-orange">
+						<div class="icon-base img01"></div>
+					</div>
+					<div class="case-simple">
+						<div class="grid-c1">
+							<h4 class="with-underline underline-hight-10 underline-width-2">世界500强日企苏州子公司应付账款MJR-007-2..</h4>
+							<div class="grid-cc clearf">
+								<div class="case-simple-list clearf">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+								<div class="case-simple-list clearf">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+								<div class="case-simple-list clearf style-fix">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+								<div class="progress-bar style01 f-l height-20">
+									<div class="p-index" style="width:50%"></div>
+								</div>
+							</div>
+						</div>
+						<div class="grid-c2">
+							<div class="flag-new-0">新</div>
+							<div class="table-c">可投资金额：<span>2,000,00</span></div>
+							<label for="tender" class="input-text-default">投标金额：
+								<input type="text" name="tender" value="" placeholder="">元
+							</label>
+							<a href="javascript:;" class="flat-full button-color-orange">马上抢购</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			-->
+			<!--end 新手专区  -->
+			<!--begin  项目推荐  -->
+			<div class="md-m-g-list">
+				<div class="default-title">
+					<h3 class="title-m">项目推荐</h3>
+					<span class="title-s">还等什么，赶紧加入吧!</span>
+					<a href="javascript:;" class="more">+更多</a>
+				</div>
+				<div class="md-grid-l-showcase">
+					<div class="showcase showcase-blue">
+						<div class="icon-base img02"></div>
+					</div>
+					<div class="case-simple">
+						<table class="table-cell-only">
+							<tbody>
+								 #foreach($trade in $!{newPage.result})	
+									 #if($velocityCount <= 4)
+    								<tr class="style-fixd cell-2">
+										 #set($percent = "100%")
+                                        #if($!{trade.tradeStatus.value}==1)
+                                            #set($percent = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.loanAmount},$!{trade.leastInvestAmount}))
+                                        #else
+                                            #set($percent = '100%')
+                                        #end
+										
+    									<td class="title">
+											$stringUtil.subString($!{trade.loanName},7,"..")
+											#if(${trade.canUseGiftMoney})  <span class="hb"><img src="/styles/images/common/hongbao.gif" alt="红包"></span> #end
+										</td>
+										
+    									<td><span class="case-num">$!rateUtil.getRateOnly($!trade.interestRate)<span class="case-d">%</span></span></td>
+    									<td><span>$!{trade.timeLimit}<span>$!{trade.timeLimitUnit.viewName}</span></span></td>
+    									<td><span>$moneyUtil.getMoneyByw($!{trade.tradeAmount})<span>万</span></span></td>
+    									<td class="cell-3">
+    										<span>$percent</span>
+    										<div class="progress-bar style02">
+    											<div class="p-index" style="width:${percent};"></div>
+    										</div>
+    									</td>
+    									<td>
+    										<a href="javascript:;" class="flat-full">投标</a>
+    										<!-- <a href="javascript:;" class="flat-full unable">投标中</a> -->
+    									</td>
+    								</tr>
+									#else
+										#break;
+									#end
+								#end
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!--end 项目推荐  -->
+			
+			<!--begin 债券转让  -->
+			<!--
+			<div class="md-m-g-list">
+				<div class="default-title">
+					<h3 class="title-m">债券转让</h3>
+					<span class="title-s">还等什么，赶紧加入吧!</span>
+					<a href="javascript:;" class="more">+更多</a>
+				</div>
+				<div class="md-grid-l-showcase">
+					<div class="showcase showcase-bluedeep">
+						<div class="icon-base img03"></div>
+					</div>
+					<div class="case-simple">
+						<div class="grid-c1 c-s-p c1-padding-35">
+							<h4 class="with-underline underline-hight-10 underline-width-2">世界500强日企苏州子公司应付账款MJR-007-2..</h4>
+							<div class="grid-cc clearf">
+								<div class="case-simple-list clearf">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+								<div class="case-simple-list clearf">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+								<div class="case-simple-list clearf style-fix">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+							</div>
+							<a href="javascript:;" class="flat-simple f-s-fixd">立即加入</a>
+						</div>
+						<div class="grid-c1 c-s-p style-b-r-fixd c1-padding-35">
+							<h4 class="with-underline underline-hight-10 underline-width-2">世界500强日企苏州子公司应付账款MJR-007-2..</h4>
+							<div class="grid-cc clearf">
+								<div class="case-simple-list clearf">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+								<div class="case-simple-list clearf">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+								<div class="case-simple-list clearf style-fix">
+									<span class="case-title">年利率</span>
+									<span class="case-num">15.0
+										<span class="case-d">%</span>
+									</span>
+								</div>
+							</div>
+							<a href="javascript:;" class="flat-simple f-s-fixd">立即加入</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			-->
+			<!--end 债券转让  -->
+			
+		</div>
+	</div>
+
+	
+	
+	<div class="md-module-info">
+		<div class="md-default-c pc-width clearf">
+			
+			<!--begin 媒体报道-->
+			<div class="md-grid-default clearf f-l info-news">
+				<h3 class="with-underline underline-hight-10">媒体报道<a href="javascript:;" class="more">+更多</a></h3>
+				
+				#foreach($info in $informationHelp)
+					#if($velocityCount <= 2)
+    					<div class="grid-with-img">
+    					<div class="img">
+    						<img src="javascript:;" alt="">
+    					</div>
+    					<div class="article">
+    						<h4>$stringUtil.subString( $!{info.title},20,"...")</h4>
+    						<p>$stringUtil.subString( $!{info.content},60,"...")
+    							<a href="javascript:;" class="more">[更多]</a>
+    						</p>
+    					</div>
+    				</div>
+    				
+    				#end
+				#end
+			</div>
+			<!--end 媒体报道-->
+			
+			<div class="md-user-order">
+				<div class="title"><span>理财风云榜</span></div>
+				<table class="table-style-1 width-100">
+					<thead>
+						<tr>
+							<th>排名</th>
+							<th>用户名</th>
+							<th>投资金额</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="there-3"><span class="icon-base first"></span>盟主</td>
+							<td class="there-3"><span>s***y</span></td>
+							<td class="there-3"><span class="sign-yuan">￥</span>8,000,000</td>
+						</tr>
+						<tr>
+							<td><span class="icon-base second"></span>盟主</td>
+							<td><span>s***y</span></td>
+							<td><span class="sign-yuan">￥</span>8,000,000</td>
+						</tr>
+						<tr>
+							<td><span class="icon-base third"></span>盟主</td>
+							<td><span>s***y</span></td>
+							<td><span class="sign-yuan">￥</span>8,000,000</td>
+						</tr>
+						<tr>
+							<td><span class="icon-base fourth"></span>盟主</td>
+							<td><span>s***y</span></td>
+							<td><span class="sign-yuan">￥</span>8,000,000</td>
+						</tr>
+						<tr>
+							<td><span class="icon-base fifty"></span>盟主</td>
+							<td><span>s***y</span></td>
+							<td><span class="sign-yuan">￥</span>8,000,000</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="md-partner-logo f-l">
+				<div class="md-p-l-title">
+					<div class="line-1"></div>
+					<span class="title">合作伙伴</span><br>
+					<span class="icon-base01 array"></span>
+				</div>
+				<ul class="md-p-l-list clearf">
+					<li><a href="http://www.cqbornsoft.com/" target="_blank"><img width="125" height="30" alt=""  src="/styles/images/home/agency_img1.gif"/></a></li>
+    				<li><a href="https://www.yiji.com/" target="_blank"><img width="125" height="30" alt=""  src="styles/images/home/agency_img2.gif"/></a></li>   
+    			#foreach($info in $cooperateList.result)
+					<li>
+						<a href="$!{info.cooHerf}" target="_blank" title="$!{info.cooName}"><img alt="$!{info.cooName}" src="$!{info.picUrl}" width="125" height="30"></a>
+					</li>
+				#end
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<script >
+			
+			function noticesShow(type){
+				if(type==1){
+    				$('#noticesOne').addClass('on');
+    				$('#noticesTwo').removeClass('on');
+					$('#noticesIndexsOne').show();
+					$('#noticesIndexsTwo').hide();
+				}else if(type==2){
+    				$('#noticesOne').removeClass('on');
+    				$('#noticesTwo').addClass('on');
+					$('#noticesIndexsOne').hide();
+					$('#noticesIndexsTwo').show();
+				}
+			}
+    </script>
+	<!-- include foot module, adjusted according to your needs -->
+	<!-- <div role="include" data-src="include/siteFoot.html"></div> -->
+	#parse("/front/index/common/footer-mjr.vm")
+	<!-- end include -->
+</body>
+</html>

@@ -1,0 +1,8 @@
+	        <ul class="fs-num fn-clear">
+            	<li class="bd-line">借款金额<strong class="g-green">$!{trade.tradeAmount.toStandardString()}元</strong></li>
+                <li class="bd-line" >年化收益率<strong class="g-orange" id="Y-rate"> $!{totalAnnualInterest}</strong></li>
+                <li>借款期限<strong id="Brtime">$!{trade.timeLimit} $!{trade.timeLimitUnit.viewName}</strong></li>
+            </ul>
+            <div class="fs-use">借款用途：$!{loanDemand.loanPurpose}</div>
+			
+       

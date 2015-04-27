@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Y</title>
+</head>
+<style>
+    table{
+		border: 1px solid #C8CCD1;
+		border-width: 1px 0 0 1px;
+		border-spacing: 0px;
+		line-height: 1.5em;
+		font-family: Arial, Helvetica, sans-serif,"宋体";
+		vertical-align: middle;
+		border-collapse: separate;
+	}
+	.table_1{
+	}
+	.table_1 td{
+		border: 1px solid #C8CCD1;
+		border-width: 0 1px 1px 0;
+	}
+	table td{
+		padding: 5px 10px;
+		line-height: 18px;
+		text-align: left;
+		vertical-align: top;
+	}
+	.head_tr{background: #E5EFFB;color:#555;}
+	.table_0{color:#2679ba;}
+	.table_0 a{
+		font-size: 12px;
+		line-height: 20px;
+		text-decoration: underline;
+		text-align: -webkit-match-parent;
+		border-collapse: separate;
+		border-spacing: 2px;
+		border-color: gray;
+	}
+	h2{color:#1366b9;}
+	.block{color:block;}
+	.color_0{color:#555;}
+	.color_1{color:#0A8021;}
+</style>
+<body>
+<h2>概述</h2>
+<p>
+    Y库为易极付公司自主开发的组件及函数库，Y库基于jQuery，并使用seajs加载
+</p>
+<table class="table_0">
+	<tr>
+		<td><a href="Y-api/api-combobox.htm">组合框Y.Combobox</a></td>
+	</tr>
+	<tr>
+		<td><a href="Y-api/api-window.htm">弹出层Y.Window</a></td>
+	</tr>
+	<tr>
+		<td><a href="Y-api/api-countdown.htm">倒计时Y.Countdown</a></td>
+	</tr>
+</table>
+<h2 id="constructor">Y库核心</h2>
+Y库核心成员为Y库的基础
+<table class="table_1">
+	<tr class="head_tr">
+		<td>成员</td>
+		<td>功能描述</td>
+		<td>作用</td>
+	</tr>
+	<tr class="color_1">
+		<td>all</td>
+		<td>对象 组件全局印象</td>
+		<td>所有Y库组件构造时都将加入到全局印象中，以便在需要时获取</td>
+	</tr>
+	<tr class="color_1">
+		<td>getKey</td>
+		<td>获取一个与已有组件绝不重复的key</td>
+		<td>key成员时Y库组件在全局中的标识，当没有为组件配置key时，组件会自动调用该函数生成key</td>
+	</tr>
+	<tr class="color_1">
+		<td>getCmp</td>
+		<td>参数 key ，根据key获取组件</td>
+		<td>当因为作用域或其他原因无法直接获得组件对象时，可为组件配置key，
+		然后通过key从全局中获得组件对象</td>
+	</tr>
+	<tr class="color_1">
+		<td>join</td>
+		<td>将一个组件加入到全局印象中</td>
+		<td>Y库组件构造时会自动调用该函数加入到全局印象中</td>
+	</tr>
+	<tr class="color_1">
+		<td>remove</td>
+		<td>将一个组件从全局印象中移除</td>
+		<td>Y库组件销毁时会自动调用该函数</td>
+	</tr>
+		<tr class="color_1">
+		<td>create</td>
+		<td>创建一个Y库组件function(name,cfg) name为组件名，cfg为组件配置</td>
+		<td>应该使用该函数创建组件而不应直接new Y.xxx()，可减少异常发生的可能</td>
+	</tr>
+	<tr class="color_1">
+		<td>inherit</td>
+		<td>为Y库扩展一个成员，并可以继承一个Y库中的基类，function(name,base,option)
+		<br/>name为新组件名，base为基类名，option为新增或被重写的成员</td>
+		<td>该函数为Y库的组件扩展方式，为Y库扩展新的组件，并可从已有组件中继承UI及成员</td>
+	</tr>
+	<tr class="color_1">
+		<td>errorList</td>
+		<td>错误信息数组</td>
+		<td>存储一些使用中的错误信息</td>
+	</tr>
+	<tr class="color_1">
+		<td>handlerError</td>
+		<td>异常处理函数</td>
+		<td>默认将异常信息存储到errorList中</td>
+	</tr>
+</table>
+<h2 id="constructor">组件调用方式</h2>
+<p>
+推荐两种组件创建方式：
+<div>
+1,Y库方式：<br/>     Y.create('Countdown',{
+                   <br/>&nbsp;&nbsp;&nbsp;&nbsp; renderTo: '#span1',
+				   <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time:60
+                <br/>});
+
+</div>
+<div>
+2,Jquery方式：<br/>  $('#span1').Y('Countdown',{
+                  <br/>&nbsp;&nbsp;&nbsp;&nbsp; time:60
+				<br/>});
+</div>
+非组件的成员，请根据API中各自的描述使用
+</p>
+<h2 id="config_args">基类component（不应构造该类）</h2>
+配置参数：无
+<table class="table_1">
+	<tr class="head_tr">
+		<td>成员</td>
+		<td>描述</td>
+		<td>作用</td>
+	</tr>
+	<tr class="color_1">
+		<td>init</td>
+		<td>空</td>
+		<td>组件构造函数中会默认调用init方法</td>
+	</tr>
+	<tr class="color_1">
+		<td>callBase</td>
+		<td>调用基类方法，function(name,base,[param1,param2]);<br/>
+		name为方法名，base为基类名，方法参数在后面顺序书写</td>
+		<td>派生类中调用基类成员的方法</td>
+	</tr>
+	<tr class="color_1">
+		<td>on</td>
+		<td>on(name,handler)为组件绑定一个事件函数，参数为事件名和处理函数</td>
+		<td>Y库组件事件绑定的规范函数</td>
+	</tr>
+	<tr class="color_1">
+		<td>fire</td>
+		<td>(name,[param1],[param2])触发一个事件，第一个从参数为事件名，后面的为传递的参数</td>
+		<td>将触发事件名配置的事件函数、listeners配置的事件函数、on方法绑定的事件函数</td>
+	</tr>
+	<tr class="color_1">
+		<td>method</td>
+		<td>function(name,[param1,param2])</td>
+		<td>根据方法名调用对应方法</td>
+	</tr>
+	<tr class="color_1">
+		<td>distroy</td>
+		<td></td>
+		<td>销毁组件</td>
+	</tr>
+</table>
+<h2 id="config_args">基类box</h2>
+供有UI的组件继承，提供组件渲染、显示、关闭、销毁等基本流程及功能
+<h3 id="config_args">配置参数</h3>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>配置参数</td>
+		<td>参数说明</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>renderTo</td>
+		<td>jquery对象或选择器</td>
+		<td class="color_0">组件渲染位置</td>
+	</tr>
+	<tr class="color_1">
+		<td>el</td>
+		<td>字符串，如'div'</td>
+		<td class="color_0">组件最外层容器标签名</td>
+	</tr>
+	<tr class="color_1">
+		<td>css</td>
+		<td>class名</td>
+		<td class="color_0">加到组件el上的class样式</td>
+	</tr>
+	<tr class="color_1">
+		<td>style</td>
+		<td>样式对象，如：{background:'xxx',width:'xxx'}</td>
+		<td class="color_0">加到组件el上的style样式</td>
+	</tr>
+</table>
+<h3 id="config_args">对象方法</h3>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>方法</td>
+		<td>参数说明</td>
+		<td>返回值</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>show(speed)</td>
+		<td>speed为数字，显示速度，可不配置，默认为'fast'</td>
+		<td>false或无（被beforeshow阻止时返回false）</td>
+		<td class="color_0">显示组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>close(speed)</td>
+		<td>speed为数字，隐藏速度，可不配置，默认为'fast'</td>
+		<td>false或无</td>
+		<td class="color_0">关闭组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>hide(speed)</td>
+		<td>speed为数字，隐藏速度，可不配置，默认为'fast'</td>
+		<td>无</td>
+		<td class="color_0">隐藏组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>distroy()</td>
+		<td></td>
+		<td>无</td>
+		<td class="color_0">销毁组件，清除注册在dom上的事件,<br/>
+		默认情况下close方法会调用此方法,除非配置closeAction为'hide'</td>
+	</tr>
+</table>
+<h3 id="object_function">对象属性</h3>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>属性</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>el</td>
+		<td class="color_0">最外层容器jquery对象</td>
+	</tr>
+	<tr class="color_1">
+		<td>isRender</td>
+		<td class="color_0">组件是否已经渲染</td>
+	</tr>
+	<tr class="color_1">
+		<td>isShow</td>
+		<td class="color_0">组件是否已经显示</td>
+	</tr>
+	<tr class="color_1">
+		<td>isDistroy</td>
+		<td class="color_0">组件是否已经销毁</td>
+	</tr>
+	<tr class="color_1">
+		<td>showwing</td>
+		<td class="color_0">组件是否处于显示状态</td>
+	</tr>
+</table>
+
+<h2 id="config_args">基类container</h2>
+容器组件，供支持配置内容的组件继承
+<h3 id="config_args">配置参数</h3>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>配置参数</td>
+		<td>参数说明</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>content</td>
+		<td>包含内容</td>
+		<td class="color_0">渲染到该容器的内容</td>
+	</tr>
+	<tr class="color_1">
+		<td>renderTo</td>
+		<td>jquery对象或选择器</td>
+		<td class="color_0">组件渲染位置</td>
+	</tr>
+	<tr class="color_1">
+		<td>el</td>
+		<td>字符串，如'div'</td>
+		<td class="color_0">组件最外层容器标签名</td>
+	</tr>
+	<tr class="color_1">
+		<td>css</td>
+		<td>class名</td>
+		<td class="color_0">加到组件el上的class样式</td>
+	</tr>
+	<tr class="color_1">
+		<td>style</td>
+		<td>样式对象，如：{background:'xxx',width:'xxx'}</td>
+		<td class="color_0">加到组件el上的style样式</td>
+	</tr>
+</table>
+<h3 id="config_args">对象方法</h3>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>方法</td>
+		<td>参数说明</td>
+		<td>返回值</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>show(speed)</td>
+		<td>speed为数字，显示速度，可不配置，默认为'fast'</td>
+		<td>false或无（被beforeshow阻止时返回false）</td>
+		<td class="color_0">显示组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>close(speed)</td>
+		<td>speed为数字，隐藏速度，可不配置，默认为'fast'</td>
+		<td>false或无</td>
+		<td class="color_0">关闭组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>hide(speed)</td>
+		<td>speed为数字，隐藏速度，可不配置，默认为'fast'</td>
+		<td>无</td>
+		<td class="color_0">隐藏组件</td>
+	</tr>
+	<tr class="color_1">
+		<td>distroy()</td>
+		<td></td>
+		<td>无</td>
+		<td class="color_0">销毁组件，清除注册在dom上的事件,<br/>
+		默认情况下close方法会调用此方法,除非配置closeAction为'hide'</td>
+	</tr>
+	<tr class="color_1">
+		<td>callSize()</td>
+		<td></td>
+		<td>无</td>
+		<td class="color_0">根据内容计算组件尺寸</td>
+	</tr>
+	<tr class="color_1">
+		<td>doSize()</td>
+		<td></td>
+		<td>无</td>
+		<td class="color_0">重新计算并设置组件尺寸</td>
+	</tr>
+</table>
+<h3 id="object_function">对象属性</h3>
+<table class="table_1">
+	<tr class="head_tr">
+		<td>属性</td>
+		<td>描述</td>
+	</tr>
+	<tr class="color_1">
+		<td>el</td>
+		<td class="color_0">最外层容器jquery对象</td>
+	</tr>
+	<tr class="color_1">
+		<td>item</td>
+		<td class="color_0">内容部分jquery对象，即content配置</td>
+	</tr>
+	<tr class="color_1">
+		<td>isRender</td>
+		<td class="color_0">组件是否已经渲染</td>
+	</tr>
+	<tr class="color_1">
+		<td>isShow</td>
+		<td class="color_0">组件是否已经显示</td>
+	</tr>
+	<tr class="color_1">
+		<td>isDistroy</td>
+		<td class="color_0">组件是否已经销毁</td>
+	</tr>
+	<tr class="color_1">
+		<td>showwing</td>
+		<td class="color_0">组件是否处于显示状态</td>
+	</tr>
+</table>
+</body>
+</html>

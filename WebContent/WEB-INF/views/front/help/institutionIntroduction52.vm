@@ -1,0 +1,100 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+<div class="home-section_bd mt20">
+	<!--登录表单模块-->
+     <div class="bd-box container m-loginFormWrap">
+		<div class="inner">
+			<!--标题-->
+			<h2 class="u-title3"><span>免费注册</span></h2>
+			
+            <form class="m-loginForm">
+				<!--行-->
+                <div class="group-item">
+                    <label>用户名</label>
+					<input class="control icon icon-head" type="text"/>
+				</div>
+				<!--行结束-->
+				<!--行-->
+                <div class="group-item">
+                    <label>登录密码</label>
+					<input class="control icon icon-key" type="text"/>
+				</div>
+				<!--行结束-->
+				<!--行-->
+                <div class="group-item">
+                    <label>确认密码</label>
+					<input class="control icon icon-key" type="text"/>
+				</div>
+				<!--行结束-->
+				<!--行-->
+                <div class="group-item">
+                    <label>手机号码</label>
+					<input class="control icon icon-mobile" type="text"/>
+				</div>
+				<!--行结束-->
+				<!--行-->
+                <div class="group-item verfyImg-group">
+                    <label>验证码</label>
+					<input class="control icon icon-lock w110" type="text"/>
+                    <a class="u-btn">获取验证码</a>
+                    <a class="u-btn u-btn-disabled">59秒后重新获取</a>
+				</div>
+				<!--行结束-->
+				<!--行-->
+                <div class="group-item">
+                    <label>推荐人编号</label>
+					
+					<input class="control" type="text" placeholder="该项为选填项"/>
+					
+					<div class="f-tar w330 mt5 ft-666">
+    					什么是推荐人编号 <i class="badge">?</i>
+    				</div>
+				</div>
+				<!--行结束-->
+				<!--行-->
+                <div class="group-item verfyImg-group">
+                    <label>图片验证码</label>
+					<input class="control icon icon-lock" type="text"/>
+					<img src="#" alt="图片验证码" width="83" height="25"/>
+                    <a class="link" href="javascript:;">换一张</a>
+				</div>
+				<!--行结束-->
+				<!--功能区-->
+                <div class="shop">
+					
+					<div class="first">
+						<input type="checkbox"/>
+						<span>我已经阅读并同意</span>
+						<a class="link" href="#">《XXXX注册协议》</a>
+                    </div>
+					
+                    <div class="mt30">
+						<a class="u-btn u-btn-lg" href="javascript:;">立即注册</a>
+                        <span class="ml30">已有账号，</span>
+						<a class="link" href="#">立即登录</a>
+					</div>
+					
+				</div>
+				<!--行结束-->
+				
+			</form>
+		
+		</div>
+	</div>
+	<!--登录表单模块结束-->
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		$('#a001').removeClass("index-bg"); 
+    </script>
+</body>
+</html>

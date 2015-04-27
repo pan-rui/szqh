@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>划出凭据</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp" style="background: #fff;">
+	<!--内容-->
+	<div class="container fn-clear" style="background: #fff;">
+		<!--左侧导航-->
+		<!--右侧内容-->
+				<form action="/" method="post" id="_form">
+						<div class="fn-item">
+							<iframe style="width:800px;height:600px;"  id="iframe1" src="/tradeDownload/downLoadWithdrawals/$!{payNo}?downType=preview"  runat="server" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+                        </div>
+						<div class="fn-item">
+							<center >
+								<a  href="/tradeDownload/downLoadWithdrawals/$!{payNo}?downType=downLoad"  class="fn-g-btn"><span>下载</span></a>&nbsp;&nbsp; 
+								<a  href="javascript:window.close();"  class="fn-h-btn"><span>返回</span></a> 
+							</center>
+						</div>
+			</form>
+   </div>
+	#parse("/front/index/common/js.vm")
+    
+</body>
+</html>

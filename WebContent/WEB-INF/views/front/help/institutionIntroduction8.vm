@@ -1,0 +1,55 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="bd-box container">
+    	<h2 class="title1"><span>新手指引</span></h2>
+        <div class="about-us mt20">
+			<b style="color: #FF0000;">轻松三大步，注册、投资、赚收益：</b>
+			<p><img src="/styles/images/new/3db1.jpg"/></p>
+			
+			<b style="color: #FF0000;">以下做重点环节提醒：</b>
+			<p>1.会员注册时记得要5小步注册都要完成哦，如图。</p>
+			<p><img src="/styles/images/new/3db2.jpg"/></p>
+			
+			<p>2.注册完成后，点击“我的账户-账户设置”，进行实名认证必不可少，如图。</p>
+			<p><img src="/styles/images/new/3db3.jpg"/></p>
+			
+			<p>3.实名认证后，点击“我的账户”进入新页面，可以看到“充值”项，如图，完成充值并确认充值金额。（充值金额是1000的整数倍。）</p>
+			<p><img src="/styles/images/new/3db4.jpg"/></p>
+			
+			<p>4.充值成功后，点击“我要投资”，进入投资页面如下面第一幅图，点击蓝色“我要投资”，完成投资即可，见下面第二幅图，即为充值成功页面展示。</p>
+			<p><img src="/styles/images/new/3db5.jpg"/></p>
+			<p><img src="/styles/images/new/3db6.jpg"/></p>
+			<p>5.您只需要等待收益即可。</p>
+			</br>
+			<b style="color: #FF0000;">如果您还想了解更多，可选择以下方式进行了解：</b>
+			<p>致电客服热线4008-061-886（工作时间：9:00-18:00）</p>
+			<p>QQ在线服务:2257863877；2926711606。</p>
+			<p>发送邮件到：bj@zhongchuangsy.com.</p>
+			<p>您还可以浏览页面上方的问答模块或者最左下方的“关于我们”“法律法规”“帮助中心”获取更多帮助。</p>
+			<p>关注我们：搜索公众号：“baihedai87”或者扫描二维码，可以随时了解投资咨讯，第一时间获取平台信息。</p>
+			<p><img src="/styles/images/common/weixin.jpg" width="100px" height="100px"/></p>
+			<p>关注新浪微博：http://weibo.com/u/5175433166，更多资讯等你哦~</p>
+			
+			
+			
+	    </div>
+    <div class="blank50"></div>
+	</div>
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>

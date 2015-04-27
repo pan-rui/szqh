@@ -1,0 +1,25 @@
+<!--顶部-->
+	<div class="fn-header">
+		<div class="top-nav container fn-clear">
+            <ul class="fn-right">
+            	#if($sessionScope)
+				<li><a href="javascript:document.location.href = '$!{rc.contextPath}/userManage/userHome';">&nbsp;&nbsp;<span>$!{sessionScope.userName}</span>&nbsp;&nbsp;</a></li>
+				<li><a href="javascript:document.location.href = '$!{rc.contextPath}/login/logout?redirect=/login/login';"> <span style="font-size:12px;">退出</span></a></li>
+            	#else
+            	<li><a href="javascript:document.location.href = '$!{rc.contextPath}/login/login?redirect=' + document.location.href;">登录</a> - <a href="javascript:void(0);">注册</a></li>
+	            #end
+				<li class="s-line">|</li>
+                <li><a href="$!{rc.contextPath}/">首页</a></li>
+                <li class="s-line">|</li>
+				<li><a target="_blank" href="/help/center/1">帮助中心</a></li>
+				<li class="s-line">|</li>
+                <li><a target="_blank" href="/help/institutionIntroduction/1" id="btn_feekback">关于我们</a></li>              
+            </ul>
+        </div>
+    </div>
+	<!--头部-->
+	<div class="fn-main-nav fn-clear">
+		<div class="container">
+            <a href="$!{rc.contextPath}/" class="logo fn-left"><img src="$!{rc.contextPath}/resources/images/common/logo.jpg" alt="$!appConstantsUtil.getProductName()金融" /></a>
+        </div>
+  </div>

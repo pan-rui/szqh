@@ -1,0 +1,32 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+<div class="home-section_bd mt20">
+    <div class="bd-box container">
+		<!--消息-->
+        <div class="u-message mt100">
+            <h4 class="title">
+				恭喜您，第三方支付账号开通成功！
+			</h4>
+            <p>现在开始享受您的理财生活吧 
+                <a class="btn-account ml20"  href="#"><span>进入我的账户</span></a>
+			</p>
+		</div>
+		<!--消息结束-->
+	</div>
+</div>
+	#parse("/front/index/common/footer-yrd.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		$('#a001').removeClass("index-bg"); 
+    </script>
+</body>
+</html>

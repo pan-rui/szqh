@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>快捷划入</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body>
+	<!--内容-->
+	<div class="container fn-clear" style="background: #fff;">
+		<!--左侧导航-->
+		<!--右侧内容-->
+		<div class="mc-border">
+			<form action="/deduct/completeDeduction?signed=yes" method="post" id="signDeduction_form">
+				<div class="fn-item">
+					<div class="fm-license">
+                        ##<div class="license-con">
+                            <h1 style="text-align: center;font-size: 18px;font-weight: bold;">快捷划入代扣授权委托书</h1><br/>
+                            <p> 委托人：<br/>
+                                                                                    姓名：$!{realName} <br/>
+                                                                                    证件类型：二代身份证 <br/>
+                                                                                    证件号码：$!{cardNo} <br/>
+                                                                                    用户名：$!{userName} <br/>
+                                                                                    日期： $!{date} <br/>
+							被委托人：$!appConstantsUtil.getPlatformName() </p><br/>
+                            <p>就委托人通过被委托人代为发起从委托人的银行帐户向委托人在被委托人指定的第三方支付机构所设立的资金托管账户快捷划入资金的相关事宜向被委托人授权如下： </p><br/>
+							<p>一、授权内容：委托人授权被委托人根据委托人的快捷划入指令代为向被委托人指定的第三方支付机构发起从本授权委托书第二条所述的委托人银行账户扣划相当于本授权委托书第二条所述的快捷划入金额的款项至委托人在该第三方支付机构所设立的资金托管账户（“快捷划入服务”）。</p> <br/>
+							<p>二、 委托人的银行账户及快捷划入金额如下：<br/>
+                                                                                            户名：$!{bankOpenName}<br/>
+                                                                                            账号：$!{bankCardNo}<br/>
+                                                                                            开户银行：$!{bankName}<br/>
+                                                                                            划入金额：人民币$!{amount}元（含第三方需收的手续费【如有】）<br/>
+                            <p> 委托人已经通过本授权委托书确认上述银行账户信息，在代扣的过程中，被委托人指定的第三方支付机构根据本授权委托书提供的银行账户信息进行相关操作，无需再向委托人确认银行账户信息和密码。</p><br/>
+							<p>三、委托人知晓并确认，本授权委托书系使用委托人在被委托人处开立的$!{appConstantsUtil.getProductName()}金融服务平台用户名、以网络在线点击确认的方式向被委托人发出。本授权委托书自委托人在被委托人的平台网站点击确认申请书时生效。本授权委托书一经生效即不可撤销。</p><br/>
+							<p>四、委托人知晓并同意，除非被委托人有过错，被委托人不对委托人快捷划入服务的资金到账时间做任何承诺。被委托人指定的第三方支付机构仅根据本授权委托书进行相关操作，被委托人及其指定的第三方支付机构不对根据本授权委托书所采取的全部行动和措施的时效性和结果承担任何责任。</p><br/>
+							<p>委托人确认并承诺，被委托人指定的第三方支付机构根据本授权委托书所采取的全部行动和措施的法律后果均由委托人承担。</p>
+						   <br >
+							特此授权。
+                            </br>
+						  
+						##</div>
+                    </div>
+                </div>
+				<div class="fn-item">
+				<center >
+					<a id="downLoanReceipt" href="javascript:;" path="'/deduct/deductReceiptDownLoad?&date=$!{date}&bankCardNo=$!{bankCardNo}&bankName='+encodeURIComponent(encodeURIComponent('$!{bankName}'))+'&amount=$!{amount}'" class="fn-g-btn">
+						<span>下载</span></a> &nbsp;&nbsp;
+					<a id="cancelagree" href="javascript:;" class="fn-h-btn">
+						<span>返回</span></a>
+				</center>
+				</div>
+			</form>
+		</div>
+	</div>  
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+	
+    	seajs.use($_GLOBAL.mode + 'launchDeduction');
+    </script>
+</body>
+</html>
+
+
+
+
+

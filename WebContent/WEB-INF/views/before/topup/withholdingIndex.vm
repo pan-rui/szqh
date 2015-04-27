@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<base href="$!{rc.contextPath}/" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="resources/mjr/css/global.css">
+	<link rel="stylesheet" href="resources/mjr/css/common.css">
+	
+</head>
+<body class="usercenter">
+	<!-- include siteNav module, adjusted according to your needs -->
+	#parse("/front/index/common/header-mjr.vm")
+	<!-- end include -->
+
+	<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+
+	<div class="md-module">
+		<div class="md-default-c pc-width padding-fix clearf">
+			<div class="u-c clearf">
+				<div class="user-photo grid">
+					<img src="img/user-default.png">
+				</div>
+				<div class="user-info grid">
+					<p class="username">sandy</p>
+					<p class="note">下午好, 工作辛苦了, 喝杯水保持身体健康哦~</p>
+					<a href="#" class="alert f-r"><span class="icon-base01 alert"></span><span class="tip">9</span></a>
+					<div class="clearf">
+						<span class="icon-base01 os-active"></span>
+						<span class="icon-base01 phone"></span>
+						<span class="icon-base01 email"></span>
+						<span class="safe p"><span>安全等级: </span><span class="s-c"><span class="safe-j"></span></span>高</span>
+						<span class="lasttime p">上次登录时间: 2015-4-20 17:20:35</span>
+					</div>
+				</div>
+				<div class="menu grid">
+					#parse("/front/common/user-menu.vm")
+				</div>
+				<div class="context grid">
+
+				<!-- 账户充值 -->
+					 <div class="recharge">
+						<p class="t"><a href="/userManage/userHome" title="">返回</a>账户充值</p>
+						<div class="notice">
+							<p class="f-t">温馨提示：</p>
+							1.  为全面保护您的资金安全，即日起一个账户只能添加一张银行卡充值和提现；<br>
+							2.  如您已添加了多张银行卡，请保留一张常用的银行卡，自行解绑其他银行卡，这样您今后的提现会更快捷；<br>
+							3.  由于部分银行渠道变更，您以往添加的部分银行卡信息可能被屏蔽，请您重新添加银行卡。
+						</div>
+						<table>
+							<tbody>
+								<tr>
+									<td><p class="t">充值方式</p></td>
+									<td>
+										<div>
+											<p>
+												<span class="orange p-r pot" id="daikou"><span class="t" >快捷充值</span></span>
+												<span class="pot" id="webBank"><span class="t">网银充值</span></span>
+											</p>
+											<div class="card-c clearf daikou" >
+												
+											  #foreach($signBankInfo in $!{signBankInfos} )				
+													#foreach($selectBankInfo in $!{selectBankInfos} )
+														#if($signBankInfo.bankType==$selectBankInfo.bankCode)
+														<div class="card c-defaule">	
+								                               <img id="img1" bankcode="$!signBankInfo.id" src="$!signBankInfo.bankGifUrl" alt="$!selectBankInfo.bankCode" memo="$!selectBankInfo.memo" timeAmount="$!selectBankInfo.withholdingAmount" dayAmount="#if($!selectBankInfo.dayWithholdingAmount.cent==0)无  #else $!selectBankInfo.dayWithholdingAmount #end"/>
+															   <p class="bank-num">尾号:$!signBankInfo.bankCardView</p>
+								                            <p><a class="del" title="删除" href="javascript:void(0);" delUrl="/userManage/topUp/deleteUserBank?bankId=$!signBankInfo.id">X</a></p>	
+														
+														</div>
+														#end						
+													#end
+											   #end 
+											   </div>
+											   #if($!signBankInfoCount == 0)
+											    <div class="card c-add daikou">
+											     
+													 <p class="t">
+													  <a class="add-bank" href="/userManage/topUp/signRedirect" target="_blank" data="$!{isLoanerUser}" >
+													 <span class="plus">+</span><span class="text">添加银行卡</span></p>
+													</a><p class="p">您的银行卡尚未添加请先设置银行卡</p>
+													
+												</div>
+								             
+											  #end
+											
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr class="daikou">
+									<td><p class="t">充值金额</p></td>
+								
+									<td>
+										<div >
+											<input type="text" id="rechargeAmount" name="rechargeAmount" />
+											<span></span><br><br>
+											<label for="agreement">
+												<input type="checkbox" id="agreement" name="agreement" value="" placeholder="">
+												<span>我已阅读并接受 <a href="javascript:void(0);" class="agreement">《梦金融投资人协议书》</a></span>
+											</label><br><br>
+											<a href="javascript:void(0);" target="_blank" class="flat-full" action='cz'>充值</a>
+										</div>
+										
+									</td>
+								</tr>
+								<tr class="webBank" style="display:none;">
+									<td></td>
+									<td>
+										
+										<div  >
+											
+											<label for="agreement">
+												<input type="checkbox" id="agreement" name="agreement" value="" placeholder="">
+												<span>我已阅读并接受 <a href="javascript:void(0);" class="agreement">《梦金融投资人协议书》</a></span>
+											</label><br><br>
+											<a id="webBank" href="/userManage/rechargePage" target="_blank" class="flat-full" >充值</a>
+											
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				<!-- 账户充值end -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<!-- include foot module, adjusted according to your needs -->
+	#parse("/front/index/common/footer-mjr.vm")
+	<!-- end include -->
+	<script src="resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/mjr/js/laydate.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="resources/mjr/js/run.js"></script>
+	<script type="text/javascript" src="resources/mjr/js/simplepop.min.js"></script>
+	<script type="text/javascript" >
+		$(function(){
+			$("#daikou").click(function(){
+				$(".orange").removeClass("orange");
+				
+				$(this).addClass("orange");
+				$(".daikou").show();
+				$(".webBank").hide();
+			});
+			
+			$("#webBank").click(function(){
+				$(".orange").removeClass("orange");
+				
+				$(this).addClass("orange");
+				$(".daikou").hide();
+				$(".webBank").show();
+			});
+		});
+	</script>
+	
+	<script type="text/javascript" charset="utf-8">
+// 快捷充值，修改@czt即可
+      
+        var czt = '<div class="cz"> <form name="deductForm1" method="post" action="/userManage/topUp/withholdingSubmit" class="m-form"><label for="timeend" class="input-text-default">充值金额：<input type="text"  name="rechargeAmount" id="ffmoney" value="1000" readonly placeholder=""></label>'+
+         '<iframe frameborder="0" width="450" height="150" scrolling="no" src="$!yjfPaypassUrl"></iframe>'+
+                        '<input type="hidden" name="curType" id="curType" value="daikou">'+
+                        '<input type="hidden" name="bankCode" id="bankCode"   #if( $!{signBankInfos.size()}==1 ) value="$!signBankInfos[0].id" #else value="" #end>'+
+                        '<input type="hidden" name="sendCode" id="sendCode" value="">'+
+                        '<input type="hidden" name="paytk" id="paytk" value="">'+
+                        '<input type="hidden" name="token" id="token" value="$!token"> </form></div>',
+		cz = $("[action='cz']");
+		if (cz) {
+		$.each(cz, function(index, el) {
+		$(el).on('click', function(event) {
+		event.preventDefault();
+		SimplePop.prompt('',{
+		            type: "alert",
+		            title: "快捷充值",
+		            content: czt,
+		            callback: function(){
+		                // 如需回调结果。在这里修改
+		            }
+		        });
+		});
+		});
+		};
+		
+		var canPayPass = "$!yjfPaypassUrl"
+
+		  function payPassOk(key)
+		  {
+		    	$('input[name=paytk]').attr('value',key);
+      
+        		deductForm1.submit();
+		  }
+		  function payPassCancel()
+		  {
+		       
+		  }
+		 $('#btnCancel').click(function(){
+		       
+		  });
+</script>
+	
+</body>
+</html>

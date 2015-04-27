@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>债权转让规则设置</title>
+    <link type="text/css" href="/resources/css/after.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="warp">
+    <!--头部-->
+    #parse("/backstage/layout/logo.vm")
+    <!--内容-->
+    <div class="container fn-clear">
+        #parse("/backstage/layout/left.vm")
+        <div class="main-content fn-right">
+            <div class="mc">
+                <div class="top">
+                    <p><a href="">债权转让管理</a> > 债权转让规则设置</p>
+                </div>
+                <form action="/backstage/debtTransfer/addDebtTransferRuleSubmit" method="post" class="ui-form" id="addDebtTransferRule" style="font-size: 14px;">
+                    <fieldset>
+                        <legend><h3>债权转让规则</h3></legend>
+
+                        <div class="item">
+                            <p for="" class="u-text">1、债权持有期设置(债权持有多长时间可以转让)</p>
+                        </div>
+
+                        <div class="item"> &nbsp;&nbsp;
+                             <p for="" class="u-text">
+                                 <select id="holdingDate" name="holdingDate" style="width: 100px;">
+                                     #foreach($month in [1..12])
+                                         <option value="$month" #if($!{info.holdingDate}== $month)   selected="selected"   #end>$month 个月</option>
+                                     #end
+
+
+                                </select>
+                            </p>
+                        </div>
+
+
+                        <div class="item">
+                            <p for="" class="u-text">2、债权转让有效期设置(债权转让需要在有效期内完成转让)</p>
+                        </div>
+                        <div class="item"> &nbsp;&nbsp;
+                            <p for="" class="u-text">
+                                <select id="validDate" name="validDate" style="width: 100px;">
+                                    #foreach($day in [1..30])
+                                        <option value="$day" #if($!{info.validDate}== $!day)   selected="selected"   #end>$day 天</option>
+                                    #end
+                                 </select>
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <p for="" class="u-text">3、转让价格设定(用户根据转让价格区间自由设定转让价格)</p>
+                        </div>
+                        <div class="item"> &nbsp;&nbsp;
+                            <p for="" class="u-text">
+                                #set($priceOffline=$!{info.priceOffline})
+                                转让价格下限：本金*(1-本金下浮比例<input type="text" id="priceOffline" name="priceOffline" class="mask_money" value="$!{priceOffline}">%)
+                            </p>
+                                <br>&nbsp;&nbsp;
+                            <p for="" class="u-text">
+                                #set($priceOnline=$!{info.priceOnline})
+                                转让价格上限：本金*(1+本金上浮比例<input type="text" id="priceOnline" name="priceOnline" value="$!{priceOnline}" class="mask_money">% +持有期待收利息)
+                            </p>
+
+                            <p style="color: red"> 说明：本金上浮比例和下浮比例按照0.1%递增
+
+                            </p>
+                        </div>
+
+                        <div class="item">
+                            <p for="" class="u-text">4、债权转让服务费设置(转让成功后，平台将在转让价格的基础上收取转让服务费)</p>
+                        </div>
+
+                        <div class="item"> &nbsp;&nbsp;
+                            <p for="" class="u-text">
+                                #set($transCharge=$!{info.transCharge})
+                                <input type="text" id="transCharge" name="transCharge" class="mask_money" value="$!transCharge">%
+                            </p>
+
+
+                        </div>
+
+                        <div class="item">
+                            <p for="" class="u-text">5、手动撤销功能设置（债权转让期内，若没有投资人投资，允许债权出让人手动撤销转让项目）#if($!{info.handCancel.code()}=='NO') 1 #else 2    #end</p>
+                        </div>
+
+                        <div class="item"> &nbsp;&nbsp;
+                            <p for="" class="u-text">
+
+                                <select id="handCancel" name="handCancel">
+                                    <option value="YES" #if($!{info.handCancel.code()}=='YES') selected="selected"   #end>是</option>
+                                    <option value="NO" #if($!{info.handCancel.code()}=='NO') selected="selected"   #end>否</option>
+                                </select>
+                            </p>
+
+
+                        </div>
+
+                         <input type="hidden" id="version" name="version" value="NOW"/>
+
+                        <div class="item mt20">
+                        <a href="javascript:;" class="u-btn u-btn-blue fn-submit1">保存</a>
+                        <a href="javascript:history.go(-1);" class="u-btn u-btn-gray">取消</a>
+                    </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var $_GLOBAL =
+    {
+    }
+    ;
+</script>
+<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+
+    seajs.use($_GLOBAL.mode +'addDebtTransferRule');
+
+
+</script>
+</body>
+</html>

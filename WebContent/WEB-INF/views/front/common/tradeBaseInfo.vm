@@ -1,0 +1,5 @@
+   <div class="short-borrowing fn-left">
+        	<h2 class="f-title fn-clear"><span class="assure-icon fn-right">100%本息担保</span>项目名： $!{trade.tradeName} </h2>
+           #parse("/front/common/itemBaseInfo.vm")
+        </div>
+       

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>账户首页</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+<div class="home-section_bd pt20">
+      <div class="blank20"></div>
+      <div class="bd-box container fn-clear">
+       #parse("/front/user/common/left1.vm")
+	   
+         <div class="m-content fn-right">
+                	<div class="m-content-box role">
+                	
+                	<form action="/guaranteeOperator/updateOperatorSubmit" method="post" id="guaranteeUpdateOperator_form">
+                	
+                	    <input type="hidden" name="userBaseId"  value="$!{info.userBaseId}">
+                	    
+                		<div class="oper">
+        					<div class="m-tab fn-clear">
+        						<h4 class="tt">操作员管理</h4>
+        						<ul>
+        							<li><a href="/guaranteeOperator/operatorManager">操作员管理</a></li>
+        							<li><a href="/guaranteeOperator/addOperator">新增操作员</a></li>
+        							<li class="cur"><a href="">修改操作员</a></li>
+        						</ul>
+        					</div>
+        					
+        					<table cellpadding="0" class="m-table-bd m-table-bd2 mb15">
+        						<tbody><tr>
+        							<th width="253">操作员账号：</th>
+        							<td width="500">
+        								<input type="text" class="ipt"  name="userName"  value="$!{info.userName}" readOnly><span class="required">*</span>
+        								
+        							</td>
+        						</tr>
+        						<tr>
+        							<th width="">操作员名称：</th>
+        							<td>
+        								<input type="text" class="ipt"  name="realName"  value="$!{info.realName}" readOnly><span class="required">*</span>
+        								
+        							</td>
+        						</tr>
+        						
+        						
+        						<tr>
+        							<th width="">操作员手机：</th>
+        							<td><input type="text" class="ipt"  id="mobile" name="mobile"  value="$!{info.mobile}"><span class="required">*</span></td>  
+        						</tr>
+        						<tr>
+        							<th width="">审核权限：</th>
+        							<td>
+        									
+        						    <input type="radio" name="operatorType" class="radio" #if($!{info.operatorType} == 1)checked=checked#end  value="1"/><label for="">普通审核员</label>
+        							<input type="radio" name="operatorType" class="radio" #if($!{info.operatorType} == 2)checked=checked#end  value="2"/><label for="">一级审核员</label>
+        							<input type="radio" name="operatorType" class="radio" #if($!{info.operatorType} == 3)checked=checked#end  value="3"/><label for="">二级审核员</label>
+        							<span class="required">*</span>
+        							</td>
+        						</tr>
+        						<tr  id="payPasswordDIV" #if($!{info.operatorType} == 1)style="display:none"  #end>
+        							<th width="">审核密码：</th>
+        							<td><input type="password" class="ipt" id="payPassword"  name="payPassword" ></td>
+        						</tr>
+        						<tr id="payPasswordDIV2" #if($!{info.operatorType} == 1)style="display:none"  #end>
+        							<th width="">确认审核密码：</th>
+        							<td><input type="password" class="ipt" id="payPassword2" name="payPassword2" ></td>
+        						</tr>
+        						<tr>
+        							<th width="">备注：</th>
+        							<td><input type="text" class="ipt" name="remark" value="$!{info.remark}" /><span class="required">*</span></td>
+        						</tr>
+        						
+        						<tr>
+        							<th width="">人员状态：</th>
+        							<td>
+        								<input type="radio" name="state" class="radio" #if($!{info.state} == 'normal')checked=checked#end value="normal"/><label for="">正常</label>
+        								<input type="radio" name="state" class="radio" #if($!{info.state} == 'disable')checked=checked#end value="disable"/><label for="">禁用</label>
+        							</td>
+        						</tr>
+        						
+        						
+        						<tr>
+        							<th width="">验证码：</th>
+        							<td><input type="text" class="ipt" maxlength="4" name="imgCode" />
+        						<img src="/anon/getImgCode" class="code-img newImgCod" width="80" height="20" id="newImgCod"/>
+        						<a href="javascript:;" class="newImgCod">换一张</a>
+        						<b class="fn-tip">不用区分大小写。</b></td>
+        						</tr>
+        						
+        						
+        					</tbody></table>
+        					<div class="oper-btn">
+        					
+        					    <input type="hidden"   name="roleIds"   value="1"/>
+        						<input type="hidden"   name="roleIds"   value="14"/>
+        						<input type="button"  id="formSubmit"  class="save-btn" value="确定">
+        						<input type="reset" class="back-btn" value="重置">
+        					</div>
+        					 
+        				</div>
+        				
+        				 
+        				
+        				
+        				</form>
+        	    </div>
+         </div>
+            
+            
+    	 <div class="blank50"></div>
+     
+    
+      </div>
+</div>
+#parse("/front/index/common/footer-yrd.vm")	
+
+
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'guaranteeOperatorUpdate.js');
+    </script>
+
+</body>
+</html>

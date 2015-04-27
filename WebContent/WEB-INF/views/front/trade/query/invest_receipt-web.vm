@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>投资凭据</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<script type="text/javascript">
+function printme()
+{
+var print = document.getElementById("print");
+if (print != null)
+    print.parentNode.removeChild(print);
+window.print();
+}
+</script>
+<body class="warp" style="background: #fff;">
+	<!--内容-->
+	<div class="container fn-clear" style="background: #fff;">
+		<!--左侧导航-->
+		<!--右侧内容-->
+			<div>
+				<form action="/" method="post" id="_form">
+						<div>&nbsp;
+                        </div>
+						<div id="print" style="position:relative;margin-top:30px;">
+                            <center><a href="javascript:printme();" target="_self">打印</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/tradeQuery/investReceiptDownLoad/$!{trade.id}?detailId=$!{detailId}">下载</a></center>
+                        </div>
+						<table id="tbl-content" style="border:solid thin gray"　cellpadding="1" cellspacing="1" border="1" width="100%">
+						<tr>
+                            <td colspan=4><h3 style="text-align: left;font-size: 18px;font-weight: bold;">投资凭据</h3></td>
+                        </tr>
+						<tr>
+                    		<td style="background:lightgray;">平台服务商：</td><td >$!appConstantsUtil.getPlatformName()</td><td style="background:lightgray;">业务类别：</td><td></td>
+                    	</tr>
+						#set($unit = '天')
+        				#if($!{loanItem.timeLimitUnit} == 'W' || $!{loanItem.timeLimitUnit} == 'M')
+        					#set($unit = '个月')
+        				#elseif($!{loanItem.timeLimitUnit} == 'Y')
+        					#set($unit = '年')
+        				#end
+						<tr>
+                    		<td style="background:lightgray;">投资利率：</td><td>$!{moneyUtil.getPercentage($!{loanItem.interestRate})}%</td><td style="background:lightgray;">投资期限：</td><td>$!{loanItem.timeLimit} $unit</td>
+                    	</tr>
+						<tr>
+                    		<td style="background:lightgray;">担保公司：</td><td colspan=3>$!{loanItem.guaranteeName}</td>
+                    	</tr>
+						<tr>
+                    		<td style="background:lightgray;">投资流水号：</td><td colspan=3>$!{investFlowCode}</td>
+                    	</tr>
+						<tr>
+                    		<td  colspan=2 style="background:lightgray;">投资人信息</td><td colspan=2 style="background:lightgray;">投资接受人信息</td>
+                    	</tr>
+						<tr>
+                    		<td  colspan=2>
+								用户名:$!{investor}<br/>
+								姓名：$!{investorReal}<br/>
+								#if($!{trade.effectiveDateTime})
+									成立日:$!{dateUtil.dtSimpleFormat($!{trade.effectiveDateTime})}<br/>
+								#else 成立日:待成立<br/>
+								#end
+								#if($!{trade.expireDateTime})
+									成立日:到期日:$!{dateUtil.dtSimpleFormat($!{trade.expireDateTime})}<br/>
+								#else 成立日:待成立<br/>
+								#end
+								投资本金(元):$!{moneyUtil.getFormatAmount($!{tradeItem.amount})}<br/>
+								手续费(元):0.0<br/>
+								应收总计(元):$!{moneyUtil.getFormatAmount($!{totalAmount})}
+							</td>
+							<td colspan=2>
+								用户名:$!{loanner}<br/>
+								姓名：$!{loannerReal}<br/>
+								#if($!{trade.effectiveDateTime})
+									成立日:$!{dateUtil.dtSimpleFormat($!{trade.effectiveDateTime})}<br/>
+								#else 成立日:待成立<br/>
+								#end
+								#if($!{trade.expireDateTime})
+									成立日:到期日:$!{dateUtil.dtSimpleFormat($!{trade.expireDateTime})}<br/>
+								#else 成立日:待成立<br/>
+								#end
+								<br/>
+								<br/>
+								应付总计(元)：$!{moneyUtil.getFormatAmount($!{totalAmount})}:
+							</td>
+                    	</tr>
+    				</table>
+					<div style="position: absolute; bottom:20px; right:300px;">
+    					##<img style="height:150px;" src="/resources/images/guaranteeLicense/yijiu.gif" alt="公章"/>
+                    </div>
+			</form>
+		</div>
+   </div>
+	#parse("/front/index/common/js.vm")
+    
+</body>
+</html>

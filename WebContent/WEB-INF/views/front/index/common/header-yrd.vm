@@ -1,0 +1,60 @@
+
+ <div class="h-top">
+	<div class="container fn-clear">
+        <ul class="fn-left">
+            <li class="tel">客服热线：<strong>$!{appConstantsUtil.getCustomerServicePhone()}</strong>#if($!appConstantsUtil.getProductQQ())&nbsp;QQ群：<strong>$!appConstantsUtil.getProductQQ()</strong>#end</li>
+            <li class="attention">
+				官方QQ群：<em class="QQ">390458879</em>
+			</li>
+		</ul>
+		
+        <ul class="shop fn-right">
+			#if($sessionScope)
+			<li>欢迎您，#if($!{sessionScope.realName}) $!{sessionScope.realName} #else $!{sessionScope.userName} #end</li>
+            <li><a href="/login/logout?redirect=/login/login">退出登录</a></li>
+			#else
+            <li><a href="/login/login">登录</a><i class="sep">|</i></li>
+            <li><a href="/anon/newInvestorsOpen">注册</a></li>
+			#end
+            ##<li><a href="/help/center">新手指引</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="h-logo">
+	<div class="container fn-clear">
+		<h1 class="fn-left"><a href="/" class="logo">$!appConstantsUtil.getProductName()</a></h1>
+        <div class="h-menu fn-right">
+        	<div class="hl-menu fn-left">
+                <a href="/">首页</a>				
+				<a href="$!{rc.contextPath}/boot/invest/10/1">我要投资</a>
+				<a href="/help/infoCenter?defaultMCode=ABOUT_US">关于我们</a>
+                #if($!appConstantsUtil.transferIsOpen())
+##                    <a  href="$!{rc.contextPath}/boot/transfer/10/1">债权转让</a>
+                #end
+                <a href="$!{rc.contextPath}/userManage/mjr/userHome">我的账户</a>
+				<a href="/help/toModule?moduleCode=QUESTIONS" target="_blank">新手学堂</a>
+			</div>
+		</div>	
+    </div>
+</div>
+<script type="text/javascript">
+	    (function(){
+	    var old = window.onload;
+		window.onload = function(){
+		    $('.fn-hr-menu a').mouseover(function(){
+			    if(!$(this).hasClass('curr')) {
+				    $(this).addClass('curr');
+					$(this).unbind('mouseout').mouseout(function(){
+					    $(this).removeClass('curr');
+					});
+				}
+			});
+		  }
+		
+		})();	
+		
+</script>
+
+	
+    

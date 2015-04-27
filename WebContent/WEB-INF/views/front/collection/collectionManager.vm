@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>会员中心-交易明细</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body >
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<div class="home-section_bd pt20">
+  <div class="blank20"></div>
+  <div class="bd-box container fn-clear">
+   #parse("/front/user/common/left1.vm")
+    <div class="m-content fn-right">
+      <div class="m-content-box">
+       <div class="title1 mb50"><span>收款明细</span></div>
+          <div class="borrowing-info">
+              <div class="b-tab fn-clear" >
+                  <ul>
+                      <li class="curr"  id="tradeinfo"><a href="javascript:;" >待收款管理</a></li>
+                      <li id="touziinfo"><a href="javascript:;" >已收款管理</a></li>
+                  </ul>
+              </div>
+              <div class="borrowing-list f-clear" id="tradediv">
+                  <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;margin-bottom: 20px;">
+                      <tr>
+
+                          <td >项目名称:</td>
+                          <td>
+                              <input type="text" name="waitCollectionTradeName" id="waitCollectionTradeName" class="fn-text w90">
+                          </td>
+                          <td>
+                              起止日期:
+                          </td>
+                          <td>
+                              <input type="date" name="waitCollectionStartDate" id="waitCollectionStartDate" class="fn-text w90">
+                              <em>-</em>
+                              <input type="date"  name="waitCollectionEndDate"  id="waitCollectionEndDate" class="fn-text w90">
+                              <a  class="fn-h-btn ml5" href="javaScript:toPage(1,'waitCollection','waitTable','waitPage')"> <span>筛选</span></a>
+                          </td>
+                      </tr>
+
+
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" class="pro-table" id="waitTable">
+                      <thead>
+                      <tr>
+                          <th class="f-tac" width="10%">项目名称</th>
+                          <th class="f-tac" width="15%">预期到账时间</th>
+                          <th class="f-tac" width="10%">预期收款金额(元))</th>
+                          <th class="f-tac" width="25%">预期本金(元))</th>
+                          <th class="f-tac" width="10%">预期收益(元))</th>
+
+                      </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+
+
+
+
+                  </table>
+                  <div class="pages account-page mt20">
+                      <div class="pages" id="waitPage">
+                      </div>
+                  </div>
+                  <div class="blank30"></div>
+
+              </div>
+
+              <div class="borrowing-list f-dn" id="touzhidiv">
+                  <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;margin-bottom: 20px;">
+                      <tr>
+                          <td >项目名称:</td>
+                          <td>
+                              <input type="text" name="doneCollectionTradeName" id="doneCollectionTradeName" class="fn-text w90">
+                          </td>
+
+                          <td>
+                              起止日期:
+                          </td>
+                          <td>
+                              <input type="date"  name="doneCollectionStartDate" id="doneCollectionStartDate" class="fn-text w90">
+                              <em>-</em>
+                              <input type="date"  name="doneCollectionEndDate" id="doneCollectionEndDate"  class="fn-text w90">
+                              <a  class="fn-h-btn ml5" href="javaScript:toPage(1,'doneCollection','doneTable','donePage')"> <span>筛选</span></a>
+                          </td>
+
+                      </tr>
+
+
+                  </table>
+                  <table cellpadding="0" cellspacing="0" border="0" class="pro-table" id="doneTable">
+                      <thead>
+                      <tr>
+                          <th class="f-tac" width="10%">项目名称</th>
+                          <th class="f-tac" width="15%">预期到账时间</th>
+                          <th class="f-tac" width="10%">预期收款金额(元))</th>
+                          <th class="f-tac" width="25%">预期本金(元))</th>
+                          <th class="f-tac" width="10%">预期收益(元))</th>
+
+                      </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+
+
+
+                  </table>
+
+                  <div class="pages account-page mt20">
+                      <div class="pages" id="donePage">
+                      </div>
+                  </div>
+
+
+                  <div class="blank30"></div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="blank50"></div>
+</div>
+#parse("/front/index/common/footer-yrd.vm")	
+<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'collectionManager');
+
+        function toPage(pageNo,action,table,page){
+          var startDate =  $("#"+action+"StartDate").val();
+          var endDate = $("#"+action+"EndDate").val();
+          var tradeName = $("#"+action+"TradeName").val();
+
+            $.ajax({
+                url: '/'+action,
+                type: 'post',
+                dataType: 'json',
+                cache:false,
+                async:false,
+                data: {
+                    tradeName:tradeName,
+                    startDate: startDate,
+                    endDate:endDate,
+                    pageNo:pageNo
+
+
+                },
+                success: function (res) {
+                    if(!res.page.result)
+                    {    $("#"+table).find("tbody").empty();
+                         $("#"+page).empty();
+                        return;
+                    }
+                    initPageData(res,table);
+                    initPageTool(res.page,action,table,page);
+
+                }
+            })
+
+        }
+
+
+        function initPageData(res,table){
+            var html ="";
+            var page = res.page;
+            var result = page.result;
+            for(var i =0; i <result.length;i++ ){
+                html = html + "<tr>"
+                html = html + "<td class='f-tac'> <a href=/boot/lookup/"+result[i].demandId+","+result[i].tradeId+">"+result[i].name+"</a></td>";
+
+                html = html + "<td class='f-tac'>"+ dateToStr(result[i].repayDate)+"</td>";
+                html = html + "<td class='f-tac'>"+result[i].amount/100 +"</td>";
+                var originalAmount = 0.00;
+                if(result[i].transferPhase == "original"){
+                    originalAmount = result[i].amount/100
+                }
+                html = html + "<td class='f-tac'>"+originalAmount+"</td>";
+                var rateAmount = 0.00;
+                if(result[i].transferPhase != "original"){
+                    rateAmount = result[i].amount/100
+                }
+
+                html = html + "<td class='f-tac'>"+rateAmount+"</td></tr>";
+
+            }
+            $("#"+table).find("tbody").empty();
+            $("#"+table).find("tbody").append(html);
+        }
+
+        function initPageTool(page,action,table,pageTable){
+            var html = "";
+            var start = (page.currentPageNo-1) * page.pageSize +1;
+            var end = start - 1+ page.result.length;
+            html = html+   '<div class="fn-right fn-clear">'
+                    + "<span>";
+            if(0< page.totalCount){
+                html = html + "显示第 " +start + "-" + end +"条记录,";
+            }
+            html = html + "共"+ page.totalCount +"条记录<em>|</em></span>";
+            if(1<page.currentPageNo){
+                html = html+'<a href=javaScript:toPage(1,"'+action+'","'+table+'","'+pageTable+'")>首页</a>';
+            }else{
+                html = html+ " <span>首页</span>";
+            }
+            if(page.currentPageNo > 1){
+                var prePageNo =  page.currentPageNo - 1 < 1 ? 1 : page.currentPageNo - 1
+                html = html + ' <a href=javaScript:toPage('+prePageNo+',"'+action+'","'+table+'","'+pageTable+'")>上一页</a>';
+            }else {
+
+                html = html + " <span>上一页</span> "
+            }
+            if(page.currentPageNo < page.totalPageCount){
+                var nextPageNo = page.currentPageNo + 1 > page.totalPageCount ? page.totalPageCount:page.currentPageNo + 1;
+                html = html + '<a href=javaScript:toPage('+nextPageNo+',"'+action+'","'+table+'","'+pageTable+'")>下一页</a>';
+            }else {
+                html  = html + ' <span>下一页</span>';
+            }
+
+            if(page.totalPageCount > page.currentPageNo){
+                html = html + ' <a href=javaScript:toPage('+page.totalPageCount+',"'+action+'","'+table+'","'+pageTable+'")>尾页</a>'
+            }else {
+                html = html + " <span>尾页</span>";
+            }
+
+            html = html +'<span><input type="text" class="i-text page_input_num w40" id="waitPageNum" value="" maxlength="5" ></span>'+
+                    "<span><input type=button onclick=javaScript:toPage(getPageNumber(),'"+action+"','"+table+"','"+pageTable+"') value='跳转' class='i-button'></span></div>";
+            $("#"+pageTable).html(html);
+        }
+
+
+
+        toPage(1,"collection/waitCollection","waitTable","waitPage");
+        toPage(1,"collection/doneCollection","doneTable","donePage");
+
+
+        function dateToStr(c){
+            if(!c) return "";
+            var d = new Date();
+            d.setTime(c);
+            var a = d.getMonth() + 1, f = d.getDate();
+            var b = a < 10 ? ("0" + a) : ("" + a);
+            var e = f < 10 ? ("0" + f) : ("" + f);
+            return d.getFullYear() + "-" + b + "-" + e
+        }
+
+
+        function getPageNumber(){
+            var pageNum = $('#waitPageNum').val();
+            if(!(/^[1-9]\d*$/).test(pageNum)) return 1;
+            return pageNum;
+
+        }
+
+    </script>
+</body>
+</html>

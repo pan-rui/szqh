@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>统计管理-用户注册统计</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">统计管理</a> > 用户注册统计</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstage/userStatistics"  method="post" name="frm">
+							<dl>
+								<dt>统计维度：</dt>
+								<dd>
+									<div class="jqtransform jqtransform-select3">
+    									<select name="queryType" id="queryType">
+    										<option value="userRole" #if($!{queryOrder.queryType}=='userRole') selected="selected" #end>用户角色</option>
+    										<option value="userType" #if($!{queryOrder.queryType}=='userType') selected="selected" #end>用户类型</option>
+    										<option value="marketting" #if($!{queryOrder.queryType}=='marketting') selected="selected" #end>营销机构</option>
+    									</select>
+                                    </div>	
+								</dd>
+							</dl>
+							<dl>
+								<dt>开始时间：</dt>
+								<dd><input type="date" class="u-input w90" name="startDate" value="$!{queryOrder.startDate}"/></dd>
+							</dl>
+							<dl>
+								<dt>结束时间：</dt>
+								<dd><input type="date" class="u-input w90" name="endDate" value="$!{queryOrder.endDate}"/></dd>
+							</dl>
+							<button type="submit" class="s-btn" style="cursor:pointer;">搜索</button>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							#parse("/backstage/page/page.vm")
+                        </div>
+						<table class="m-table">
+							<tr>
+								<th width="200">序号</th>
+								<th width="200">#if($!{queryOrder.queryType}=='userRole')用户角色#elseif($!{queryOrder.queryType}=='userType')用户类型#else营销机构#end</th>
+								<th width="200">注册#if($!{queryOrder.queryType}=='marketting')经纪人#end人数（个）</th>
+								<th width="200">实名#if($!{queryOrder.queryType}=='marketting')经纪人#end用户数（个）</th>
+								<th class="text-r"></th>
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td> $velocityCount</td>
+								<td>$!{info.countFildOne}</td>
+								<td>$!{info.countFildTwo}</td>
+								<td>$!{info.countFildThree}</td>
+								<td class="text-r"></td>
+							</tr>
+						#end
+						<tr>
+								<td>总计</td>
+								<td></td>
+								<td>$!{totalUserCount}</td>
+								<td>$!{realPassUserCount}</td>
+								<td class="text-r"></td>
+							</tr>
+						</table>
+						<div class="p-box pages-t fn-clear">
+							#parse("/backstage/page/page.vm")
+                        </div>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'personalManage');
+		$('.s-btn').click(function (){
+			toPage($!{page.totalPageCount}, $!{page.currentPageNo});
+		});
+		
+		
+		function toPage(totalPage, curr){
+		    if(isNaN(curr)){ return; }
+		    if(curr < 1){ return ;}
+			if(curr > totalPage){ return ;}
+			$('form[name=frm]').attr('action', '$!{rc.contextPath}/backstage/userStatistics?pageSize=$!{page.pageSize}&pageNo=' + curr);
+			document.frm.submit();
+		}
+    </script>
+</body>
+</html>

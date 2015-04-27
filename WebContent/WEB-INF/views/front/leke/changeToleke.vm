@@ -1,0 +1,33 @@
+#parse("/front/index/common/header-title.vm")
+<body class="warp">
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	
+	<!--内容-->
+
+	
+<div class="popwin">
+	<div class="container fn-clear">
+	<form action="/leke/changeToleke"  id="changeTOLeke_form" methord="post">
+        <div class="popbanner"></div>
+        <div class="popque ml20 mt20">
+    		<input type="hidden" name="referees" value="$!{appConstantsUtil.getDeafaultBrokerNO()}">
+            <p>您是否清楚乐客会获得被介绍人投资总额1%的年化收益？</p>
+            <p><input name="radio1" type="radio" value="1" /><span>是</span><input name="radio1" type="radio" value="0" /><span>否</span></p>
+            <p>您是否清楚乐客获得的投资人100%本息保障计划？</p>
+            <p><input name="radio2" type="radio" value="1" /><span>是</span><input name="radio2" type="radio" value="0"/><span>否</span></p>
+            <p>您是否会推荐你的朋友参与乐客计划？</p>
+            <p><input name="radio3" type="radio" value="1" /><span>是</span><input name="radio3" type="radio" value="0" /><span>否</span></p>
+        </div>
+        <div class="submitbtn mt20 mb20"><a href="javascript:;" class="submitbtn_form">乐客我来了！</a></div>
+	</form>
+	</div>
+</div>
+	#parse("/front/index/common/js.vm")
+	#parse("/front/index/common/footer-yrd.vm")
+
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'chageToLeke.js');
+	</script>
+</body>
+</html>

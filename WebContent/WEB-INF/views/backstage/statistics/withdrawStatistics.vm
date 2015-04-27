@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Pragma" contect="no-cache"> 
+	<title>统计管理-提现统计</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="javascript:;">统计管理</a> > 提现统计</p>
+					</div>
+					<div class="search fn-clear">
+						<form action="/backstage/rechargeStatistics"  method="post" id="rechargeStatistics_form">
+							<input type="hidden" name="queryType" value="WITHDRAW"/>
+							<dl>
+								<dt>提现银行：</dt>
+								<dd>
+									<div class="jqtransform jqtransform-select3">
+										<select name="bankName" id="target">
+											<option value=""   #if($!{queryOrder.bankName}=="")   selected="selected"  #end >全部</option>
+											<option value="建设银行"   #if($!{queryOrder.bankName}=="建设银行")   selected="selected"  #end >建设银行</option>
+											<option value="中信银行"   #if($!{queryOrder.bankName}=="中信银行")   selected="selected"  #end >中信银行</option>
+											<option value="光大银行"   #if($!{queryOrder.bankName}=="光大银行")   selected="selected"  #end >光大银行</option>
+											<option value="农业银行"   #if($!{queryOrder.bankName}=="农业银行")   selected="selected"  #end >农业银行</option>
+											<option value="工商银行"   #if($!{queryOrder.bankName}=="建设银行")   selected="selected"  #end >工商银行</option>
+											<option value="民生银行" #if($!{queryOrder.bankName}=="民生银行") selected="selected"  #end >民生银行</option>
+											<option value="招商银行"   #if($!{queryOrder.bankName}=="招商银行")   selected="selected"  #end >招商银行</option>
+											<option value="兴业银行"   #if($!{queryOrder.bankName}=="兴业银行")   selected="selected"  #end >兴业银行</option>
+											<option value="重庆农村商业银行"   #if($!{queryOrder.bankName}=="重庆农村商业银行")   selected="selected"  #end >重庆农村商业银行</option>
+											<option value="中国银行"   #if($!{queryOrder.bankName}=="中国银行")   selected="selected"  #end >中国银行</option>
+										</select>
+									</div>
+								</dd>
+							</dl>
+							<dl>
+								<dt>用户类型：</dt>
+								<dd>
+									<div class="jqtransform jqtransform-select3">
+										<select name="userType" id="target">
+											<option value=""   #if($!{queryOrder.userType}=="")   selected="selected"  #end >全部</option>
+											<option value="GR"   #if($!{queryOrder.userType}=="GR")   selected="selected"  #end >个人用户</option>
+											<option value="JG"   #if($!{queryOrder.userType}=="JG")   selected="selected"  #end >机构用户</option>
+										</select>
+									</div>
+								</dd>
+							</dl>
+							<dl>
+								<dt>时间区间：</dt>
+								<dd><input type="text" class="u-input fn-time" name="startDate"  value="$!{queryOrder.startDate}"/> - <input type="text" class="u-input fn-time" name="endDate"  value="$!{queryOrder.endDate}"/></dd>
+							</dl>
+							<button type="submit" class="s-btn" style="cursor:pointer;">搜索</button>
+						</form>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+						
+						<table class="m-table" id="year">
+							<tr>
+								<th width="30">编号</th>
+								<th width="80">提现银行</th>
+								<th width="120">提现笔数(笔)</th>
+								<th width="120">提现总金额(元)</th>
+								<th width="120">提现成功数(笔)</th>
+								<th width="120">提现成功金额(元)</th>
+								<th width="120">提现失败数(笔)</th>
+								<th width="120">提现失败金额(元)</th>
+							</tr>
+						#if($page.result.size()==0)
+            				<tr class="even">
+                				<td colspan=8 align=center>暂时没有记录</td>
+                			</tr>
+						#end
+						#foreach($info in $page.result)
+							<tr>
+								<td>$velocityCount</td>
+								<td>$!{info.countFildOne}</td>
+								<td>$!{info.countFildTwo}</td>
+								<td>$!{info.countFildThree}</td>
+								<td>$!{info.countFildFour}</td>
+								<td>$!{info.countFildFive}</td>
+								<td>$!{info.countFildSix}</td>
+								<td>$!{info.countFildSeven}</td>
+							</tr>
+						#end
+						<tr>
+							<td>总计</td>
+							<td>$!{bankCounts}家银行</td>
+							<td> $!{recharge3.countFildTwo}</td>
+							<td>$!{recharge3.countFildThree}</td>
+							<td>$!{recharge1.countFildTwo}</td>
+							<td>$!{recharge1.countFildThree}</td>
+							<td>$!{recharge2.countFildTwo}</td>
+							<td>$!{recharge2.countFildThree}</td>
+						</tr>
+						</table>
+						<input type="hidden" value="GR" data="userType"/>
+						<div class="p-box pages-b fn-clear">
+							#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>	
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/datepicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'rechargeStatistics');
+		
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/rechargeStatistics"
+			+"?startDate=$!{queryOrder.startDate}"
+			+"&endDate=$!{queryOrder.endDate}"
+			+"&bankName=$!{queryOrder.bankName}"
+			+"&userType=$!{queryOrder.userType}"
+			+"&queryType=$!{queryOrder.queryType}"
+			+"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

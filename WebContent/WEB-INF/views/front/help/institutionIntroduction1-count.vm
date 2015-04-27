@@ -1,0 +1,195 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>计算器</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+
+<body class="warp">
+	#parse("/front/index/common/header-yrd.vm")
+<!--content begin----------------->	
+	
+	
+<div class="container">
+
+<div class="blank20"></div>
+
+
+
+    <div class="home-section_bd pt20" style="border:1px solid #e4e4e4">
+        <div class="blank20"></div>
+		<div class="fn-clear">
+        <div class="bd-box container" style="border:none;border-bottom:1px solid #e4e4e4;">
+            <h2 class="title2" style="border-bottom:1px solid #e4e4e4;"><span class="tit-na">计算器</span></h2>
+
+                <!--分页-->        
+		          <div class="blank30"></div> 
+				  <div class="count-bg "><div class="fn-clear" style="position:relative; ">
+						<span class="h-f-d">投资金额:&nbsp;&nbsp;</span><input class="count-in h-f-d" type="text" id="money" /><span class="count-input-pos h-f-d" style="left:298px;">元</span><span class="count-input-pos h-f-d" style="left:657px;">%</span><span class="ml30 h-f-d ">年化收益率:&nbsp;&nbsp;</span><input class="count-in h-f-d"  type="text" id="bai"/>
+					</div>
+				  
+				<div class="count-input fn-clear mt30" style="position:relative; "><span class="h-f-d">借款期限:&nbsp;&nbsp;</span><input class="count-in h-f-d" type="text" id="month" /><span class="count-input-pos h-f-d" style="left:298px;">月</span><span class="count-input-pos h-f-d" style="left:298px;">月</span><span class="count-input-pos h-f-d" style="left:428px;" id="sele-show">按月付息到期还本</span><span class="count-input-pos h-f-d" style="left:644px; height:40px;width:40px;padding-top:5px;"><img src="/styles/images/common/sl.png" style="height:35px; width:35px;" onclick="selec()"/></span><span class="ml30 h-f-d">&nbsp;&nbsp;还款方式：&nbsp;&nbsp;</span><input style="width:255px;" class="h-f-d" value=""/><div class="count-select" id="sel"><a href="javascript:;"id="sele-a" style="display:block; width:100%;border-bottom:1px solid #aaa; height:40px;">到期还本还息</a><a href="javascript:;"id="sele-a1" style="display:block;width:100%;border-bottom:1px solid #e4e4e4;height:40px;">按月付息到期还本</a></div></div>
+				<div style="margin-top:40px;" class="fn-clear"><a class="count-a" style="margin-left:250px;" href="javascript:;" id="btn">计算</a><a class="count-a ml30" style="background:#b3b3b3" href="javascript:;" id="chog">重置</a></div>
+				<span id="tishi" style="color:red"></span>
+				  </div>
+		</div>	
+		</div>
+				  <div class="blank20"></div>
+				    <div class="count-bs mt20 " id="show" style="display:none;">
+						<h2><span style="font-size:16px;">计算结果</span><p class="mt20"><span>本息合计:</span><em style="color:#ff8a00;" id="show-ben">10000</em>元<span class="ml20">利息收入共:<em style="color:#ff8a00" id="show-li">10000</em>元</span><span class="ml20">每月收款:<em style="color:#ff8a00" id="show-yi">10000</em>元</span></p></h2>
+						<div style="width:100% height:60px;border:1px solid #e4e4e4;margin-top:20px;"><span style="font-size:16px;font-weight:bold;padding-top:20px; display:block" class=" ml20">本息款表</span>
+							
+							<div id="show-table">	
+							<table class="count-table" id="benxi-table">
+								<tbody>
+								<tr>
+									<td>期次</td><td>应收本息(元)</td><td>应收本金(元)</td><td>应收利息(元)</td>
+								</tr>
+								<tr>
+								</tr>
+								<tr>
+								</tr>	
+								
+								</tbody>
+							</table>	
+							</div>
+						
+						</div>
+					
+					</div>
+		
+		</div>
+		    <div class="blank50"></div>
+		</div>
+</div>	
+<!--计算机计算部分 --崔海浩--->
+<script type="text/javascript">
+//计算产品的结算金额
+var count;//产品的利率
+var str;
+var btn;//创建按钮
+var month,bai,money;
+//判断还款方式 两种   用moneyK表示
+var moneyK=1;
+//得到表格还款的表格对象
+var moneytable=document.getElementById("show-table");
+//
+btn=document.getElementById("btn");
+var tishi=document.getElementById("tishi");
+//计算的结果
+
+btn.onclick =function coun(){
+ month=document.getElementById("month").value;
+ bai=document.getElementById("bai").value;
+ money=document.getElementById("money").value;
+if(!isNaN(month)&&!isNaN(bai)&&!isNaN(money)&&month!=""&&bai!=""&&money!=""&&month.substr(0,1)!="-"&&money.substr(0,1)!="-"&&bai.substr(0,1)!="-"){	
+var floatmonth=parseFloat(month);
+var floatbai=parseFloat(bai)/1200;
+var floatmoney=parseFloat(money);
+tishi.style.display="none";
+var benxi=floatmoney+floatmoney*floatbai*floatmonth;
+var yi=floatmoney*floatbai;
+var li=floatmoney*floatbai*floatmonth;
+document.getElementById("show-ben").innerHTML=""+benxi.toFixed(2);
+document.getElementById("show-ben").title=""+benxi.toFixed(2);
+document.getElementById("show-yi").innerHTML=""+yi.toFixed(2);
+document.getElementById("show-yi").title=""+yi.toFixed(2);
+document.getElementById("show-li").innerHTML=""+li.toFixed(2);
+document.getElementById("show-li").title=""+li.toFixed(2);
+//表格显示的数据
+//得到投资日期的整形数据
+
+var mon=parseInt(month);
+if(moneyK==1){
+var inner="";
+for(var i=1;i<=mon;i++){
+var tableBexi;
+tableBexi=floatmoney+yi*i;
+tableBexi=tableBexi.toFixed(2);
+var yist=(yi*i).toFixed(2);
+var tyi=yi.toFixed(2);
+var  tablbenx=(floatmoney+yi).toFixed(2);
+if(i<mon){
+inner+="<tr><td>"+i+"</td><td>"+tyi+"</td><td>"+0+"</td><td>"+tyi+"</td></tr>";}
+else{inner+="<tr><td>"+i+"</td><td>"+tablbenx+"</td><td>"+floatmoney+"</td><td>"+tyi+"</td></tr>"}
+}
+inner="<table><tbody><tr>	<td>期次</td><td>应收本息(元)</td><td>应收本金(元)</td><td>应收利息(元)</td></tr>"+inner+"</table>";
+moneytable.innerHTML=inner;
+}else{
+   var a=benxi.toFixed(2);
+   var b=floatmoney.toFixed(2);
+   var c=li.toFixed(2);
+inner="<tr><td>"+1+"</td><td>"+a+"</td><td>"+b+"</td><td>"+c+"</td></tr>";
+inner="<table><tbody><tr>	<td>期次</td><td>应收本息(元)</td><td>应收本金(元)</td><td>应收利息(元)</td></tr>"+inner+"</table>";
+moneytable.innerHTML=inner;
+}
+
+
+
+
+
+document.getElementById("show").style.display="block";
+
+}else{document.getElementById("show").style.display="none";tishi.style.display="block";} if(isNaN(month)||month.substr(0,1)=="-"){tishi.innerHTML="投资期限请输入正确数字";}else if(month==""){tishi.innerHTML="请输入投资期限";}else if(isNaN(bai)||bai.substr(0,1)==
+"-"){tishi.innerHTML="请输入正确的利率"}else if(bai==""){tishi.innerHTML="请输入利率";}else if(isNaN(money)||money.substr(0,1)=="-"){tishi.innerHTML="投资金额请输入正确数字"}else if(money==""){tishi.innerHTML="请输入投资金额";}
+	}
+//重置功能
+document.getElementById("chog").onclick=function(){
+	document.getElementById("month").value="";
+	document.getElementById("bai").value="";
+	document.getElementById("money").value="";
+	document.getElementById("show").style.display="none";
+	}						
+//下拉菜单虚拟
+var kaiguan=true;
+var sele;//定义一个key值
+var seleHigh=0;//设置下拉菜单的高度
+function selec(){
+if(kaiguan==true){
+kaiguan=false;
+sele=setInterval("se()",5);
+}
+}
+function se(){
+document.getElementById("sel").style.height=seleHigh+"px";
+seleHigh++;
+if(seleHigh>=80){
+window.clearInterval(sele);
+seleHigh=0;
+kaiguan=true;
+}
+}
+var objse=document.getElementById("sele-a");//得到  下拉菜单对象
+var objse1=document.getElementById("sele-a1");
+objse.onclick=function(){
+var spanstr=document.getElementById("sele-show").innerHTML;
+document.getElementById("sel").style.height="0px";
+var str=this.innerHTML;
+document.getElementById("sele-show").innerHTML=str;
+//this.innerHTML=spanstr;
+if(str=="按月付息到期还本"){
+moneyK=1;
+}else{moneyK=2;}
+}
+objse1.onclick=function(){
+var spanstr=document.getElementById("sele-show").innerHTML;
+document.getElementById("sel").style.height="0px";
+var str=this.innerHTML;
+document.getElementById("sele-show").innerHTML=str;
+this.innerHTML=spanstr;
+if(str=="按月付息到期还本"){
+moneyK=1;
+}else{moneyK=2;}
+}
+
+
+
+</script>
+
+	#parse("/front/index/common/js.vm")
+
+<!--content end----------------->	
+	#parse("/front/index/common/footer-yrd.vm")
+</body>
+</html>

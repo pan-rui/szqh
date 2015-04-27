@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>用户注册-填写注册信息</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+
+<body>
+	#parse("/front/index/common/header-yrd.vm")
+	<!--内容-->
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="container">
+        <div class="bd-box">
+            <div class="m-box-hd">
+                <h3 class="box-title">会员注册</h3>
+            </div>
+                <div class="blank5"></div>
+                <div class="log-form mt20">
+                    <form action="/anon/newPerfectInfo"  id="investorsOpen_form" method="post">
+        				<fieldset class="border-b fn-mb20">
+        					<div class="fn-item">
+                                <input type='hidden' name="investorReferees" value="$!{investorNO}" />
+        						<label class="fn-label"><span class="required">*</span>手机号：</label>
+        						<input type="text" placeholder="请输入手机号码" class="fn-text w235" maxlength="30" name="userName" />
+        						<b class="fn-tip">本网站采用手机号码注册，请输入手机号码</b>
+        					</div>
+							<div class="fn-item">
+        						#if($!{referees})
+        							<input type='hidden' name="referees" value="$!{referees}" /> 
+        							##<input type="text" disabled=disabled class="fn-text w235" name="referees" value="$!{brokerNo}"/>#if($!{referNotExist})<b class="error-tip">$!{referNotExist}</b>#end
+        						#else
+        							<label class="fn-label"><span class="required"></span>推荐人编号：</label>
+        							<input class="fn-text w235" placeholder="该项为选填项" name="referees" />	
+        						#end
+        					</div>
+							<input type='hidden' name="varifyMethord" value="0" />
+							<div class="mobileRegist">
+            					<div class="fn-item">
+            						<label class="fn-label"><span class="required">*</span>登录密码：</label>
+            						<input type="password" class="fn-text w235" name="logPassword" id="logPassword"/>
+            						<b class="fn-tip">由6—20英文字母、数字或符号组成，建议使用大小写字母与数字混合设置密码，不可输入空格。</b>
+    							</div>
+            					<div class="fn-item">
+            						<label class="fn-label"><span class="required">*</span>确认登录密码：</label>
+            						<input type="password" class="fn-text w235" name="logPasswordTO"/>
+            					</div>
+    							
+            					<input type="hidden" id="bundPhone" class="fn-text w235" maxlength="11" name="mobile" />
+            					
+            					<div class="fn-item getCodeWrap">
+            						<label class="fn-label"><span class="required">*</span>动态手机验证码：</label>
+            						<input type="text" style="width:161px;height:25px;" class="fn-text w235" id="code" name="code" />
+            						<a id="getCode" class="fn-h-btn Y-countdown" href="javascript:;" style="display: inline-block;">
+                                        <span class="timedown">获取验证码</span>
+                                    </a>
+            						<li><span>注意：服务器保持手机动态密码时间为5分钟，请您及时验证！</span></li>
+            						<input type="hidden" id="smsBizType" name="business" value="register"/>
+            					</div>
+							</div>
+							
+							<div class="mailRegist" style="display:none;">
+    							<div class="fn-item">
+            						<label class="fn-label"><span class="required">*</span>邮箱：</label>
+            						<input type="text" class="fn-text w235" maxlength="30" name="mail" />
+            						##<b class="fn-tip">用户名为6-20位字母或数字字母下划线组合</b>
+            					</div>
+							</div>
+							
+        					<div class="fn-item">
+        						<label class="fn-label"><span class="required">*</span>验证码：</label>
+        						<input type="text" class="fn-text fn-code" maxlength="4" name="imgCode" />
+        						<img src="/anon/getImgCode" class="code-img newImgCod" width="102" height="31" id="newImgCod"/><a href="javascript:;" class="newImgCod">换一张</a>
+        						<b class="fn-tip">请填入上图中的字母和数字，不用区分大小写。</b>
+        					</div>
+        					<div class="fn-item">
+        						<input type="checkbox" name="license" checked="checked" class="checkbox">
+                                <label style="color:#666;">
+        							已阅读并同意
+        							<a class="btn_license" href="javascript:;">《$!appConstantsUtil.getProductName()网站服务协议》</a>
+        						</label>
+                                <span></span>
+						</div>
+        				</fieldset>
+        				<div class="fn-item" style="position:static;">
+        					<input type="hidden" name="token" value="$!{token}" />
+        					<input type="hidden" name="type" value="GR" />
+        					<a href="javascript:;" class="fn-g-btn"><button type="submit">注册</button></a>
+        				</div>
+        			</form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+<div class="j-license" style="display:none">
+    <h3 class="f-tac" style="font-size:16px;">《$!appConstantsUtil.getProductName()网站服务协议》</h3>
+         <div class="license-con" style="width:750px;height:500px;margin:30px 0; overflow: auto;">
+        	#parse("/front/anon/investorsOpen/investorServiceLicence.vm")
+        </div>
+ </div>
+ 
+	#parse("/front/index/common/footer-yrd.vm")
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'newInvestorsOpen');
+    </script>
+</body>
+</html>

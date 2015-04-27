@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>经纪人投资详情</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<body class="warp">
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<div class="trad-detail">
+				<h3 class="con-title">交易详情</h3>
+				<div class="detail-0">
+					<h4 class="sec-title">机构收益详细信息</h4>
+        			<dl class="infor" >
+        				<dt><table cellpadding="0" cellspacing="0" border="0" width="100%" class="sl-wrap sl-wrap-table">
+        						<tbody><tr class="thead">
+                					<td width="100">名称(交易号)</td>
+									<td width="50">年化收益率</td>
+									<td width="40">期限</td>
+									<td width="85">营销收入（元）</td>
+									<td width="70">投资日期</td>
+									<td width="70">成立日期</td>
+									<td width="70">到期日期</td>
+                					<td width="60">收款状态</td>
+									<td class="text-r"></td>
+        						</tr>
+                				<tr>
+									<td>$!{tradeItem.tradeName}($!{tradeItem.tradeCode})</td>
+									#set($rate = $!{yxjgDivisionInterest} )
+                					<td>$!{rate}%</td>
+									#set($unit = '天')
+                    				#if($!{loanItem.timeLimitUnit} == 'W' || $!{loanItem.timeLimitUnit} == 'M')
+                    					#set($unit = '个月')
+                    				#elseif($!{loanItem.timeLimitUnit} == 'Y')
+                    					#set($unit = '年')
+                    				#end
+                					<td>$!{loanItem.timeLimit} $unit</td>
+									<td><em>$!{moneyUtil.getFormatAmount($!{yxjgTrade.amount})}</em></td>
+									<td>$!{dateUtil.dtSimpleFormat($!{tradeItem.date})}</td>
+									#if($!{trade.effectiveDateTime})
+										<td>$!{dateUtil.dtSimpleFormat($!{trade.effectiveDateTime})}</td>
+									#else
+            							<td>暂无数据</td>
+									#end	
+									#if($!{trade.expireDateTime})
+										<td>$!{dateUtil.dtSimpleFormat($!{trade.expireDateTime})}</td>
+									#else
+            							<td>暂无数据</td>
+									#end
+                					<td>$!{repayStatus}</td>
+									<td class="text-r"></td>
+                				</tr>
+        					</tbody>
+        				</table>
+        				</dt>
+        			</dl>
+				</div>
+				<div class="detail-1">
+					<h4 class="sec-title">投资详细信息</h4>
+        			<dl class="infor" >
+        				<dt><table cellpadding="0" cellspacing="0" border="0" width="100%" class="sl-wrap sl-wrap-table">
+        						<tbody><tr class="thead">
+                					<td width="100">名称(交易号)</td>
+									<td width="40">投资人</td>
+                					<td width="85">投资金额（元）</td>
+									<td width="30">年化收益率</td>
+									<td width="40">期限</td>
+									<td width="70">投资日期</td>
+									<td width="70">成立日期</td>
+									<td width="70">到期日期</td>
+                					<td width="60">投资状态</td>
+									<td class="text-r"></td>
+        						</tr>
+                				<tr>
+									<td>$!{tradeItem.tradeName}</a>($!{tradeItem.tradeCode})</td>
+									<td>$!{tradeItem.investorRealName}</td>
+                					<td><em>$!{moneyUtil.getFormatAmount($!{tradeItem.amount})}</em></td>
+                					<td>$!{moneyUtil.getPercentage($!{loanItem.interestRate})}%</td>
+									#set($unit = '天')
+                    				#if($!{loanItem.timeLimitUnit} == 'W' || $!{loanItem.timeLimitUnit} == 'M')
+                    					#set($unit = '个月')
+                    				#elseif($!{loanItem.timeLimitUnit} == 'Y')
+                    					#set($unit = '年')
+                    				#end
+                					<td>$!{loanItem.timeLimit} $unit</td>
+									<td>$!{dateUtil.dtSimpleFormat($!{tradeItem.date})}</td>
+									#if($!{trade.effectiveDateTime})
+										<td>$!{dateUtil.dtSimpleFormat($!{trade.effectiveDateTime})}</td>
+									#else
+            							<td>暂无数据</td>
+									#end
+									#if($!{trade.expireDateTime})
+										<td>$!{dateUtil.dtSimpleFormat($!{trade.expireDateTime})}</td>
+									#else
+            							<td>暂无数据</td>
+									#end
+                					<td>$!{tradeItem.status}</td>
+									<td class="text-r"></td>
+                				</tr>
+        					</tbody>
+        				</table>
+        				</dt>
+        			</dl>
+				</div>
+				<div class="detail-2">
+    			<h4 class="sec-title">基本信息</h4>
+    			<ul class="infor fn-clear">
+    				<li><em>申请号：</em>$!{loanItem.tradeCode}</li>
+    				<li><em>需求金额：</em>$!{moneyUtil.getFormatAmount($!{loanItem.loanAmount})} 元</li>
+    				<li><em>年化收益率：</em>$!{moneyUtil.getPercentage($!{loanItem.interestRate})}%</li>
+    				#set($unit = '天')
+    				#if($!{loanItem.timeLimitUnit} == 'W' || $!{loanItem.timeLimitUnit} == 'M')
+    					#set($unit = '个月')
+    				#elseif($!{loanItem.timeLimitUnit} == 'Y')
+    					#set($unit = '年')
+    				#end
+    				<li><em>期限：</em>$!{loanItem.timeLimit} $unit</li>
+    				#set($least = $!{moneyUtil.getFormatAmount($!{loanItem.leastInvestAmount})})
+    				<li><em>最低投资：</em>$least元</li>
+					<li><em>承诺函编号：</em>$!{loanItem.guaranteeLicenseNo}</li>
+					
+    				<li><em>投资截止时间：</em>$!{dateUtil.simpleFormat($!{loanItem.deadline})}</li>
+					#if($!{trade.effectiveDateTime})
+					<li><em>合同成立时间：</em>$!{dateUtil.simpleFormat($!{trade.effectiveDateTime})}</li>
+					#end
+					#if($!{trade.expireDateTime})
+					<li><em>到期时间：</em>$!{dateUtil.simpleFormat($!{trade.expireDateTime})}</li>
+					#end
+					<li><em>兑付方式：</em>到期兑付本金及收益</li>
+					<li><em>项目用途：</em>$!{loanItem.loanPurpose}</li>
+    				<li><em>定义标题：</em>$!{loanItem.selfDefinedTitle}</li>
+    			</ul>
+            </div>
+			<div class="detail-3">
+    			<h4 class="sec-title">项目信息</h4>
+    			<dl class="infor" >
+    				<!--
+    				<dt>公司简介：</dt>
+    				<dd>重庆富润旺达科技有限公司成立于2009年7月，是一家专注于做医疗设备的服务公司，公司自成立以来，保持年收益增长率达到14%，且生产的设备操作便捷，人性化，得到了客户很高的评价；</dd>
+    				<dt class="mt20">融资人补充话语：</dt>
+    				<dd>此次融资我们将以企业的经营利润为担保，足够支付本金和利息。</dd>
+    				-->
+    				<dt>$!{loanItem.loanNote}</dt>
+    				
+    			</dl>
+            </div>
+			<div class="detail-4">
+    			<h4 class="sec-title">承诺信息</h4>
+    			<ul class="infor fn-clear">
+    				<li><em>承诺机构：</em>$!{loanItem.guaranteeName}</li>
+    				<li><em>担保机构话语：</em>$!{loanItem.guaranteeStatement}</li>
+    				<li><em>#if(1==$!{trade.status}||4==$!{trade.status}||6==$!{trade.status})担保承诺函#else承诺函#end：</em></li>
+    				<li><em></em><img id="guaranteeLicenseUrl_Img" src="$!{loanItem.guaranteeLicenseUrl}" width="291" height="127" alt="承诺函"/></li>
+    			</ul>
+            </div>
+			#if($!{loanItem.sponsorId} > 0)
+			<div class="detail-5">
+    			<h4 class="sec-title">保荐信息</h4>
+    			<ul class="infor fn-clear">
+    				<li><em>保荐机构：</em>$!{loanItem.sponsorName}</li>
+    				<li><em>保荐机构话语：</em>$!{loanItem.sponsorStatement}</li>
+    			</ul>
+            </div>
+			#end
+			<div class="bottom-btn">
+				<a href="javascript:;" class="fn-h-btn" id="invest-back"><span>返回</span></a>
+			</div>
+		</div>
+	</div>
+   </div>
+	#parse("/front/index/common/footer.vm")
+    <script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+		$('#invest-back').click(function(){
+			history.go(-1);
+			return false;
+		})
+    </script>
+</body>
+</html>

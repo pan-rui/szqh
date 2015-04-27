@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>银行管理</title>
+	<link type="text/css" href="/resources/css/after.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="warp">
+		<!--头部-->
+		#parse("/backstage/layout/logo.vm")
+		<!--内容-->
+		<div class="container fn-clear">
+			#parse("/backstage/layout/left.vm")
+			<div class="main-content fn-right">
+				<div class="mc">
+					<div class="top">
+						<p><a href="/backstage/">银行管理</a> > 银行信息列表</p>
+					</div>
+					<div class="t-box">
+						<div class="p-box pages-t fn-clear">
+							<a href="/backstage/bankInfoManage/add_vm" class="p-btn">新增银行</a>
+							#parse("/backstage/page/page.vm")
+						</div>
+						<table class="m-table">
+							<tr>
+                                <th width="100">银行名称</th>
+                                <th width="100">银行简称</th>
+								<th width="100">是否支持代扣</th>
+								<th width="120">单笔代扣限额(元)</th>
+								<th width="100">是否同步代扣</th>
+								<th width="100">是否支持提现</th>
+								<th width="120">单笔提现限额(元)</th>
+								<th width="100">是否支持对公账户</th>
+								<th width="150">操作</th>
+							</tr>
+							#if($page.result.size()==0)
+                				<tr class="even">
+                					<td colspan=8 align=center>暂时没有记录</td>
+                				</tr>
+							#end
+							#foreach($info in $page.result)
+							<tr>
+                                <td>$!{info.bankName}</td>
+                                <td>$!{info.bankCode}</td>
+                                <td>#if($!{info.deduct}=="IS") 是
+									#elseif($!{info.deduct}=="NO")否
+									#end
+								</td>
+								<td>$!{info.singleDeductLimit}</td>
+								<td>#if($!{info.synChannel}=="Y")是
+									#elseif($!{info.synChannel}=="N")否
+									#end
+								</td>
+								<td>#if($!{info.withdrawal}=="IS")是
+									#elseif($!{info.withdrawal}=="NO")否
+									#end
+								</td>
+								<td>$!{info.singleWithdrawalLimit}</td>
+								<td>#if($!{info.publicAccounts}=="Y")是
+									#elseif($!{info.publicAccounts}=="N")否
+									#end
+								</td>
+								<td>
+									<a  href="/backstage/bankInfoManage/getBankInfoById?bankId=$!{info.bankId}&opt=update" class="pass">修改</a>|<a href="javascript:;" data="$!{info.bankId}"   class="dismiss">删除</a>|<a href="/backstage/bankInfoManage/getBankInfoById?bankId=$!{info.bankId}&opt=detail">详情</a></td>
+                                <td class="text-r"></td>
+							</tr>
+							#end
+						</table>
+						<div class="p-box pages-b fn-clear">
+							<a href="/backstage/bankInfoManage/add_vm" class="p-btn">新增银行</a>
+            				#parse("/backstage/page/page.vm")
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript" src="/resources/js/datepicker/WdatePicker.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'addBankInfo');
+		function toPage(totalPage, pageNo){
+    		if(totalPage<pageNo){
+    			return false;
+    		}
+			var url = "/backstage/bankInfoManage"
+			+"?&pageSize=$!{page.pageSize}&pageNo="+pageNo;
+			window.location.href=url;
+		}
+    </script>
+</body>
+</html>

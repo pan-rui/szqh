@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>会员礼包</title>
+	<link type="text/css" href="/resources/css/loan.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+	
+	.i_type{
+	padding: 0 30px 25px;
+	}
+	
+	.i_type li.focus {
+    background: #a60000;
+    color: #fff;
+    }
+    .i_type li {
+    float: left;
+    display: inline;
+    height: 34px;
+    line-height: 34px;
+    background: #d6d6d6;
+    padding: 0 15px;
+    color: #787878;
+    margin: 0 1px 0 0;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    cursor: pointer;
+    }
+	.i_type a {
+    color: #333;
+    }
+	.i_type a.ocur {
+    color: #fff;
+    }
+	
+	.ft-999 {
+    color: #333;
+    }
+
+	 .safe-serve{
+	 	padding: 0 30px 25px;
+	 }
+	 
+	.safe .safe-serve li {
+    padding: 10px;
+    position: relative;
+    }
+	.safe .safe-serve li a {
+    font-size: 14px;
+    font-weight: bold;
+	position: inherit;
+    top: 25px;
+    right: 30px;
+    }
+	.safe .safe-serve li em {
+	 font-size: 14px;
+    color: #333;
+    }
+	.safe .safe-serve li em.w200{
+	width:200px;
+	}
+	.safe .safe-serve li em.w150{
+	width:150px;
+	}
+</style>
+<body>
+	#parse("/front/index/common/header.vm")
+	<!--内容-->
+	<div class="container fn-clear">
+		<!--左侧导航-->
+		#parse("/front/user/common/left.vm")
+		<!--右侧内容-->
+		<div class="main-content mc-border fn-right">
+			<h3 class="con-title">活动中心</h3>
+			<div class="safe">
+				<div class="safe-level">
+					<p class="ft-999 fn-mt5">正在进行的活动 (<b class="ft-f60">$!{total}</b>)  </p>
+				</div>
+				<div style="display: block;padding-bottom: 40px;">
+					<ul class="i_type">
+						<li  class="focus">
+							<a class="ocur" href="javascript:;">最新活动：</a>
+                        </li>
+                    </ul>
+                </div>
+				<div class="safe-serve">
+					<ul>
+						#if($!page.result.size()==0 || !$!page.result)
+            				<li class="border-b fn-clear">
+    							<p>
+    								<a style="right:400px;top:30px;" href="#">
+    									目前还没有正在进行的活动，请留意官网最新消息
+                                    </a>
+                                </p>
+    						</li>
+        				#end
+						#foreach($item in $!{page.result})
+							<li class="border-b fn-clear">
+    							<em class="w200">活动名称：$!{item.activityName}</em>
+    							<em class="w150">开始时间：$!{dateUtil.dtSimpleFormat($!{item.startTime})}</em>
+    							<em class="w150">结束时间：$!{dateUtil.dtSimpleFormat($!{item.endTime})}</em>
+    							<em class="w150"><a style="top:30px;" href="javascript:document.location.href='/userGift/activityDetail?activityId=$!{item.tblBaseId}';">活动详情 >></a></em>
+    						</li>
+						#end	
+					</ul>
+					<div class="fn-tb-bottom fn-clear">
+    				#parse("/backstage/page/page.vm")
+    			</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	#parse("/front/index/common/footer.vm")
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'securityCenter');
+		
+    </script>
+</body>
+</html>

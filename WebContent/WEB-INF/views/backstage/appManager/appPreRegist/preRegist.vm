@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>$!appConstantsUtil.getProductName()—注册</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<link href="/styles/global.css?version=20150325" rel="stylesheet">
+</head>
+<body class="f-bgGray">
+<!--head-->
+<div class="m-hd">
+  <div class="l-ct">用户注册</div>
+</div>
+<!--head-->
+
+<!--body-->
+<div class="l-ct f-mt20">
+  
+  <!--form-->
+  <div class="m-form">
+    <form action="/app/preRegistSubmit.htm" id="pre_regist_form">
+      
+      <!--control-->
+      <div class="control">
+        <label class="label">用户名</label>
+        <input class="text" type="text" name="userName" maxlength="20"/>
+		<input type="hidden" name="referees" value="$!{referees}"/>
+      </div>
+      <!--control End-->
+	  
+	  
+	   <!--control-->
+      <div class="control">
+        <label class="label">密码</label>
+        <input class="text" type="password" name="password" maxlength="20" id="logPassword"/>
+      </div>
+      <!--control End-->
+	   <!--control-->
+      <div class="control">
+        <label class="label">重复密码</label>
+        <input class="text" type="password" name="logPasswordTO" maxlength="20"/>
+      </div>
+      <!--control End-->
+	   <!--control-->  
+	  <div class="control control2 getCodeWrap">
+		<label class="label">手机号码</label>
+		<input class="text" type="text" maxlength="11" id="bundPhone" name="mobile"/>
+		<a id="getCode" class="fn-h-btn Y-countdown" href="javascript:;" style="display: inline-block;">
+            <span class="timedown">获取验证码</span>
+        </a>
+	  </div>
+		
+	  <input type="hidden" id="smsBizType" value="register"/>
+		
+	  <div class="control">
+        <label class="label">验证码</label>
+        <input class="text" type="text" name="code"  id="code"/>
+      </div>
+		
+      <!--control End-->  
+      <!--tips-->
+      ##<div class="tips"><i class="require">*</i>用户名已存在，请重新输入</div>
+      <!--tips End-->
+      
+      <!--function-->
+      <div class="f-mt20">
+        <a href="javascript:;" class="u-btn2 org2 full2 submit">下一步</a>
+      </div>
+      <!--function End-->
+
+    </form>
+  </div>
+  <!--form End-->
+
+</div>
+<!--body End-->
+ <script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'preRegist');
+    </script>   
+</body>
+</html>

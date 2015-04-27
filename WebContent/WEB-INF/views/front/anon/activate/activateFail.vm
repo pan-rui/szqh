@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>用户激活-激活失败</title>
+	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+</head>
+<body>
+	<!--头部-->
+	#parse("/front/index/common/header-yrd.vm")
+	<!--内容-->
+		<style >
+        .error404 p span {
+            color: #FFFFFF;
+			padding:0 15px 3px 4px;
+        }
+    </style>
+<div class="home-section_bd pt20">
+	<div class="blank20"></div>
+    <div class="container">
+        <div class="bd-box">
+            <div class="m-box-hd">
+                <h3 class="box-title">会员注册</h3>
+            </div>
+            <div class="m-box">
+                <ul class="m-step fn-clear mid-three">
+                    <li class="first">1、注册账户</li>
+                    <li class="mid">2、发送激活邮件成功</li>
+                    <li class="mid mid-cur">3、用户激活失败</li>
+                    <li class="mid">4、开通第三方支付</li>
+					<li class="last">5、完成</li>
+                </ul>
+				<div class="blank5"></div>
+				<div class="home-section_bd pt20">
+                	<div class="blank50"></div>
+                    <div class="container">
+                    	<div class="error404">
+							<em></em>
+                    			#if($!{reason})
+                    				<p class="mt5">原因：$!{reason}</p>
+                    			#end	
+                    			<p class="mt5">用户名：$!{userName}</p>
+                    			<p>您可能需要：<a href="/" class="fn-o-btn ml5"><span>进入$!appConstantsUtil.getProductName()首页</span></a></p>
+						</div>
+                    </div>
+                    <div class="blank50"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blank50"></div>
+</div>
+#parse("/front/index/common/footer-yrd.vm")	
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
+    </script>
+	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+    	seajs.use($_GLOBAL.mode + 'demo');
+    </script>
+</body>
+</html>
