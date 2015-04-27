@@ -10,9 +10,7 @@ import com.yjf.yrd.front.controller.account.NewInvestorsOpenController;
 import com.yjf.yrd.front.controller.trade.query.TradeQueryController;
 import com.yjf.yrd.front.controller.user.UserBaseController;
 import com.yjf.yrd.session.SessionLocalManager;
-import com.yjf.yrd.user.info.UserLoginLogInfo;
 import com.yjf.yrd.user.order.InvestorRegisterOrder;
-import com.yjf.yrd.user.query.UserRelationQueryService;
 import com.yjf.yrd.user.result.UserRelationQueryResult;
 import com.yjf.yrd.ws.enums.DivisionPhaseEnum;
 import com.yjf.yrd.ws.enums.MessageReceivedStatusEnum;
@@ -31,7 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -162,8 +159,13 @@ public class AccountSetting extends BaseAutowiredController {
     }
 
     @RequestMapping("/userManage/mjr/investRecord/{pageSize}/{pageNo}")
-    public String getInvestRecord(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable String pageSize, @PathVariable String pageNo, String startDate, String endDate) {
+    public String investRecord(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable String pageSize, @PathVariable String pageNo, String startDate, String endDate) {
 
-        return "/front/user/activation/invest_record.vm";
+        return "front/user/activation/investRecord.vm";
+    }
+    @RequestMapping("/userManage/mjr/repayManage/{pageSize}/{pageNo}")
+    public String repayManage(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable String pageSize, @PathVariable String pageNo, String startDate, String endDate) {
+
+        return "front/user/activation/repayManager.vm";
     }
 }
