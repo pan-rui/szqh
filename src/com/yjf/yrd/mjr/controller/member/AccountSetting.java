@@ -3,6 +3,9 @@ package com.yjf.yrd.mjr.controller.member;
 import com.alibaba.fastjson.JSONObject;
 import com.yjf.common.util.StringUtils;
 import com.yjf.yrd.base.BaseAutowiredController;
+import com.yjf.yrd.common.info.MessageReceivedInfo;
+import com.yjf.yrd.common.services.SiteMessageService;
+import com.yjf.yrd.common.services.order.QueryReceviedMessageOrder;
 import com.yjf.yrd.front.controller.account.NewInvestorsOpenController;
 import com.yjf.yrd.front.controller.trade.query.TradeQueryController;
 import com.yjf.yrd.front.controller.user.UserBaseController;
@@ -12,9 +15,11 @@ import com.yjf.yrd.user.order.InvestorRegisterOrder;
 import com.yjf.yrd.user.query.UserRelationQueryService;
 import com.yjf.yrd.user.result.UserRelationQueryResult;
 import com.yjf.yrd.ws.enums.DivisionPhaseEnum;
+import com.yjf.yrd.ws.enums.MessageReceivedStatusEnum;
 import com.yjf.yrd.ws.enums.SysUserRoleEnum;
 import com.yjf.yrd.ws.info.TradeDetailVOInfo;
 import com.yjf.yrd.ws.order.TradeDetailQueryOrder;
+import com.yjf.yrd.ws.service.query.result.QueryBaseBatchResult;
 import com.yjf.yrd.ws.service.query.result.TradeDetailBatchResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,6 +48,8 @@ public class AccountSetting extends BaseAutowiredController{
     protected UserBaseController userBaseController;
     @Autowired
     protected NewInvestorsOpenController newInvestorsOpenController;
+    @Autowired
+    SiteMessageService siteMessageService;
     /**
      * 账户设置
      * @param request
@@ -102,6 +110,16 @@ public class AccountSetting extends BaseAutowiredController{
     public String userHome(HttpSession session, Model model) {
         String view= userBaseController.userHome(session, model);
         model.addAttribute("prevLoginTime", SessionLocalManager.getSessionLocal().getLastDate());
+        QueryReceviedMessageOrder queryMessageOrder = new QueryReceviedMessageOrder();
+        long userId =  SessionLocalManager.getSessionLocal().getUserId();
+        queryMessageOrder.setMessageReceivedId(userId);
+        List<MessageReceivedStatusEnum> statusList = new ArrayList<>();
+        statusList.add(MessageReceivedStatusEnum.UNREAD);
+        queryMessageOrder.setStatusList(statusList);
+        queryMessageOrder.setPageNumber(1);
+        queryMessageOrder.setPageSize(10);
+        QueryBaseBatchResult<MessageReceivedInfo> messageInfoList =  siteMessageService.findReceviedMessage(queryMessageOrder);
+        session.setAttribute("msgCount", messageInfoList.getTotalCount());
         return view;
     }
     @RequestMapping("anon/mjr/newInvestorsOpen")

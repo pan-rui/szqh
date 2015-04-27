@@ -5,7 +5,8 @@
     <p class="username">#if($!{userBaseInfo.realName}) $!{userBaseInfo.realName} #else $!{userBaseInfo.userName} #end </p>
 
     <p class="note">下午好, 工作辛苦了, 喝杯水保持身体健康哦~</p>
-    <a href="/userManage/messageInfoList" class="alert f-r"><span class="icon-base01 alert"></span><span class="tip">0</span></a> ## 通知消息数...
+    <a href="/userManage/messageInfoList" class="alert f-r"><span class="icon-base01 alert"></span><span class="tip">#if($!{msgCount})$!{msgCount}#else 0
+#end</span></a>
 
     <div class="clearf" id="auths">
         <span class="icon-base01 os"></span>
