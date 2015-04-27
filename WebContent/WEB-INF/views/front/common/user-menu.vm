@@ -24,4 +24,10 @@
 	<li class="list">
 		<a href="/investorManager/investorManage"><span class="icon-base01 linkbook"></span>客户管理</a>
 	</li>
+    <li class="list">
+        <a href="#"><span class="icon-base01 moneis"></span>投资接受记录</a>
+						</li>
+						<li class="list">
+        <a href="#"><span class="icon-base01 setting"></span>还款管理</a>
+						</li>
 </ul>

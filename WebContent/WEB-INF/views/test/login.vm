@@ -10,6 +10,9 @@
     <!--[if lte IE 7]>
     <link rel="stylesheet" type="text/css" href="css/ie7fix.css">
     <![endif]-->
+    <style type="text/css" rel="stylesheet">
+        p.err{ min-height: 16px; line-height: 14px; overflow: hidden; color: #ff0000; margin: 8px 0px; width: 100%; text-align: center;}
+    </style>
     <script src="resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/mjr/js/lbslide.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
@@ -70,7 +73,7 @@
                             </a>
                             <a href="javascript:;" class="f-r new_captcha">刷新</a>
 
-                            <h3 class="ImgCodeErr" style="color:red;margin-left:60px;display:none;">验证码错误</h3>
+                            <h3 class="ImgCodeErr validIcon" style="color:red;margin-left:60px;display:none;">验证码错误</h3>
 
                             <div class="check-box f-r"></div>
                         </label>
