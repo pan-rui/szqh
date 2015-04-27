@@ -41,7 +41,7 @@ import java.util.List;
  * Created by panrui on 2015/4/23.
  */
 @Controller
-public class AccountSetting extends BaseAutowiredController{
+public class AccountSetting extends BaseAutowiredController {
     @Autowired
     protected TradeQueryController tradeQueryController;
     @Autowired
@@ -50,8 +50,10 @@ public class AccountSetting extends BaseAutowiredController{
     protected NewInvestorsOpenController newInvestorsOpenController;
     @Autowired
     SiteMessageService siteMessageService;
+
     /**
      * 账户设置
+     *
      * @param request
      * @param response
      * @param session
@@ -59,8 +61,8 @@ public class AccountSetting extends BaseAutowiredController{
      * @return
      */
     @RequestMapping("userManage/mjr/accountSetting")
-    public String setDataModel(HttpServletRequest request,HttpServletResponse response,HttpSession session, Model model) {
-        String view=userBaseController.userBankInfo(request, response, model, session);
+    public String setDataModel(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+        String view = userBaseController.userBankInfo(request, response, model, session);
         if (SessionLocalManager.getSessionLocal() != null) {
             long userId = SessionLocalManager.getSessionLocal().getUserId();
             //增加上次登录
@@ -74,6 +76,7 @@ public class AccountSetting extends BaseAutowiredController{
 
     /**
      * 投资的项目
+     *
      * @param size
      * @param page
      * @param status
@@ -108,20 +111,21 @@ public class AccountSetting extends BaseAutowiredController{
 
     @RequestMapping("userManage/mjr/userHome")
     public String userHome(HttpSession session, Model model) {
-        String view= userBaseController.userHome(session, model);
+        String view = userBaseController.userHome(session, model);
         model.addAttribute("prevLoginTime", SessionLocalManager.getSessionLocal().getLastDate());
         QueryReceviedMessageOrder queryMessageOrder = new QueryReceviedMessageOrder();
-        long userId =  SessionLocalManager.getSessionLocal().getUserId();
+        long userId = SessionLocalManager.getSessionLocal().getUserId();
         queryMessageOrder.setMessageReceivedId(userId);
         List<MessageReceivedStatusEnum> statusList = new ArrayList<>();
         statusList.add(MessageReceivedStatusEnum.UNREAD);
         queryMessageOrder.setStatusList(statusList);
         queryMessageOrder.setPageNumber(1);
         queryMessageOrder.setPageSize(10);
-        QueryBaseBatchResult<MessageReceivedInfo> messageInfoList =  siteMessageService.findReceviedMessage(queryMessageOrder);
+        QueryBaseBatchResult<MessageReceivedInfo> messageInfoList = siteMessageService.findReceviedMessage(queryMessageOrder);
         session.setAttribute("msgCount", messageInfoList.getTotalCount());
         return view;
     }
+
     @RequestMapping("anon/mjr/newInvestorsOpen")
     public String newinvestorsOpen(HttpSession session, String NO, String investorNO, Model model) {
         String view = newInvestorsOpenController.newinvestorsOpen(session, NO, investorNO, model);
@@ -130,11 +134,13 @@ public class AccountSetting extends BaseAutowiredController{
     }
 
     @RequestMapping("/anon/mjr/newPerfectInfo")
-    public @ResponseBody Object phoneRegist(HttpServletRequest request,HttpServletResponse response, HttpSession session, String imgCode,
-                              InvestorRegisterOrder investorRegisterOrder, String token,
-                              String code, Model model) throws Exception {
+    public
+    @ResponseBody
+    Object phoneRegist(HttpServletRequest request, HttpServletResponse response, HttpSession session, String imgCode,
+                       InvestorRegisterOrder investorRegisterOrder, String token,
+                       String code, Model model) throws Exception {
         String Token = String.valueOf(session.getAttribute("token"));
-            session.removeAttribute("token");
+        session.removeAttribute("token");
         if (!token.equals(Token)) {
             JSONObject json = new JSONObject();
             json.put("code", 0);
@@ -148,15 +154,16 @@ public class AccountSetting extends BaseAutowiredController{
 //            return "redirect:" + request.getHeader("referer") + "?message=" + URLEncoder.encode("验证码错误.").toString();
             jsonObject.put("code", 1);
             return jsonObject;
-        }else {
+        } else {
             jsonObject.put("code", 1);
             jsonObject.put("msg", "验证码错误.");
         }
         return jsonObject;
     }
-@RequestMapping("/userManage/mjr/investRecord/{pageSize}/{pageNo}")
-    public String getInvestRecord(HttpServletRequest request, HttpServletResponse response, Model model,@PathVariable String pageSize,@PathVariable String pageNo,String startDate, String endDate) {
 
-    return "/front/user/activation/invest_record.vm";
-}
+    @RequestMapping("/userManage/mjr/investRecord/{pageSize}/{pageNo}")
+    public String getInvestRecord(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable String pageSize, @PathVariable String pageNo, String startDate, String endDate) {
+
+        return "/front/user/activation/invest_record.vm";
+    }
 }
