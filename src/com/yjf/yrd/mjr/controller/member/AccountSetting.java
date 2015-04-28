@@ -1,6 +1,7 @@
 package com.yjf.yrd.mjr.controller.member;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yjf.common.lang.util.DateUtil;
 import com.yjf.common.util.StringUtils;
 import com.yjf.yrd.base.BaseAutowiredController;
 import com.yjf.yrd.common.info.MessageReceivedInfo;
@@ -9,6 +10,7 @@ import com.yjf.yrd.common.services.order.QueryReceviedMessageOrder;
 import com.yjf.yrd.front.controller.account.NewInvestorsOpenController;
 import com.yjf.yrd.front.controller.trade.query.TradeQueryController;
 import com.yjf.yrd.front.controller.user.UserBaseController;
+import com.yjf.yrd.mjr.service.RepayManageService;
 import com.yjf.yrd.session.SessionLocalManager;
 import com.yjf.yrd.user.order.InvestorRegisterOrder;
 import com.yjf.yrd.user.result.UserRelationQueryResult;
@@ -29,9 +31,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 会员中心页面
@@ -47,6 +48,8 @@ public class AccountSetting extends BaseAutowiredController {
     protected NewInvestorsOpenController newInvestorsOpenController;
     @Autowired
     SiteMessageService siteMessageService;
+    @Autowired
+    protected RepayManageService repayManageService;
 
     /**
      * 账户设置
@@ -163,9 +166,19 @@ public class AccountSetting extends BaseAutowiredController {
 
         return "front/user/activation/investRecord.vm";
     }
-    @RequestMapping("/userManage/mjr/repayManage/{pageSize}/{pageNo}")
-    public String repayManage(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable String pageSize, @PathVariable String pageNo, String startDate, String endDate) {
 
-        return "front/user/activation/repayManager.vm";
+    @RequestMapping("/userManage/mjr/repayManage/{status}/{pageSize}/{pageNo}")
+    public String repayManage(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable String pageSize, @PathVariable String pageNo, String startDate, String endDate,@PathVariable String status) {
+        if(SessionLocalManager.getSessionLocal()!=null) {
+            Date startD=com.yjf.yrd.util.DateUtil.parse(startDate, new Date());
+            Date endD=com.yjf.yrd.util.DateUtil.parse(endDate, new Date());
+            List<String> startS = Arrays.asList(status.split(","));
+           List<Map<String,Object>> result= repayManageService.findRepayPlanByCondition(SessionLocalManager.getSessionLocal().getUserId(), startD, endD, startS);
+           List<Map<String,Object>> totalResult= repayManageService.findRepayPlanByConditionTotal(SessionLocalManager.getSessionLocal().getUserId(), startD, endD, startS);
+            model.addAllAttributes(result);
+            model.addAllAttributes(totalResult.get(0));
+            return "front/user/activation/repayManager.vm";
+        }else
+            return "redirect:/";
     }
 }

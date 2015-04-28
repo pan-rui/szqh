@@ -113,5 +113,6 @@
 	<sqlMap resource="sqlmap/RechargeFlowExtra-sqlmap-mapping.xml"/>
 	<sqlMap resource="sqlmap/common-sqlmap-mapping.xml"/>
 	<sqlMap resource="sqlmap/CommonBranchInfoExtend-sqlmap-mapping.xml"/>
-	<sqlMap resource="sqlmap/mjr-test.xml"/>
+	<!--<sqlMap resource="sqlmap/mjr-test.xml"/>-->
+	<sqlMap resource="sqlmap/repayManage.xml"/>
 </sqlMapConfig>

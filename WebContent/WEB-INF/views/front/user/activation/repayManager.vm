@@ -13,56 +13,71 @@
 
 <body class="usercenter">
 <!--头部-->
-	#parse("/front/index/common/header-mjr.vm")
+    #parse("/front/index/common/header-mjr.vm")
 <div class="md-showcase">
     <div class="md-sc-static"></div>
 </div>
 <div class="md-module">
     <div class="md-default-c pc-width padding-fix clearf">
         <div class="u-c clearf">
-#parse("/front/common/user-menu-top.vm")
+            #parse("/front/common/user-menu-top.vm")
             <div class="menu grid">
-				#parse("/front/common/user-menu.vm")
+                #parse("/front/common/user-menu.vm")
             </div>
             <div class="context grid">
-                <h4>投资人接收记录</h4>
+                <h4>还款管理</h4>
+
                 <div class="table-simple">
+                    <ul class="table-title toggletab">
+                        <li class="table-title-key on" id="pb1">待还款明细</li>
+                        <li class="table-title-key" id="pb2">已还款明细</li>
+                    </ul>
                     <div class="table-context">
                         <div class="invest-c clearf">
                             <ul class="handle nav">
                                 <li>
                                     <label for="timebagin" class="input-text-default">起始时间：
-                                        <input type="text" name="timebagin" value="" id="time-bagin" class="date laydate-icon" placeholder="">-
-                                        <input type="text" name="timebagin" value="" id="time-end" class="date laydate-icon" placeholder="">
+                                        <input type="text" name="timebagin" value="" id="time-bagin"
+                                               class="date laydate-icon" placeholder="">-
+                                        <input type="text" name="timebagin" value="" id="time-end"
+                                               class="date laydate-icon" placeholder="">
                                     </label>
                                 </li>
-                                <li><a href="#" class="flat-full f-r">点击筛选</a></li>
+                                <li>
+                                    <select name="">
+                                        <option value="">全部</option>
+                                        <option value="">未来一个月</option>
+                                        <option value="">未来三个月</option>
+                                        <option value="">未来一年</option>
+                                    </select>
+                                </li>
+                                <li><a href="##" class="flat-full f-r">点击查询</a></li>
 								</ul>
 							</div>
-							<div>
-								<table class="table-style01 line width-100">
-                                    <thead>
-                                    <tr>
-                                        <th>申请号</th>
-                                        <th>申请日期</th>
-                                        <th>成立日期</th>
-                                        <th>申请金额(元)</th>
-                                        <th>实到金额(元)</th>
-                                        <th>状态</th>
-                                        <th>合同</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>sandy</td>
-                                        <td>刘晓宇</td>
-                                        <td>t00k324553</td>
-                                        <td>还为分配</td>
-                                        <td>2015-04-23 12:3:34</td>
-                                        <td>正常</td>
-                                        <td>正常</td>
-                                        <td><a href="#" class="">查看详情</a></td>
+							<p>共：<span class=" blue">1</span>笔，还款金额：<span class="blue">12,200,000</span>元，本金：<span
+                                        class="blue">12,200,000</span>元，利息：<span class="blue">12,200,000</span>元</p>
+                                    <div data-page="pb1" style="display:block">
+                                        <table class="table-style01 line width-100">
+                                            <thead>
+                                            <tr>
+                                                <th>项目名称</th>
+                                                <th>预还款时间</th>
+                                                <th>还款方式</th>
+                                                <th>还款总金额(元)</th>
+                                                <th>应还本金(元)</th>
+                                                <th>应还利息(元)</th>
+                                                <th>状态</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>sandy</td>
+                                                <td>刘晓宇</td>
+                                                <td>t00k324553</td>
+                                                <td>还为分配</td>
+                                                <td>2015-04-23 12:3:34</td>
+                                                <td>正常</td>
+                                                <td><a href="##" class="">查看详情</a>|<a href="##" class="">收益分配</a></td>
 										</tr>
 										<tr>
 											<td>sandy</td>
@@ -71,171 +86,178 @@
 											<td>还为分配</td>
 											<td>2015-04-23 12:3:34</td>
 											<td>正常</td>
-											<td>正常</td>
-											<td><a href="#" class="">查看详情</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>sandy</td>
-                                        <td>刘晓宇</td>
-                                        <td>t00k324553</td>
-                                        <td>还为分配</td>
-                                        <td>2015-04-23 12:3:34</td>
-                                        <td>正常</td>
-                                        <td>正常</td>
-                                        <td><a href="#" class="">查看详情</a></td>
-										</tr>
-										<tr>
-											<td>sandy</td>
-											<td>刘晓宇</td>
-											<td>t00k324553</td>
-											<td>还为分配</td>
-											<td>2015-04-23 12:3:34</td>
-											<td>正常</td>
-											<td>正常</td>
-											<td><a href="#" class="">查看详情</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>sandy</td>
-                                        <td>刘晓宇</td>
-                                        <td>t00k324553</td>
-                                        <td>还为分配</td>
-                                        <td>2015-04-23 12:3:34</td>
-                                        <td>正常</td>
-                                        <td>正常</td>
-                                        <td><a href="#" class="">查看详情</a></td>
-										</tr>
-										<tr>
-											<td>sandy</td>
-											<td>刘晓宇</td>
-											<td>t00k324553</td>
-											<td>还为分配</td>
-											<td>2015-04-23 12:3:34</td>
-											<td>正常</td>
-											<td>正常</td>
-											<td><a href="#" class="">查看详情</a></td>
-                                    </tr>
-                                    </tbody>
-                                    </table>
-                        </div>
-                        <div class="pages">
-                            <div id="kkpager"></div>
+											<td><a href="##" class="">查看详情</a>|<a href="##" class="">收益分配</a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div data-page="pb2">
+                                        <table class="table-style01 line width-100">
+                                            <thead>
+                                            <tr>
+                                                <th>项目名称</th>
+                                                <th>还款时间</th>
+                                                <th>还款总金额(元)</th>
+                                                <th>应还本金(元)</th>
+                                                <th>收益(元)</th>
+                                                <th>状态</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>sandy</td>
+                                                <td>刘晓宇</td>
+                                                <td>t00k324553</td>
+                                                <td>还为分配</td>
+                                                <td>2015-04-23 12:3:34</td>
+                                                <td>正常</td>
+                                            </tr>
+                                            <tr>
+                                                <td>sandy</td>
+                                                <td>刘晓宇</td>
+                                                <td>t00k324553</td>
+                                                <td>还为分配</td>
+                                                <td>2015-04-23 12:3:34</td>
+                                                <td>正常</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="pages">
+                                        <div id="kkpager"></div>
+                                    </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-#parse("/front/index/common/footer-mjr.vm")
+</div>
+    #parse("/front/index/common/footer-mjr.vm")
 <script type="text/javascript">
-    	var $_GLOBAL = {};
-    </script>
+    var $_GLOBAL =
+    {
+    }
+    ;
+</script>
 
-	<script type="text/javascript" src="resources/js/lib/sea.js"></script>
-	<script type="text/javascript">
-    	seajs.use($_GLOBAL.mode + 'index_invest_detail');
-		seajs.use($_GLOBAL.mode + 'userHome');
-		seajs.use('/resources/mjr/js/run.js');
-    </script>
-    <script type="text/javascript">
-	
-	
-	
-    	$(function (){
-    	 var status = $('input[name=status]').val();
-         if(status == ''){
-           status = -1
-         }
-         $('a[status="' + status + '"]').attr('class', 'cur');
-         
-         var dateunit = $('input[name=dateunit]').val();
-         if(dateunit == ''){
-         	return ;
-         }
-         $('a[name=' + dateunit + ']').addClass('cur');
-    	});
-    	
-    	$('#invest-search').click(function (){
-    	  //	toPage($!{page.totalPageCount}, $!{page.currentPageNo});
-		   document.frm.submit();
-    	});
-    	
-    	$('#condition-reset').click(function (){
-    	   $('form[name=frm] input').val('');
-    	   $('[t=invest-date] a').removeClass('cur');
-    	   $('[t=invest-status] a').removeClass('cur');
-    	   $('a[status=-1]').addClass('cur');
-    	});
-    	
-    	$('a[status]').click(function (){
-    	    var status = $(this);
-    		$('input[name=status]').val(status.attr('status'));
-    		$('a[status]').removeAttr('class');
-    		status.attr('class', 'cur');
-    		//toPage($!{page.totalPageCount}, $!{page.currentPageNo});
-			 document.frm.submit();
-			return false;
-    	});
-    	
-        function toPage(totalPage, page){
-    	  if(page > totalPage){
-    	  	return ;
-    	  }
-    	  $('form[name=frm]').attr('action', '/tradeQuery/entries/$!{page.pageSize}/' + page);
-    	  document.frm.submit();
+<script type="text/javascript" src="resources/js/lib/sea.js"></script>
+<script type="text/javascript">
+    seajs.use($_GLOBAL.mode +'index_invest_detail');
+    seajs.use($_GLOBAL.mode +'userHome');
+    seajs.use('/resources/mjr/js/run.js');
+</script>
+<script type="text/javascript">/*
+
+
+    $(function () {
+        var status = $('input[name=status]').val();
+        if (status == '') {
+            status = -1
         }
-		
-    </script>
-    <script type="text/javascript">
-    	$(function (){
-    		var dateInfos = $('.dateInfo');
-    		
-	    	 dateInfos.click(function(){
-	    		var startDate = $('input[name=startDate]');
-    			var endDate = $('input[name=endDate]');
-	    		dateInfos.removeClass('cur');
-	    		var t = $(this);
-	    		t.addClass('cur');
-	    		$('[name=dateunit]').val(t.attr('name'));
-	    		var times = 1000 * 24 * 3600;
-	    		if(dateInfos.index(this) == 0){
-	    			var date = new Date();
-	    			var str = getDateStr(date);
-	    			startDate.val(str);
-	    			endDate.val(str);
-	    		}else if(dateInfos.index(this) == 1){
-	    			var date = new Date();
-	    			var newDate = new Date(date.getTime() - times * 7);
-	    			startDate.val(getDateStr(newDate));
-	    			endDate.val(getDateStr(date));
-	    		}else if(dateInfos.index(this) == 2){
-	    			var date = new Date();
-	    			var newDate = new Date(date.getTime() - times * 30);
-	    			startDate.val(getDateStr(newDate));
-	    			endDate.val(getDateStr(date));
-	    		}else if(dateInfos.index(this) == 3){
-	    			var date = new Date();
-	    			var newDate = new Date(date.getTime() - times * 90);
-	    			startDate.val(getDateStr(newDate));
-	    			endDate.val(getDateStr(date));
-	    		}else if(dateInfos.index(this) == 4){
-	    			var date = new Date();
-	    			var newDate = new Date(date.getTime() - times * 365);
-	    			startDate.val(getDateStr(newDate));
-	    			endDate.val(getDateStr(date));
-	    		}
-	    	});
-	    	function getDateStr(date){
-	    		var str = '';
-	    		str += date.getFullYear() + '-';
-	    		var month = date.getMonth() + 1;
-	    		str += (month > 9 ? '' : '0') + month + '-';
-	    		var day = date.getDate();
-	    		str += (day > 9 ? '' : '0') + day;
-	    		return str;
-	    	}
-    	});
-    </script>
-#    <script type="text/javascript" src="resources/mjr/js/run.js"></script>
+        $('a[status="' + status + '"]').attr('class', 'cur');
+
+        var dateunit = $('input[name=dateunit]').val();
+        if (dateunit == '') {
+            return;
+        }
+        $('a[name=' + dateunit + ']').addClass('cur');
+    });
+
+    $('#invest-search').click(function () {
+        //	toPage($!{page.totalPageCount}, $!{page.currentPageNo});
+        document.frm.submit();
+    });
+
+    $('#condition-reset').click(function () {
+        $('form[name=frm] input').val('');
+        $('[t=invest-date] a').removeClass('cur');
+        $('[t=invest-status] a').removeClass('cur');
+        $('a[status=-1]').addClass('cur');
+    });
+
+    $('a[status]').click(function () {
+        var status = $(this);
+        $('input[name=status]').val(status.attr('status'));
+        $('a[status]').removeAttr('class');
+        status.attr('class', 'cur');
+        //toPage($!{page.totalPageCount}, $!{page.currentPageNo});
+        document.frm.submit();
+        return false;
+    });
+
+    function toPage(totalPage, page) {
+        if (page > totalPage) {
+            return;
+        }
+        $('form[name=frm]').attr('action', '/tradeQuery/entries/$!{page.pageSize}/' + page);
+        document.frm.submit();
+    }
+
+*/</script>
+<script type="text/javascript">/*
+    $(function () {
+        var dateInfos = $('.dateInfo');
+
+        dateInfos.click(function () {
+            var startDate = $('input[name=startDate]');
+            var endDate = $('input[name=endDate]');
+            dateInfos.removeClass('cur');
+            var t = $(this);
+            t.addClass('cur');
+            $('[name=dateunit]').val(t.attr('name'));
+            var times = 1000 * 24 * 3600;
+            if (dateInfos.index(this) == 0) {
+                var date = new Date();
+                var str = getDateStr(date);
+                startDate.val(str);
+                endDate.val(str);
+            } else if (dateInfos.index(this) == 1) {
+                var date = new Date();
+                var newDate = new Date(date.getTime() - times * 7);
+                startDate.val(getDateStr(newDate));
+                endDate.val(getDateStr(date));
+            } else if (dateInfos.index(this) == 2) {
+                var date = new Date();
+                var newDate = new Date(date.getTime() - times * 30);
+                startDate.val(getDateStr(newDate));
+                endDate.val(getDateStr(date));
+            } else if (dateInfos.index(this) == 3) {
+                var date = new Date();
+                var newDate = new Date(date.getTime() - times * 90);
+                startDate.val(getDateStr(newDate));
+                endDate.val(getDateStr(date));
+            } else if (dateInfos.index(this) == 4) {
+                var date = new Date();
+                var newDate = new Date(date.getTime() - times * 365);
+                startDate.val(getDateStr(newDate));
+                endDate.val(getDateStr(date));
+            }
+        });
+        function getDateStr(date) {
+            var str = '';
+            str += date.getFullYear() + '-';
+            var month = date.getMonth() + 1;
+            str += (month > 9 ? '' : '0') + month + '-';
+            var day = date.getDate();
+            str += (day > 9 ? '' : '0') + day;
+            return str;
+        }
+    });
+*/</script>
+<script type="text/javascript" charset="utf-8">
+    var e = $(".toggletab li");
+    $.each(e, function(index, el) {
+        $(el).on('click', function(){
+            var c = this.id;
+            $(e).hasClass("on")?$(e).removeClass("on"):false;
+            $(el).addClass("on");
+            $("[data-page]").each(function(){
+                $(this).css("display") != "none" ? $(this).css({display:"none"}) : true;
+                $(this).attr("data-page") == c ? $(this).css({display:"block"}) : true;
+            });
+        })
+    })
+</script>
 </body>
 </html>

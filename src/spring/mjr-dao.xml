@@ -20,6 +20,7 @@
 	</bean>
 	<bean id="userRoleDao" class="com.yjf.yrd.ibatis.UserRoleDaoImpl" parent="baseSqlMapClientDAO"/>
 	<bean id="rolePermissionDao" class="com.yjf.yrd.ibatis.RolePermissionDaoImpl" parent="baseSqlMapClientDAO"/>-->
-	<bean id="testDao" class="com.yjf.yrd.mjr.dao.TestDao" parent="baseSqlMapClientDAO"/>
+	<!--<bean id="testDao" class="com.yjf.yrd.mjr.dao.TestDao" parent="baseSqlMapClientDAO"/>-->
+	<bean id="repayManageDao" class="com.yjf.yrd.mjr.dao.impl.RepayManageDaonImpl" parent="baseSqlMapClientDAO"/>
 
 </beans>

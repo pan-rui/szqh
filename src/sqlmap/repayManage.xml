@@ -12,6 +12,7 @@
 		<result property="countFildThree" column="paidAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
 		<result property="countFildFour" column="toPayAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
 	</resultMap>
+
 	<resultMap id="RM-PERMISSION" class="com.yjf.yrd.dataobject.Permission" >
 		<result property="id" column="permission_id" javaType="int" jdbcType="INT"/>
 		<result property="code" column="permission_code" javaType="java.lang.String" jdbcType="VARVHAR"/>
@@ -60,6 +61,40 @@
 			</isNotEmpty>
 			<isNotEmpty property="endDate" prepend=" and ">
 				<![CDATA[tb1.years <= #endDate#]]>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<select id="FIND-REPAY-PLAN" resultClass="java.util.HashMap">
+		select  t.trade_name,
+		r.repay_date,
+		r.repay_division_way,
+		r.amount,
+		r.repay_principal_amount,
+		r.amount - r.repay_principal_amount income from repay_plan r JOIN trade t ON r.trade_id=t.trade_id
+		<dynamic prepend="where">
+			<isNotEmpty property="userId">r.repay_user_id=#userId#</isNotEmpty>
+			<isNotEmpty property="startDate" prepend="and">r.repay_date &lt;= #startDate#</isNotEmpty>
+			<isNotEmpty property="endDate" prepend="and">r.repay_date &gt;= #endDate#</isNotEmpty>
+			<isNotEmpty property="status" prepend="and">
+				r.status
+			<iterate open="(" prepend=" in" close=")" conjunction="," property="status">
+					#status[]#
+			</iterate>
+			</isNotEmpty>
+		</dynamic>
+	</select>
+	<select id="FIND_REPAY-PLAN-TOTAL" resultClass="java.util.HashMap">
+		select count(1) count,sum(r.amount) amount, sum(r.repay_principal_amount) principal,sum(r.amount - r.repay_principal_amount) income,from repay_plan r
+		<dynamic prepend="where">
+			<isNotEmpty property="userId">r.repay_user_id=#userId#</isNotEmpty>
+			<isNotEmpty property="startDate" prepend="and">r.repay_date &lt;= #startDate#</isNotEmpty>
+			<isNotEmpty property="endDate" prepend="and">r.repay_date &gt;= #endDate#</isNotEmpty>
+			<isNotEmpty property="status" prepend="and">
+				r.status
+				<iterate open="(" prepend=" in" close=")" conjunction="," property="status">
+					#status[]#
+				</iterate>
 			</isNotEmpty>
 		</dynamic>
 	</select>
