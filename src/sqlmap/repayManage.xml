@@ -6,67 +6,9 @@
 -->
 
 <sqlMap namespace="eloan">
-	<resultMap id="RM-AMOUNT-STATISTICS-TEST" class="com.yjf.yrd.dataobject.viewObject.AmountStatisticsInfoVO" >
-		<result property="countFildOne" column="dimentions" javaType="java.lang.String" jdbcType="VARCHAR" />
-		<result property="countFildTwo" column="totalAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
-		<result property="countFildThree" column="paidAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
-		<result property="countFildFour" column="toPayAmount" javaType="java.lang.Long" jdbcType="BIGINT" />
-	</resultMap>
-
-	<resultMap id="RM-PERMISSION" class="com.yjf.yrd.dataobject.Permission" >
-		<result property="id" column="permission_id" javaType="int" jdbcType="INT"/>
-		<result property="code" column="permission_code" javaType="java.lang.String" jdbcType="VARVHAR"/>
-		<result property="name" column="permission_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
-		<result property="operate" column="permission_operate" javaType="java.lang.String" jdbcType="VARCHAR"/>
-		<result property="backOperate" column="permission_callback" javaType="java.lang.String" jdbcType="VARCHAR"/>
-		<result property="note" column="permission_note" javaType="java.lang.String" jdbcType="VARCHAR"/>
-	</resultMap>
-
-<!--	<select id="PERMISSION-GETALLPERMISSIONS" resultClass="java.util.List" resultMap="RM-PERMISSION" parameterClass="java.util.Map">
-		SELECT
-		t.permission_id,
-		t.permission_code,
-		t.permission_name,
-		t.permission_operate,
-		t.permission_callback,
-		t.permission_note
-		FROM permission t
-		<isNotEmpty property="start">
-			LiMIT #start#
-			<isNotEmpty property="size">
-				, #size#
-			</isNotEmpty>
-		</isNotEmpty>
-	</select>-->
-
-	<select id="RM-AMOUNT-STATISTICS-COUNTBYYEAR-TEST" resultClass="java.lang.Long">
-		select count(1) from user_base_info tb1
-	<!--	<![CDATA[
-		SELECT count(tb1.years) FROM
-		(SELECT YEAR(t.`trade_create_date`) years FROM trade t GROUP BY years) tb1
-		LEFT JOIN
-		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
-		FROM trade t
-		WHERE 1=1 GROUP BY years)tb2
-		ON tb1.years = tb2.years
-		LEFT JOIN
-		(SELECT YEAR(t.`trade_create_date`) years,IFNULL(SUM(t.`loaned_amount`),0) amount
-		FROM trade t
-		WHERE t.`trade_status` = '3' OR t.`trade_status` = '7'  GROUP BY years) tb3
-		ON tb1.years = tb3.years
-		]]>-->
-		<dynamic>
-			<isNotEmpty property="startDate" prepend=" and ">
-				<![CDATA[tb1.years >= #startDate#]]>
-			</isNotEmpty>
-			<isNotEmpty property="endDate" prepend=" and ">
-				<![CDATA[tb1.years <= #endDate#]]>
-			</isNotEmpty>
-		</dynamic>
-	</select>
-
 	<select id="FIND-REPAY-PLAN" resultClass="java.util.HashMap">
-		select  t.trade_name,
+		select  r.repay_plan_id,
+		t.trade_name,
 		r.repay_date,
 		r.repay_division_way,
 		r.amount,
@@ -82,6 +24,8 @@
 					#status[]#
 			</iterate>
 			</isNotEmpty>
+			order by r.repay_date desc
+			<isNotEmpty property="pageNo" prepend="limit"> #pageNo#,#pageSize#</isNotEmpty>
 		</dynamic>
 	</select>
 	<select id="FIND_REPAY-PLAN-TOTAL" resultClass="java.util.HashMap">

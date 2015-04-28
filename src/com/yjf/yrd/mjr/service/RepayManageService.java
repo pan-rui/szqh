@@ -17,23 +17,13 @@ public class RepayManageService extends BaseAutowiredDAOService{
     @Autowired
     private RepayManageDaonImpl repayManageDao;
 @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
-    public List<Map<String, Object>> findRepayPlanByCondition(long userId, Date startDate, Date endDate, List<String> status) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("userId", userId);
-        params.put("startDate", startDate);
-        params.put("endDate", endDate);
-        params.put("status", status);
+    public List<Map<String, Object>> findRepayPlanByCondition(Map<String,Object> params) {
         List<Map<String, Object>> result=repayManageDao.findRepayPlanForPage(params);
         return result == null ? new ArrayList<Map<String, Object>>() : result;
     }
 
     @Transactional(rollbackFor = Exception.class,propagation = Propagation.REQUIRED)
-    public List<Map<String, Object>> findRepayPlanByConditionTotal(long userId, Date startDate, Date endDate, List<String> status) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("userId", userId);
-        params.put("startDate", startDate);
-        params.put("endDate", endDate);
-        params.put("status", status);
+    public List<Map<String, Object>> findRepayPlanByConditionTotal(Map<String,Object> params) {
         List<Map<String, Object>> result=repayManageDao.findRepayPlanTotalForPage(params);
         return result == null ? new ArrayList<Map<String, Object>>() : result;
     }

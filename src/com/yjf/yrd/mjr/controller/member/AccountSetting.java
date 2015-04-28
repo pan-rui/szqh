@@ -167,18 +167,27 @@ public class AccountSetting extends BaseAutowiredController {
         return "front/user/activation/investRecord.vm";
     }
 
-    @RequestMapping("/userManage/mjr/repayManage/{status}/{pageSize}/{pageNo}")
-    public String repayManage(HttpServletRequest request, HttpServletResponse response, Model model, @PathVariable String pageSize, @PathVariable String pageNo, String startDate, String endDate,@PathVariable String status) {
+    @RequestMapping("/userManage/mjr/repayManage")
+    public @ResponseBody Map<String,Object> repayManage(HttpServletRequest request, HttpServletResponse response, Model model, String pageSize, String pageNo, String startDate, String endDate, String status) {
         if(SessionLocalManager.getSessionLocal()!=null) {
             Date startD=com.yjf.yrd.util.DateUtil.parse(startDate, new Date());
             Date endD=com.yjf.yrd.util.DateUtil.parse(endDate, new Date());
             List<String> startS = Arrays.asList(status.split(","));
-           List<Map<String,Object>> result= repayManageService.findRepayPlanByCondition(SessionLocalManager.getSessionLocal().getUserId(), startD, endD, startS);
-           List<Map<String,Object>> totalResult= repayManageService.findRepayPlanByConditionTotal(SessionLocalManager.getSessionLocal().getUserId(), startD, endD, startS);
-            model.addAllAttributes(result);
+            Map<String, Object> params = new HashMap<>();
+            long userId=SessionLocalManager.getSessionLocal().getUserId();
+            params.put("userId",userId );
+            params.put("startDate", startDate);
+            params.put("endDate", endDate);
+            params.put("status", status);
+           List<Map<String,Object>> result= repayManageService.findRepayPlanByCondition(params);
+            params.put("pageNo", pageNo);
+            params.put("pageSize", pageSize);
+           List<Map<String,Object>> totalResult= repayManageService.findRepayPlanByConditionTotal(params);
+            model.addAttribute("pageList", result);
             model.addAllAttributes(totalResult.get(0));
-            return "front/user/activation/repayManager.vm";
+            return model.asMap();
         }else
-            return "redirect:/";
+            return new HashMap<>();
+
     }
 }

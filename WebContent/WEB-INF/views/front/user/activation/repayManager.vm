@@ -37,25 +37,25 @@
                             <ul class="handle nav">
                                 <li>
                                     <label for="timebagin" class="input-text-default">起始时间：
-                                        <input type="text" name="timebagin" value="" id="time-bagin"
-                                               class="date laydate-icon" placeholder="">-
-                                        <input type="text" name="timebagin" value="" id="time-end"
-                                               class="date laydate-icon" placeholder="">
+                                        <input type="text" name="startDate" value="" id="time-bagin"
+                                               class="date laydate-icon" placeholder=""/>-
+                                        <input type="text" name="endDate" value="" id="time-end"
+                                               class="date laydate-icon" placeholder=""/>
                                     </label>
                                 </li>
                                 <li>
-                                    <select name="">
-                                        <option value="">全部</option>
-                                        <option value="">未来一个月</option>
-                                        <option value="">未来三个月</option>
-                                        <option value="">未来一年</option>
+                                    <select id="interval">
+                                        <option value="all">全部</option>
+                                        <option value="one">未来一个月</option>
+                                        <option value="three">未来三个月</option>
+                                        <option value="year">未来一年</option>
                                     </select>
                                 </li>
-                                <li><a href="##" class="flat-full f-r">点击查询</a></li>
+                                <li><a href="#" class="flat-full f-r" id="pbdata">点击查询</a></li>
 								</ul>
 							</div>
-							<p>共：<span class=" blue">1</span>笔，还款金额：<span class="blue">12,200,000</span>元，本金：<span
-                                        class="blue">12,200,000</span>元，利息：<span class="blue">12,200,000</span>元</p>
+							<p>共：<span class=" blue" id="count">$!{count}</span>笔，还款金额：<span class="blue" id="amount">$!{moneyUtil.getFormatAmount($!amount)}</span>元，本金：<span
+                                        class="blue" id="principal">$!{moneyUtil.getFormatAmount($!principal)}</span>元，利息：<span class="blue" id="income">$!{moneyUtil.getFormatAmount($!income)}</span>元</p>
                                     <div data-page="pb1" style="display:block">
                                         <table class="table-style01 line width-100">
                                             <thead>
@@ -70,24 +70,17 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            #foreach($data in $!{pageList})
                                             <tr>
-                                                <td>sandy</td>
-                                                <td>刘晓宇</td>
-                                                <td>t00k324553</td>
-                                                <td>还为分配</td>
-                                                <td>2015-04-23 12:3:34</td>
-                                                <td>正常</td>
-                                                <td><a href="##" class="">查看详情</a>|<a href="##" class="">收益分配</a></td>
+                                                <td>$data.trade_name</td>
+                                                <td>$data.repay_date</td>
+                                                <td>$data.repay_division_way</td>
+                                                <td>$data.amount</td>
+                                                <td>$data.repay_principal_amount</td>
+                                                <td>$data.income</td>
+                                                <td><a href="/userManage/repayPlanDetail?id=" class="">查看详情</a>|<a href="#" class="">收益分配</a></td>
 										</tr>
-										<tr>
-											<td>sandy</td>
-											<td>刘晓宇</td>
-											<td>t00k324553</td>
-											<td>还为分配</td>
-											<td>2015-04-23 12:3:34</td>
-											<td>正常</td>
-											<td><a href="##" class="">查看详情</a>|<a href="##" class="">收益分配</a></td>
-                                            </tr>
+                                            #end
                                             </tbody>
                                         </table>
                                     </div>
@@ -112,14 +105,7 @@
                                                 <td>2015-04-23 12:3:34</td>
                                                 <td>正常</td>
                                             </tr>
-                                            <tr>
-                                                <td>sandy</td>
-                                                <td>刘晓宇</td>
-                                                <td>t00k324553</td>
-                                                <td>还为分配</td>
-                                                <td>2015-04-23 12:3:34</td>
-                                                <td>正常</td>
-                                            </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
