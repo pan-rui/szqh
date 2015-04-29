@@ -17,6 +17,6 @@ public class RepayManageDaonImpl extends SqlMapClientDaoSupport implements IRepa
 
     @Override
     public List<Map<String, Object>> findRepayPlanTotalForPage(Map<String, Object> param) {
-        return this.getSqlMapClientTemplate().queryForList("FIND-REPAY-PLAN",param);
+        return this.getSqlMapClientTemplate().queryForList("FIND_REPAY-PLAN-TOTAL",param);
     }
 }

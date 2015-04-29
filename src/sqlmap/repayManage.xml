@@ -7,36 +7,38 @@
 
 <sqlMap namespace="eloan">
 	<select id="FIND-REPAY-PLAN" resultClass="java.util.HashMap">
-		select  r.repay_plan_id,
+		select
 		t.trade_name,
 		r.repay_date,
 		r.repay_division_way,
 		r.amount,
 		r.repay_principal_amount,
-		r.amount - r.repay_principal_amount income from repay_plan r JOIN trade t ON r.trade_id=t.trade_id
-		<dynamic prepend="where">
-			<isNotEmpty property="userId">r.repay_user_id=#userId#</isNotEmpty>
-			<isNotEmpty property="startDate" prepend="and">r.repay_date &lt;= #startDate#</isNotEmpty>
-			<isNotEmpty property="endDate" prepend="and">r.repay_date &gt;= #endDate#</isNotEmpty>
-			<isNotEmpty property="status" prepend="and">
+		r.amount - r.repay_principal_amount income,
+		r.repay_plan_id from repay_plan r JOIN trade t ON r.trade_id=t.trade_id
+		<dynamic>
+			<isNotEmpty property="userId" prepend="where ">r.repay_user_id=#userId#</isNotEmpty>
+			<isNotEmpty property="startDate" prepend="and ">r.repay_date &lt;= #startDate#</isNotEmpty>
+			<isNotEmpty property="endDate" prepend="and ">r.repay_date &gt;= #endDate#</isNotEmpty>
+			<isNotEmpty property="status" prepend="and ">
 				r.status
-			<iterate open="(" prepend=" in" close=")" conjunction="," property="status">
+			<iterate open="(" prepend="in " close=")" conjunction="," property="status">
 					#status[]#
 			</iterate>
 			</isNotEmpty>
 			order by r.repay_date desc
-			<isNotEmpty property="pageNo" prepend="limit"> #pageNo#,#pageSize#</isNotEmpty>
+			<isNotEmpty property="pageNo" prepend="limit "> #pageNo#,#pageSize#</isNotEmpty>
 		</dynamic>
 	</select>
+
 	<select id="FIND_REPAY-PLAN-TOTAL" resultClass="java.util.HashMap">
-		select count(1) count,sum(r.amount) amount, sum(r.repay_principal_amount) principal,sum(r.amount - r.repay_principal_amount) income,from repay_plan r
-		<dynamic prepend="where">
-			<isNotEmpty property="userId">r.repay_user_id=#userId#</isNotEmpty>
-			<isNotEmpty property="startDate" prepend="and">r.repay_date &lt;= #startDate#</isNotEmpty>
-			<isNotEmpty property="endDate" prepend="and">r.repay_date &gt;= #endDate#</isNotEmpty>
-			<isNotEmpty property="status" prepend="and">
+		select ifnull(count(1),0) count,ifnull(sum(r.amount),0) amount, ifnull(sum(r.repay_principal_amount),0) principal,ifnull(sum(r.amount - r.repay_principal_amount),0) income from repay_plan r
+		<dynamic>
+			<isNotEmpty property="userId" prepend="where ">r.repay_user_id=#userId#</isNotEmpty>
+			<isNotEmpty property="startDate" prepend="and ">r.repay_date &lt;= #startDate#</isNotEmpty>
+			<isNotEmpty property="endDate" prepend="and ">r.repay_date &gt;= #endDate#</isNotEmpty>
+			<isNotEmpty property="status" prepend="and ">
 				r.status
-				<iterate open="(" prepend=" in" close=")" conjunction="," property="status">
+				<iterate open="(" prepend="in " close=")" conjunction="," property="status">
 					#status[]#
 				</iterate>
 			</isNotEmpty>

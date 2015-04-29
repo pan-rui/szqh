@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.yjf.common.lang.util.DateUtil;
 import com.yjf.common.util.StringUtils;
 import com.yjf.yrd.base.BaseAutowiredController;
+import com.yjf.yrd.base.UserAccountInfoBaseController;
 import com.yjf.yrd.common.info.MessageReceivedInfo;
 import com.yjf.yrd.common.services.SiteMessageService;
 import com.yjf.yrd.common.services.order.QueryReceviedMessageOrder;
@@ -12,6 +13,7 @@ import com.yjf.yrd.front.controller.trade.query.TradeQueryController;
 import com.yjf.yrd.front.controller.user.UserBaseController;
 import com.yjf.yrd.mjr.service.RepayManageService;
 import com.yjf.yrd.session.SessionLocalManager;
+import com.yjf.yrd.user.info.UserInfo;
 import com.yjf.yrd.user.order.InvestorRegisterOrder;
 import com.yjf.yrd.user.result.UserRelationQueryResult;
 import com.yjf.yrd.ws.enums.DivisionPhaseEnum;
@@ -21,6 +23,7 @@ import com.yjf.yrd.ws.info.TradeDetailVOInfo;
 import com.yjf.yrd.ws.order.TradeDetailQueryOrder;
 import com.yjf.yrd.ws.service.query.result.QueryBaseBatchResult;
 import com.yjf.yrd.ws.service.query.result.TradeDetailBatchResult;
+import org.apache.xpath.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -39,7 +43,7 @@ import java.util.*;
  * Created by panrui on 2015/4/23.
  */
 @Controller
-public class AccountSetting extends BaseAutowiredController {
+public class AccountSetting extends UserAccountInfoBaseController {
     @Autowired
     protected TradeQueryController tradeQueryController;
     @Autowired
@@ -110,7 +114,7 @@ public class AccountSetting extends BaseAutowiredController {
     }
 
     @RequestMapping("userManage/mjr/userHome")
-    public String userHome(HttpSession session, Model model) {
+    public String userHomeM(HttpSession session, Model model) {
         String view = userBaseController.userHome(session, model);
         model.addAttribute("prevLoginTime", SessionLocalManager.getSessionLocal().getLastDate());
         QueryReceviedMessageOrder queryMessageOrder = new QueryReceviedMessageOrder();
@@ -167,27 +171,39 @@ public class AccountSetting extends BaseAutowiredController {
         return "front/user/activation/investRecord.vm";
     }
 
-    @RequestMapping("/userManage/mjr/repayManage")
-    public @ResponseBody Map<String,Object> repayManage(HttpServletRequest request, HttpServletResponse response, Model model, String pageSize, String pageNo, String startDate, String endDate, String status) {
-        if(SessionLocalManager.getSessionLocal()!=null) {
-            Date startD=com.yjf.yrd.util.DateUtil.parse(startDate, new Date());
-            Date endD=com.yjf.yrd.util.DateUtil.parse(endDate, new Date());
-            List<String> startS = Arrays.asList(status.split(","));
+    @RequestMapping("/userManage/mjr/repayManage/{pageSize}/{pageNo}")
+    public  String repayManage(HttpServletRequest request, HttpServletResponse response, Model model,@PathVariable long pageSize,@PathVariable long pageNo, String startDate, String endDate, String status) throws ParseException {
+        UserInfo userInfo = getUserBaseInfo(request.getSession(), model);
+        if (SessionLocalManager.getSessionLocal() != null) {
             Map<String, Object> params = new HashMap<>();
-            long userId=SessionLocalManager.getSessionLocal().getUserId();
-            params.put("userId",userId );
-            params.put("startDate", startDate);
-            params.put("endDate", endDate);
-            params.put("status", status);
-           List<Map<String,Object>> result= repayManageService.findRepayPlanByCondition(params);
-            params.put("pageNo", pageNo);
-            params.put("pageSize", pageSize);
-           List<Map<String,Object>> totalResult= repayManageService.findRepayPlanByConditionTotal(params);
+            if (StringUtils.isNotEmpty(startDate)) {
+//                Date startD = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+                params.put("startDate", startDate);
+            }
+            if (StringUtils.isNotEmpty(endDate)) {
+//                Date endD = new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
+                params.put("endDate", endDate);
+            }
+
+            List<String> startS = Arrays.asList((StringUtils.isEmpty(status) ? "NOTPAY" : status).split(","));
+            long userId = SessionLocalManager.getSessionLocal().getUserId();
+            params.put("userId", userId);
+            params.put("status", startS);
+            List<Map<String, Object>> totalResult = repayManageService.findRepayPlanByConditionTotal(params);
+            params.put("pageNo", pageNo == 0 ? 1 : pageNo);
+            params.put("pageSize", pageSize == 0 ? 10 : pageSize);
+            List<Map<String, Object>> result = repayManageService.findRepayPlanByCondition(params);
             model.addAttribute("pageList", result);
             model.addAllAttributes(totalResult.get(0));
-            return model.asMap();
-        }else
-            return new HashMap<>();
+//            return model.asMap();
+            return "front/user/activation/repayManager.vm";
+        } else
+            return "/";
+    }
 
+    @RequestMapping("/userManage/mjr/repayManage")
+    public  @ResponseBody Map<String,Object>  repayManageA(HttpServletRequest request, HttpServletResponse response, Model model, long pageSize, long pageNo, String startDate, String endDate, String status) throws ParseException {
+        repayManage(request, response, model, pageSize, pageNo, startDate, endDate, status);
+        return model.asMap();
     }
 }

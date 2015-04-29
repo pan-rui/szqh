@@ -1,4 +1,4 @@
-define(function(require){
+define(function(require,exports,module){
 	var a = $(".show-info"),
 		aa = $(".gi-slide"),
 		b = $("input[class*='date']"),
@@ -93,7 +93,7 @@ define(function(require){
 	/**
 	 * #dataList为table id属性
 	 */
-	kkpager.generPageHtml({
+	var pageOption={
 		pno 				: $.trim($('#dataList').attr('pageNo')),
 		total 				: $.trim($('#dataList').attr('total')), 			//总页码
 		totalRecords 		: $('#dataList').attr('totalRecords'),				//总数据条数
@@ -108,5 +108,7 @@ define(function(require){
 			this.selectPage(n);
 			return false;
 		}
-	});
+	};
+	kkpager.generPageHtml($.extend(pageOption,{click:$_GLOBAL.pageClick}));
+exports.pageOption=pageOption;
 });

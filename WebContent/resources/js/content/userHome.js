@@ -160,7 +160,7 @@ define(function (require, exports, module) {
             var0 += 0.2;
         }
         if (emailBing == 'IS') {
-            $(auths[2]).revmoveClass('email').addClass('email-active');
+            $(auths[2]).removeClass('email').addClass('email-active');
             var0 += 0.2;
         }
         for (var i in range) {

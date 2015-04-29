@@ -51,67 +51,49 @@
                                         <option value="year">未来一年</option>
                                     </select>
                                 </li>
-                                <li><a href="#" class="flat-full f-r" id="pbdata">点击查询</a></li>
-								</ul>
-							</div>
-							<p>共：<span class=" blue" id="count">$!{count}</span>笔，还款金额：<span class="blue" id="amount">$!{moneyUtil.getFormatAmount($!amount)}</span>元，本金：<span
-                                        class="blue" id="principal">$!{moneyUtil.getFormatAmount($!principal)}</span>元，利息：<span class="blue" id="income">$!{moneyUtil.getFormatAmount($!income)}</span>元</p>
-                                    <div data-page="pb1" style="display:block">
-                                        <table class="table-style01 line width-100">
-                                            <thead>
-                                            <tr>
-                                                <th>项目名称</th>
-                                                <th>预还款时间</th>
-                                                <th>还款方式</th>
-                                                <th>还款总金额(元)</th>
-                                                <th>应还本金(元)</th>
-                                                <th>应还利息(元)</th>
-                                                <th>状态</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            #foreach($data in $!{pageList})
-                                            <tr>
-                                                <td>$data.trade_name</td>
-                                                <td>$data.repay_date</td>
-                                                <td>$data.repay_division_way</td>
-                                                <td>$data.amount</td>
-                                                <td>$data.repay_principal_amount</td>
-                                                <td>$data.income</td>
-                                                <td><a href="/userManage/repayPlanDetail?id=" class="">查看详情</a>|<a href="#" class="">收益分配</a></td>
-										</tr>
-                                            #end
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div data-page="pb2">
-                                        <table class="table-style01 line width-100">
-                                            <thead>
-                                            <tr>
-                                                <th>项目名称</th>
-                                                <th>还款时间</th>
-                                                <th>还款总金额(元)</th>
-                                                <th>应还本金(元)</th>
-                                                <th>收益(元)</th>
-                                                <th>状态</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>sandy</td>
-                                                <td>刘晓宇</td>
-                                                <td>t00k324553</td>
-                                                <td>还为分配</td>
-                                                <td>2015-04-23 12:3:34</td>
-                                                <td>正常</td>
-                                            </tr>
+                                <li><a href="javascript:;" class="flat-full f-r" id="pbdata">点击查询</a></li>
+                            </ul>
+                        </div>
+                        <p>共：<span class=" blue" id="count">$!{count}</span> 笔，还款金额：<span class="blue"
+                                                                                         id="amount">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong("$!amount"))}</span>元，本金：<span
+                                class="blue" id="principal">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong("$!principal"))}</span>元，利息：<span
+                                class="blue" id="income">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong("$!income"))}</span>元</p>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="pages">
-                                        <div id="kkpager"></div>
-                                    </div>
+                        <div data-page="pb1" style="display:block">
+                            <table class="table-style01 line width-100">
+                                <thead>
+                                <tr>
+                                    <th>项目名称</th>
+                                    <th>预还款时间</th>
+                                    <th>还款方式</th>
+                                    <th>还款总金额(元)</th>
+                                    <th>应还本金(元)</th>
+                                    <th>应还利息(元)</th>
+                                    <th>状态</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div data-page="pb2">
+                            <table class="table-style01 line width-100">
+                                <thead>
+                                <tr>
+                                    <th>项目名称</th>
+                                    <th>还款时间</th>
+                                    <th>还款总金额(元)</th>
+                                    <th>应还本金(元)</th>
+                                    <th>收益(元)</th>
+                                    <th>状态</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pages">
+                            <div id="kkpager"></div>
                         </div>
                     </div>
                 </div>
@@ -119,119 +101,38 @@
         </div>
     </div>
 </div>
+</div>
     #parse("/front/index/common/footer-mjr.vm")
 <script type="text/javascript">
-    var $_GLOBAL =
-    {
-    }
-    ;
+    var $_GLOBAL ={}, repayManage;
+    $_GLOBAL.pageData={
+        url: '/userManage/mjr/repayManage',
+        pageNo: 1,
+        pageSize: 10,
+        startDate: $('input[name=startDate]').val(),
+        endDate: $('input[name=endDate]').val(),
+        interval: $('#interval').val()
+    };
+
 </script>
 
 <script type="text/javascript" src="resources/js/lib/sea.js"></script>
 <script type="text/javascript">
     seajs.use($_GLOBAL.mode +'index_invest_detail');
     seajs.use($_GLOBAL.mode +'userHome');
-    seajs.use('/resources/mjr/js/run.js');
+    seajs.use($_GLOBAL.mode +'repayManage', function (a) {
+        repayManage = a;
+            $_GLOBAL.pageClick=function(n){
+            refresh($.extend($_GLOBAL.pageData,{pageNo:n}));
+            this.selectPage(n);
+            return false;
+        };
+    seajs.use('/resources/mjr/js/run');
+    });
+
 </script>
-<script type="text/javascript">/*
 
-
-    $(function () {
-        var status = $('input[name=status]').val();
-        if (status == '') {
-            status = -1
-        }
-        $('a[status="' + status + '"]').attr('class', 'cur');
-
-        var dateunit = $('input[name=dateunit]').val();
-        if (dateunit == '') {
-            return;
-        }
-        $('a[name=' + dateunit + ']').addClass('cur');
-    });
-
-    $('#invest-search').click(function () {
-        //	toPage($!{page.totalPageCount}, $!{page.currentPageNo});
-        document.frm.submit();
-    });
-
-    $('#condition-reset').click(function () {
-        $('form[name=frm] input').val('');
-        $('[t=invest-date] a').removeClass('cur');
-        $('[t=invest-status] a').removeClass('cur');
-        $('a[status=-1]').addClass('cur');
-    });
-
-    $('a[status]').click(function () {
-        var status = $(this);
-        $('input[name=status]').val(status.attr('status'));
-        $('a[status]').removeAttr('class');
-        status.attr('class', 'cur');
-        //toPage($!{page.totalPageCount}, $!{page.currentPageNo});
-        document.frm.submit();
-        return false;
-    });
-
-    function toPage(totalPage, page) {
-        if (page > totalPage) {
-            return;
-        }
-        $('form[name=frm]').attr('action', '/tradeQuery/entries/$!{page.pageSize}/' + page);
-        document.frm.submit();
-    }
-
-*/</script>
-<script type="text/javascript">/*
-    $(function () {
-        var dateInfos = $('.dateInfo');
-
-        dateInfos.click(function () {
-            var startDate = $('input[name=startDate]');
-            var endDate = $('input[name=endDate]');
-            dateInfos.removeClass('cur');
-            var t = $(this);
-            t.addClass('cur');
-            $('[name=dateunit]').val(t.attr('name'));
-            var times = 1000 * 24 * 3600;
-            if (dateInfos.index(this) == 0) {
-                var date = new Date();
-                var str = getDateStr(date);
-                startDate.val(str);
-                endDate.val(str);
-            } else if (dateInfos.index(this) == 1) {
-                var date = new Date();
-                var newDate = new Date(date.getTime() - times * 7);
-                startDate.val(getDateStr(newDate));
-                endDate.val(getDateStr(date));
-            } else if (dateInfos.index(this) == 2) {
-                var date = new Date();
-                var newDate = new Date(date.getTime() - times * 30);
-                startDate.val(getDateStr(newDate));
-                endDate.val(getDateStr(date));
-            } else if (dateInfos.index(this) == 3) {
-                var date = new Date();
-                var newDate = new Date(date.getTime() - times * 90);
-                startDate.val(getDateStr(newDate));
-                endDate.val(getDateStr(date));
-            } else if (dateInfos.index(this) == 4) {
-                var date = new Date();
-                var newDate = new Date(date.getTime() - times * 365);
-                startDate.val(getDateStr(newDate));
-                endDate.val(getDateStr(date));
-            }
-        });
-        function getDateStr(date) {
-            var str = '';
-            str += date.getFullYear() + '-';
-            var month = date.getMonth() + 1;
-            str += (month > 9 ? '' : '0') + month + '-';
-            var day = date.getDate();
-            str += (day > 9 ? '' : '0') + day;
-            return str;
-        }
-    });
-*/</script>
-<script type="text/javascript" charset="utf-8">
+#*<script type="text/javascript" charset="utf-8">
     var e = $(".toggletab li");
     $.each(e, function(index, el) {
         $(el).on('click', function(){
@@ -244,6 +145,6 @@
             });
         })
     })
-</script>
+</script>*#
 </body>
 </html>
