@@ -1,7 +1,7 @@
 <ul>
 	<li class="fix-hover">
-		<a href="#" class="btn l">充值</a>
-		<a href="#" class="btn r">提现</a>
+		<a href="/userManage/topUp/withholdingIndex" class="btn l">充值</a>
+		<a href="/withdrawals/launchWithdrawals" class="btn r">提现</a>
 	</li>
 	<li class="list on">
 		<a href="/userManage/mjr/userHome"><span class="icon-base01 search"></span>账户总览</a>
@@ -19,7 +19,7 @@
 		<a href="/userGiftMoney/pageQuery"><span class="icon-base01 gift"></span>奖励查询</a>
 	</li>
 	<li class="list">
-		<a href="#"><span class="icon-base01 peoples"></span>好友推荐</a>
+		<a href="/investorManager/salesList"><span class="icon-base01 peoples"></span>好友推荐</a>
 	</li>
 	<li class="list">
 		<a href="/investorManager/investorManage"><span class="icon-base01 linkbook"></span>客户管理</a>

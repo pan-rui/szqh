@@ -19,9 +19,8 @@
 		<div class="md-default-c pc-width clearf">
 			<div class="invest-nav md-grid-default">
 				<ul class="nav title">
-					<li id="li_1"  class="on"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=1"">招标中</a></li>
-					<li id="li_2"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=1">预热中</a></li>
-					<li id="li_3"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=2">还款中</a></li>
+					<li id="li_1" ><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=1">招标中</a></li>
+					<li id="li_3"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1?tradeStatus=2,8">还款中</a></li>
 					<li id="li_4"><a href="$!{rc.contextPath}/boot/invest/$!{page.pageSize}/1">全部产品</a></li>
 					<!--<li><a href="#">切换到"债券转让项目"列表</a></li>-->
 				</ul>
@@ -105,7 +104,22 @@
 								</div>
 								<a href="#" class="cupt"><div class="icon-base"></div></a>
 								<div class="i-h cd">
-									<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" class="flat-full deepblue-bg">立即投资</a>
+									#if($!{trade.tradeStatus.value}==1 && ${needAmount}>0 )
+									
+										#if(${percent}=="0.0%")
+											<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" class="flat-full deepblue-bg">立即投资</a>
+										#else
+											<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" class="flat-full deepblue-bg">立即投资</a>
+										#end
+									
+									#elseif($!{trade.tradeStatus.value}==3||$!{trade.tradeStatus.value}==7||$!{trade.tradeStatus.value}==8)
+										<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" class="flat-full disable deepblue-bg">$!{trade.tradeStatus.loanderStatus}</a>
+									#elseif($!{trade.tradeStatus.value}==2||$!{trade.tradeStatus.value}==8)
+										<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" class="flat-full handing deepblue-bg">还款中</a>
+									#else	
+										<a href="$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}" class="flat-full disable deepblue-bg">投资已满</a>	
+									#end
+									
 									<input value="$!{currentDate.getTime()}" class="currentDate" type="hidden"/>	##当前时间								
 									<input value="$!{trade.deadline.getTime()}" class="getDeadTime" type="hidden"/>	
 									<input value="$!{trade.investAvlDate.getTime()}" class="getinvestAvlDate" type="hidden"/>
@@ -128,6 +142,7 @@
     <script type="text/javascript" src="resources/mjr/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="resources/mjr/js/kkpager.min.js"></script>
 	<script type="text/javascript" src="resources/mjr/js/run.js"></script>
+	<script type="text/javascript" src="resources/mjr/js/mjrajax.js"></script>
 <!--content end----------------->	
 	#parse("/front/index/common/footer-mjr.vm")
 	<script type="text/javascript" >
@@ -161,23 +176,17 @@
 			$("#rate").val(4);
 		}
 		
-		if('$!{tradeStatus}'==''){
-			$("#li_").addClass("on");
+		if('$!{tradeStatus}'=='1'){
+			$("#li_1").addClass("on");
+		}else if('$!{tradeStatus}'=='2,8'){
+			$("#li_3").addClass("on");
+		}else if('$!{tradeStatus}'==''){
+			$("#li_4").addClass("on");
 		}
 		
 		function sysDate(){
 			var url = '/boot/currentTime.htm';
-				var result = null;
-			$.ajax({
-				url:url,
-				dataType:'json',
-				type:'post',
-				async:false,
-				data:{},
-				success:function(data){
-					result = data;
-				}
-			});
+			var result = mjrajax(url);
 		
 			var gloabTime= new Date().getTime();
 			if(result.code==1){

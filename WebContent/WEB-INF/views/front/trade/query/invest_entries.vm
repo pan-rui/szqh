@@ -41,7 +41,7 @@
                             <span class="case-num">￥$!{allAmount.toStandardString()}</span> ##后台
                         </div>
             </div>
-            <table class="table-style01 line width-100" id="dataList" pageNo="#if($!{page.totalCount}<=0) 0 #else $!{page.CurrentPageNo} #end" total="#if($!{page.totalCount}<=0) 0 #else $!{page.TotalPageCount} #end" totalRecords="$!{page.totalCount}" >
+            <table class="table-style01 line width-100" >
                 <thead>
                 <tr>
                     <th>项目名称</th>
@@ -99,6 +99,11 @@
 #parse("/front/index/common/footer-mjr.vm")
 <script type="text/javascript">
     	var $_GLOBAL = {};
+			$_GLOBAL.pageOption=		{
+        pno:#if($!{page.totalCount}<=0) 0 #else $!{page.CurrentPageNo} #end,
+        total:#if($!{page.totalCount}<=0) 0 #else $!{page.TotalPageCount} #end,
+            totalRecords:$!{page.totalCount}
+        }
     </script>
 
 	<script type="text/javascript" src="resources/js/lib/sea.js"></script>

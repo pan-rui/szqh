@@ -1,52 +1,154 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>申请提现</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
 	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/resources/mjr/css/global.css">
+	<link rel="stylesheet" href="/resources/mjr/css/common.css">
+	<script src="/resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/resources/mjr/js/laydate.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<style type="text/css">
+<body class="usercenter">
+	<!-- include siteNav module, adjusted according to your needs -->
+	#parse("/front/index/common/header-mjr.vm")
+	<!-- end include -->
 
-</style>
-<body class="warp">
-		#parse("/front/index/common/header-yrd.vm")
-		<div class="home-section_bd pt20">
-          <div class="blank20"></div>
-          <div class="bd-box container fn-clear">
-           #parse("/front/user/common/left1.vm")
-		   <!--内容-->
-			#if($!{fail})
-			<div class="m-content fn-right">
-				<br>
-				<div class="log-success fn-fail">
-        			<em></em>
-        			<h1>$!{fail}</h1>
-        			<p>您可能需要：<a href="/userManage/userRealNameInfo" class="fn-o-btn ml5"><span>实名认证</span></a>
-						#if($!{yjfAccountInfo.userStatus.code}=='W')或<a href="/anon/activeYjfAccount" class="fn-o-btn ml5"><span>激活支付账户</span></a>#end</p>
-					</div>
-			</div>
-		#else
-		<!--右侧内容-->
-		  <div class="m-content fn-right">
-				<iframe frameborder="0" width="817" height="900" scrolling="yes" src="$!withdrawUrl"></iframe>
-    	 
-		      <div style="font-size:12pt;margin-left:10px;">
+	<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+
+	<div class="md-module">
+		<div class="md-default-c pc-width padding-fix clearf">
+			<div class="u-c clearf">
+				#parse("/front/common/user-menu-top.vm")
+				<div class="menu grid">
+					#parse("/front/common/user-menu.vm")
+				</div>
+				<div class="context grid">
+
+				<!-- 申请提现 -->
+				#if($!{fail})
+        			<div class="m-content fn-right">
+        				<br>
+        				<div class="log-success fn-fail">
+                			<em></em>
+                			<h1>$!{fail}</h1>
+                			<p>您可能需要：<a href="/userManage/userRealNameInfo" class="fn-o-btn ml5"><span>实名认证</span></a>
+        						#if($!{yjfAccountInfo.userStatus.code}=='W')或<a href="/anon/activeYjfAccount" class="fn-o-btn ml5"><span>激活支付账户</span></a>#end</p>
+        					</div>
+        			</div>
+        		#else
+        		<!--右侧内容-->
+        		  <div class="m-content fn-right">
+        				<iframe frameborder="0" width="817" height="900" scrolling="yes" src="$!withdrawUrl"></iframe>
+            	 
+        		      <div style="font-size:12pt;margin-left:10px;">
+        				<!--
+        					<span id="countAmounTitle">注意：每笔提现会产生</span><span class="ft-f60">￥10.00</span>元的手续费
+        				-->
+        			  </div>
+        			  </br>
+        		  </div>
+        		 
+        		 
+        		 
+				#end
+				
 				<!--
-					<span id="countAmounTitle">注意：每笔提现会产生</span><span class="ft-f60">￥10.00</span>元的手续费
-				-->
-			  </div>
-			  </br>
-		  </div>
-		 
-		 
-		 
-		#end
-          
-        </div>
-      </div>
-      <div class="blank50"></div>
-    </div>
-    #parse("/front/index/common/footer-yrd.vm")	
+					<div class="besure">
+						<p class="t"><a href="javascript:;" title="">返回</a>申请提现</p>
+						<div class="notice">
+							<p class="t">温馨提示：</p>
+							<ol>
+								<li>为充分保障您的资金安全，您需要确认：资金转出或提现时所使用的银行卡的开户人，必须与您在平台实名认证时所提交的信息保持一致。</li>
+								<li>如果您已经在“快捷充值”时绑定了银行卡，则第三方支付将默认此卡为您的资金提现到账卡（且不可更改），并不需再另行设置其他银行卡进行提现。</li>
+								<li>如果您还未在“快捷充值”中绑定任何银行卡，那么您可以在资金提现时选择您名下的任意一张银行卡。</li>
+							</ol>
+						</div>
+						<span class="pp">账户总额：<span class="blue f-s-mid">1,000,000</span>元</span>
+						<span class="pp">可提取金额：<span class="blue f-s-mid">1,000,000</span>元</span>
+						<div class="line"></div>
+						<h4>请选择提现银行账户</h4>
+						<table>
+							<tbody>
+								<tr>
+									<td><span class="orange">*</span>开户名：</td>
+									<td><input type="text" name="" value="刘晓燕" placeholder=""></td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>银行账号：</td>
+									<td>
+										<select name="" class="w-238">
+											<option value="">5246354269875</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>开户银行：</td>
+									<td>
+										<div class="bank-select">
+											<img class="show" src="" alt="">
+											<input name="bank" type="hidden" value="1">  name="bank"不可修改。由此传值 
+											<div class="bottom-array"></div>
+											<div class="b-s-b">
+												<div class="b-s-b-c">
+													<ul>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="1"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="2"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="3"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="4"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="5"></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>开户支行：</td>
+									<td>
+										<select name="">
+											<option value="">广东省</option>
+										</select>
+										<select name="">
+											<option value="">深圳市</option>
+										</select>
+										<select name="">
+											<option value="">中国平安银行福田支行</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>提现金额：</td>
+									<td><input type="text" name="" value="" placeholder=""></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<a href="javascript:;" class="flat-full f-l fix">下一步</a><br>
+										<span class="little-tips s"><span class="orange">*</span>提现之前请确认您绑定的银行账户是否正常使用。</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					-->
+				<!-- 申请提现end -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- include foot module, adjusted according to your needs -->
+	#parse("/front/index/common/footer-mjr.vm")
+	<!-- end include -->
+	
 	<script type="text/javascript">
     	var $_GLOBAL = {};
     </script>
@@ -68,8 +170,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-

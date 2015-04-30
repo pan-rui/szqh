@@ -12,14 +12,14 @@ function abc(){
     :
         "EXECUTE_SUCCESS", "certifyRankDesc"
     :
-        "δͨ��", "certifyRank"
+        "δͨ��", "certifyRank"
     :
         "NO_RANK", "resultMessage"
     :
-        "ִ�гɹ�", "success"
+        "ִ�гɹ�", "success"
     :
         "T", "resultCodeDesc"
     :
-        "ִ�гɹ�"
+        "ִ�гɹ�"
     }
 };

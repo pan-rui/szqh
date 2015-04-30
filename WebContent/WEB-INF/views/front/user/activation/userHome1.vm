@@ -1,114 +1,136 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta content="text/html" charset="UTF-8"/>
-            <title>账户首页</title>
-        <base href="$!{rc.contextPath}/"/>
-        <link type="text/css" href="resources/mjr/css/common.css" rel="stylesheet"/>
-        <link type="text/css" href="resources/mjr/css/global.css" rel="stylesheet"/>
-        <script type="text/javascript" src="resources/mjr/js/jquery-1.11.2.min.js"></script>
-        <script src="resources/mjr/js/laydate.js" type="text/javascript" charset="utf-8"></script>
-        <script src="resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
-	</head>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+    <base href="$!{rc.contextPath}/"/>
+	<link rel="stylesheet" href="/resources/mjr/css/global.css">
+	<link rel="stylesheet" href="/resources/mjr/css/common.css">
+	
+</head>
 <body class="usercenter">
-    <!--头部-->
-    #parse("/front/index/common/header-mjr.vm")
+	<!-- include siteNav module, adjusted according to your needs -->
+	#parse("/front/index/common/header-mjr.vm")
+	<!-- end include -->
 
-    <div class="md-showcase">
-        <div class="md-sc-static"></div>
-    </div>
-    <div class="md-module">
-        <div class="md-default-c pc-width padding-fix clearf">
-            <div class="u-c clearf">
-                #parse("/front/common/user-menu-top.vm")
-                <div class="menu grid">
-                    #parse("/front/common/user-menu.vm")
-                </div>
-                <div class="context grid">
-					<h4>账户总览</h4>
-                    <div class="info-f1 case-simple f-l detail">
-                        <p class="totle">账户总额 <span class="blue f-s-mid">￥$!{yjfAccountInfo.balance.toStandardString()}</span></p>
-                        <div class="case-simple-list solid-right-border clearf">
-                            <p>冻结金额 <span class="blue f-s-mid">￥$!{yjfAccountInfo.freezeAmount.toStandardString()}</span></p>
-                            <p>可用余额 <span class="blue f-s-mid">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span><a href="/userManage/topUp/withholdingIndex" title="">充值</a></p>
+	<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+
+	<div class="md-module">
+		<div class="md-default-c pc-width padding-fix clearf">
+			<div class="u-c clearf">
+				#parse("/front/common/user-menu-top.vm")
+				<div class="menu grid">
+					#parse("/front/common/user-menu.vm")
+				</div>
+				<div class="context grid">
+
+				
+				<!-- 账户总览 -->
+					 <h4>账户总览</h4><!--$tradePage -->
+					 
+					<div class="info-f1 case-simple f-l detail">
+						<p class="totle">账户总额 <span class="blue f-s-mid">$!{yjfAccountInfo.balance.toStandardString()}</span>&nbsp;&nbsp;&nbsp;<a href="javascript:;" title="">充值</a></p>
+						<div class="case-simple-list solid-right-border clearf">
+							<p>冻结金额 <span class="blue f-s-mid">$!{yjfAccountInfo.freezeAmount.toStandardString()}</span></p>
+							<p>可用余额 <span class="blue f-s-mid">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span></p>
 						</div>
 						<div class="case-simple-list solid-right-border clearf">
-                            <p>待收收益 <span class="blue f-s-mid">￥$!{investCount.notPaidInvestedAmount.toStandardString()}</span></p>
-                            <p>待收本金 <span class="blue f-s-mid">￥$!{investCount.notPaidInvestedProfitAmount.toStandardString()}</span></p>
-                        </div>
-                        <div class="case-simple-list solid-right-border clearf">
-                            <p>推广收益 <span class="blue f-s-mid">￥2,234,00</span></p>		##分润
-                        </div>
-                    </div>
-                    <h4>最近收益</h4>
-                    <table class="table-style01 line width-100 detail">
-                        <thead>
-                        <tr>
-                            <th>交易名称</th>
-                            <th>投资人</th>
-                            <th>投资金额(元)</th>
-                            <th>投资日期</th>
-                            <th>成立日期</th>
-                            <th>到期日期</th>
-#if($!{isBroker}) <th>推荐费用(元)</th> #end
-                            <th>投资状态</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            #if($!commissionList.result.size()==0)
-                            <tr>
-                                <td colspan=#if($!{isBroker}) "8" #else "7" #end align=center>暂时没有交易记录</td>
-                            </tr>
+							<p>待收收益 <span class="blue f-s-mid">￥$!{investCount.notPaidInvestedAmount.toStandardString()}</span></p>
+							<p>待收本金 <span class="blue f-s-mid">￥$!{investCount.notPaidInvestedProfitAmount.toStandardString()}</span></p>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<p>推广收益 <span class="blue f-s-mid">￥AAAA</span></p>
+						</div>
+					</div>
+					
+					
+					<h4>最近推广收益</h4>
+					<table class="table-style01 line width-100 detail">
+						<thead>
+							<tr>
+								<th>交易名称</th>
+								<!--<th>投资人</th>-->
+								<th>投资金额(元)</th>
+								<th>投资日期</th>
+								<th>成立日期</th>
+								<th>到期日期</th>
+								<th>推荐费用(元)</th>
+								<th>投资状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							 #if($!commissionList.result.size()==0)
+                                <tr>
+                                    <td colspan=7 align=center>暂时没有交易记录</td>
+                                </tr>
                             #end
-                            #foreach($info in $commissionList.result)
-                            <tr>
-                                <td>&nbsp;<a href="/investorManager/salesDetails/$!{info.tradeId}/$!{info.tradeDetailId}?investDetailId=$!{info.note}">$stringUtil.subString($!{info.tradeName},10,"..")</a>
-                                </td>
-                                <td>$!{info.originalRealName}</td>
-                                <td>
-                                    $!{info.originalAmount.toStandardString()}
-                                </td>
-                                <td>$!dateUtil.dtSimpleFormat($!{info.tradeCreateDate})</td>
-                                #if($!{info.tradeEffectiveDate})
-                                    <td>$!dateUtil.dtSimpleFormat($!{info.tradeEffectiveDate})</td>
-                                #else
-                                    <td>暂无</td>
-                                #end
-                                #if($!{info.tradeExpireDate})
-                                    <td>$!dateUtil.dtSimpleFormat($!{info.tradeExpireDate})</td>
-                                #else
-                                    <td>暂无</td>
-                                #end
-                                #if($!{isBroker})
-                                <td>
-                                   $!{info.benefitAmount.toStandardString()}
-                                </td>
-                                #end
-                                <td>$!{info.tradeStatus.investorStatus}
-                                </td>
-                            </tr>
+							 <!--列表-->               
+                             #foreach($info in $commissionList.result)
+								#if($velocityCount <= 5)
+                                <tr>
+                                    <td>&nbsp;<a href="/investorManager/salesDetails/$!{info.tradeId}/$!{info.tradeDetailId}?investDetailId=$!{info.note}">$stringUtil.subString($!{info.tradeName},10,"..")</a>
+                                    </td>
+                                    <!--<td>$!{info.originalRealName}</td>-->
+                                    <td>
+                                        <span class="ft-f60">$!{info.originalAmount.toStandardString()}</span>
+                                    </td>
+                                    <td>$!dateUtil.dtSimpleFormat($!{info.tradeCreateDate})</td>
+                                    #if($!{info.tradeEffectiveDate})
+                                        <td>$!dateUtil.dtSimpleFormat($!{info.tradeEffectiveDate})</td>
+                                        #else
+                                            <td>暂无</td>
+                                    #end
+                                    #if($!{info.tradeExpireDate})
+                                        <td>$!dateUtil.dtSimpleFormat($!{info.tradeExpireDate})</td>
+                                        #else
+                                            <td>暂无</td>
+                                    #end
+                                    <td>
+                                        <span class="ft-f60">$!{info.benefitAmount.toStandardString()}</span>
+                                    </td>
+                                    <td>$!{info.tradeStatus.investorStatus}
+                                    </td>
+                                </tr>
+								#else
+									#break;
+								#end
                             #end
-                        </tbody>
-                    </table>
-                    <div class="fri detail">
-	                        <label for="links" class="input-text-default">#if(!$!{isBroker} && $!{isInvestor})投资人推广链接：#else 经纪人推广链接：#end
-                                <input type="text" name="links" value="$!appConstantsUtil.getHostHttpUrl()/anon/investorOpenInvestor?NO=$!{userMemoNo}" class="" placeholder="">
-                            <a href="#" title="" class="f-s-12 tg" >查看我的推广</a>      ##后台.....
-							<a href="#" title="" class="flat-full" id="jscopy" >点击复制</a>
-                        </label>
-                        <span class="f-1">温馨提示：轻松点击上方的复制链接按钮，发给好友完成注册并投资，可获得相应的推广收益哦！</span>
-                    </div>
+						</tbody>
+					</table>
+					
+					<div class="fri detail">
+						<label for="links" class="input-text-default">经纪人推广链接
+                            <input type="text" class="links" id="content"  value="$!appConstantsUtil.getHostHttpUrl()/anon/newInvestorsOpen?NO=$!{userMemoNo}" ></input>
+							<a href="/investorManager/salesList?role=broker" title="" class="f-s-12 tg">查看我的推广</a>
+							<a href="javascript:;" id="jscopy" title="" class="flat-full">点击复制</a>
+						</label>
+						<span class="f-1">温馨提示：轻松点击上方的复制链接按钮，发给好友完成注册并投资，可获得相应的推广收益哦！</span>
+					</div>					
+					
+				<!-- 账户总览end -->
+
+
 				</div>
-            </div>
-        </div>
-    </div>
-    #parse("/front/index/common/footer-mjr.vm")
-    <script type="text/javascript">
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- include foot module, adjusted according to your needs -->
+	#parse("/front/index/common/footer-mjr.vm")
+	<!-- end include -->
+	<script type="text/javascript">
         var $_GLOBAL = {};
     </script>
     <script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" src="/resources/js/zeroclipboard/jquery.zclip.js"></script>
     <script type="text/javascript" src="/resources/js/lib/sea.js"></script>
+	<script src="/resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/resources/mjr/js/laydate.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         seajs.use($_GLOBAL.mode + 'userHome');
         seajs.use('/resources/mjr/js/run.js');
@@ -121,6 +143,5 @@
         document.getElementById("curTime").innerHTML= "当前时间："+myDate.toLocaleString();   //获取日期与时间
         }
     </script>
-
 </body>
 </html>

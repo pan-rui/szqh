@@ -109,6 +109,6 @@ define(function(require,exports,module){
 			return false;
 		}
 	};
-	kkpager.generPageHtml($.extend(pageOption,{click:$_GLOBAL.pageClick}));
-exports.pageOption=pageOption;
+	$_GLOBAL.pageOption= $.extend(pageOption, $_GLOBAL.pageOption);
+	kkpager.generPageHtml($_GLOBAL.pageOption);
 });

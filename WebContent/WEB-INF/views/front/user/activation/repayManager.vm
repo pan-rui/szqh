@@ -55,9 +55,12 @@
                             </ul>
                         </div>
                         <p>共：<span class=" blue" id="count">$!{count}</span> 笔，还款金额：<span class="blue"
-                                                                                         id="amount">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong("$!amount"))}</span>元，本金：<span
-                                class="blue" id="principal">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong("$!principal"))}</span>元，利息：<span
-                                class="blue" id="income">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong("$!income"))}</span>元</p>
+                                                                                          id="amount">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong(
+                            "$!amount"))}</span>元，本金：<span
+                                class="blue" id="principal">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong(
+                            "$!principal"))}</span>元，利息：<span
+                                class="blue" id="income">$!{moneyUtil.getFormatAmount($!moneyUtil.parseLong(
+                            "$!income"))}</span>元</p>
 
                         <div data-page="pb1" style="display:block">
                             <table class="table-style01 line width-100">
@@ -104,16 +107,28 @@
 </div>
     #parse("/front/index/common/footer-mjr.vm")
 <script type="text/javascript">
-    var $_GLOBAL ={}, repayManage;
-    $_GLOBAL.pageData={
+    var $_GLOBAL =
+    {
+    }
+    ,
+    repayManage;
+        $_GLOBAL.pageData= {
         url: '/userManage/mjr/repayManage',
         pageNo: 1,
         pageSize: 10,
-        startDate: $('input[name=startDate]').val(),
-        endDate: $('input[name=endDate]').val(),
-        interval: $('#interval').val()
     };
-
+        $_GLOBAL.pageOption= {
+        pno: 1,
+    total:#if(${total}) $total #else 0#end ,
+    totalRecords:#if(${totalRecords}) ${totalRecords} #else 0#end,
+        mode 				: 'click',			//默认值是link，可选link或者click
+        isShowFirstPageBtn	: false,
+        isShowLastPageBtn	: false,
+        isShowTotalPage 	: false,
+        isShowCurrPage		: false,
+        isShowTotalRecords 	: false,
+        isGoPage 			: false
+    }
 </script>
 
 <script type="text/javascript" src="resources/js/lib/sea.js"></script>
@@ -122,12 +137,8 @@
     seajs.use($_GLOBAL.mode +'userHome');
     seajs.use($_GLOBAL.mode +'repayManage', function (a) {
         repayManage = a;
-            $_GLOBAL.pageClick=function(n){
-            refresh($.extend($_GLOBAL.pageData,{pageNo:n}));
-            this.selectPage(n);
-            return false;
-        };
-    seajs.use('/resources/mjr/js/run');
+
+        seajs.use('/resources/mjr/js/run');
     });
 
 </script>

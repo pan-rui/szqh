@@ -4,7 +4,7 @@
 				<div class="list l-0 f-l">
 					<div class="icon-base call-big"></div>
 					<p>客服热线</p>
-					<p class="num">4009</p>
+					<p class="num">$!{appConstantsUtil.getCustomerServicePhone()}</p>
 					<p>邮箱: <span>huangql@mjr99.com</span></p>
 					<p>官方QQ群: <span>390458879</span></p>
 					<p>商务合作电话: <span>18707611911</span></p>

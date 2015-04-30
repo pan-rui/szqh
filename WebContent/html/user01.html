@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/common.css">
+	<script src="js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/laydate.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body class="usercenter">
+	<!-- include siteNav module, adjusted according to your needs -->
+	<div class="md-nav">
+		<div class="md-default-c clearf pc-width">
+			<ul class="f-l">
+				<li class="md-nav-menu">
+					<div>
+						<span class="text">客服热线：</span>
+						<span class="icon-base call"></span>
+						<span class="number">4009-608-199</span>
+						<a href="##" title="" class="text"></a>
+					</div>
+				</li>
+				<li class="md-nav-menu">
+					<div>
+						<span class="text">关注我们：</span>
+						<a href="##" title="" class="icon-base weixin"></a>
+						<a href="##" title="" class="icon-base weibo"></a>
+						<a href="##" title="" class="icon-base qq"></a>
+					</div>
+				</li>
+			</ul>
+			<ul class="f-r">
+				<li class="md-nav-menu">
+					<div>
+						<span class="icon-base phone"></span>
+						<span class="text">APP客户端下载</span>
+					</div>
+				</li>
+				<li class="md-nav-menu">
+					<div>
+						<span class="text">帮助中心</span>
+					</div>
+				</li>
+				<li class="md-nav-menu">
+					<div>
+						<span class="text">Hi！</span>
+						<a href="##" title="" class="name">sandy</a>
+						<span class="text">欢迎回来！</span>
+						<a href="##" title="" class="text">（安全退出）</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="md-header pc-header-height">
+		<div class="md-default-c pc-width clearf">
+			<div class="f-l height-145 width-70">
+				<div class="logo">
+					<img src="img/logo.png" alt="">
+				</div>
+				<div class="md-header-nav">
+					<ul class="md-header-nav-c clearf">
+						<li class="on"><a href="##" title="">首页</a></li>
+						<li><a href="##" title="">我要投资</a></li>
+						<li><a href="##" title="">我要借款</a></li>
+						<li><a href="##" title="">关于我们</a></li>
+						<li><a href="##" title="">我的账户</a></li>
+						<li><a href="##" title="">新手学堂</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="f-r height-145">
+				<a href="##" title="" class="flat-full deepblue-bg f-r">快速登录</a>
+				<a href="##" title="" class="flat-full deeporange-bg f-r">立即注册</a>
+			</div>
+		</div>
+	</div>
+	<!-- end include -->
+
+	<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+
+	<div class="md-module">
+		<div class="md-default-c pc-width padding-fix clearf">
+			<div class="u-c clearf">
+				<div class="user-photo grid">
+					<img src="img/user-default.png">
+				</div>
+				<div class="user-info grid">
+					<p class="username">sandy</p>
+					<p class="note">下午好, 工作辛苦了, 喝杯水保持身体健康哦~</p>
+					<a href="##" class="alert f-r"><span class="icon-base01 alert"></span><span class="tip">9</span></a>
+					<div class="clearf">
+						<span class="icon-base01 os-active"></span>
+						<span class="icon-base01 phone"></span>
+						<span class="icon-base01 email"></span>
+						<span class="safe p"><span>安全等级: </span><span class="s-c"><span class="safe-j"></span></span>高</span>
+						<span class="lasttime p">上次登录时间: 2015-4-20 17:20:35</span>
+					</div>
+				</div>
+				<div class="menu grid">
+					<ul>
+						<li class="fix-hover">
+							<a href="##" class="btn l">充值</a>
+							<a href="##" class="btn r">提现</a>
+						</li>
+						<li class="list on">
+							<a href="##"><span class="icon-base01 search"></span>账户总览</a>
+						</li>
+						<li class="list">
+							<a href="##"><span class="icon-base01 cupts"></span>交易明细</a>
+						</li>
+						<li class="list">
+							<a href="##"><span class="icon-base01 editor"></span>账户设置</a>
+						</li>
+						<li class="list">
+							<a href="##"><span class="icon-base01 tj"></span>投资的项目</a>
+						</li>
+						<li class="list">
+							<a href="##"><span class="icon-base01 gift"></span>奖励查询</a>
+						</li>
+						<li class="list">
+							<a href="##"><span class="icon-base01 peoples"></span>好友推荐</a>
+						</li>
+						<li class="list">
+							<a href="##"><span class="icon-base01 linkbook"></span>客户管理</a>
+						</li>
+					</ul>
+				</div>
+				<div class="context grid">
+
+				<!-- 交易明细 -->
+					<!-- <h4>交易明细</h4>
+					<div class="info-f1 case-simple f-l">
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">账户可用余额</span>
+							<span class="case-num">￥2,234,00</span>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">账户总资产</span>
+							<span class="case-num">￥2,234,00</span>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">冻结金额</span>
+							<span class="case-num">￥2,234,00</span>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">累计收益</span>
+							<span class="case-num">￥2,234,00</span>
+						</div>
+					</div>
+					<div class="invest-c clearf">
+						<ul class="handle nav">
+							<li>
+								<label for="timebagin" class="input-text-default">起始时间：
+									<input type="text" name="timebagin" value="" id="time-bagin" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li>
+								<label for="timeend" class="input-text-default">结束时间：
+									<input type="text" name="timeend" value="" id="time-end" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li>
+								<label for="type" class="input-text-default">交易类型：
+									<select name="type">
+										<option>全部</option>
+									</select>
+								</label>
+							</li>
+							<li><a href="##" class="flat-full f-r">点击搜索</a></li>
+						</ul>
+					</div>
+					<table class="table-style01 line width-100">
+						<thead>
+							<tr>
+								<th>交易时间</th>
+								<th>交易类型</th>
+								<th>交易金额(元)</th>
+								<th>收入(元)</th>
+								<th>支付(元)</th>
+								<th>冻结(元)</th>
+								<th>总金额(元)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2015-4-15 19:23:30</td>
+								<td>提现成功</td>
+								<td>10,232,000</td>
+								<td>+1,000,00</td>
+								<td>-1,000,00</td>
+								<td>10,000</td>
+								<td>20,000,00</td>
+							</tr>
+							<tr>
+								<td>2015-4-15 19:23:30</td>
+								<td>提现成功</td>
+								<td>10,232,000</td>
+								<td>+1,000,00</td>
+								<td>-1,000,00</td>
+								<td>10,000</td>
+								<td>20,000,00</td>
+							</tr>
+							<tr>
+								<td>2015-4-15 19:23:30</td>
+								<td>提现成功</td>
+								<td>10,232,000</td>
+								<td>+1,000,00</td>
+								<td>-1,000,00</td>
+								<td>10,000</td>
+								<td>20,000,00</td>
+							</tr>
+							<tr>
+								<td>2015-4-15 19:23:30</td>
+								<td>提现成功</td>
+								<td>10,232,000</td>
+								<td>+1,000,00</td>
+								<td>-1,000,00</td>
+								<td>10,000</td>
+								<td>20,000,00</td>
+							</tr>
+							<tr>
+								<td>2015-4-15 19:23:30</td>
+								<td>提现成功</td>
+								<td>10,232,000</td>
+								<td>+1,000,00</td>
+								<td>-1,000,00</td>
+								<td>10,000</td>
+								<td>20,000,00</td>
+							</tr>
+							<tr>
+								<td>2015-4-15 19:23:30</td>
+								<td>提现成功</td>
+								<td>10,232,000</td>
+								<td>+1,000,00</td>
+								<td>-1,000,00</td>
+								<td>10,000</td>
+								<td>20,000,00</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pages">
+						<div id="kkpager"></div>
+					</div> -->
+				<!-- 交易明细end -->
+					
+				<!-- 好友推荐 -->
+					<!-- <h4>好友推荐</h4>
+					<span class="sub-title"></span>
+					<div class="info-f1 f-l fri">
+						<label for="links" class="input-text-default">我的经纪人推广链接
+							<input type="text" name="links" value="" class="" placeholder="">
+							<a href="##" title="" class="flat-full">点击复制</a>
+						</label>
+						<span class="f-1">第一步：复制分享链接给好友</span>
+						<span class="f-2">第二步：好友通过链接注册并投资</span>
+						<span class="f-3">第三步：获得推荐提成。奖励无上限</span>
+					</div>
+					<h4>我的推广统计</h4>
+					<span class="c-g-p">推荐注册人数: <span class="blue f-s-20">21人</span></span>
+					<span class="c-g-p">个人收益合计: <span class="blue f-s-20">￥23,450</span></span>
+					<div class="line"></div>
+					<div class="invest-c clearf">
+						<ul class="handle nav">
+							<li>
+								<label for="timebagin" class="input-text-default">起始时间：
+									<input type="text" name="timebagin" value="" id="time-bagin" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li>
+								<label for="timeend" class="input-text-default">结束时间：
+									<input type="text" name="timeend" value="" id="time-end" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li><a href="##" class="flat-full f-r">点击筛选</a></li>
+						</ul>
+					</div>
+					<table class="table-style01 line width-100">
+						<thead>
+							<tr>
+								<th>推荐人账号</th>
+								<th>投资金额</th>
+								<th>投资日期</th>
+								<th>成立日期</th>
+								<th>到期日期</th>
+								<th>推荐费用(元)</th>
+								<th>投资状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>13118799908</td>
+								<td>2,000,00</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>20,000</td>
+								<td>未到期</td>
+							</tr>
+							<tr>
+								<td>13118799908</td>
+								<td>2,000,00</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>20,000</td>
+								<td>未到期</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pages">
+						<div id="kkpager"></div>
+					</div> -->
+				<!-- 好友推荐end -->
+
+				<!-- 奖励查询 -->
+					<!-- <h4>奖励查询</h4>
+					<span class="sub-title">累计获得奖励<span class="orange">1</span>个,已经使用<span class="orange">1</span>个,未使用<span class="orange">2</span>个，累计获得红包奖励<span class="orange">50</span>元</span>
+					<div class="invest-c clearf">
+						<ul class="handle nav">
+							<li>
+								<label for="timebagin" class="input-text-default">起始时间：
+									<input type="text" name="timebagin" value="" id="time-bagin" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li>
+								<label for="timeend" class="input-text-default">结束时间：
+									<input type="text" name="timeend" value="" id="time-end" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li><a href="##" class="flat-full f-r">点击筛选</a></li>
+						</ul>
+					</div>
+					<table class="table-style01 line width-100">
+						<thead>
+							<tr>
+								<th>类型</th>
+								<th>获得日期</th>
+								<th>金额(元)</th>
+								<th>截止日期</th>
+								<th>返现(元)</th>
+								<th>使用范围</th>
+								<th>使用详情</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>注册红包</td>
+								<td>2015-04-23 12:3:34</td>
+								<td>23,90</td>
+								<td>2015-04-23 12:3:34</td>
+								<td>32,0</td>
+								<td>投资</td>
+								<td>未使用<a href="##" class="">详情</a></td>
+							</tr>
+							<tr>
+								<td>注册红包</td>
+								<td>2015-04-23 12:3:34</td>
+								<td>23,90</td>
+								<td>2015-04-23 12:3:34</td>
+								<td>32,0</td>
+								<td>投资</td>
+								<td>未使用<a href="##" class="">详情</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pages">
+						<div id="kkpager"></div>
+					</div> -->
+				<!-- 奖励查询end -->
+
+				<!-- 客户管理 -->
+					<!-- <div class="table-simple">
+						<ul class="table-title">
+							<li class="table-title-key on">投资人</li>
+							<li class="table-title-key">二级经纪人</li>
+						</ul>
+						<div class="table-context">
+							<div class="invest-c clearf">
+								<ul class="handle nav">
+									<li>
+										<label for="name" class="input-text-default">用户名: 
+											<input type="text" name="name" value="" placeholder="">
+										</label>
+									</li>
+									<li>
+										<label for="truename" class="input-text-default">真实姓名：
+											<input type="text" name="truename" value="" placeholder="">
+										</label>
+									</li>
+									<li><a href="##" class="flat-full f-r">筛选</a></li>
+									<li><a href="##" class="flat-full f-r">投资人开户</a></li>
+								</ul>
+							</div>
+							<table class="table-style01 line width-100">
+								<thead>
+									<tr>
+										<th>用户名</th>
+										<th>真实姓名</th>
+										<th>用户编号</th>
+										<th>收益分配</th>
+										<th>创建时间</th>
+										<th>状态</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>sandy</td>
+										<td>刘晓宇</td>
+										<td>t00k324553</td>
+										<td>还为分配</td>
+										<td>2015-04-23 12:3:34</td>
+										<td>正常</td>
+										<td><a href="##" class="">查看详情</a>|<a href="##" class="">收益分配</a></td>
+									</tr>
+									<tr>
+										<td>sandy</td>
+										<td>刘晓宇</td>
+										<td>t00k324553</td>
+										<td>还为分配</td>
+										<td>2015-04-23 12:3:34</td>
+										<td>正常</td>
+										<td><a href="##" class="">查看详情</a>|<a href="##" class="">收益分配</a></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="pages">
+								<div id="kkpager"></div>
+							</div>
+						</div>
+					</div> -->
+				<!-- 客户管理end -->
+
+				<!-- 投资的项目 -->
+				<!--	 <h4>投资的项目</h4>
+					<span class="sub-title invest">可用余额  ￥3.00  <a href="##" title="">充值</a></span>
+					<div class="info-f1 case-simple f-l invest">
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">投资金额</span>
+							<span class="case-num">￥2,234,00</span>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">累计收益</span>
+							<span class="case-num">￥2,234,00</span>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">累计投资总额</span>
+							<span class="case-num">￥2,234,00</span>
+						</div>
+					</div>
+					<table class="table-style01 line width-100">
+						<thead>
+							<tr>
+								<th>项目名称</th>
+								<th>投资金额</th>
+								<th>预计收益<span>(仅供参考)</span></th>
+								<th>投资时间</th>
+								<th>到期时间</th>
+								<th>进度情况</th>
+								<th>合同资料</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<div class="pages">
+						<div id="kkpager"></div>
+					</div>-->
+				<!-- 投资的项目end -->
+
+				<!-- 账户设置 -->
+				<!--	 <h4>账户设置</h4>
+					<span class="sub-title invest">可用余额  ￥3.00  <a href="##" title="">充值</a></span>
+					<div class="table-context set">
+						<div class="width-20 f-l t-c-i">
+							<p class="title">我的账号</p>
+							<p>
+								<span class="t-t">用户名</span>
+								<span class="t-time">sandy(编号：yj5f4444)</span>
+							</p>
+							<p>
+								<span class="t-t">登录密码</span>
+								<span class="t-time">2015-12-30</span>
+								<span><a href="##" class="flat-simple">修改密码</a></span>
+							</p>
+							<p>
+								<span class="t-t">支付密码</span>
+								<span class="t-time">2015-12-30</span>
+								<span><a href="##" class="flat-simple">修改密码</a></span>
+							</p>
+							<p>
+								<span class="t-t">注册时间</span>
+								<span class="t-time">2015-12-30</span>
+							</p>
+						</div>
+					</div>
+					<div class="info-set clearf">
+						<div class="table-context f-l f-1">
+							<div class="width-20 t-c-i">
+								<p class="title">实名认证</p>
+								<p>
+									<span class="t-t">真实姓名</span>
+									<span class="t-time">sandy(编号：yj5f4444)</span>
+								</p>
+								<p>
+									<span class="t-t">身份证号码</span>
+									<span class="t-time">125469853256985524</span>
+								</p>
+								<p>
+									<span class="t-t">认证状态</span>
+									<span class="t-time">已认证</span>
+								</p>
+							</div>
+						</div>
+						<div class="table-context f-l f-2">
+							<div class="width-20 t-c-i">
+								<p class="title">第三方支付账户</p>
+								<p>
+									<span class="t-t">支付账号</span>
+									<span class="t-time">sandy(编号：yj5f4444)</span>
+								</p>
+								<p>
+									<span class="t-t">开通状态</span>
+									<span class="t-time">已开通</span>
+								</p>
+								<p>
+									<span><a href="##" class="flat-full">登录第三方支付账户</a></span>
+								</p>
+							</div>
+						</div>
+						<div class="table-context f-l f-3">
+							<div class="width-20 t-c-i">
+								<p class="title">联系方式</p>
+								<p>
+									<span class="t-t">绑定手机</span>
+									<span class="t-time">1523698542<a href="##">修改</a></span>
+								</p>
+								<p>
+									<span class="t-t">绑定邮箱</span>
+									<span class="t-time">weurks@outlook.com<a href="##">修改</a></span>
+								</p>
+							</div>
+						</div>
+					</div>-->
+				<!-- 账户设置end -->
+
+				<!-- 账户总览 -->
+					 <h4>账户总览</h4>
+					<div class="info-f1 case-simple f-l detail">
+						<p class="totle">账户总额 <span class="blue f-s-mid">￥2,234,00</span></p>
+						<div class="case-simple-list solid-right-border clearf">
+							<p>冻结金额 <span class="blue f-s-mid">￥2,234,00</span></p>
+							<p>可用余额 <span class="blue f-s-mid">￥2,234,00</span><a href="##" title="">充值</a></p>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<p>待收收益 <span class="blue f-s-mid">￥2,234,00</span></p>
+							<p>待收本金 <span class="blue f-s-mid">￥2,234,00</span></p>
+						</div>
+						<div class="case-simple-list solid-right-border clearf">
+							<p>推广收益 <span class="blue f-s-mid">￥2,234,00</span></p>
+						</div>
+					</div>
+					<h4>最近收益</h4>
+					<table class="table-style01 line width-100 detail">
+						<thead>
+							<tr>
+								<th>交易名称</th>
+								<th>投资人</th>
+								<th>投资金额(元)</th>
+								<th>投资日期</th>
+								<th>成立日期</th>
+								<th>到期日期</th>
+								<th>推荐费用(元)</th>
+								<th>投资状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>红包2</td>
+								<td>小李子</td>
+								<td>10,232,000</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>20,000,00</td>
+								<td>未成立</td>
+							</tr>
+							<tr>
+								<td>红包2</td>
+								<td>小李子</td>
+								<td>10,232,000</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>20,000,00</td>
+								<td>未成立</td>
+							</tr>
+							<tr>
+								<td>红包2</td>
+								<td>小李子</td>
+								<td>10,232,000</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>20,000,00</td>
+								<td>未成立</td>
+							</tr>
+							<tr>
+								<td>红包2</td>
+								<td>小李子</td>
+								<td>10,232,000</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>20,000,00</td>
+								<td>未成立</td>
+							</tr>
+							<tr>
+								<td>红包2</td>
+								<td>小李子</td>
+								<td>10,232,000</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>20,000,00</td>
+								<td>未成立</td>
+							</tr>
+							<tr>
+								<td>红包2</td>
+								<td>小李子</td>
+								<td>10,232,000</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>2015-4-15</td>
+								<td>20,000,00</td>
+								<td>未成立</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="fri detail">
+						<label for="links" class="input-text-default">经纪人推广链接
+							<input type="text" name="links" value="" class="" placeholder="">
+							<a href="##" title="" class="f-s-12 tg">查看我的推广</a>
+							<a href="##" title="" class="flat-full">点击复制</a>
+						</label>
+						<span class="f-1">温馨提示：轻松点击上方的复制链接按钮，发给好友完成注册并投资，可获得相应的推广收益哦！</span>
+					</div>
+				<!-- 账户总览end -->
+
+				<!-- 账户充值 -->
+					<!-- <div class="recharge">
+						<p class="t"><a href="##" title="">返回</a>账户充值</p>
+						<div class="notice">
+							<p class="f-t">温馨提示：</p>
+							1.  为全面保护您的资金安全，即日起一个账户只能添加一张银行卡充值和提现；<br>
+							2.  如您已添加了多张银行卡，请保留一张i常用的银行卡，自行解绑其他银行卡，这样您今后的提现会更快捷；<br>
+							3.  由于部分银行渠道变更，您以往添加的部分银行卡信息可能被屏蔽，请您重新添加银行卡。
+						</div>
+						<table>
+							<tbody>
+								<tr>
+									<td><p class="t">充值方式</p></td>
+									<td>
+										<div>
+											<p>
+												<span class="orange p-r pot"><span class="t">快捷充值</span></span>
+												<span class="gray pot"><span class="t">网银充值</span></span>
+											</p>
+											<div class="card-c clearf">
+												<div class="card c-add">
+													<p class="t"><span class="plus">+</span><span class="text">添加银行卡</span></p>
+													<p class="p">您的银行卡尚未添加请先设置银行卡</p>
+												</div>
+												<div class="card c-defaule">
+													<img src="img/pan.png" alt="">
+													<p class="bank-num">尾号：8888</p>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><p class="t">充值金额</p></td>
+									<td>
+										<div>
+											<input type="text" name="" value="" placeholder="1,000">
+											<span>金额大写: 壹仟元</span><br><br>
+											<label for="agreement">
+												<input type="checkbox" id="agreement" name="agreement" value="" placeholder="">
+												<span>我已阅读并接受 <a href="##" class="agreement">《梦金融投资人协议书》</a></span>
+											</label><br><br>
+											<a href="##" class="flat-full">充值</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div> -->
+				<!-- 账户充值end -->
+
+				<!-- 充值成功 -->
+					<!-- <div class="success">
+						<span class="icon-base01 ok"></span>
+						<h3 class="ok-text">快捷充值申请已提交，需要等待银行处理结果！</h3>
+						<div class="line"></div>
+					</div>
+					<div class="tips">
+						<p>温馨提示：</p>
+						1.  一个账户只能绑定一张银行卡，您充值的资金将只能提现到该银行卡内；<br>
+						2.  充值操作支持国内大部分银行的网上银行，只要您开通了网上银行的账户即可充值；<br>
+						3.  由于大多数银行的网银系统只支持IE浏览器，请您进行充值时使用IE浏览器；<br>
+						4.  充值过程中，请勿关闭浏览器窗口，操作完成后，浏览器会自动跳转返回到网站界面；<br>
+						5.  如果您在充值过程中遇到任何问题，请咨询客服人员。
+					</div>
+					<div class="go-f">
+						<a href="##" class="f">查看充值记录</a>
+						<a href="##">继续充值</a>
+					</div> -->
+				<!-- 充值成功end -->
+
+				<!-- 确认提现 -->
+					<!-- <div class="besure">
+						<p class="t"><a href="##" title="">返回</a>确认提现</p>
+						<p>请核对您的提现信息：</p><br>
+						<table class="table-cell-only-s1 width-100">
+							<tbody>
+								<tr>
+									<td>开户名：</td>
+									<td>刘晓宇</td>
+								</tr>
+								<tr>
+									<td>开户银行：</td>
+									<td>平安银行</td>
+								</tr>
+								<tr>
+									<td>开户银行所在地</td>
+									<td>广东省  深圳市  中国平安银行深圳南山山支行</td>
+								</tr>
+								<tr>
+									<td>银行账号：</td>
+									<td>51263547895426</td>
+								</tr>
+								<tr>
+									<td>提现金额：</td>
+									<td><span class="orange">1,000.00</span>元</td>
+								</tr>
+								<tr>
+									<td>手续费：</td>
+									<td><span class="orange">5.00</span>元</td>
+								</tr>
+								<tr>
+									<td>预计到账时间：</td>
+									<td>2015年4月28日 23点前</td>
+								</tr>
+							</tbody>
+						</table><br>
+						<p class="little-tips">注：付款后资金将直接到达你指定的银行账户，请谨慎操作</p><br><br><br><br>
+						<label for="tender" class="input-text-default">提现金额：
+							<input type="text" name="tender" value="" placeholder="1,000">
+							<a href="##">忘记密码</a>
+						</label>
+						<a href="##" class="flat-full">确认</a>
+					</div> -->
+				<!-- 确认提现end -->
+
+				<!-- 申请提现 -->
+<!--					<div class="besure">
+						<p class="t"><a href="##" title="">返回</a>申请提现</p>
+						<div class="notice">
+							<p class="t">温馨提示：</p>
+							<ol>
+								<li>为充分保障您的资金安全，您需要确认：资金转出或提现时所使用的银行卡的开户人，必须与您在平台实名认证时所提交的信息保持一致。</li>
+								<li>如果您已经在“快捷充值”时绑定了银行卡，则第三方支付将默认此卡为您的资金提现到账卡（且不可更改），并不需再另行设置其他银行卡进行提现。</li>
+								<li>如果您还未在“快捷充值”中绑定任何银行卡，那么您可以在资金提现时选择您名下的任意一张银行卡。</li>
+							</ol>
+						</div>
+						<span class="pp">账户总额：<span class="blue f-s-mid">1,000,000</span>元</span>
+						<span class="pp">可提取金额：<span class="blue f-s-mid">1,000,000</span>元</span>
+						<div class="line"></div>
+						<h4>请选择提现银行账户</h4>
+						<table>
+							<tbody>
+								<tr>
+									<td><span class="orange">*</span>开户名：</td>
+									<td><input type="text" name="" value="刘晓燕" placeholder=""></td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>银行账号：</td>
+									<td>
+										<select name="" class="w-238">
+											<option value="">5246354269875</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>开户银行：</td>
+									<td>
+										<div class="bank-select">
+											<img class="show" src="" alt="">
+											<input name="bank" type="hidden" value="1"> &lt;!&ndash; name="bank"不可修改。由此传值 &ndash;&gt;
+											<div class="bottom-array"></div>
+											<div class="b-s-b">
+												<div class="b-s-b-c">
+													<ul>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="1"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="2"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="3"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="4"></li>
+														<li><img src="img/pan.png" alt=""><input type="hidden" value="5"></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>开户支行：</td>
+									<td>
+										<select name="">
+											<option value="">广东省</option>
+										</select>
+										<select name="">
+											<option value="">深圳市</option>
+										</select>
+										<select name="">
+											<option value="">中国平安银行福田支行</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td><span class="orange">*</span>提现金额：</td>
+									<td><input type="text" name="" value="" placeholder=""></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<a href="##" class="flat-full f-l fix">下一步</a><br>
+										<span class="little-tips s"><span class="orange">*</span>提现之前请确认您绑定的银行账户是否正常使用。</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>-->
+				<!-- 申请提现end -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- include foot module, adjusted according to your needs -->
+	<div class="md-footer">
+		<div class="md-f-c">
+			<div class="md-default-c pc-width clearf">
+				<div class="list l-0 f-l">
+					<div class="icon-base call-big"></div>
+					<p>客服热线</p>
+					<p class="num">4009-608-199</p>
+					<p>邮箱: <span>huangql@mjr99.com</span></p>
+					<p>官方QQ群: <span>390458879</span></p>
+					<p>商务合作电话: <span>18707611911</span></p>
+				</div>
+				<div class="list l-2 f-l">
+					<div class="weixin">
+						<div class="erwei">
+							<img src="img/erwei.png" class="erwei" alt="">
+							<span>关注微信号</span>
+						</div>
+						<div class="icon-base phone-big"></div>
+						<p class="app">手机APP下载</p>
+						<p>抢标快人一步</p>
+						<a href="##" class="android"><span class="icon-base android"></span>安卓 android</a><br>
+						<a href="##" class="ios"><span class="icon-base ios"></span>苹果 ios</a>
+					</div>
+				</div>
+				<div class="list l-0 f-l list-font-size-16 link clearf">
+					<ul class="f-l context-list-default">
+						<li><a href="##">关于我们</a></li>
+						<li><a href="##">联系我们</a></li>
+						<li><a href="##">安全保障</a></li>
+						<li><a href="##">招贤纳士</a></li>
+					</ul>
+					<ul class="f-l context-list-default">
+						<li><a href="##">媒体报道</a></li>
+						<li><a href="##">新闻动态</a></li>
+						<li><a href="##">帮助中心</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="md-f-nav">
+			<div class="md-default-c pc-width clearf">
+				<ul class="clearf f-l">
+					<li><a href="##"><span class="icon-base norton"></span></a></li>
+					<li><a href="##"><span class="icon-base t360"></span></a></li>
+					<li><a href="##"><span class="icon-base cfca"></span></a></li>
+					<li><a href="##"><span class="icon-base safe"></span></a></li>
+					<li><a href="##"><span class="icon-base xin"></span></a></li>
+					<li><a href="##"><span class="icon-base icp"></span></a></li>
+				</ul>
+				<span class="sign f-r">版权所有: 深圳前海汇能互联网金融服务有限公司 粤ICP备15017117</span>
+			</div>
+		</div>
+	</div>
+	<!-- end include -->
+	<script type="text/javascript" src="js/run.js"></script>
+</body>
+</html>

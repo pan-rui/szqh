@@ -38,16 +38,16 @@
 					</div>
 					<div class="case-simple-list fix-right-border clearf">
 						<span class="case-title">年利率</span>
-						<span class="case-num">$!{totalAnnualInterest}</span>
+						<span class="case-num" id="Y-rate">$!{totalAnnualInterest}</span>
 					</div>
 					<div class="f-l plus"></div>
 					<div class="case-simple-list fix-right-border clearf">
-						<!--<span class="case-title">投资奖励</span>
-						<span class="case-num">2%</span>-->
+						<!--<span class="case-title"></span>
+						<span class="case-num"></span>-->
 					</div>
 				</div>
 				<div class="clearf p-c f-l">
-					<div class="list">项目期限: <span>$!{trade.timeLimit}$!{trade.timeLimitUnit.viewName}</span></div>
+					<div class="list">项目期限: <span id="Brtime">$!{trade.timeLimit}$!{trade.timeLimitUnit.viewName}</span></div>
 					<div class="list">担保方式: <span>其他方式</span></div>
 					<div class="list">还款方式: <span>$!loanDemand.repayDivisionWay.message</span></div>
 					<div class="list">担保公司: <span>$!{loanDemand.guaranteeName}</span></div>
@@ -73,40 +73,48 @@
 				<div class="kk-c">
 					<div class="kk-c-c clearf">
 						<div class="e-l-c clearf">
-							<div class="list">账户金额: 
-							    <i>请<a href="#">登录</a>查看余额</i>
+							<div class="list">账户金额:
+								  #if($!yjfPaypassUrl)
+									$!{yjfAccountInfo.availableBalance.toStandardString()} 
+									<a href="/userManage/topUp/withholdingIndex" style="color:#019dda">充值</a>
+									<input type="hidden" id="freeAmount" value="$!{yjfAccountInfo.availableBalance.toStandardString()}" />
+							      #else
+							    	<i>请<a href="/login/login">登录</a>查看余额</i>
+							      #end	
 							</div>
 							<div class="line"></div><br>
 							<div class="list">起始金额: <span>￥$!{loanDemand.leastInvestAmount.toStandardString()}</span></div>
 							<div class="list">可投金额: <span>￥$!{investableAmount.toStandardString()}</span></div>
-							<div class="list">预计收益: <span>￥100.00</span><a href="javascript:volt(0);" class="cupt"><span class="icon-base cupts"></span></a></div>
+						
 							<input value="$!{loanDemand.deadline.getTime()}" class="getDeadTime" type="hidden"/>	
 							<input value="$!{loanDemand.investAvlDate.getTime()}" class="getinvestAvlDate" type="hidden"/>
 							<input value="$!{trade.tradeStatus.value}" class="tradeValue" type="hidden"/>
 							<input value="#if($!{trade.tradeEffectiveDate})$!{yrdDateUtil.formatDay($!{trade.tradeEffectiveDate})}#else#end" class="geteffectiveDate" type="hidden"/>
 							<input type="hidden" name="demandId" value="$!{loanDemand.demandId}"/> 				
 							<div class="time showLeftTime"></span></div>
-							<a href="javascript:void(0)" data-e="extend" class="flat-3d">立即投资</a>
+							<a href="javascript:void(0)" id="invest-btn" data-e="extend" class="flat-3d">立即投资</a>
 						</div>
 						<div class="e-l-c extend">
-							<div class="clearf t"><h4 class="f-l">收益测算</h4><a href="#" class="kk-back f-r">返回</a></div>
+							<div class="clearf t"><h4 class="f-l">收益测算</h4><a href="javascript:void(0);" class="kk-back f-r">返回</a></div>
 							<div class="list">
 								<label for="tender" class="input-text-default">投标金额：
 									<input type="text" id="investAmount" name="investAmount">
 								</label>
 							</div>
-							<div class="list">金额大写: <i>这里绑定生成的大写金额</i></div>
+							<div class="list" id="invest-pay-amount-messge" style="display:none;"></div>
+							<div class="list">金额大写: <i id="investAmountchinese"></i></div>
 							<div class="line"></div><br>
-							<span class="list">本息合计: <span class="blue">20</span>元</span>
-							<span class="list">利息总收入: <span class="blue">20</span>元</span>
-							<span class="list">每月收款: <span class="blue">20</span>元</span>
+							<span class="list">本息合计: <span class="blue" id="B-x">-</span>元</span>
+							<span class="list">利息总收入: <span class="blue" id="A-l-x">-</span>元</span>
+							<span class="list">每月收款: <span class="blue" id="E-s">-</span>元</span>
 							<div class="list">
+							  #if($!yjfPaypassUrl)
 							<iframe frameborder="0" width="450" height="150" id="paypassIframe" name="mypaypassIframe" scrolling="no" src="$!yjfPaypassUrl"></iframe>
-
+							  #end	
 							</div>
 							<input type="hidden" id="token" name="token" value="$!{token}"/>
 							<input id="business1" type="hidden" name="business" value="invest"/>
-							<a href="javascript:void(0)" class="flat-3d">确认支付,立即投资</a>
+							
 						</div>
 					</div>
 				</div>
@@ -149,8 +157,8 @@
 						</p>
 						<p class="title">资料展示</p>
 						<div class="show-info">
-							<a href="#" class="sPrev"><span class="icon-base01 prev"></span></a>
-							<a href="#" class="sNext"><span class="icon-base01 next"></span></a>
+							<a href="javascript:void(0);" class="sPrev"><span class="icon-base01 prev"></span></a>
+							<a href="javascript:void(0);" class="sNext"><span class="icon-base01 next"></span></a>
 							<ul>
 							#foreach($attachmentModuleTypeInfo in $list)
 								#if("LOAN_MANAGEMENT"==${attachmentModuleTypeInfo.moduleType.code})
@@ -222,6 +230,7 @@
 						</tbody>
 					</table>
 					<div class="pages">
+						<input id="dataList" type="hidden" pageNo="$!{page.currentPageNo}" totalRecords="$!{page.totalCount}" total="$!{page.totalPageCount}" />
 						<div id="kkpager"></div>
 					</div> 
 				</div>
@@ -238,6 +247,8 @@
 	<script src="resources/mjr/js/simplepop.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/mjr/js/base.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="resources/mjr/js/run.js"></script>
+	<script type="text/javascript" src="resources/mjr/js/mjrajax.js"></script>
+	<script type="text/javascript" src="$!{rc.contextPath}/resources/js/content/chineseAmountExchange.js"></script>
 	<script type="text/javascript" >
 		function sysDate() {
 			var url = '/boot/currentTime.htm';
@@ -330,17 +341,8 @@
             var _this = $(this);
             _this.html(str).attr('disabled',true);
             setTimeout(function(){
-	             var result = '';  
-	             $.ajax({
-					url:url,
-					dataType:'json',
-					type:'post',
-					async:false,
-					data:data,
-					success:function(r){
-						result = r;
-					}
-				});
+	             var result = mjrAjax(url,data);  
+	           
                 alert(result.message);
                 _this.html("确认投资").attr('disabled',false);
                 paypassIframe.src='$!yjfPaypassUrl';
@@ -359,21 +361,282 @@
 	      
 	    }
 	    
-	    $(function(){
-	    	$("#details").click(function(){
-	    		$(this).addClass("on");
-	    		$("#investRecord").removeClass("on");
-	    		$(".details").show();
-	    		$(".investRecord").hide();
-	    	});
-	    	
-	    	$("#investRecord").click(function(){
-	    		$(this).addClass("on");
-	    		$("#details").removeClass("on");
-	    		$(".investRecord").show();
-	    		$(".details").hide();
-	    	});
+	    
+	 
+	    function toPage(totalPage,pageNo){
+		
+				if(totalPage<pageNo){
+					return false;
+				}
+				var url = "$!{rc.contextPath}/boot/lookup/$!{trade.demandId},$!{trade.tradeId}?pageSize=$!{page.pageSize}&pageNo="+pageNo+"&tab=invest";
+			
+				window.location.href=url;
+		}
+		
+		
+	    
+	    	$(function(){
+		    	$("#details").click(function(){
+		    		$(this).addClass("on");
+		    		$("#investRecord").removeClass("on");
+		    		$(".details").show();
+		    		$(".investRecord").hide();
+		    	});
+		    	
+		    	$("#investRecord").click(function(){
+		    		$(this).addClass("on");
+		    		$("#details").removeClass("on");
+		    		$(".investRecord").show();
+		    		$(".details").hide();
+		    	});
+		    	
+		    	//分页跳转后显示正确的tab页面
+				#if($!{tab}=='invest') 
+					$("#investRecord").click();
+				#end
+				
+				$('#investAmount').keyup(function (){
+					
+					var inputAmount = $(this).val() ;
+					var chineseAmount = convertCurrency(inputAmount);
+					if(chineseAmount.indexOf("error") >= 0){
+						$("#investAmountchinese").html("格式不对");;
+					}else{
+						$("#investAmountchinese").html(chineseAmount);
+					}
+				});
+				f = $(".kkextend");
+				$.each(f ,function(index, el) {
+					var a = $(el).find('[data-e="extend"]'),
+						l = $(el).find('.kk-c-c'),
+						b = $(el).find('.kk-back');
+					a.on('click', function(event) {
+						if(addInvest()){
+							event.stopPropagation();
+							l.animate({left:-l.width()/2},200);
+						}
+					})
+					b.on('click', function(){
+					if(addInvest()){
+						event.stopPropagation();
+						l.animate({left:0},200);
+					}	
+					})
+				})
+				
+			
+					
+			
 	    });
+	    
+	    function addInvest(){
+	    	var json = checkTrade();
+			  if(json.status == false){
+				   alert(json.message);
+				   return false;
+			  }
+			  json = checkInvest();
+			  if(json.status == false){
+				   alert(json.message);
+				   return false;
+			  }
+			  
+			  
+			  var result = isInvest();
+			  if(result.code==2){
+			  	alert(result.message);
+				return false;
+			  }
+			  if(islogin()){
+			     return true;
+	    	   }else{
+	    	     document.location.href = '$!{rc.contextPath}/login/login?redirect=' + document.location.href;
+	    	     return false;
+	    	   }
+	    }
+	    
+	    function islogin(){
+		    var url = '$!{rc.contextPath}/login/islogin';
+			return mjrAjax(url);
+		}
+		
+		function checkTrade(tradeId){
+			var url = '$!{rc.contextPath}/invest/checktrade/$!{tradeId}';
+			return mjrAjax(url);
+		}
+		
+		function checkInvest(){
+			var url = '$!{rc.contextPath}/invest/checkinvest/$!{tradeId}';
+			return mjrAjax(url);
+		}
+	    function isInvest(){
+			var url = '/invest/isInvest';
+			var data = {'demandId' : $!{loanDemand.demandId}};
+			return mjrAjax(url,data);
+			
+		}
+		
+		function checkAmount(){
+		 	var amount = $('#investAmount').val();
+		 	var e = $('#invest-pay-amount-messge').hide();
+		 	if(amount.length < 1){
+		 		e.html('投资金额不能为空').show();
+		 		return false;
+		 	}else if(isNaN(amount)){
+		 	   	e.html('投资金额必须为数字').show();
+		 		return false;
+		 	}else if(parseFloat(amount*1) < 100){
+		 		e.html('投资金额必须为大于100的数字').show();
+		 		return false;
+		 	}
+			var url = '$!{rc.contextPath}/invest/checkamount/$!{tradeId}';
+			var data = {'amount' : parseInt(amount)};
+			var result = mjrAjax(url, data);
+			
+			if(!result.status){
+			
+			    alert(result.message);
+				e.html(result.message).show();
+			}
+			return result.status;
+		}
+		
+		 $('#investAmount').change(function (){
+	        var url = '/boot/queryUserGiftMoney';
+	        var data = {investAmount :$(this).val(),demandId :$!{loanDemand.demandId}};
+	        var json =  mjrAjax(url,data);
+	        var giftMoney = json["giftMoney"];
+	        $(".giftMoney").remove();
+	        $("#div_giftMoney").hide();
+	        $("#div_experienceAmount").hide();
+	        if(giftMoney){
+	            var giftMoneyLimitAmount =json["giftMoneyLimitAmount"];
+	            if(giftMoneyLimitAmount){
+	                $("#giftMoneyLimitAmount").remove();
+	                var h = '<div class="tishi giftMoney" id="giftMoneyLimitAmount"><p><i class="orange">当前项目可使用'+giftMoneyLimitAmount.standardString+'元红包</i></p></div>';
+	                $("#div_giftMoney").before(h)
+	            }
+	
+	            var h = '<div class="tishi giftMoney" ><p><i class="orange">您当前可使用的红包总额：' +giftMoney.standardString+'元</i></p></div>';
+	            $("#div_giftMoney").before(h)
+	
+	
+	            $("#div_giftMoney").show();
+	        }else{
+	            $("#div_giftMoney").hide();
+	        }
+	
+	        var experienceAmount = json["experienceAmount"];
+	        if(experienceAmount){
+	            var  h = '<div class="tishi giftMoney" ><p><i class="orange">您当前可使用的体验金总额：' +experienceAmount.standardString+'元</i></p></div>';
+	            $("#div_experienceAmount").before(h)
+	
+	            $("#div_experienceAmount").show();
+	        }else{
+	            $("#div_experienceAmount").hide();
+	        }
+	
+	
+	    });
+	    //end-1
+	</script>
+	
+	<script type="text/javascript">
+	
+	//得到 显示  可用余额对象
+	  var kyMoney=  document.getElementById("freeAmount");
+	  var keMoneyStr='10000000';
+	//转换为浮点型
+	keMoneyStr=keMoneyStr.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\￥|\<|\>|\/|\?]/g,"");
+	 keMoneyStr=parseFloat(keMoneyStr);
+	//得到初始输入金额 
+	var stMoney=document.getElementById("investAmount");//得到第一个输入金额对象
+	var stMoneyStr;
+	var FLstMoneyStr;
+	var TWotMoneyStr;//第二个确认框的金额字符串
+	var verifmoneyStr;//得到第二个金额确认框的金额
+	//当地一个输入金额文本框失去焦点后
+	
+	stMoney.onblur=function(){
+	stMoneyStr=this.value;
+	if(!isNaN(stMoneyStr)){
+	FLstMoneyStr=parseFloat(stMoneyStr);
+	if(FLstMoneyStr>keMoneyStr){
+		//显示余额不足	
+		
+		
+	}else{
+		
+		//收益计算器
+		
+		var rate=document.getElementById("Y-rate").innerHTML;
+		var Btime=document.getElementById("Brtime").innerHTML;
+		//首先判断  是天还是月
+		var len=Btime.length-1;
+		var everyRate;//单位利率
+		var allEarn;//利息总收益
+		var allMoney;//本息合计
+		var everyEarn;//每个月的利息收入
+		rate=rate.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\￥|\<|\>|\/|\?]/g,"");
+		rate=parseFloat(rate);
+	if(Btime.substr(len,1)=="月"){
+		//投资期限单位是月
+		//每月的收益率
+
+		Btime=Btime.replace(/[^0-9]/ig,"");
+		Btime=parseInt(Btime);
+		everyRate=rate/1200;
+		everyEarn=everyRate*FLstMoneyStr;//每个月的收益
+		everyEarn=everyEarn+1;
+		everyEarn=everyEarn.toFixed(2);
+		everyEarn=everyEarn-1;
+		everyEarn=everyEarn.toFixed(2);
+		allEarn=everyRate*Btime*FLstMoneyStr;//为了增加截取小数的准确性先将数值ji
+		allEarn=allEarn+1;
+		allEarn=allEarn.toFixed(2);//利息共收入
+		allEarn=allEarn-1;
+		allEarn=allEarn.toFixed(2);
+		allMoney=FLstMoneyStr+everyRate*Btime*FLstMoneyStr;
+		allMoney=allMoney.toFixed(2);//本息合计
+		document.getElementById("B-x").innerHTML=""+allMoney;
+		document.getElementById("A-l-x").innerHTML=""+allEarn;
+		document.getElementById("E-s").innerHTML=""+everyEarn;
+
+	}else if(Btime.substr(len,1)=="天") {
+		//投资期限  时间单位 是日
+		Btime=Btime.replace(/[^0-9]/ig,"");
+		Btime=parseInt(Btime);
+		var everyM=rate/1200;
+		everyRate=rate/36000;
+		everyEarn=everyM*FLstMoneyStr;//每个月的收益
+		everyEarn=everyEarn+1;
+		everyEarn=everyEarn.toFixed(2);
+     	everyEarn=everyEarn-1;
+		everyEarn=everyEarn.toFixed(2);
+		allEarn=everyRate*Btime*FLstMoneyStr;
+		allEarn=allEarn;
+		allEarn=allEarn+1;
+		allEarn=allEarn.toFixed(2);//利息共收入
+		allEarn=allEarn-1;
+		allEarn=allEarn.toFixed(2);//利息共收入
+		allMoney=FLstMoneyStr+everyRate*Btime*FLstMoneyStr;
+		allMoney=allMoney.toFixed(2);//本息合计
+		document.getElementById("B-x").innerHTML=""+allMoney;
+		document.getElementById("A-l-x").innerHTML=""+allEarn;
+		document.getElementById("E-s").innerHTML=""+everyEarn;
+	}
+		
+	}
+	
+		}else{
+		
+		}
+		}
+
+
+
+
+
 	</script>
 </body>
 </html>

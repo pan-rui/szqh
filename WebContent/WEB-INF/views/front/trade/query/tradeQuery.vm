@@ -1,45 +1,69 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>会员中心-交易明细</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
 	<link type="text/css" href="/styles/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/resources/mjr/css/global.css">
+	<link rel="stylesheet" href="/resources/mjr/css/common.css">
+	<script src="/resources/mjr/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/resources/mjr/js/laydate.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body >
-	<!--头部-->
-	#parse("/front/index/common/header-yrd.vm")
-	<div class="home-section_bd pt20">
-  <div class="blank20"></div>
-  <div class="bd-box container fn-clear">
-   #parse("/front/user/common/left1.vm")
-    <div class="m-content fn-right">
-      <div class="m-content-box">
-       <div class="title1 mt10"><span>交易明细</span>
-	   <div class="r-kyye"> <strong>可用余额：</strong> <span>￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span> <a href="/userManage/topUp/withholdingIndex">充值</a></div>
-	   </div>
-        <div class="info-list">
-                <div class="mb-link fn-clear">
-                	<div class="fn-left">
-                        <a $!selectedbalance href="/userManage/balanceChangeRecord">收支明细</a>
-                        <a $!selectedrecharge href="/userManage/rechargeRecord">充值记录</a>
-                        <a $!selectedwithdraw href="/userManage/withdrawRecord">提现记录</a>
-                    </div>
-                </div>
-			<iframe frameborder="0" width="720" height="900" scrolling="no" src="$!iframeUrl"></iframe>
-      </div>
-    </div>
-  </div>
-  <div class="blank50"></div>
-</div>
-#parse("/front/index/common/footer-yrd.vm")	
-<script type="text/javascript">
-    	var $_GLOBAL = {};
-    </script>
-	<script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="/resources/js/lib/sea.js"></script>
-	<script type="text/javascript">
-    	seajs.use($_GLOBAL.mode + 'userHome');
+<body class="usercenter">
+	<!-- include siteNav module, adjusted according to your needs -->
+	#parse("/front/index/common/header-mjr.vm")
+	<!-- end include -->
 
-</script>
+	<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+
+	<div class="md-module">
+		<div class="md-default-c pc-width padding-fix clearf">
+			<div class="u-c clearf">
+				#parse("/front/common/user-menu-top.vm")
+				<div class="menu grid">
+					#parse("/front/common/user-menu.vm")
+				</div>
+				<div class="context grid">
+
+				<!-- 交易明细 -->
+					 <h4>交易明细</h4>
+					<div class="info-f1 case-simple f-l">
+						<div class="case-simple-list solid-right-border clearf">
+							<span class="case-title">账户可用余额</span>
+							<span class="case-num">￥$!{yjfAccountInfo.availableBalance.toStandardString()}</span>
+						</div>
+						
+					</div>
+					<div class="invest-c clearf">
+						
+						
+                                <a $!selectedbalance href="/userManage/balanceChangeRecord">收支明细</a>
+                                <a $!selectedrecharge href="/userManage/rechargeRecord">充值记录</a>
+                                <a $!selectedwithdraw href="/userManage/withdrawRecord">提现记录</a>
+                        </div>
+							<iframe frameborder="0" width="720" height="900" scrolling="no" src="$!iframeUrl"></iframe>
+						</div>
+						
+						
+					</div>
+				<!-- 交易明细end -->
+				
+				
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- include foot module, adjusted according to your needs -->
+	#parse("/front/index/common/footer-mjr.vm")
+	<!-- end include -->
+	
 </body>
 </html>

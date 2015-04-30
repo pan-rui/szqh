@@ -1,105 +1,217 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>账户首页</title>
-    <link type="text/css" href="/styles/style.css" rel="stylesheet" />
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<base href="$!{rc.contextPath}/"/>
+    <link type="text/css" href="resources/mjr/css/common.css" rel="stylesheet"/>
+    <link type="text/css" href="resources/mjr/css/global.css" rel="stylesheet"/>
+    
 </head>
-<body >
-<!--头部-->
-    #parse("/front/index/common/header-yrd.vm")
-<div class="home-section_bd pt20">
-    <div class="blank20"></div>
-    <div class="bd-box container fn-clear">
-        #parse("/front/user/common/left1.vm")
-        <div class="m-content fn-right">
-            <div class="m-content-box">
-                <div class="title1 mt10"><span>红包查询</span></div>
-                <div class="blank20"></div>
-                <div class="border-b">
-                    <!--查询条件-->
-                    <form action="/userGiftMoney/pageQuery" method="post">
-                       <div class="mb-link fn-clear">
-                                           <span class="fn-time">
-                            <input type="date" value="$!{queryConditions.startDate}" name="startDate" class="fn-text w90">
-                            <img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img">
-                        </span>
-                            <em>-</em>
-                        <span class="fn-time">
-                            <input type="date"  value="$!{queryConditions.endDate}" name="endDate"   class="fn-text w90">
-                            <img src="$!{rc.contextPath}/resources/images/common/time-ico.gif" alt="时间" class="time-img">
-                        </span>
-                            <a href="javascript:;" class="fn-h-btn ml5"><button type="submit" >筛选 </button></a>
+<body class="usercenter">
+	<!-- include siteNav module, adjusted according to your needs -->
+	#parse("/front/index/common/header-mjr.vm")
+	<!-- end include -->
 
-                        </div>
-                    </form>
-                    <!--列表-->
-                    <table cellpadding="0" cellspacing="0" border="0" width="100%" class="mtable-list">
-                        <tr>
-                            <th>类型</th>
-                            <th>所属红包</th>
-                            <th>领取金额(元)</th>
-                            <th>已使用金额(元)</th>
-                            <th>生效时间</th>
-                            <th>截止时间</th>
-                            <th>红包用途</th>
-                            <th>状态</th>
-                            <th>使用详情</th>
-                        </tr>
-                        #if($page.result.size()==0)
+	<div class="md-showcase">
+		<div class="md-sc-static"></div>
+	</div>
+
+	<div class="md-module">
+		<div class="md-default-c pc-width padding-fix clearf">
+			<div class="u-c clearf">
+				#parse("/front/common/user-menu-top.vm")
+				<div class="menu grid">
+					#parse("/front/common/user-menu.vm")
+				</div>
+				<div class="context grid">
+
+				
+				<!-- 好友推荐 -->
+					<!-- <h4>好友推荐</h4>
+					<span class="sub-title"></span>
+					<div class="info-f1 f-l fri">
+						<label for="links" class="input-text-default">我的经纪人推广链接
+							<input type="text" name="links" value="" class="" placeholder="">
+							<a href="javascript:;" title="" class="flat-full">点击复制</a>
+						</label>
+						<span class="f-1">第一步：复制分享链接给好友</span>
+						<span class="f-2">第二步：好友通过链接注册并投资</span>
+						<span class="f-3">第三步：获得推荐提成。奖励无上限</span>
+					</div>
+					<h4>我的推广统计</h4>
+					<span class="c-g-p">推荐注册人数: <span class="blue f-s-20">21人</span></span>
+					<span class="c-g-p">个人收益合计: <span class="blue f-s-20">￥23,450</span></span>
+					<div class="line"></div>
+					<div class="invest-c clearf">
+						<ul class="handle nav">
+							<li>
+								<label for="timebagin" class="input-text-default">起始时间：
+									<input type="text" name="timebagin" value="" id="time-bagin" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li>
+								<label for="timeend" class="input-text-default">结束时间：
+									<input type="text" name="timeend" value="" id="time-end" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li><a href="javascript:;" class="flat-full f-r">点击筛选</a></li>
+						</ul>
+					</div>
+					<table class="table-style01 line width-100">
+						<thead>
+							<tr>
+								<th>推荐人账号</th>
+								<th>投资金额</th>
+								<th>投资日期</th>
+								<th>成立日期</th>
+								<th>到期日期</th>
+								<th>推荐费用(元)</th>
+								<th>投资状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>13118799908</td>
+								<td>2,000,00</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>20,000</td>
+								<td>未到期</td>
+							</tr>
+							<tr>
+								<td>13118799908</td>
+								<td>2,000,00</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>2015-04-23</td>
+								<td>20,000</td>
+								<td>未到期</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="pages">
+						<div id="kkpager"></div>
+					</div> -->
+				<!-- 好友推荐end -->
+
+				<!-- 奖励查询 -->
+					<h4>奖励查询</h4>
+					<span class="sub-title">累计获得奖励<span class="orange">1</span>个,已经使用<span class="orange">1</span>个,未使用<span class="orange">2</span>个，累计获得红包奖励<span class="orange">50</span>元</span>
+					<form action="/userGiftMoney/pageQuery" method="post" id="giftMoneyForm1">
+					<div class="invest-c clearf">
+						<ul class="handle nav">
+							<li>
+								<label for="timebagin" class="input-text-default">起始时间：
+									<input type="text" value="$!{queryConditions.startDate}" name="startDate" id="time-bagin" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li>
+								<label for="timeend" class="input-text-default">结束时间：
+									<input type="text" value="$!{queryConditions.endDate}" name="endDate"  id="time-end" class="date laydate-icon" placeholder="">
+								</label>
+							</li>
+							<li>
+								<input type="hidden"  name="pageSize"  value="$!{pageParam.pageSize}"/>
+								<input type="hidden" id="pageNo" name="pageNo"  value="$!{pageParam.pageNo}"/> 
+								<a href="javascript:;" class="flat-full f-r"  onclick="$('#pageNo').val('1');$('#giftMoneyForm1').submit();"  >点击筛选</a>
+							</li>
+						</ul>
+					</div>
+					 </form>
+					<table class="table-style01 line width-100">
+						<thead>
+							<tr>
+								<th>类型</th>
+								<th>获得日期</th>
+								<th>金额(元)</th>
+								<th>截止日期</th>
+								<!--<th>返现(元)</th>-->
+								<th>使用范围</th>
+								<th>使用详情</th>
+							</tr>
+						</thead>
+						<tbody>
+						 #if($page.result.size()==0)
                             <tr class="even">
                                 <td colspan=8 align=center>未领取红包</td>
                             </tr>
+						 #end
+						 #foreach($info in $page.result)
+							<tr>
+								<td>#if($info.type=="EXPERIENCE_AMOUNT")$!{info.type.message}#else $!{info.giftName}$!{info.type.message}#end </td>
+								<td>$!dateUtil.simpleFormat($!{info.startDate})</td>	<!--startDate -->
+								<td>$!{info.amount.toStandardString()}</td>
+								<td>$!dateUtil.simpleFormat($!{info.endDate})</td>
+								<!--<td>32,0</td>-->
+								<td>投资A</td>
+								<td>#if($!{info.status}=="NORMAL") 未使用 #elseif($!{info.status}=='EXPIRE') 过期 #else 已使用  #end<a href="/userGiftMoney/pageQueryUse?giftId=$!{info.giftTradeId}" class="">详情</a></td>
+							</tr>
                         #end
-                        #foreach($info in $page.result)
-                            <tr>
-                                <td>$!{info.type.message}</td>
-                                <td>$!{info.giftName}</td>
-                                <td>$!{info.amount.toStandardString()}</td>
-                                <td>$!{info.usedAmount.toStandardString()}</td>
-                                <td>$!dateUtil.simpleFormat($!{info.startDate})</td>
-                                <td>$!dateUtil.simpleFormat($!{info.endDate})</td>
-                                <td> 投资    </td>
-                                <td>#if($!{info.status}=="NORMAL") 未使用 #elseif($!{info.status}=='EXPIRE') 过期 #else 已使用  #end</td>
-                                <td><a href="/userGiftMoney/pageQueryUse?giftId=$!{info.giftTradeId}">使用详情</a></td>
+							
+							
+						</tbody>
+					</table>
+					<div class="pages">
+						<div id="kkpager"></div>
+					</div> 
+				<!-- 奖励查询end -->
 
-                            </tr>
-                        #end
-                    </table>
-                    <!--分页-->
-                    <div class="fn-tb-bottom fn-clear">
-                        #parse("/backstage/page/page.vm")
-                    </div>
-                </div>
-                <div class="blank30"></div>
-            </div>
-        </div>
-        <div class="blank50"></div>
-    </div>
-
-
-    #parse("/front/index/common/footer-yrd.vm")
-
-
-
-    <script type="text/javascript">
-        var $_GLOBAL = {};
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- include foot module, adjusted according to your needs -->
+	#parse("/front/index/common/footer-mjr.vm")
+	<!-- end include -->
+	<script type="text/javascript">
+    	var $_GLOBAL = {};
     </script>
-    <script type="text/javascript" src="/resources/js/lib/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/resources/js/lib/sea.js"></script>
-    <script type="text/javascript">
-        seajs.use($_GLOBAL.mode + 'userHome');
-        function toPage(totalPage, pageNo){
-            if(totalPage<pageNo){
-                return false;
+
+	<script type="text/javascript" src="resources/mjr/js/jquery-1.11.2.min.js"></script>
+    <script src="resources/mjr/js/kkpager.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/mjr/js/laydate.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="resources/js/lib/sea.js"></script>
+	<script type="text/javascript">
+		seajs.use($_GLOBAL.mode + 'userHome');
+		seajs.use('/resources/mjr/js/run.js');
+    </script>
+	
+	<script type="text/javascript">
+    	
+	
+        $(function(){
+    		var sum = '$!{page.totalCount}';//总数据条数后台返回数据
+            var totalPage = $!{page.totalPageCount};//总页数总数据条数/每页显示数 向上取整
+            var current = '$!{page.currentPageNo}';//当前页数 后台返回数据
+            if(current == 0){
+                current = 1;
             }
-            var url = "/userGiftMoney/pageQuery"
+			
+			var url = "/userGiftMoney/pageQuery"
                     +"?startDate=$!{queryConditions.startDate}"
                     +"&endDate=$!{queryConditions.endDate}"
-                    +"&pageSize=$!{page.pageSize}&pageNo="+pageNo;
-            window.location.href=url;
-        }
-    </script>
-
+                    +"&pageSize=$!{page.pageSize}&pageNo=";
+		
+			//生成分页控件  
+            kkpager.init({  
+                pno : current,  
+                //总页码  
+                total : totalPage,  
+                //总数据条数  
+                totalRecords : sum,  
+				getLink : function(pageNo){
+                    return url+pageNo; //设置a标签href地址 pageNo表示页码
+                }
+            }); 
+			
+		});
+	</script>	
 </body>
 </html>

@@ -26,7 +26,7 @@
 			</iterate>
 			</isNotEmpty>
 			order by r.repay_date desc
-			<isNotEmpty property="pageNo" prepend="limit "> #pageNo#,#pageSize#</isNotEmpty>
+			<isNotEmpty property="pageNo" prepend="limit "> #offset#,#pageSize#</isNotEmpty>
 		</dynamic>
 	</select>
 

@@ -1220,6 +1220,8 @@ a.btn:hover,
     background: #fff;
     overflow: auto;
     padding: 20px 40px;
+    min-height: 80px;
+    min-width: 200px;
 }
 
 .popContent .layer_msg {
@@ -1424,3 +1426,5 @@ body{color: #555;}
 .news .detail .b-content .context{min-height: 100px;padding: 20px 40px;line-height: 30px;}
 .news .detail .b-content .f-link{padding: 20px 40px 40px;}
 .news .detail .b-content .f-link p{padding-top: 10px;}
+
+.cz{width: 300px;height: 140px;}

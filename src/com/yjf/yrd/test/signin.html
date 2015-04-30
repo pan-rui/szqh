@@ -123,6 +123,52 @@
 		<span>版权所有：深圳前海汇能互联网金融服务有限公司 粤ICP备15017117</span>
 	</div>
 	<!-- end include -->
-	<script type="text/javascript" src="js/run.js"></script>
+	<!--<script type="text/javascript" src="js/run.js"></script>-->
+	<p id="text"></p>
+	<div id="page"></div>
+	<div id="kkpager"></div>
+<script type="text/javascript" src="/html/jqPaginator.js"></script>
+<script type="text/javascript">
+	var pageParams={
+		totalPages: 15,
+		visiblePages: 10,
+//		totalCounts:160,
+//		pageSize:10,
+		currentPage: 1,
+		onPageChange: function (num, type) {
+			$('#text').html('当前第' + num + '页');
+		}
+	};
+	$('#page').jqPaginator(pageParams);
+	setInterval(function(){
+		pageParams.totalPages=Math.ceil(Math.random() * 45);
+		$('#page').jqPaginator(pageParams);
+	},1000);
+
+	var pageOption={
+		pno 				: 2,
+		total 				: 10, 			//总页码
+		totalRecords 		: 150,				//总数据条数
+		mode 				: 'click',			//默认值是link，可选link或者click
+		isShowFirstPageBtn	: false,
+		isShowLastPageBtn	: false,
+		isShowTotalPage 	: false,
+		isShowCurrPage		: false,
+		isShowTotalRecords 	: false,
+		isGoPage 			: false,
+		click : function(n){
+			this.selectPage(n);
+			return false;
+		}
+	};
+	kkpager.generPageHtml(pageOption);
+	setInterval(function () {
+		pageOption.total = Math.ceil(Math.random() * 45);
+		$('#kkpager').hide();
+		kkpager.generPageHtml(pageOption);
+		$('#kkpager').show();
+	}, 1500);
+</script>
+
 </body>
 </html>

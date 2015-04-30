@@ -201,7 +201,7 @@
 				<div class="default-title">
 					<h3 class="title-m">项目推荐</h3>
 					<span class="title-s">还等什么，赶紧加入吧!</span>
-					<a href="javascript:;" class="more">+更多</a>
+					<a href="/boot/invest/10/1" class="more">+更多</a>
 				</div>
 				<div class="md-grid-l-showcase">
 					<div class="showcase showcase-blue">
@@ -212,7 +212,7 @@
 							<tbody>
 								 #foreach($trade in $!{newPage.result})	
 									 #if($velocityCount <= 4)
-    								<tr class="style-fixd cell-2">
+    								<tr class="style-fixd cell-2" style="cursor:pointer" onclick="javascript:lookup($!{trade.demandId},$!{trade.tradeId});">
 										 #set($percent = "100%")
                                         #if($!{trade.tradeStatus.value}==1)
                                             #set($percent = $moneyUtil.getPercentage($!{trade.loanedAmount},$!{trade.loanAmount},$!{trade.leastInvestAmount}))
@@ -235,7 +235,21 @@
     										</div>
     									</td>
     									<td>
-    										<a href="javascript:;" class="flat-full">投标</a>
+											#set($needAmount =  $moneyUtil.getMoneyByw($!{trade.loanAmount}, $!{trade.loanedAmount}))
+											#if($!{trade.tradeStatus.value}==1 && ${needAmount}>0 )
+        										#if(${percent}=="0.0%")
+        											<a href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});" class="flat-full">投资已满</a>
+        										#else
+        											<a href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});" class="flat-full">我要投资</a>
+        										#end
+        									#elseif($!{trade.tradeStatus.value}==3||$!{trade.tradeStatus.value}==7||$!{trade.tradeStatus.value}==8)
+													<a href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});"  class="flat-full">$!{trade.tradeStatus.loanderStatus}</a>
+        									#elseif($!{trade.tradeStatus.value}==2||$!{trade.tradeStatus.value}==8)
+													<a  href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});" class="flat-full">还款中</a>
+        									#else	
+													<a  href="javascript:lookup($!{trade.demandId},$!{trade.tradeId});" class="flat-full">投资已满</a>
+											#end
+    										<!--<a href="javascript:;" class="flat-full">投标</a> -->
     										<!-- <a href="javascript:;" class="flat-full unable">投标中</a> -->
     									</td>
     								</tr>
@@ -350,7 +364,7 @@
 			
 			<div class="md-user-order">
 				<div class="title"><span>理财风云榜</span></div>
-				<table class="table-style-1 width-100">
+				<table class="table-style-1 width-100" id="investTable">
 					<thead>
 						<tr>
 							<th>排名</th>
@@ -359,31 +373,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="there-3"><span class="icon-base first"></span>盟主</td>
-							<td class="there-3"><span>s***y</span></td>
-							<td class="there-3"><span class="sign-yuan">￥</span>8,000,000</td>
-						</tr>
-						<tr>
-							<td><span class="icon-base second"></span>盟主</td>
-							<td><span>s***y</span></td>
-							<td><span class="sign-yuan">￥</span>8,000,000</td>
-						</tr>
-						<tr>
-							<td><span class="icon-base third"></span>盟主</td>
-							<td><span>s***y</span></td>
-							<td><span class="sign-yuan">￥</span>8,000,000</td>
-						</tr>
-						<tr>
-							<td><span class="icon-base fourth"></span>盟主</td>
-							<td><span>s***y</span></td>
-							<td><span class="sign-yuan">￥</span>8,000,000</td>
-						</tr>
-						<tr>
-							<td><span class="icon-base fifty"></span>盟主</td>
-							<td><span>s***y</span></td>
-							<td><span class="sign-yuan">￥</span>8,000,000</td>
-						</tr>
+						
 					</tbody>
 				</table>
 			</div>
@@ -406,6 +396,7 @@
 		</div>
 	</div>
 
+	
 	<script >
 			
 			function noticesShow(type){
@@ -426,5 +417,71 @@
 	<!-- <div role="include" data-src="include/siteFoot.html"></div> -->
 	#parse("/front/index/common/footer-mjr.vm")
 	<!-- end include -->
+	
+	<script >
+	function lookup(demandId, tradeId){
+		top.location.href = '$!{rc.contextPath}/boot/lookup/' + demandId + ',' + tradeId;
+	}
+    	$(function(){ 
+			var aj = $.ajax( {  
+                url:'/login/getUserInvestListDesc',// 跳转到 action 
+				timeout : 10000, //超时时间设置，单位毫秒
+                data:{  
+                         startDate:'startDate',
+						 endDate:'endDate' 
+                },  
+                type:'get',  
+                cache:false,  
+                dataType:'json',  
+                success:function(data) {
+					var tbStr='<tr>';
+					$.each(data.data, function(index,values){   // 解析出data对应的Object数组  
+                        console.log("values="+values);
+						//investTable
+						
+						if(index==0){csstitle='icon-base first';}
+						else if(index==1){csstitle='icon-base second';}
+						else if(index==2){csstitle='icon-base third';}
+						else if(index==3){csstitle='icon-base fourth';}
+						else if(index==4){csstitle='icon-base fifty';}
+						
+						tbStr +=
+							'<td class="there-3"><span class="'+csstitle+'"></span>盟主</td>'+
+							'<td class="there-3"><span>'+values.mobile+'</span></td>'+
+							'<td class="there-3"><span class="sign-yuan">￥</span>'+fmoney(values.amount,0)+'</td>'+
+						'</tr>';
+                    });  
+					$('#investTable tbody')[0].innerHTML=tbStr;
+                 },  
+                 error : function() {  
+                      // view("异常！");  
+                      alert("异常！");  
+                 },
+                        　　complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+                        　　　　if(status=='timeout'){//超时,status还有success,error等值的情况
+                         　　　　　 ajaxTimeoutTest.abort();
+                        　　　　　  alert("获取风云榜超时");
+                        　　　　}
+                        　　}  
+            });
+			
+			 function fmoney(s, n)   
+                {   
+                   n = n > 0 && n <= 20 ? n : 2;   
+                   s = parseFloat((s + "").replace(/[^\d\.-]/g, "")).toFixed(n) + "";   
+                   var l = s.split(".")[0].split("").reverse(),   
+                   r = s.split(".")[1];   
+                   t = "";   
+                   for(i = 0; i < l.length; i ++ )   
+                   {   
+                      t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? "," : "");   
+                   }   
+                   return t.split("").reverse().join("") + "." + r;   
+                }
+	 
+	 });
+	 
+	 
+    </script>
 </body>
 </html>

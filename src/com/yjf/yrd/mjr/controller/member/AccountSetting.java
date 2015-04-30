@@ -190,11 +190,15 @@ public class AccountSetting extends UserAccountInfoBaseController {
             params.put("userId", userId);
             params.put("status", startS);
             List<Map<String, Object>> totalResult = repayManageService.findRepayPlanByConditionTotal(params);
-            params.put("pageNo", pageNo == 0 ? 1 : pageNo);
+            params.put("offset", pageNo == 0 ? 1 : pageNo*pageSize);
             params.put("pageSize", pageSize == 0 ? 10 : pageSize);
             List<Map<String, Object>> result = repayManageService.findRepayPlanByCondition(params);
             model.addAttribute("pageList", result);
             model.addAllAttributes(totalResult.get(0));
+            model.addAttribute("total", (long)Math.ceil(result.size() / (pageSize + 0D)));
+//            model.addAttribute("total",4);
+            model.addAttribute("totalRecords",result.size());
+//            model.addAttribute("totalRecords",30);
 //            return model.asMap();
             return "front/user/activation/repayManager.vm";
         } else
